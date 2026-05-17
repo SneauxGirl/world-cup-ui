@@ -1,0 +1,66 @@
+/** Chamfered outer/inner frame — 1px padding ring shows `background` (solid or gradient). */
+
+@mixin wcui-chamfer-clip {
+  clip-path: polygon(
+    var(--wcui-card-corner) 0,
+    calc(100% - var(--wcui-card-corner)) 0,
+    100% var(--wcui-card-corner),
+    100% calc(100% - var(--wcui-card-corner)),
+    calc(100% - var(--wcui-card-corner)) 100%,
+    var(--wcui-card-corner) 100%,
+    0 calc(100% - var(--wcui-card-corner)),
+    0 var(--wcui-card-corner)
+  );
+}
+
+/**
+ * Per-corner 45° chamfers — one length per corner (equal horizontal + vertical inset).
+ * --wcui-chamfer-tl | -tr | -br | -bl (falls back to --wcui-card-corner).
+ */
+@mixin wcui-chamfer-clip-asymmetric {
+  clip-path: polygon(
+    var(--wcui-chamfer-tl, var(--wcui-card-corner)) 0,
+    calc(100% - var(--wcui-chamfer-tr, var(--wcui-card-corner))) 0,
+    100% var(--wcui-chamfer-tr, var(--wcui-card-corner)),
+    100% calc(100% - var(--wcui-chamfer-br, var(--wcui-card-corner))),
+    calc(100% - var(--wcui-chamfer-br, var(--wcui-card-corner))) 100%,
+    var(--wcui-chamfer-bl, var(--wcui-card-corner)) 100%,
+    0 calc(100% - var(--wcui-chamfer-bl, var(--wcui-card-corner))),
+    0 var(--wcui-chamfer-tl, var(--wcui-card-corner))
+  );
+}
+
+@mixin wcui-chamfer-frame($trim: var(--wcui-trim-gradient-stadium)) {
+  padding: 1px;
+  box-sizing: border-box;
+  background: $trim;
+  @include wcui-chamfer-clip;
+}
+
+@mixin wcui-chamfer-frame-asymmetric($trim: var(--wcui-trim-gradient-stadium)) {
+  padding: 1px;
+  box-sizing: border-box;
+  background: $trim;
+  @include wcui-chamfer-clip-asymmetric;
+}
+
+@mixin wcui-chamfer-fill($fill: var(--wcui-pitch-black)) {
+  box-sizing: border-box;
+  background: $fill;
+  @include wcui-chamfer-clip;
+}
+
+@mixin wcui-chamfer-fill-asymmetric($fill: var(--wcui-pitch-black)) {
+  box-sizing: border-box;
+  background: $fill;
+  @include wcui-chamfer-clip-asymmetric;
+}
+
+/** Panel / match card interior — gradient fill, soft aqua border, inset + glow. */
+@mixin wcui-panel-card-surface {
+  background: var(--wcui-panel-fill);
+  border: 1px solid var(--wcui-border-aqua-soft);
+  box-shadow:
+    inset 0 1px 0 var(--wcui-white-overlay-soft),
+    0 0 32px var(--wcui-shadow-aqua-soft);
+}

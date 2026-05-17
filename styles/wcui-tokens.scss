@@ -1,0 +1,120 @@
+/**
+ * WCUI design tokens — `:root` custom properties.
+ * Hex is declared first for older engines; OKLCH overrides when supported.
+ * Each token also exposes `-hex` for explicit fallback reads.
+ *
+ * Sass note: `@use` replaces legacy `@import` (namespacing / load once).
+ * Here we use a map + `@each` so token data lives in one structure without a mixin.
+ */
+
+@use "sass:list";
+
+/// (hex, oklch) per `--wcui-*` custom property name
+$wcui-token-pairs: (
+"--wcui-page-black": (#03070b, oklch(0.125 0.030 279.6)),
+"--wcui-panel-black": (#05080d, oklch(0.175 0.012 250)),
+"--wcui-panel-blueblack": (#07101a, oklch(0.215 0.022 252)),
+"--wcui-edge-black": (#010203, oklch(0.125 0.006 255)),
+"--wcui-pitch-black": (#0a0e00, oklch(0.145 0.008 255)),
+"--wcui-border-blue": (#123b67, oklch(0.31 0.06 255)),
+"--wcui-stadium-navy": (#1a2789, oklch(0.37 0.18 268)),
+"--wcui-deep-emerald": (#054b41, oklch(0.39 0.08 182)),
+"--wcui-dark-emerald": (#00c857, oklch(0.74 0.22 151)),
+"--wcui-primary-blue": (#365afe, oklch(0.58 0.24 265)),
+"--wcui-aqua-mint": (#00e6ec, oklch(0.84 0.15 205)),
+"--wcui-sky-blue": (#8db9ff, oklch(0.8 0.11 255)),
+"--wcui-lime-pulse": (#b8ec03, oklch(0.87 0.24 117)),
+"--wcui-broadcast-orange": (#ff4500, oklch(0.7 0.23 38)),
+"--wcui-signal-green": (#00c857, oklch(0.74 0.22 151)),
+"--wcui-signal-yellow": (#ebff47, oklch(0.96 0.19 110)),
+"--wcui-signal-orange": (#ffb800, oklch(0.81 0.18 80)),
+"--wcui-primary-red": (#da0301, oklch(0.61 0.24 28)),
+"--wcui-burgundy": (#74180f, oklch(0.39 0.12 28)),
+"--wcui-soft-peach": (#ffb08a, oklch(0.84 0.1 45)),
+"--wcui-tournament-purple": (#7a00ff, oklch(0.54 0.25 300)),
+"--wcui-white-text": (#ffffff, oklch(0.98 0 0)),
+"--wcui-black-text": (#111111, oklch(0.18 0 0)),
+);
+
+:root {
+  color-scheme: dark;
+
+  @each $prop, $pair in $wcui-token-pairs {
+    $hex: list.nth($pair, 1);
+    $oklch: list.nth($pair, 2);
+
+    #{$prop}-hex: #{$hex};
+    #{$prop}: #{$hex};
+    #{$prop}: #{$oklch};
+  }
+
+  /* Alpha / atmospheric (hex fallback, then OKLCH when supported). */
+  --wcui-glow-aqua-hex: rgb(0 230 236 / 0.1);
+  --wcui-glow-aqua: rgb(0 230 236 / 0.1);
+  --wcui-glow-aqua: oklch(0.84 0.15 205 / 0.1);
+
+  --wcui-glow-blue-hex: rgb(54 90 254 / 0.12);
+  --wcui-glow-blue: rgb(54 90 254 / 0.12);
+  --wcui-glow-blue: oklch(0.58 0.24 265 / 0.12);
+
+  --wcui-glow-yellow-hex: rgb(235 255 71 / 0.055);
+  --wcui-glow-yellow: rgb(235 255 71 / 0.055);
+  --wcui-glow-yellow: oklch(0.96 0.19 110 / 0.055);
+
+  --wcui-border-aqua-soft-hex: rgb(0 230 236 / 0.24);
+  --wcui-border-aqua-soft: rgb(0 230 236 / 0.24);
+  --wcui-border-aqua-soft: oklch(0.84 0.15 205 / 0.24);
+
+  --wcui-white-overlay-soft-hex: rgb(255 255 255 / 0.045);
+  --wcui-white-overlay-soft: rgb(255 255 255 / 0.045);
+  --wcui-white-overlay-soft: oklch(0.98 0 0 / 0.045);
+
+  --wcui-shadow-aqua-soft-hex: rgb(0 230 236 / 0.055);
+  --wcui-shadow-aqua-soft: rgb(0 230 236 / 0.055);
+  --wcui-shadow-aqua-soft: oklch(0.84 0.15 205 / 0.055);
+
+  --wcui-panel-fill: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--wcui-panel-blueblack) 92%, transparent),
+    color-mix(in oklab, var(--wcui-page-black) 96%, transparent)
+  );
+
+  /* Chamfer frame trim — stadium rake (linear highlight band + deep shadow). */
+  --wcui-trim-gradient-stadium: linear-gradient(
+    135deg,
+  
+    /* top-left neon edge */
+    color-mix(in oklab, var(--wcui-white-text) 35%, var(--wcui-aqua-mint)) 0%,
+    var(--wcui-aqua-mint) 4%,
+    color-mix(in oklab, var(--wcui-aqua-mint) 62%, var(--wcui-deep-emerald)) 10%,
+  
+    /* fade into dark teal/blue body */
+    color-mix(in oklab, var(--wcui-deep-emerald) 62%, var(--wcui-pitch-black)) 22%,
+    color-mix(in oklab, var(--wcui-border-blue) 42%, var(--wcui-pitch-black)) 38%,
+  
+    /* darkest middle */
+    var(--wcui-pitch-black) 50%,
+  
+    /* ramp back toward neon */
+    color-mix(in oklab, var(--wcui-border-blue) 42%, var(--wcui-pitch-black)) 62%,
+    color-mix(in oklab, var(--wcui-deep-emerald) 62%, var(--wcui-pitch-black)) 74%,
+  
+    /* bottom-right neon edge */
+    color-mix(in oklab, var(--wcui-aqua-mint) 62%, var(--wcui-deep-emerald)) 86%,
+    var(--wcui-aqua-mint) 94%,
+    color-mix(in oklab, var(--wcui-white-text) 35%, var(--wcui-aqua-mint)) 100%
+  );
+  /* Default hero / aqua trim — alias stadium lighting */
+  --wcui-trim-gradient-aqua-blue: var(--wcui-trim-gradient-stadium);
+  --wcui-trim-gradient-aqua-mint: linear-gradient(
+    132deg,
+    var(--wcui-pitch-black) 0%,
+    var(--wcui-stadium-navy) 10%,
+    var(--wcui-aqua-mint) 46%,
+    color-mix(in oklab, var(--wcui-white-text) 88%, var(--wcui-aqua-mint)) 50%,
+    var(--wcui-lime-pulse) 54%,
+    var(--wcui-aqua-mint) 62%,
+    var(--wcui-primary-blue) 78%,
+    var(--wcui-pitch-black) 100%
+  );
+}

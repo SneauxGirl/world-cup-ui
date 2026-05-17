@@ -1,0 +1,132 @@
+@use "../../styles/wcui-frame" as frame;
+
+%strategy-clip {
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+}
+
+.strategyFrame {
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--wcui-primary-blue);
+  @extend %strategy-clip;
+}
+
+.strategy {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  @include frame.wcui-panel-card-surface;
+  @extend %strategy-clip;
+}
+
+.strategyIcon {
+  color: var(--wcui-aqua-mint);
+  flex-shrink: 0;
+}
+
+.strategyTitle {
+  font-size: 1rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--wcui-white-text);
+  margin-bottom: 0.35rem;
+}
+
+.strategyBody {
+  font-size: 1rem;
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--wcui-sky-blue);
+}
+
+%feed-clip {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+
+.feedFrame {
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--wcui-dark-emerald);
+  @extend %feed-clip;
+}
+
+.feed {
+  padding: 0.85rem 1rem 1rem;
+  box-sizing: border-box;
+  @include frame.wcui-panel-card-surface;
+  @extend %feed-clip;
+}
+
+.feedHead {
+  margin-bottom: 0.5rem;
+}
+
+.feedTitle {
+  font-size: 1rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--wcui-white-text);
+}
+
+.feedList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+%feed-row-clip {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.feedRowFrame {
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--wcui-dark-emerald);
+  @extend %feed-row-clip;
+}
+
+.feedRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.5rem;
+  box-sizing: border-box;
+  @include frame.wcui-panel-card-surface;
+  @extend %feed-row-clip;
+}
+
+.feedIcon {
+  color: var(--wcui-sky-blue);
+  display: inline-flex;
+  width: 1.5rem;
+  justify-content: center;
+}
+
+.feedIcon svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.feedText {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--wcui-white-text);
+}
+
+.feedPts {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--wcui-lime-pulse);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 1101px) {
+  .strategyFrame {
+    min-height: 100%;
+  }
+}

@@ -1,0 +1,110 @@
+@use "../../styles/wcui-frame" as frame;
+
+%performer-card-clip {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 18px),
+    calc(100% - 18px) 100%,
+    0 100%
+  );
+}
+
+.cardFrame {
+  --accent: var(--wcui-primary-blue);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--accent);
+  transition: background-color 280ms ease-in-out;
+  @extend %performer-card-clip;
+}
+
+.cardFrame:focus-within {
+  background: var(--wcui-aqua-mint);
+}
+
+.cardInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 1rem 1rem 0.75rem;
+  overflow: hidden;
+  @include frame.wcui-panel-card-surface;
+  @extend %performer-card-clip;
+}
+
+.accentPrimaryBlue {
+  --accent: var(--wcui-primary-blue);
+}
+
+.accentAquaMint {
+  --accent: var(--wcui-aqua-mint);
+}
+
+.accentBorderBlue {
+  --accent: var(--wcui-border-blue);
+}
+
+.accentLimePulse {
+  --accent: var(--wcui-lime-pulse);
+}
+
+.header {
+  position: relative;
+  z-index: 1;
+}
+
+.name {
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--wcui-white-text);
+}
+
+.meta {
+  font-size: 1rem;
+  color: var(--wcui-sky-blue);
+  font-weight: 500;
+}
+
+.points {
+  position: relative;
+  z-index: 1;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--wcui-aqua-mint);
+  font-variant-numeric: tabular-nums;
+}
+
+.portrait {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 55%;
+  pointer-events: none;
+}
+
+.portraitSilhouette {
+  position: absolute;
+  bottom: -8%;
+  left: 50%;
+  width: 72%;
+  height: 118%;
+  transform: translateX(-50%);
+  background: var(--wcui-deep-emerald);
+  clip-path: polygon(15% 0, 85% 0, 100% 100%, 0 100%);
+}
+
+@media (min-width: 769px) {
+  .cardFrame {
+    min-height: 260px;
+  }
+}
