@@ -24,7 +24,13 @@ export function useLiveScoreDemo(seed: DashboardMatch[]) {
     const id = window.setInterval(() => {
       setMatches((prev) =>
         prev.map((m) =>
-          m.id === firstLiveId ? { ...m, homeScore: m.homeScore + 1 } : m,
+          m.id === firstLiveId
+            ? {
+                ...m,
+                homeScore: m.homeScore + 1,
+                lastGoalAt: new Date().toISOString(),
+              }
+            : m,
         ),
       );
     }, DEMO_INTERVAL_MS);

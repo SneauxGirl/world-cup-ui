@@ -69,6 +69,11 @@ $wcui-token-pairs: (
   --wcui-white-overlay-soft: rgb(255 255 255 / 0.045);
   --wcui-white-overlay-soft: oklch(0.98 0 0 / 0.045);
 
+  /* Standard body/label text — white at 80% (replaces sky-blue label copy). */
+  --wcui-text-standard-hex: rgb(255 255 255 / 0.8);
+  --wcui-text-standard: rgb(255 255 255 / 0.8);
+  --wcui-text-standard: oklch(0.98 0 0 / 0.8);
+
   --wcui-shadow-aqua-soft-hex: rgb(0 230 236 / 0.055);
   --wcui-shadow-aqua-soft: rgb(0 230 236 / 0.055);
   --wcui-shadow-aqua-soft: oklch(0.84 0.15 205 / 0.055);

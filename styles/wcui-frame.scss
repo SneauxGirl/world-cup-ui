@@ -30,6 +30,22 @@
   );
 }
 
+/**
+ * Top-left + bottom-right chamfers only (top-right and bottom-left stay square).
+ * Set --wcui-chamfer-tl / --wcui-chamfer-br per card (default: --wcui-card-corner).
+ * Do not use 0 on the 8-point asymmetric clip — omit corners via this mixin instead.
+ */
+@mixin wcui-chamfer-clip-tl-br {
+  clip-path: polygon(
+    var(--wcui-chamfer-tl, var(--wcui-card-corner)) 0,
+    100% 0,
+    100% calc(100% - var(--wcui-chamfer-br, var(--wcui-card-corner))),
+    calc(100% - var(--wcui-chamfer-br, var(--wcui-card-corner))) 100%,
+    0 100%,
+    0 var(--wcui-chamfer-tl, var(--wcui-card-corner))
+  );
+}
+
 @mixin wcui-chamfer-frame($trim: var(--wcui-trim-gradient-stadium)) {
   padding: 1px;
   box-sizing: border-box;
@@ -44,6 +60,13 @@
   @include wcui-chamfer-clip-asymmetric;
 }
 
+@mixin wcui-chamfer-frame-tl-br($trim: var(--wcui-trim-gradient-stadium)) {
+  padding: 1px;
+  box-sizing: border-box;
+  background: $trim;
+  @include wcui-chamfer-clip-tl-br;
+}
+
 @mixin wcui-chamfer-fill($fill: var(--wcui-pitch-black)) {
   box-sizing: border-box;
   background: $fill;
@@ -54,6 +77,21 @@
   box-sizing: border-box;
   background: $fill;
   @include wcui-chamfer-clip-asymmetric;
+}
+
+@mixin wcui-chamfer-fill-tl-br($fill: var(--wcui-panel-fill)) {
+  box-sizing: border-box;
+  background: $fill;
+  @include wcui-chamfer-clip-tl-br;
+}
+
+/** Hero stats / stadium-trim card interior — panel gradient, aqua border, inset + glow. */
+@mixin wcui-stats-card-inner {
+  @include wcui-chamfer-fill-tl-br(var(--wcui-panel-fill));
+  border: 1px solid var(--wcui-border-aqua-soft);
+  box-shadow:
+    inset 0 1px 0 var(--wcui-white-overlay-soft),
+    0 0 32px var(--wcui-shadow-aqua-soft);
 }
 
 /** Panel / match card interior — gradient fill, soft aqua border, inset + glow. */

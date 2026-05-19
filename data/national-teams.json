@@ -1,0 +1,533 @@
+{
+  "description": "2026 FIFA World Cup \u2014 48 nations. Jersey assets match likely home kit; otherwise flag primary via color classification. USA mapped to White.",
+  "teams": [
+    {
+      "code": "ALG",
+      "colors": {
+        "primary": "#006233",
+        "secondary": "#FFFFFF",
+        "alt": "#D21034",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Green",
+      "jerseyPath": "/Players/Green.png"
+    },
+    {
+      "code": "ARG",
+      "colors": {
+        "primary": "#75AADB",
+        "secondary": "#9EC4E6",
+        "alt": "#F6B40E",
+        "text": "#000000"
+      },
+      "jersey": "LightBlue",
+      "jerseyPath": "/Players/LightBlue.png"
+    },
+    {
+      "code": "AUS",
+      "colors": {
+        "primary": "#000066",
+        "secondary": "#4D4D94",
+        "alt": "#FFCC00",
+        "text": "#FFFFFF"
+      },
+      "jersey": "RoyalBlue1",
+      "jerseyPath": "/Players/RoyalBlue1.png"
+    },
+    {
+      "code": "AUT",
+      "colors": {
+        "primary": "#ED2939",
+        "secondary": "#FFFFFF",
+        "alt": "#ED2939",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Red",
+      "jerseyPath": "/Players/Red.png"
+    },
+    {
+      "code": "BEL",
+      "colors": {
+        "primary": "#000000",
+        "secondary": "#FFD100",
+        "alt": "#FF0000",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Black",
+      "jerseyPath": "/Players/Black.png"
+    },
+    {
+      "code": "BIH",
+      "colors": {
+        "primary": "#002395",
+        "secondary": "#FECB00",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "RoyalBlue2",
+      "jerseyPath": "/Players/RoyalBlue2.png"
+    },
+    {
+      "code": "BRA",
+      "colors": {
+        "primary": "#FEDF00",
+        "secondary": "#009B3A",
+        "alt": "#002776",
+        "text": "#000000"
+      },
+      "jersey": "Yellow",
+      "jerseyPath": "/Players/Yellow.png"
+    },
+    {
+      "code": "CAN",
+      "colors": {
+        "primary": "#FF0000",
+        "secondary": "#B20000",
+        "alt": "#FF0000",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Red",
+      "jerseyPath": "/Players/Red.png"
+    },
+    {
+      "code": "CIV",
+      "colors": {
+        "primary": "#F77F00",
+        "secondary": "#009E60",
+        "alt": "#FFFFFF",
+        "text": "#000000"
+      },
+      "jersey": "Orange",
+      "jerseyPath": "/Players/Orange.png"
+    },
+    {
+      "code": "COD",
+      "colors": {
+        "primary": "#007FFF",
+        "secondary": "#F7D618",
+        "alt": "#CE1126",
+        "text": "#000000"
+      },
+      "jersey": "RoyalBlue2",
+      "jerseyPath": "/Players/RoyalBlue2.png"
+    },
+    {
+      "code": "COL",
+      "colors": {
+        "primary": "#FCD116",
+        "secondary": "#003893",
+        "alt": "#CE1126",
+        "text": "#000000"
+      },
+      "jersey": "Yellow",
+      "jerseyPath": "/Players/Yellow.png"
+    },
+    {
+      "code": "CPV",
+      "colors": {
+        "primary": "#003893",
+        "secondary": "#CF2027",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "RoyalBlue2",
+      "jerseyPath": "/Players/RoyalBlue2.png"
+    },
+    {
+      "code": "CUW",
+      "colors": {
+        "primary": "#002B7F",
+        "secondary": "#FED100",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "RoyalBlue1",
+      "jerseyPath": "/Players/RoyalBlue1.png"
+    },
+    {
+      "code": "CZE",
+      "colors": {
+        "primary": "#D7141A",
+        "secondary": "#11457E",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Red",
+      "jerseyPath": "/Players/Red.png"
+    },
+    {
+      "code": "ECU",
+      "colors": {
+        "primary": "#FFD100",
+        "secondary": "#003893",
+        "alt": "#CE1126",
+        "text": "#000000"
+      },
+      "jersey": "Gold",
+      "jerseyPath": "/Players/Gold.png"
+    },
+    {
+      "code": "EGY",
+      "colors": {
+        "primary": "#CE1126",
+        "secondary": "#000000",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "MidRed",
+      "jerseyPath": "/Players/MidRed.png"
+    },
+    {
+      "code": "ENG",
+      "colors": {
+        "primary": "#C8102E",
+        "secondary": "#8C0B20",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "MidRed",
+      "jerseyPath": "/Players/MidRed.png"
+    },
+    {
+      "code": "ESP",
+      "colors": {
+        "primary": "#AA151B",
+        "secondary": "#770F13",
+        "alt": "#F1BF00",
+        "text": "#FFFFFF"
+      },
+      "jersey": "MidRed",
+      "jerseyPath": "/Players/MidRed.png"
+    },
+    {
+      "code": "FRA",
+      "colors": {
+        "primary": "#0055A4",
+        "secondary": "#003B73",
+        "alt": "#EF4135",
+        "text": "#FFFFFF"
+      },
+      "jersey": "White",
+      "jerseyPath": "/Players/White.png"
+    },
+    {
+      "code": "GER",
+      "colors": {
+        "primary": "#000000",
+        "secondary": "#DD0000",
+        "alt": "#FFCE00",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Black",
+      "jerseyPath": "/Players/Black.png"
+    },
+    {
+      "code": "GHA",
+      "colors": {
+        "primary": "#006B3F",
+        "secondary": "#FCD116",
+        "alt": "#CE1126",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Green",
+      "jerseyPath": "/Players/Green.png"
+    },
+    {
+      "code": "HAI",
+      "colors": {
+        "primary": "#00209F",
+        "secondary": "#D21034",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "RoyalBlue2",
+      "jerseyPath": "/Players/RoyalBlue2.png"
+    },
+    {
+      "code": "HRV",
+      "colors": {
+        "primary": "#FF0000",
+        "secondary": "#B20000",
+        "alt": "#0000FF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Red",
+      "jerseyPath": "/Players/Red.png"
+    },
+    {
+      "code": "IRN",
+      "colors": {
+        "primary": "#DA0000",
+        "secondary": "#990000",
+        "alt": "#239F40",
+        "text": "#FFFFFF"
+      },
+      "jersey": "MidRed",
+      "jerseyPath": "/Players/MidRed.png"
+    },
+    {
+      "code": "IRQ",
+      "colors": {
+        "primary": "#007A3D",
+        "secondary": "#CE1126",
+        "alt": "#000000",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Green",
+      "jerseyPath": "/Players/Green.png"
+    },
+    {
+      "code": "JOR",
+      "colors": {
+        "primary": "#007A3D",
+        "secondary": "#000000",
+        "alt": "#CE1126",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Green",
+      "jerseyPath": "/Players/Green.png"
+    },
+    {
+      "code": "JPN",
+      "colors": {
+        "primary": "#BC002D",
+        "secondary": "#840020",
+        "alt": "#BC002D",
+        "text": "#FFFFFF"
+      },
+      "jersey": "RoyalBlue1",
+      "jerseyPath": "/Players/RoyalBlue1.png"
+    },
+    {
+      "code": "KOR",
+      "colors": {
+        "primary": "#003478",
+        "secondary": "#4D71A1",
+        "alt": "#C60C30",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Red",
+      "jerseyPath": "/Players/Red.png"
+    },
+    {
+      "code": "KSA",
+      "colors": {
+        "primary": "#006C35",
+        "secondary": "#004C25",
+        "alt": "#006C35",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Green",
+      "jerseyPath": "/Players/Green.png"
+    },
+    {
+      "code": "MAR",
+      "colors": {
+        "primary": "#006233",
+        "secondary": "#FFD700",
+        "alt": "#C8102E",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Red",
+      "jerseyPath": "/Players/Red.png"
+    },
+    {
+      "code": "MEX",
+      "colors": {
+        "primary": "#006847",
+        "secondary": "#004932",
+        "alt": "#CE1126",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Green",
+      "jerseyPath": "/Players/Green.png"
+    },
+    {
+      "code": "NED",
+      "colors": {
+        "primary": "#FF5700",
+        "secondary": "#FF894D",
+        "alt": "#21468B",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Orange",
+      "jerseyPath": "/Players/Orange.png"
+    },
+    {
+      "code": "NOR",
+      "colors": {
+        "primary": "#BA0C2F",
+        "secondary": "#00205B",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "MidRed",
+      "jerseyPath": "/Players/MidRed.png"
+    },
+    {
+      "code": "NZL",
+      "colors": {
+        "primary": "#000000",
+        "secondary": "#FFFFFF",
+        "alt": "#000000",
+        "text": "#FFFFFF"
+      },
+      "jersey": "White",
+      "jerseyPath": "/Players/White.png"
+    },
+    {
+      "code": "PAN",
+      "colors": {
+        "primary": "#DA121A",
+        "secondary": "#072357",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "MidRed",
+      "jerseyPath": "/Players/MidRed.png"
+    },
+    {
+      "code": "PAR",
+      "colors": {
+        "primary": "#D52B1E",
+        "secondary": "#0038A8",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Red",
+      "jerseyPath": "/Players/Red.png"
+    },
+    {
+      "code": "POR",
+      "colors": {
+        "primary": "#006600",
+        "secondary": "#004700",
+        "alt": "#FF0000",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Green-mid",
+      "jerseyPath": "/Players/Green-mid.png"
+    },
+    {
+      "code": "QAT",
+      "colors": {
+        "primary": "#8A1538",
+        "secondary": "#610F27",
+        "alt": "#8A1538",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Maroon",
+      "jerseyPath": "/Players/Maroon.png"
+    },
+    {
+      "code": "RSA",
+      "colors": {
+        "primary": "#007749",
+        "secondary": "#FFB500",
+        "alt": "#000000",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Green2",
+      "jerseyPath": "/Players/Green2.png"
+    },
+    {
+      "code": "SCO",
+      "colors": {
+        "primary": "#003262",
+        "secondary": "#FFFFFF",
+        "alt": "#741B47",
+        "text": "#FFFFFF"
+      },
+      "jersey": "RoyalBlue1",
+      "jerseyPath": "/Players/RoyalBlue1.png"
+    },
+    {
+      "code": "SEN",
+      "colors": {
+        "primary": "#00853F",
+        "secondary": "#FDEF42",
+        "alt": "#E31B23",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Green2",
+      "jerseyPath": "/Players/Green2.png"
+    },
+    {
+      "code": "SUI",
+      "colors": {
+        "primary": "#FF0000",
+        "secondary": "#B20000",
+        "alt": "#000000",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Red",
+      "jerseyPath": "/Players/Red.png"
+    },
+    {
+      "code": "SWE",
+      "colors": {
+        "primary": "#FECC00",
+        "secondary": "#006AA7",
+        "alt": "#FECC00",
+        "text": "#000000"
+      },
+      "jersey": "Gold",
+      "jerseyPath": "/Players/Gold.png"
+    },
+    {
+      "code": "TUN",
+      "colors": {
+        "primary": "#E30B17",
+        "secondary": "#9F0810",
+        "alt": "#E30B17",
+        "text": "#FFFFFF"
+      },
+      "jersey": "MidRed",
+      "jerseyPath": "/Players/MidRed.png"
+    },
+    {
+      "code": "TUR",
+      "colors": {
+        "primary": "#E30A17",
+        "secondary": "#FFFFFF",
+        "alt": "#E30A17",
+        "text": "#FFFFFF"
+      },
+      "jersey": "Red",
+      "jerseyPath": "/Players/Red.png"
+    },
+    {
+      "code": "URY",
+      "colors": {
+        "primary": "#75AADB",
+        "secondary": "#9EC4E6",
+        "alt": "#000000",
+        "text": "#000000"
+      },
+      "jersey": "LightBlue",
+      "jerseyPath": "/Players/LightBlue.png"
+    },
+    {
+      "code": "USA",
+      "colors": {
+        "primary": "#B22234",
+        "secondary": "#7D1824",
+        "alt": "#3C3B6E",
+        "text": "#FFFFFF"
+      },
+      "jersey": "White",
+      "jerseyPath": "/Players/White.png"
+    },
+    {
+      "code": "UZB",
+      "colors": {
+        "primary": "#0099B5",
+        "secondary": "#1EB53A",
+        "alt": "#FFFFFF",
+        "text": "#FFFFFF"
+      },
+      "jersey": "LightBlue",
+      "jerseyPath": "/Players/LightBlue.png"
+    }
+  ]
+}

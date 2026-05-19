@@ -1,3 +1,4 @@
+import { CountryFlag } from "@/components/CountryFlag";
 import { IconBall, IconSpark } from "@/components/icons/DashboardIcons";
 import { t, tFeed } from "@/lib/i18n/t";
 import type { FeedItem } from "@/data/types";
@@ -51,7 +52,13 @@ export function LiveFeedBlock({ items, className }: FeedProps) {
             <li key={item.id} className={styles.feedRowFrame}>
               <div className={styles.feedRow}>
                 <span className={styles.feedIcon} aria-hidden="true">
-                  {item.kind === "ball" ? <IconBall /> : <IconSpark />}
+                  {item.kind === "ball" ? (
+                    <IconBall />
+                  ) : item.kind === "flag" && item.flagCode ? (
+                    <CountryFlag code={item.flagCode} />
+                  ) : (
+                    <IconSpark />
+                  )}
                 </span>
                 <span className={styles.feedText}>{tFeed(item.messageKey)}</span>
                 <span className={styles.feedPts}>

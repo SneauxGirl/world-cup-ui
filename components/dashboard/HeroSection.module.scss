@@ -2,7 +2,7 @@
 
 /* Flex-only hero — height from HeroSans.png ratio (1500×600); copy inset 40px / 60px. */
 .hero {
-  --hero-photo-max: 600px;
+  --hero-photo-max: 450px;
   --hero-photo-aspect: 1500 / 600;
   --hero-gap-top: 2.5rem; /* 40px below top edge of photo */
   --hero-gap-bottom: 3.75rem; /* 60px above bottom edge of photo */
@@ -76,7 +76,7 @@
   margin: -2px -2px 0 0;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1199px) {
   .heroMenu {
     display: flex;
   }
@@ -183,7 +183,7 @@
   font-size: 1rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--wcui-sky-blue);
+  color: var(--wcui-text-standard);
   font-weight: 500;
 }
 

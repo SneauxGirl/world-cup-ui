@@ -24,7 +24,7 @@ export function HeroSection({ user, className }: Props) {
             fill
             priority
             className={styles.heroPhoto}
-            sizes="(min-width: 1101px) 70vw, 100vw"
+            sizes="(min-width: 1200px) 70vw, 100vw"
           />
         </div>
       </div>

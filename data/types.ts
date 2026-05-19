@@ -2,15 +2,6 @@ export type FifaCountryCode = string;
 
 export type MatchStatus = "live" | "upcoming" | "finished";
 
-export type MatchAccent =
-  | "primaryRed"
-  | "deepEmerald"
-  | "primaryBlue"
-  | "broadcastOrange"
-  | "borderBlue";
-
-export type PerformerAccent = "primaryBlue" | "aquaMint" | "borderBlue" | "limePulse";
-
 export type FeedMessageKey =
   | "mbappeGoal"
   | "brazilCleanSheet"
@@ -20,13 +11,14 @@ export type FeedMessageKey =
 export type DashboardMatch = {
   id: string;
   status: MatchStatus;
-  home: { code: FifaCountryCode; name: string; flagEmoji: string };
-  away: { code: FifaCountryCode; name: string; flagEmoji: string };
+  home: { code: FifaCountryCode; name: string };
+  away: { code: FifaCountryCode; name: string };
   homeScore: number;
   awayScore: number;
   clockLabel: string;
   fantasyPoints: number;
-  accent: MatchAccent;
+  /** ISO time of the latest goal; triggers a short red border flash while live. */
+  lastGoalAt?: string;
 };
 
 export type DashboardPerformer = {
@@ -35,7 +27,6 @@ export type DashboardPerformer = {
   teamCode: FifaCountryCode;
   position: string;
   points: number;
-  accent: PerformerAccent;
 };
 
 export type RosterHealth = {

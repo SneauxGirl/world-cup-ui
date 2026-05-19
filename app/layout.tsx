@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Alumni_Sans, Alumni_Sans_SC, Finlandica } from "next/font/google";
+import "flag-icons/css/flag-icons.min.css";
 import "./globals.scss";
 import { wcuiViewportThemeColor } from "@/lib/wcui-theme-meta";
 

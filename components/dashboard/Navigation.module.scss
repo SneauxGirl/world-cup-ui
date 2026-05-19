@@ -30,7 +30,7 @@
   position: sticky;
   top: 0;
   z-index: 0;
-  width: 180px;
+  width: 210px;
   height: 100vh;
   box-sizing: border-box;
   padding: 0;
@@ -187,7 +187,7 @@
     }
 
     svg {
-      color: var(--wcui-sky-blue);
+      color: var(--wcui-text-standard);
     }
   }
 
@@ -335,7 +335,7 @@
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--wcui-sky-blue) 90%, white);
+  color: var(--wcui-text-standard);
 }
 
 /* —— Hero hamburger menu (HeroNavMenu) —— */
@@ -512,7 +512,7 @@
     color: var(--wcui-white-text);
 
     svg {
-      color: var(--wcui-sky-blue);
+      color: var(--wcui-text-standard);
     }
   }
 
@@ -520,12 +520,12 @@
     color: var(--wcui-aqua-mint);
 
     svg {
-      color: var(--wcui-sky-blue);
+      color: var(--wcui-text-standard);
     }
   }
 }
 
-@media (min-width: 1101px) {
+@media (min-width: 1200px) {
   .sidebarShell {
     display: flex;
     flex-direction: column;

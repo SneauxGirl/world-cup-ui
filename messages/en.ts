@@ -52,8 +52,7 @@ export const en = {
     eliminated: "Eliminated",
   },
   match: {
-    versus: "vs",
-    minute: "{min}′",
+    scorePending: "Score not yet available",
   },
   player: {
     points: "{pts} pts",
