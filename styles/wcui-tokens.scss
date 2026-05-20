@@ -12,6 +12,7 @@
 /// (hex, oklch) per `--wcui-*` custom property name
 $wcui-token-pairs: (
 "--wcui-page-black": (#03070b, oklch(0.125 0.030 279.6)),
+"--wcui-background-black": (#030303, oklch(0.1 0 280.8)),
 "--wcui-panel-black": (#05080d, oklch(0.175 0.012 250)),
 "--wcui-panel-blueblack": (#07101a, oklch(0.215 0.022 252)),
 "--wcui-edge-black": (#010203, oklch(0.125 0.006 255)),
@@ -26,7 +27,7 @@ $wcui-token-pairs: (
 "--wcui-lime-pulse": (#b8ec03, oklch(0.87 0.24 117)),
 "--wcui-broadcast-orange": (#ff4500, oklch(0.7 0.23 38)),
 "--wcui-signal-green": (#00c857, oklch(0.74 0.22 151)),
-"--wcui-signal-yellow": (#ebff47, oklch(0.96 0.19 110)),
+"--wcui-signal-yellow": (#f8e207, oklch(0.902 0.188 102.3)),
 "--wcui-signal-orange": (#ffb800, oklch(0.81 0.18 80)),
 "--wcui-primary-red": (#da0301, oklch(0.61 0.24 28)),
 "--wcui-burgundy": (#74180f, oklch(0.39 0.12 28)),
@@ -57,9 +58,9 @@ $wcui-token-pairs: (
   --wcui-glow-blue: rgb(54 90 254 / 0.12);
   --wcui-glow-blue: oklch(0.58 0.24 265 / 0.12);
 
-  --wcui-glow-yellow-hex: rgb(235 255 71 / 0.055);
-  --wcui-glow-yellow: rgb(235 255 71 / 0.055);
-  --wcui-glow-yellow: oklch(0.96 0.19 110 / 0.055);
+  --wcui-glow-yellow-hex: rgb(248 226 7 / 0.055);
+  --wcui-glow-yellow: rgb(248 226 7 / 0.055);
+  --wcui-glow-yellow: oklch(0.902 0.188 102.3 / 0.055);
 
   --wcui-border-aqua-soft-hex: rgb(0 230 236 / 0.24);
   --wcui-border-aqua-soft: rgb(0 230 236 / 0.24);
@@ -78,11 +79,29 @@ $wcui-token-pairs: (
   --wcui-shadow-aqua-soft: rgb(0 230 236 / 0.055);
   --wcui-shadow-aqua-soft: oklch(0.84 0.15 205 / 0.055);
 
-  --wcui-panel-fill: linear-gradient(
+  --wcui-panel-fill: var(--wcui-panel-blueblack);
+
+  /* Hero stats interior only — gradient kept for the hero card. */
+  --wcui-hero-panel-fill: linear-gradient(
     180deg,
     color-mix(in oklab, var(--wcui-panel-blueblack) 92%, transparent),
-    color-mix(in oklab, var(--wcui-page-black) 96%, transparent)
+    color-mix(in oklab, var(--wcui-background-black) 96%, transparent)
   );
+
+  /* Match + performer card interior — solid pitch black. */
+  --wcui-card-glass-fill: var(--wcui-pitch-black);
+
+  --wcui-card-glass-border-hex: rgb(26 39 137 / 0.38);
+  --wcui-card-glass-border: rgb(26 39 137 / 0.38);
+  --wcui-card-glass-border: oklch(0.37 0.18 268 / 0.38);
+
+  --wcui-card-glass-highlight-hex: rgb(255 255 255 / 0.07);
+  --wcui-card-glass-highlight: rgb(255 255 255 / 0.07);
+  --wcui-card-glass-highlight: oklch(0.98 0 0 / 0.07);
+
+  --wcui-card-glass-shadow-hex: 0 0 32px rgb(26 39 137 / 0.22);
+  --wcui-card-glass-shadow: 0 0 32px rgb(26 39 137 / 0.22);
+  --wcui-card-glass-shadow: 0 0 32px oklch(0.37 0.18 268 / 0.22);
 
   /* Chamfer frame trim — stadium rake (linear highlight band + deep shadow). */
   --wcui-trim-gradient-stadium: linear-gradient(

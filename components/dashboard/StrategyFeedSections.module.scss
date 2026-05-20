@@ -7,7 +7,7 @@
 .strategyFrame {
   padding: 1px;
   box-sizing: border-box;
-  background: var(--wcui-primary-blue);
+  background: var(--wcui-border-blue);
   @extend %strategy-clip;
 }
 
@@ -48,7 +48,7 @@
 .feedFrame {
   padding: 1px;
   box-sizing: border-box;
-  background: var(--wcui-dark-emerald);
+  background: var(--wcui-border-blue);
   @extend %feed-clip;
 }
 
@@ -85,7 +85,7 @@
 .feedRowFrame {
   padding: 1px;
   box-sizing: border-box;
-  background: var(--wcui-dark-emerald);
+  background: var(--wcui-border-blue);
   @extend %feed-row-clip;
 }
 

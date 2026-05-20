@@ -3,7 +3,7 @@
 /* Flex-only hero — height from HeroSans.png ratio (1500×600); copy inset 40px / 60px. */
 .hero {
   --hero-photo-max: 450px;
-  --hero-photo-aspect: 1500 / 600;
+  --hero-photo-aspect: 2000 / 600;
   --hero-gap-top: 2.5rem; /* 40px below top edge of photo */
   --hero-gap-bottom: 3.75rem; /* 60px above bottom edge of photo */
   position: relative;
@@ -13,7 +13,6 @@
   aspect-ratio: var(--hero-photo-aspect);
   box-sizing: border-box;
   overflow: visible;
-  border-radius: 2px 2px 0 0;
 }
 
 .heroPhotoShell {
@@ -21,7 +20,7 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: var(--wcui-page-black);
+  background: var(--wcui-background-black);
   border-radius: inherit;
   overflow: hidden;
 }
@@ -32,8 +31,8 @@
 }
 
 .heroPhoto {
-  object-fit: contain;
-  object-position: right top;
+  object-fit: cover;
+  object-position: right center;
 }
 
 .heroStack {
@@ -44,8 +43,7 @@
   flex-direction: column;
   align-items: stretch;
   box-sizing: border-box;
-  padding-top: var(--hero-gap-top);
-  padding-bottom: var(--hero-gap-bottom);
+  padding: var(--hero-gap-top) var(--main-gutter, 1.25rem) var(--hero-gap-bottom);
 }
 
 .heroTopRow {
@@ -57,7 +55,7 @@
   gap: 1rem;
   width: 100%;
   margin: 0;
-  padding: 0 4px 0 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -145,7 +143,7 @@
 
 .statsCardInner {
   padding: 1rem 1.15rem;
-  @include frame.wcui-chamfer-fill-asymmetric(var(--wcui-panel-fill));
+  @include frame.wcui-chamfer-fill-asymmetric(var(--wcui-hero-panel-fill));
   border: 1px solid var(--wcui-border-aqua-soft);
 }
 

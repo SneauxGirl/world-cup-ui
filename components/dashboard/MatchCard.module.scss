@@ -4,26 +4,17 @@
   --wcui-card-corner: 20px;
   --wcui-chamfer-tl: 30px;
   --wcui-chamfer-br: 30px;
-  --accent: var(--wcui-primary-blue);
   position: relative;
   flex: 0 0 min(320px, 82vw);
   scroll-snap-align: start;
   padding: 1px;
   box-sizing: border-box;
-  background: var(--accent);
-  transition: background-color 280ms ease-in-out;
+  background: var(--wcui-border-blue);
   @include frame.wcui-chamfer-clip-tl-br;
 }
 
 .cardFrame:focus-within {
   outline: none;
-}
-
-.cardFrame:focus-within:not(.cardFrameStadium) {
-  background: var(--wcui-aqua-mint);
-}
-
-.cardFrameStadium:focus-within {
   filter: brightness(1.06);
 }
 
@@ -37,27 +28,7 @@
   box-sizing: border-box;
   padding: var(--card-pad-block-start) var(--card-pad-inline) var(--card-pad-block-end);
   @include frame.wcui-chamfer-clip-tl-br;
-
-  &:not(.cardInnerStadium) {
-    @include frame.wcui-panel-card-surface;
-  }
-}
-
-.cardFrameStadium {
-  --accent: var(--wcui-aqua-mint);
-  background: var(--wcui-trim-gradient-stadium);
-}
-
-.cardInnerStadium {
-  @include frame.wcui-stats-card-inner;
-}
-
-.accentPrimaryRed {
-  --accent: var(--wcui-primary-red);
-}
-
-.accentBorderBlue {
-  --accent: var(--wcui-border-blue);
+  @include frame.wcui-card-glass-surface;
 }
 
 .header {
@@ -107,6 +78,16 @@
   align-items: center;
   gap: 0.25rem;
   flex: 1;
+}
+
+.teamFlag {
+  width: 3rem;
+  aspect-ratio: 4 / 3;
+  line-height: 0;
+  border-radius: 7px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
 }
 
 .code {
@@ -160,13 +141,13 @@
 .pts {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--wcui-lime-pulse);
+  color: var(--wcui-signal-yellow);
 }
 
 .momentum {
   margin-top: var(--card-section-gap);
   height: 3px;
-  background: var(--accent);
+  background: var(--wcui-border-blue);
 }
 
 @media (min-width: 769px) and (max-width: 1100px) {

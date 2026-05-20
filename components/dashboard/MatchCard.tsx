@@ -4,18 +4,11 @@ import { CountryFlag } from "@/components/CountryFlag";
 import { useMatchBorderAccent } from "@/hooks/useMatchBorderAccent";
 import { formatKickoff } from "@/lib/i18n/format";
 import { t } from "@/lib/i18n/t";
-import type { MatchBorderAccent } from "@/lib/matchBorderAccent";
 import type { DashboardMatch } from "@/data/types";
 import styles from "./MatchCard.module.scss";
 
 type Props = {
   match: DashboardMatch;
-};
-
-const accentMap: Record<MatchBorderAccent, string | undefined> = {
-  primaryRed: styles.accentPrimaryRed,
-  aquaMint: undefined,
-  borderBlue: styles.accentBorderBlue,
 };
 
 export function MatchCard({ match }: Props) {
@@ -28,22 +21,10 @@ export function MatchCard({ match }: Props) {
         ? t("dashboard.upcoming")
         : "FT";
   const clock = isUpcoming ? formatKickoff(match.clockLabel) : match.clockLabel;
-  const useStadiumGradient = borderAccent === "aquaMint";
 
   return (
-    <article
-      className={[
-        styles.cardFrame,
-        useStadiumGradient ? styles.cardFrameStadium : accentMap[borderAccent],
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <div
-        className={[styles.cardInner, useStadiumGradient && styles.cardInnerStadium]
-          .filter(Boolean)
-          .join(" ")}
-      >
+    <article className={styles.cardFrame}>
+      <div className={styles.cardInner}>
         <header className={styles.header}>
           <span
             className={
@@ -63,7 +44,11 @@ export function MatchCard({ match }: Props) {
         </header>
         <div className={styles.teams}>
           <div className={styles.team}>
-            <CountryFlag code={match.home.code} label={match.home.code} />
+            <CountryFlag
+              code={match.home.code}
+              label={match.home.code}
+              className={styles.teamFlag}
+            />
             <span className={styles.code}>{match.home.code}</span>
           </div>
           <div className={styles.scoreWrap}>
@@ -82,7 +67,11 @@ export function MatchCard({ match }: Props) {
             )}
           </div>
           <div className={styles.team}>
-            <CountryFlag code={match.away.code} label={match.away.code} />
+            <CountryFlag
+              code={match.away.code}
+              label={match.away.code}
+              className={styles.teamFlag}
+            />
             <span className={styles.code}>{match.away.code}</span>
           </div>
         </div>

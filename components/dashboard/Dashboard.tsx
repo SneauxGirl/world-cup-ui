@@ -27,8 +27,8 @@ export function Dashboard() {
     <div className={styles.page}>
       <SidebarNav />
       <div className={styles.shell}>
+        <HeroSection user={userDashboard} className={styles.shellHero} />
         <main id="dashboard-main" className={styles.mainLayout}>
-          <HeroSection user={userDashboard} className={styles.areaHero} />
           <LiveMatchesSection
             matches={matches}
             liveSummary={announcerText}

@@ -19,12 +19,12 @@ export function HeroSection({ user, className }: Props) {
       <div className={styles.heroPhotoShell} aria-hidden="true">
         <div className={styles.heroMedia}>
           <Image
-            src="/HeroSans.png"
+            src="/SoccerHero1800final.png"
             alt=""
             fill
             priority
             className={styles.heroPhoto}
-            sizes="(min-width: 1200px) 70vw, 100vw"
+            sizes="100vw"
           />
         </div>
       </div>

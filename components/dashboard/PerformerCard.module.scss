@@ -9,7 +9,7 @@
   flex-direction: column;
   min-height: 220px;
   box-sizing: border-box;
-  @include frame.wcui-chamfer-frame-tl-br;
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
 }
 
 .cardFrame:focus-within {
@@ -21,13 +21,15 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  flex: 1;
-  min-height: 0;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 100%;
   box-sizing: border-box;
   padding: 1rem 1rem 0.75rem;
-  overflow: visible;
+  overflow: hidden;
   isolation: isolate;
-  @include frame.wcui-stats-card-inner;
+  @include frame.wcui-chamfer-clip-tl-br;
+  @include frame.wcui-card-glass-surface;
 }
 
 .header {
@@ -35,15 +37,11 @@
   z-index: 1;
 }
 
-.name,
-.points {
+.name {
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--wcui-white-text);
   font-variant-numeric: tabular-nums;
-}
-
-.name {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -52,6 +50,15 @@
   position: relative;
   z-index: 1;
   margin-top: auto;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--wcui-white-text);
+  font-variant-numeric: tabular-nums;
+  text-shadow:
+    0 1px 2px color-mix(in oklab, var(--wcui-pitch-black) 92%, transparent),
+    0 0 14px color-mix(in oklab, var(--wcui-pitch-black) 88%, transparent),
+    0 0 28px color-mix(in oklab, var(--wcui-page-black) 75%, transparent);
+  filter: drop-shadow(0 4px 16px color-mix(in oklab, var(--wcui-pitch-black) 85%, transparent));
 }
 
 .meta {
