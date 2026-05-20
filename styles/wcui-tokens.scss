@@ -50,18 +50,6 @@ $wcui-token-pairs: (
   }
 
   /* Alpha / atmospheric (hex fallback, then OKLCH when supported). */
-  --wcui-glow-aqua-hex: rgb(0 230 236 / 0.1);
-  --wcui-glow-aqua: rgb(0 230 236 / 0.1);
-  --wcui-glow-aqua: oklch(0.84 0.15 205 / 0.1);
-
-  --wcui-glow-blue-hex: rgb(54 90 254 / 0.12);
-  --wcui-glow-blue: rgb(54 90 254 / 0.12);
-  --wcui-glow-blue: oklch(0.58 0.24 265 / 0.12);
-
-  --wcui-glow-yellow-hex: rgb(248 226 7 / 0.055);
-  --wcui-glow-yellow: rgb(248 226 7 / 0.055);
-  --wcui-glow-yellow: oklch(0.902 0.188 102.3 / 0.055);
-
   --wcui-border-aqua-soft-hex: rgb(0 230 236 / 0.24);
   --wcui-border-aqua-soft: rgb(0 230 236 / 0.24);
   --wcui-border-aqua-soft: oklch(0.84 0.15 205 / 0.24);
