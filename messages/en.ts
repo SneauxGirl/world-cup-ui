@@ -32,7 +32,7 @@ export const en = {
     rosterHealth: "Roster health",
     strategyInsight: "Strategy insight",
     liveFeed: "Live feed",
-    totalPoints: "Total points",
+    totalPoints: "Points",
     rank: "Rank",
     eliteManager: "Elite manager",
     round: "Round",

@@ -223,7 +223,7 @@
   --wcui-card-corner: 15px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: .75rem;
   margin: auto 10px 20px 10px;
 
   &Card {
@@ -244,7 +244,7 @@
   &Text {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
+    gap: 0.5rem;
     min-width: 0;
   }
 
@@ -367,6 +367,56 @@
   border-left: 1px solid var(--wcui-border-blue);
   background: var(--wcui-pitch-black);
   overflow-y: auto;
+
+  :focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.menuPanelHead {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 1rem 0.5rem;
+}
+
+.menuCloseBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--wcui-border-blue);
+  border-radius: 2px;
+  background: var(--wcui-pitch-black);
+  color: var(--wcui-aqua-mint);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover {
+    color: var(--wcui-white-text);
+    border-color: var(--wcui-aqua-mint);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+    border-color: var(--wcui-aqua-mint);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+  }
 }
 
 .menuNav {
@@ -375,37 +425,76 @@
 
 .menuList {
   list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
+/* Match SidebarNavLink tab / hover / focus treatment */
 .menuLink {
   &,
   &Active {
+    position: relative;
+    isolation: isolate;
     display: block;
-    padding: 0.75rem 1.25rem;
+    padding-block: 0.75rem;
+    padding-inline: 1.25rem;
     font-size: 1rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     font-weight: 500;
-    color: color-mix(in oklab, var(--wcui-white-text) 82%, transparent);
+    color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+    border: none;
+    border-left: 3px solid transparent;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    transition:
+      border-color 160ms ease,
+      color 160ms ease;
 
-    &:focus-visible {
-      outline: 2px solid var(--wcui-aqua-mint);
-      outline-offset: -2px;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--wcui-primary-blue) 34%, transparent) 0%,
+        transparent 68%
+      );
+      box-shadow: inset 0 0 28px color-mix(in oklab, var(--wcui-primary-blue) 10%, transparent);
+      transition: opacity 160ms ease;
     }
   }
 
+  &:hover,
+  &:focus-visible,
+  &:focus:hover,
   &Active {
-    color: var(--wcui-aqua-mint);
-    border-left: 3px solid var(--wcui-aqua-mint);
-    padding-left: calc(1.25rem - 3px);
-    background: linear-gradient(
-      90deg,
-      color-mix(in oklab, var(--wcui-primary-blue) 28%, transparent) 0%,
-      transparent 72%
-    );
+    color: var(--wcui-white-text);
+    border-left-color: var(--wcui-aqua-mint);
+    border-top-color: color-mix(in oklab, var(--wcui-aqua-mint) 16%, transparent);
+    border-bottom-color: color-mix(in oklab, var(--wcui-aqua-mint) 16%, transparent);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:focus:not(:focus-visible):not(:hover) {
+    color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+
+    &::before {
+      opacity: 0;
+    }
   }
 }
 

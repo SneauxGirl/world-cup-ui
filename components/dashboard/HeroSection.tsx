@@ -29,48 +29,40 @@ export function HeroSection({ user, className }: Props) {
         </div>
       </div>
       <div className={styles.heroStack}>
-        <div className={styles.heroTopRow}>
-          <p className={styles.kicker}>{t("app.worldCupChallenge")}</p>
-          <div className={styles.heroMenu}>
-            <HeroNavMenu />
+        <div className={styles.heroLayout}>
+          <div className={styles.heroTopRow}>
+            <p className={styles.kicker}>{t("app.worldCupChallenge")}</p>
+            <div className={styles.heroMenu}>
+              <HeroNavMenu />
+            </div>
           </div>
-        </div>
-        <div className={styles.heroStackGrow} aria-hidden="true" />
-        <div className={styles.heroContent}>
-          <h1 id="dashboard-hero-heading" className={styles.title}>
-            <span className={styles.titleGreeting}>{t("dashboard.welcomeBackGreeting")}</span>
-            <span className={styles.titleName}>{user.displayName}</span>
-          </h1>
-          <div className={styles.statsCardFrame}>
-            <div className={styles.statsCardInner}>
-              <div className={styles.statsLayout}>
-                <div className={styles.statsCol}>
-                  <div className={styles.stat}>
-                    <span className={styles.statLabel}>{t("dashboard.totalPoints")}</span>
-                    <span className={styles.statValue}>{formatInteger(user.totalPoints)}</span>
-                  </div>
-                  <div className={styles.stat}>
-                    <span className={styles.statLabel}>{t("dashboard.rank")}</span>
-                    <span className={styles.statValue}>{formatInteger(user.rank)}</span>
-                  </div>
-                </div>
-                <div className={styles.statsDivider} aria-hidden="true" />
-                <div className={styles.statsCol}>
-                  <div className={styles.stat}>
-                    <span className={styles.statLabel}>{t("dashboard.round")}</span>
-                    <span className={styles.statValue}>
-                      {user.roundLabel}
-                      {user.isRoundLive ? (
-                        <span className={styles.liveDot}>
-                          <span className={styles.livePulse} aria-hidden="true" />
-                          <span>{t("dashboard.live")}</span>
-                        </span>
-                      ) : null}
+          <div className={styles.heroStackGrow} aria-hidden="true" />
+          <div className={styles.heroContent}>
+            <h1 id="dashboard-hero-heading" className={styles.title}>
+              <span className={styles.titleGreeting}>{t("dashboard.welcomeBackGreeting")}</span>
+              <span className={styles.titleName}>{user.displayName}</span>
+            </h1>
+            <div className={styles.statsCardFrame}>
+              <div className={styles.statsCardInner}>
+                <div className={styles.statsLayout}>
+                  <div className={styles.statPoints}>
+                    <span className={styles.statPointsLabel}>{t("dashboard.totalPoints")}</span>
+                    <span className={styles.statPointsValue}>
+                      {formatInteger(user.totalPoints)}
                     </span>
                   </div>
-                  <div className={styles.stat}>
-                    <span className={styles.statLabel}>{t("dashboard.percentile")}</span>
-                    <span className={styles.statValue}>
+                  <div className={styles.statsDivider} aria-hidden="true" />
+                  <div className={styles.statRank}>
+                    <span className={styles.statRankLabel}>{t("dashboard.rank")}</span>
+                    <span className={styles.statRankValue}>{formatInteger(user.rank)}</span>
+                  </div>
+                  <div className={styles.statRound}>
+                    <span className={styles.statRoundLabel}>{t("dashboard.round")}</span>
+                    <span className={styles.statRoundValue}>{user.roundLabel}</span>
+                  </div>
+                  <div className={styles.statPercentile}>
+                    <span className={styles.statPercentileLabel}>{t("dashboard.percentile")}</span>
+                    <span className={styles.statPercentileValue}>
                       {t("dashboard.topPercent", { pct: user.topPercent })}
                     </span>
                   </div>

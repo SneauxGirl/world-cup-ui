@@ -112,22 +112,22 @@
 }
 
 .score {
-  font-size: clamp(1.35rem, 7vw, 2.6rem);
+  font-size: clamp(1.25rem, 3.2vw, 2rem);
   font-weight: 700;
   color: var(--wcui-white-text);
-  line-height: 1;
+  line-height: 1.2;
   font-variant-numeric: tabular-nums;
 }
 
 .sep {
-  font-size: 1.5rem;
+  font-size: clamp(0.85rem, 2vw, 1.15rem);
   color: var(--wcui-text-standard);
 }
 
 .scoreDash {
-  font-size: clamp(1.35rem, 7vw, 2.6rem);
+  font-size: clamp(1rem, 3.2vw, 1.5rem);
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.2;
   color: var(--wcui-text-standard);
 }
 

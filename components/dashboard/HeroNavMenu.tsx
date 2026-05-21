@@ -24,6 +24,7 @@ export function HeroNavMenu() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLButtonElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
   const menuBtnRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
   const menuId = useId();
@@ -40,13 +41,12 @@ export function HeroNavMenu() {
 
     const getFocusable = () => {
       const nodes: HTMLElement[] = [];
-      if (menuBtnRef.current) nodes.push(menuBtnRef.current);
-      if (overlayRef.current) nodes.push(overlayRef.current);
       nodes.push(...Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)));
+      if (menuBtnRef.current) nodes.push(menuBtnRef.current);
       return nodes.filter((el) => !el.hasAttribute("disabled"));
     };
 
-    getFocusable()[0]?.focus();
+    closeBtnRef.current?.focus();
     document.body.style.overflow = "hidden";
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -119,9 +119,20 @@ export function HeroNavMenu() {
             aria-modal="true"
             aria-labelledby={titleId}
           >
-            <h2 id={titleId} className={navStyles.srOnly}>
-              {t("nav.menuDialogLabel")}
-            </h2>
+            <div className={navStyles.menuPanelHead}>
+              <h2 id={titleId} className={navStyles.srOnly}>
+                {t("nav.menuDialogLabel")}
+              </h2>
+              <button
+                ref={closeBtnRef}
+                type="button"
+                className={navStyles.menuCloseBtn}
+                aria-label={t("nav.closeMenu")}
+                onClick={closeMenu}
+              >
+                <IconClose />
+              </button>
+            </div>
             <nav className={navStyles.menuNav} aria-label="Primary">
               <ul className={navStyles.menuList}>
                 {menuItems.map((item) => {
