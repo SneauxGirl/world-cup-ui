@@ -41,25 +41,18 @@
 }
 
 .grid {
+  --performer-grid-gap: 0.75rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: var(--performer-grid-gap);
 }
 
+/* Two per row when wrapping — avoids 3+1 orphan band (~769–1100px with sidebar). */
 .grid > * {
-  flex: 1 1 200px;
-}
-
-@media (max-width: 768px) {
-  .grid {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .grid > * {
-    flex: 1 1 calc(50% - 0.5rem);
-    min-width: calc(50% - 0.5rem);
-  }
+  flex: 1 1 calc(50% - var(--performer-grid-gap) / 2);
+  min-width: calc(50% - var(--performer-grid-gap) / 2);
+  max-width: calc(50% - var(--performer-grid-gap) / 2);
+  box-sizing: border-box;
 }
 
 @media (min-width: 1101px) {
@@ -70,5 +63,6 @@
   .grid > * {
     flex: 1 1 0;
     min-width: 0;
+    max-width: none;
   }
 }

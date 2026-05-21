@@ -1,6 +1,6 @@
 @use "../../styles/wcui-frame" as frame;
 
-/* Flex-only hero — height from HeroSans.png ratio (1500×600); copy inset 40px / 60px. */
+/* Flex-only hero — height from hero art ratio (2000×600); copy inset 40px / 60px. */
 .hero {
   --hero-photo-max: 450px;
   --hero-photo-aspect: 2000 / 600;
@@ -100,6 +100,7 @@
   gap: 0.65rem;
   width: 100%;
   max-width: min(52rem, 58%);
+  min-width: 0;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -137,12 +138,15 @@
   --wcui-chamfer-bl: 20px;
   align-self: flex-start;
   width: 100%;
-  max-width: 25rem;
+  max-width: min(25rem, 100%);
+  min-width: 0;
+  box-sizing: border-box;
   @include frame.wcui-chamfer-frame-asymmetric;
 }
 
 .statsCardInner {
-  padding: 1rem 1.15rem;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(0.85rem, 2.5vw, 1.15rem);
+  box-sizing: border-box;
   @include frame.wcui-chamfer-fill-asymmetric(var(--wcui-hero-panel-fill));
   border: 1px solid var(--wcui-border-aqua-soft);
 }
@@ -152,14 +156,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: stretch;
-  gap: 1rem 1.25rem;
+  gap: clamp(0.65rem, 2vw, 1rem) clamp(0.75rem, 2.5vw, 1.25rem);
 }
 
 .statsCol {
-  flex: 1 1 9rem;
+  flex: 1 1 7rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(0.65rem, 2vw, 1rem);
   min-width: 0;
 }
 
@@ -178,15 +182,15 @@
 }
 
 .statLabel {
-  font-size: 1rem;
-  letter-spacing: 0.14em;
+  font-size: clamp(0.75rem, 2.2vw, 1rem);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--wcui-text-standard);
   font-weight: 500;
 }
 
 .statValue {
-  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 3.2vw, 1.5rem);
   font-weight: 700;
   color: var(--wcui-aqua-mint);
   display: flex;
@@ -225,7 +229,84 @@
   background: var(--wcui-primary-red);
 }
 
+/* Below 1500px: hero grows with content; stats card scales; no overflow into matches. */
+@media (max-width: 1499px) {
+  .hero {
+    --hero-photo-max: 400px;
+    height: auto;
+    max-height: var(--hero-photo-max);
+    aspect-ratio: unset;
+    min-height: min(clamp(14rem, 32vw, 22rem), var(--hero-photo-max));
+    overflow: hidden;
+  }
+
+  .heroStack {
+    position: relative;
+    inset: auto;
+    flex: 1 1 auto;
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+    min-height: inherit;
+  }
+
+  .heroStackGrow {
+    display: none;
+  }
+
+  .kicker {
+    max-width: none;
+  }
+
+  .heroContent {
+    max-width: 100%;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .titleGreeting {
+    font-size: clamp(1.35rem, 2.2vw, 2.5rem);
+  }
+
+  .titleName {
+    font-size: clamp(2rem, 4.2vw, 3.25rem);
+  }
+
+  .statsCardFrame {
+    --wcui-chamfer-tl: clamp(18px, 2.5vw, 30px);
+    --wcui-chamfer-tr: clamp(12px, 2vw, 20px);
+    --wcui-chamfer-br: clamp(14px, 2.2vw, 25px);
+    --wcui-chamfer-bl: clamp(12px, 2vw, 20px);
+    width: min(100%, 22rem);
+    max-width: 100%;
+  }
+
+  .statsCol {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .statLabel {
+    font-size: clamp(0.7rem, 1.4vw, 0.95rem);
+    letter-spacing: 0.1em;
+  }
+
+  .statValue {
+    font-size: clamp(0.95rem, 2.2vw, 1.35rem);
+  }
+
+  .liveDot {
+    font-size: clamp(0.7rem, 1.4vw, 0.95rem);
+  }
+}
+
 @media (max-width: 768px) {
+  .hero {
+    --hero-photo-max: 350px;
+    max-height: var(--hero-photo-max);
+    min-height: min(clamp(12rem, 28vw, 18rem), var(--hero-photo-max));
+    --hero-gap-top: clamp(1.25rem, 4vw, 2.5rem);
+    --hero-gap-bottom: clamp(1.5rem, 5vw, 3.75rem);
+  }
+
   .kicker {
     max-width: none;
   }
@@ -235,11 +316,19 @@
   }
 
   .titleGreeting {
-    font-size: 1.35rem;
+    font-size: clamp(1.15rem, 4.5vw, 1.35rem);
   }
 
   .titleName {
-    font-size: 2.25rem;
+    font-size: clamp(1.75rem, 9vw, 2.25rem);
+  }
+
+  .statsCardFrame {
+    --wcui-chamfer-tl: clamp(14px, 4vw, 24px);
+    --wcui-chamfer-tr: clamp(10px, 3vw, 16px);
+    --wcui-chamfer-br: clamp(12px, 3.5vw, 20px);
+    --wcui-chamfer-bl: clamp(10px, 3vw, 16px);
+    max-width: 100%;
   }
 
   .statsDivider {
@@ -247,5 +336,9 @@
     width: 100%;
     height: 1px;
     min-height: 0;
+  }
+
+  .liveDot {
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
   }
 }

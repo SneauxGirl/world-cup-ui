@@ -4,8 +4,11 @@
   --wcui-card-corner: 20px;
   --wcui-chamfer-tl: 30px;
   --wcui-chamfer-br: 30px;
+  --match-card-width: clamp(14.5rem, 72vw, 20rem);
   position: relative;
-  flex: 0 0 min(320px, 82vw);
+  flex: 0 0 var(--match-card-width);
+  max-width: 100%;
+  min-width: 0;
   scroll-snap-align: start;
   padding: 1px;
   box-sizing: border-box;
@@ -19,10 +22,10 @@
 }
 
 .cardInner {
-  --card-pad-inline: 1.35rem;
-  --card-pad-block-start: 1.25rem;
-  --card-pad-block-end: 1.15rem;
-  --card-section-gap: 0.85rem;
+  --card-pad-inline: clamp(0.85rem, 3vw, 1.35rem);
+  --card-pad-block-start: clamp(0.85rem, 2.5vw, 1.25rem);
+  --card-pad-block-end: clamp(0.75rem, 2.5vw, 1.15rem);
+  --card-section-gap: clamp(0.55rem, 2vw, 0.85rem);
   position: relative;
   height: 100%;
   box-sizing: border-box;
@@ -69,7 +72,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: clamp(0.35rem, 2vw, 0.75rem);
+  min-width: 0;
 }
 
 .team {
@@ -77,11 +81,12 @@
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .teamFlag {
-  width: 3rem;
+  width: clamp(2rem, 10vw, 3rem);
   aspect-ratio: 4 / 3;
   line-height: 0;
   border-radius: 7px;
@@ -91,20 +96,23 @@
 }
 
 .code {
-  font-size: 1rem;
-  letter-spacing: 0.12em;
+  font-size: clamp(0.75rem, 2.5vw, 1rem);
+  letter-spacing: 0.1em;
   font-weight: 700;
   color: var(--wcui-white-text);
 }
 
 .scoreWrap {
   display: flex;
+  flex-shrink: 1;
   align-items: baseline;
-  gap: 0.35rem;
+  justify-content: center;
+  gap: clamp(0.2rem, 1vw, 0.35rem);
+  min-width: 0;
 }
 
 .score {
-  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-size: clamp(1.35rem, 7vw, 2.6rem);
   font-weight: 700;
   color: var(--wcui-white-text);
   line-height: 1;
@@ -117,7 +125,7 @@
 }
 
 .scoreDash {
-  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-size: clamp(1.35rem, 7vw, 2.6rem);
   font-weight: 700;
   line-height: 1;
   color: var(--wcui-text-standard);
@@ -150,16 +158,35 @@
   background: var(--wcui-border-blue);
 }
 
+@media (max-width: 768px) {
+  .cardFrame {
+    --wcui-chamfer-tl: clamp(16px, 4vw, 24px);
+    --wcui-chamfer-br: clamp(16px, 4vw, 24px);
+    --match-card-width: clamp(13.5rem, 68vw, 17.5rem);
+  }
+
+  .badgeLive,
+  .badgeMuted,
+  .clock,
+  .kickoff,
+  .pts {
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
+  }
+}
+
 @media (min-width: 769px) and (max-width: 1100px) {
   .cardFrame {
+    --match-card-width: auto;
     flex: 1 1 calc(50% - 0.5rem);
-    min-width: unset;
+    min-width: 0;
+    max-width: none;
     scroll-snap-align: unset;
   }
 }
 
 @media (min-width: 1101px) {
   .cardFrame {
+    --match-card-width: auto;
     flex: 1 1 220px;
     min-width: 200px;
     max-width: 320px;

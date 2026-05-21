@@ -28,10 +28,11 @@ export function PerformerCard({ performer }: Props) {
         <header className={styles.header}>
           <h3 className={styles.name}>{performer.name}</h3>
           <p className={styles.meta}>
-            {t("player.position", {
-              team: performer.teamCode,
-              pos: performer.position,
-            })}
+            <span>{performer.teamCode}</span>
+            <span className={styles.metaDivider} aria-hidden="true">
+              {" · "}
+            </span>
+            <span>{performer.position}</span>
           </p>
         </header>
         <p className={styles.points}>

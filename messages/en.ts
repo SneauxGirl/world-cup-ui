@@ -35,7 +35,6 @@ export const en = {
     totalPoints: "Total points",
     rank: "Rank",
     eliteManager: "Elite manager",
-    globalRank: "Global rank",
     round: "Round",
     live: "Live",
     upcoming: "Upcoming",

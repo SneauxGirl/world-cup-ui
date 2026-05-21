@@ -13,7 +13,7 @@ import { SidebarNavLink } from "@/components/dashboard/SidebarNavLink";
 import { GitHubOctocatIcon } from "@/components/icons/GitHubOctocatIcon";
 import { userDashboard } from "@/data/dashboard-seed";
 import { t } from "@/lib/i18n/t";
-import { formatFirstNameLastInitial, formatInteger } from "@/lib/i18n/format";
+import { formatFirstNameLastInitial } from "@/lib/i18n/format";
 import styles from "./Navigation.module.scss";
 
 const sidebarNavItems = [
@@ -82,7 +82,7 @@ export function SidebarNav() {
               aria-label="Heather Hugo — portfolio on GitHub (opens in new tab)"
             >
               <span className={styles.avatarOctocat}>
-                <GitHubOctocatIcon width={40} height={40} />
+                <GitHubOctocatIcon width={48} height={48} />
               </span>
             </a>
             <div className={styles.profileText}>
@@ -93,17 +93,6 @@ export function SidebarNav() {
             </div>
           </div>
         </div>
-        <section className={styles.rankCard} aria-label={t("dashboard.globalRank")}>
-          <div className={styles.rankCardInner}>
-            <p className={styles.rankEyebrow}>{t("dashboard.globalRank")}</p>
-            <p className={styles.rankValue}>{formatInteger(userDashboard.rank)}</p>
-            <p className={styles.rankPercent}>
-              {t("dashboard.topPercent", {
-                pct: userDashboard.topPercent.toFixed(1),
-              })}
-            </p>
-          </div>
-        </section>
       </div>
       </aside>
     </div>

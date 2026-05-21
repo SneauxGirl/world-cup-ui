@@ -53,7 +53,10 @@
     flex: 1 1 0;
     min-width: 0;
   }
+}
 
+/* Wide desktop only: slight hero/matches overlap for stadium trim. */
+@media (min-width: 1500px) {
   .shellHero {
     margin-bottom: -1rem;
   }
@@ -61,6 +64,22 @@
   .areaMatches {
     position: relative;
     z-index: 3;
+  }
+}
+
+/* Tablet / narrow desktop: normal document flow — matches must not cover the stats card. */
+@media (min-width: 769px) and (max-width: 1499px) {
+  .shellHero {
+    margin-bottom: 0;
+  }
+
+  .mainLayout {
+    gap: clamp(0.85rem, 2vw, 1.25rem);
+  }
+
+  .areaMatches {
+    position: static;
+    z-index: auto;
   }
 }
 
@@ -75,6 +94,8 @@
 
   .areaMatches {
     order: 2;
+    min-width: 0;
+    width: 100%;
   }
 
   .areaPerformers {
