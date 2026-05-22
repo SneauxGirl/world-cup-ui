@@ -1,0 +1,430 @@
+@use "../../styles/wcui-frame" as frame;
+@use "./login-glow" as glow;
+
+/** Sidebar nav wash + left aqua bar (fields + social alt sign-in). */
+@mixin login-nav-side-glow {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--wcui-primary-blue) 34%, transparent) 0%,
+      transparent 68%
+    );
+    box-shadow: inset 0 0 28px color-mix(in oklab, var(--wcui-primary-blue) 10%, transparent);
+    transition: opacity 160ms ease;
+    @include frame.wcui-chamfer-clip-tl-br;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 3px;
+    background: transparent;
+    pointer-events: none;
+    transition: background-color 160ms ease;
+  }
+}
+
+@mixin login-nav-side-glow-active {
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 16%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 16%, transparent);
+
+  &::before {
+    opacity: 1;
+  }
+
+  &::after {
+    background: var(--wcui-aqua-mint);
+  }
+}
+
+/** Shorter, softer wash for text fields (inputs cannot host pseudo-elements). */
+@mixin login-field-side-glow {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    width: 38%;
+    max-width: 7rem;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--wcui-primary-blue) 22%, transparent) 0%,
+      transparent 100%
+    );
+    box-shadow: inset 14px 0 20px -10px color-mix(in oklab, var(--wcui-primary-blue) 7%, transparent);
+    transition: opacity 160ms ease;
+    @include frame.wcui-chamfer-clip-tl-br;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 3px;
+    background: transparent;
+    pointer-events: none;
+    transition: background-color 160ms ease;
+  }
+}
+
+@mixin login-field-side-glow-active {
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 12%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 12%, transparent);
+
+  &::before {
+    opacity: 0.72;
+  }
+
+  &::after {
+    background: var(--wcui-aqua-mint);
+  }
+}
+
+.loginCard {
+  --login-chamfer: 14px;
+  --wcui-chamfer-tl: var(--login-chamfer);
+  --wcui-chamfer-br: var(--login-chamfer);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(100%, 22rem);
+  margin-inline: 0;
+  gap: 1rem;
+  padding: clamp(1.15rem, 2.5vw, 1.65rem);
+  box-sizing: border-box;
+  background: var(--wcui-card-glass-fill);
+  border: 1px solid var(--wcui-border-blue);
+  box-shadow:
+    inset 0 1px 0 var(--wcui-card-glass-highlight),
+    var(--wcui-card-glass-shadow),
+    0 14px 48px color-mix(in oklab, var(--wcui-pitch-black) 80%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  @include frame.wcui-chamfer-clip-tl-br;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-alumni-sans), sans-serif;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: var(--wcui-white-text);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 0.85rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: color-mix(in oklab, var(--wcui-aqua-mint) 88%, transparent);
+  line-height: 1.3;
+}
+
+.chamferTrim {
+  --wcui-chamfer-tl: var(--login-chamfer);
+  --wcui-chamfer-br: var(--login-chamfer);
+  width: 100%;
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--wcui-border-blue);
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease;
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
+
+  &:has(.signInBtn) {
+    @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
+  }
+}
+
+.fieldInner,
+.passwordInner {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding-left: 1rem;
+  box-sizing: border-box;
+  background: var(--wcui-pitch-black);
+  box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+  transition: box-shadow 160ms ease;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-pitch-black));
+  @include login-field-side-glow;
+}
+
+.fieldInner {
+  display: block;
+}
+
+.passwordInner {
+  display: flex;
+  align-items: stretch;
+}
+
+.chamferInput {
+  display: block;
+  width: 100%;
+  padding: 0.65rem 0.85rem 0.65rem 0;
+  border: none;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--wcui-white-text);
+  background: transparent;
+  box-sizing: border-box;
+  box-shadow: none;
+
+  &::placeholder {
+    color: color-mix(in oklab, var(--wcui-white-text) 42%, transparent);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.fieldInner .chamferInput,
+.passwordInner .chamferInput {
+  position: relative;
+  z-index: 1;
+}
+
+.passwordInner .chamferInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-right: 2.5rem;
+}
+
+.chamferTrim:focus-within > .fieldInner,
+.chamferTrim:focus-within > .passwordInner {
+  @include login-field-side-glow-active;
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  font: inherit;
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+  background: transparent;
+  cursor: pointer;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: color-mix(in oklab, var(--wcui-white-text) 92%, var(--wcui-sky-blue));
+  }
+}
+
+.passwordToggle:focus-visible {
+  outline: 2px solid var(--wcui-white-text);
+  outline-offset: -2px;
+}
+
+.chamferBtn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: none;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-pitch-black));
+}
+
+.signInBtn {
+  position: relative;
+  isolation: isolate;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  font-weight: 700;
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+  background: var(--wcui-card-glass-fill);
+  box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+  transition:
+    color 160ms ease,
+    box-shadow 160ms ease;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
+  @include glow.login-sign-in-glow;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--wcui-white-text);
+    @include glow.login-sign-in-glow-active;
+  }
+
+  &:focus:not(:focus-visible) {
+    color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+    box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+
+    &::before {
+      opacity: 0;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.or {
+  margin: 0.15rem 0 0;
+  width: 100%;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-align: center;
+  color: color-mix(in oklab, var(--wcui-white-text) 48%, transparent);
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 0.55rem;
+}
+
+/* Match SidebarNavLink / .sideLink hover + focus (left aqua bar + side glow) */
+.socialBtn {
+  position: relative;
+  isolation: isolate;
+  justify-content: flex-start;
+  gap: 0.55rem;
+  padding: 0.7rem 0.85rem 0.7rem 1rem;
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+  background: var(--wcui-card-glass-fill);
+  box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+  transition:
+    color 160ms ease,
+    box-shadow 160ms ease;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
+  @include login-nav-side-glow;
+
+  svg,
+  span {
+    position: relative;
+    z-index: 1;
+  }
+
+  svg {
+    flex-shrink: 0;
+    color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+    transition: color 160ms ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: var(--wcui-white-text);
+    @include login-nav-side-glow-active;
+
+    svg {
+      color: var(--wcui-text-standard);
+    }
+  }
+
+  &:focus:not(:focus-visible) {
+    color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+    box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+
+    &::before {
+      opacity: 0;
+    }
+
+    &::after {
+      background: transparent;
+    }
+
+    svg {
+      color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--wcui-white-text);
+}
+
+.deadLink {
+  color: var(--wcui-aqua-mint);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: default;
+  pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  .loginCard {
+    margin-inline: 0;
+    width: 100%;
+  }
+}

@@ -2,37 +2,63 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { IconClose, IconMenu } from "@/components/icons/DashboardIcons";
+import { IconClose, IconMenu, IconSearch } from "@/components/icons/DashboardIcons";
+import { MenuUserFooter } from "@/components/dashboard/MenuUserFooter";
+import { SearchModal } from "@/components/dashboard/SearchModal";
+import { userDashboard } from "@/data/dashboard-seed";
+import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
 import navStyles from "./Navigation.module.scss";
 
 const menuItems = [
-  { key: "dashboard" as const, href: "/" },
-  { key: "roster" as const, href: "/" },
-  { key: "matches" as const, href: "/" },
-  { key: "standings" as const, href: "/" },
-  { key: "players" as const, href: "/" },
-  { key: "tournament" as const, href: "/" },
-  { key: "store" as const, href: "/" },
-  { key: "settings" as const, href: "/" },
+  { key: "dashboard" as const, href: "/dashboard" },
+  { key: "roster" as const, href: "/dashboard" },
+  { key: "matches" as const, href: "/dashboard" },
+  { key: "standings" as const, href: "/dashboard" },
+  { key: "players" as const, href: "/dashboard" },
+  { key: "tournament" as const, href: "/dashboard" },
+  { key: "store" as const, href: "/dashboard" },
+  { key: "settings" as const, href: "/dashboard" },
 ];
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-export function HeroNavMenu() {
+type Props = {
+  onAccountClick?: () => void;
+};
+
+export function HeroNavMenu({ onAccountClick }: Props) {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLButtonElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const searchBtnRef = useRef<HTMLButtonElement>(null);
   const menuBtnRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
   const menuId = useId();
 
-  const closeMenu = useCallback(() => setOpen(false), []);
+  const closeMenu = useCallback(() => {
+    setSearchOpen(false);
+    setOpen(false);
+  }, []);
+
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
+
+  const handleAccountClick = useCallback(() => {
+    closeMenu();
+    onAccountClick?.();
+  }, [closeMenu, onAccountClick]);
 
   useEffect(() => {
     if (!open) return;
+    lockBodyScroll();
+    return () => unlockBodyScroll();
+  }, [open]);
+
+  useEffect(() => {
+    if (!open || searchOpen) return;
 
     const panel = panelRef.current;
     if (!panel) return;
@@ -47,7 +73,6 @@ export function HeroNavMenu() {
     };
 
     closeBtnRef.current?.focus();
-    document.body.style.overflow = "hidden";
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -76,13 +101,13 @@ export function HeroNavMenu() {
     document.addEventListener("keydown", onKeyDown);
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
       previouslyFocused?.focus();
     };
-  }, [open, closeMenu]);
+  }, [open, searchOpen, closeMenu]);
 
   useEffect(() => {
     if (open) return;
+    setSearchOpen(false);
     menuBtnRef.current?.focus();
   }, [open]);
 
@@ -111,48 +136,65 @@ export function HeroNavMenu() {
             aria-label={t("nav.closeMenu")}
             onClick={closeMenu}
           />
-          <div
-            id={menuId}
-            ref={panelRef}
-            className={navStyles.menuPanel}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={titleId}
-          >
-            <div className={navStyles.menuPanelHead}>
-              <h2 id={titleId} className={navStyles.srOnly}>
-                {t("nav.menuDialogLabel")}
-              </h2>
-              <button
-                ref={closeBtnRef}
-                type="button"
-                className={navStyles.menuCloseBtn}
-                aria-label={t("nav.closeMenu")}
-                onClick={closeMenu}
-              >
-                <IconClose />
-              </button>
+          <div className={navStyles.menuPanelShell}>
+            <div
+              id={menuId}
+              ref={panelRef}
+              className={navStyles.menuPanel}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={titleId}
+            >
+              <div className={navStyles.menuPanelHead}>
+                <h2 id={titleId} className={navStyles.srOnly}>
+                  {t("nav.menuDialogLabel")}
+                </h2>
+                <button
+                  ref={closeBtnRef}
+                  type="button"
+                  className={navStyles.menuPanelCloseBtn}
+                  aria-label={t("nav.closeMenu")}
+                  onClick={closeMenu}
+                >
+                  <IconClose />
+                </button>
+              </div>
+              <nav className={navStyles.menuNav} aria-label="Primary">
+                <ul className={navStyles.menuList}>
+                  {menuItems.map((item) => {
+                    const active = item.key === "dashboard";
+                    return (
+                      <li key={item.key}>
+                        <Link
+                          className={active ? navStyles.menuLinkActive : navStyles.menuLink}
+                          href={item.href}
+                          aria-current={active ? "page" : undefined}
+                          onClick={closeMenu}
+                        >
+                          {t(`nav.${item.key}`)}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className={navStyles.menuSearchRow}>
+                  <button
+                    ref={searchBtnRef}
+                    type="button"
+                    className={navStyles.menuPanelIconBtn}
+                    aria-label={t("footer.search")}
+                    onClick={() => setSearchOpen(true)}
+                  >
+                    <IconSearch />
+                  </button>
+                </div>
+              </nav>
+              <div className={navStyles.menuProfile}>
+                <MenuUserFooter user={userDashboard} onAccountClick={handleAccountClick} />
+              </div>
             </div>
-            <nav className={navStyles.menuNav} aria-label="Primary">
-              <ul className={navStyles.menuList}>
-                {menuItems.map((item) => {
-                  const active = item.key === "dashboard";
-                  return (
-                    <li key={item.key}>
-                      <Link
-                        className={active ? navStyles.menuLinkActive : navStyles.menuLink}
-                        href={item.href}
-                        aria-current={active ? "page" : undefined}
-                        onClick={closeMenu}
-                      >
-                        {t(`nav.${item.key}`)}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
           </div>
+          <SearchModal open={searchOpen} onClose={closeSearch} placement="menu" />
         </>
       ) : null}
     </>

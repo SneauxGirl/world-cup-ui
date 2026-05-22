@@ -1,20 +1,48 @@
 import Image from "next/image";
+import Link from "next/link";
+import { HeroLiveFeed } from "@/components/dashboard/HeroLiveFeed";
 import { HeroNavMenu } from "@/components/dashboard/HeroNavMenu";
 import { t } from "@/lib/i18n/t";
-import { formatInteger } from "@/lib/i18n/format";
-import type { UserDashboard } from "@/data/types";
+import type { FeedItem, UserDashboard } from "@/data/types";
 import styles from "./HeroSection.module.scss";
 
 type Props = {
   user: UserDashboard;
+  feedItems?: FeedItem[];
+  /** When false, omits the hero live-feed stats card (login layout). */
+  showLiveFeed?: boolean;
+  /** Login page: stadium art + kicker only (no welcome, feed, or CTA). */
+  loginHero?: boolean;
+  ctaHref?: string;
+  ctaLabel?: string;
+  onMenuAccountClick?: () => void;
   className?: string;
 };
 
-export function HeroSection({ user, className }: Props) {
+export function HeroSection({
+  user,
+  feedItems = [],
+  showLiveFeed = true,
+  loginHero = false,
+  ctaHref = "/dashboard",
+  ctaLabel = t("dashboard.setYourRoster"),
+  onMenuAccountClick,
+  className,
+}: Props) {
+  const showFeed = showLiveFeed && feedItems.length > 0;
+
   return (
     <section
-      className={[styles.hero, className].filter(Boolean).join(" ")}
-      aria-labelledby="dashboard-hero-heading"
+      className={[
+        styles.hero,
+        !showFeed && styles.heroNoFeed,
+        loginHero && styles.heroLogin,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      aria-labelledby={loginHero ? undefined : "dashboard-hero-heading"}
+      aria-label={loginHero ? t("login.heroRegion") : undefined}
     >
       <div className={styles.heroPhotoShell} aria-hidden="true">
         <div className={styles.heroMedia}>
@@ -31,45 +59,37 @@ export function HeroSection({ user, className }: Props) {
       <div className={styles.heroStack}>
         <div className={styles.heroLayout}>
           <div className={styles.heroTopRow}>
-            <p className={styles.kicker}>{t("app.worldCupChallenge")}</p>
+            {!loginHero ? (
+              <p className={styles.kicker}>{t("app.worldCupChallenge")}</p>
+            ) : null}
             <div className={styles.heroMenu}>
-              <HeroNavMenu />
+              <HeroNavMenu onAccountClick={onMenuAccountClick} />
             </div>
           </div>
-          <div className={styles.heroStackGrow} aria-hidden="true" />
-          <div className={styles.heroContent}>
-            <h1 id="dashboard-hero-heading" className={styles.title}>
-              <span className={styles.titleGreeting}>{t("dashboard.welcomeBackGreeting")}</span>
-              <span className={styles.titleName}>{user.displayName}</span>
-            </h1>
-            <div className={styles.statsCardFrame}>
-              <div className={styles.statsCardInner}>
-                <div className={styles.statsLayout}>
-                  <div className={styles.statPoints}>
-                    <span className={styles.statPointsLabel}>{t("dashboard.totalPoints")}</span>
-                    <span className={styles.statPointsValue}>
-                      {formatInteger(user.totalPoints)}
-                    </span>
-                  </div>
-                  <div className={styles.statsDivider} aria-hidden="true" />
-                  <div className={styles.statRank}>
-                    <span className={styles.statRankLabel}>{t("dashboard.rank")}</span>
-                    <span className={styles.statRankValue}>{formatInteger(user.rank)}</span>
-                  </div>
-                  <div className={styles.statRound}>
-                    <span className={styles.statRoundLabel}>{t("dashboard.round")}</span>
-                    <span className={styles.statRoundValue}>{user.roundLabel}</span>
-                  </div>
-                  <div className={styles.statPercentile}>
-                    <span className={styles.statPercentileLabel}>{t("dashboard.percentile")}</span>
-                    <span className={styles.statPercentileValue}>
-                      {t("dashboard.topPercent", { pct: user.topPercent })}
-                    </span>
+          {!loginHero ? (
+            <div className={styles.heroPrimary}>
+              <h1 id="dashboard-hero-heading" className={styles.title}>
+                <span className={styles.titleGreeting}>{t("dashboard.welcomeBackGreeting")}</span>
+                <span className={styles.titleName}>{user.displayName}</span>
+              </h1>
+              {showFeed ? (
+                <div className={styles.statsCardFrame}>
+                  <div className={styles.statsCardInner}>
+                    <HeroLiveFeed items={feedItems} />
                   </div>
                 </div>
+              ) : null}
+            </div>
+          ) : null}
+          {!loginHero ? (
+            <div className={styles.heroActionRow}>
+              <div className={styles.heroCtaWrap}>
+                <Link className={styles.heroCta} href={ctaHref}>
+                  {ctaLabel}
+                </Link>
               </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
     </section>

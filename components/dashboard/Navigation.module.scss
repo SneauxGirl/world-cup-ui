@@ -22,6 +22,17 @@
   );
 }
 
+/** Slide-out nav: cut bottom-left (single 45° notch). */
+@mixin wcui-menu-bl-chamfer {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    var(--wcui-menu-bl-chamfer) 100%,
+    0 calc(100% - var(--wcui-menu-bl-chamfer))
+  );
+}
+
 /* —— Sidebar (SidebarNav) —— */
 
 .sidebarShell {
@@ -223,8 +234,33 @@
   --wcui-card-corner: 15px;
   display: flex;
   flex-direction: column;
-  gap: .75rem;
-  margin: auto 10px 20px 10px;
+  gap: 0.75rem;
+  margin-top: auto;
+  margin-inline: 10px;
+  margin-bottom: 20px;
+
+  &CardTrigger {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: inherit;
+    font: inherit;
+    color: inherit;
+    appearance: none;
+
+    &:hover .profileCard .profileCardInner {
+      background: color-mix(in oklab, var(--wcui-page-black) 88%, var(--wcui-stadium-navy));
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--wcui-aqua-mint);
+      outline-offset: 3px;
+    }
+  }
 
   &Card {
     padding: 1px;
@@ -281,6 +317,15 @@
   border: 2px solid var(--wcui-stadium-navy);
   background: var(--wcui-border-blue);
 
+  &:is(button) {
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    appearance: none;
+  }
+
   &:focus-visible {
     outline: 2px solid var(--wcui-aqua-mint);
     outline-offset: 2px;
@@ -292,6 +337,52 @@
   flex-shrink: 0;
   width: 3rem;
   height: 3rem;
+}
+
+.rankCard {
+  flex-shrink: 0;
+  padding: 1px;
+  background: var(--wcui-border-blue);
+  @include wcui-chamfer-clip;
+}
+
+.rankCardInner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.2rem;
+  padding: 1.25rem 1rem;
+  background: var(--wcui-page-black);
+  @include wcui-chamfer-clip;
+}
+
+.rankEyebrow {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--wcui-white-text) 48%, transparent);
+}
+
+.rankValue {
+  margin: 0;
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in oklab, var(--wcui-aqua-mint) 90%, white);
+}
+
+.rankPercent {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--wcui-sky-blue) 90%, white);
 }
 
 /* —— Hero hamburger menu (HeroNavMenu) —— */
@@ -319,7 +410,7 @@
   border: 1px solid var(--wcui-border-blue);
   border-radius: 2px;
   background: var(--wcui-pitch-black);
-  color: var(--wcui-aqua-mint);
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, var(--wcui-sky-blue));
   cursor: pointer;
   transition:
     border-color 160ms ease,
@@ -327,7 +418,7 @@
     box-shadow 160ms ease;
 
   &:hover {
-    color: var(--wcui-white-text);
+    color: color-mix(in oklab, var(--wcui-white-text) 92%, var(--wcui-sky-blue));
     border-color: var(--wcui-aqua-mint);
     box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
   }
@@ -337,6 +428,7 @@
   }
 
   &:focus-visible {
+    color: var(--wcui-aqua-mint);
     outline: 2px solid var(--wcui-aqua-mint);
     outline-offset: 2px;
     border-color: var(--wcui-aqua-mint);
@@ -354,18 +446,64 @@
   cursor: pointer;
 }
 
-.menuPanel {
+.menuPanelShell {
+  --wcui-menu-width: calc(18rem - 20px);
+  --wcui-menu-bl-chamfer: 20px;
+  --wcui-menu-max-height: 550px;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 22;
+  width: min(var(--wcui-menu-width), 88vw);
+  height: auto;
+  max-height: min(var(--wcui-menu-max-height), 100dvh);
+  box-sizing: border-box;
+  background: var(--wcui-border-blue);
+  @include wcui-menu-bl-chamfer;
+
+  /* Bottom edge from the chamfer notch to the panel’s lower-right corner. */
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: var(--wcui-menu-bl-chamfer);
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--wcui-border-blue);
+    pointer-events: none;
+  }
+
+  /* Hypotenuse of the bottom-left chamfer (1px stroke). */
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: 0;
+    width: calc(var(--wcui-menu-bl-chamfer) * 1.41421356237);
+    height: 1px;
+    background: var(--wcui-border-blue);
+    transform-origin: 0 50%;
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+}
+
+.menuPanel {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  width: min(18rem, 88vw);
-  max-height: 100dvh;
-  padding: calc(1.1rem + env(safe-area-inset-top)) 0 calc(1rem + env(safe-area-inset-bottom));
-  border-left: 1px solid var(--wcui-border-blue);
+  width: 100%;
+  height: auto;
+  max-height: calc(min(var(--wcui-menu-max-height), 100dvh) - 1px);
+  box-sizing: border-box;
+  margin-left: 1px;
+  margin-bottom: 1px;
+  padding: calc(1.1rem + env(safe-area-inset-top, 0px)) 0 0;
   background: var(--wcui-pitch-black);
+  @include wcui-menu-bl-chamfer;
   overflow-y: auto;
 
   :focus-visible {
@@ -375,15 +513,21 @@
 }
 
 .menuPanelHead {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-shrink: 0;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 1rem 0.5rem;
+  padding: 0 1rem 0;
+  margin-bottom: -0.15rem;
 }
 
-.menuCloseBtn {
+.menuPanelIconBtn,
+.menuPanelCloseBtn {
+  position: relative;
+  z-index: 4;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -391,20 +535,21 @@
   height: 2.5rem;
   padding: 0;
   margin: 0;
-  border: 1px solid var(--wcui-border-blue);
-  border-radius: 2px;
-  background: var(--wcui-pitch-black);
-  color: var(--wcui-aqua-mint);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--wcui-white-text);
   cursor: pointer;
-  transition:
-    border-color 160ms ease,
-    color 160ms ease,
-    box-shadow 160ms ease;
+  transition: color 160ms ease;
+
+  svg {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
 
   &:hover {
-    color: var(--wcui-white-text);
-    border-color: var(--wcui-aqua-mint);
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+    z-index: 5;
+    color: var(--wcui-aqua-mint);
   }
 
   &:focus {
@@ -412,15 +557,27 @@
   }
 
   &:focus-visible {
+    z-index: 5;
     outline: 2px solid var(--wcui-aqua-mint);
     outline-offset: 2px;
-    border-color: var(--wcui-aqua-mint);
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
   }
 }
 
 .menuNav {
-  flex: 1;
+  flex-shrink: 0;
+}
+
+.menuSearchRow {
+  flex-shrink: 0;
+  padding: 0 .75rem 1.25rem 0.75rem;
+}
+
+.menuProfile {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 1.25rem;
+  border-top: 1px solid var(--wcui-border-blue);
 }
 
 .menuList {
@@ -430,6 +587,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+
 }
 
 /* Match SidebarNavLink tab / hover / focus treatment */
@@ -498,87 +656,9 @@
   }
 }
 
-/* —— Bottom bar (BottomNav) —— */
-
-.bottomNav {
-  display: none;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0.35rem calc(0.5rem + env(safe-area-inset-right))
-    calc(0.45rem + env(safe-area-inset-bottom)) calc(0.5rem + env(safe-area-inset-left));
-  border-top: 1px solid var(--wcui-dark-emerald);
-  background: var(--wcui-pitch-black);
-  z-index: 10;
-}
-
-.bottomList {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.25rem;
-}
-
-.bottomLink {
-  &,
-  &Active {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-    font-size: 1rem;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
-    padding: 0.35rem 0.15rem;
-
-    svg {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
-  }
-
-  svg {
-    color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
-    transition: color 240ms ease-in-out;
-  }
-
-  &:focus-visible,
-  &Active:focus-visible {
-    outline: 2px solid var(--wcui-lime-pulse);
-    outline-offset: 2px;
-  }
-
-  &:hover,
-  &:focus-visible {
-    color: var(--wcui-white-text);
-
-    svg {
-      color: var(--wcui-text-standard);
-    }
-  }
-
-  &Active {
-    color: var(--wcui-aqua-mint);
-
-    svg {
-      color: var(--wcui-text-standard);
-    }
-  }
-}
-
 @media (min-width: 1200px) {
   .sidebarShell {
     display: flex;
     flex-direction: column;
-  }
-}
-
-@media (max-width: 768px) {
-  .bottomNav {
-    display: block;
   }
 }

@@ -11,6 +11,12 @@
 
 html {
   height: 100%;
+  background: var(--wcui-background-black);
+}
+
+html.wcui-scroll-lock {
+  overflow: hidden;
+  padding-right: var(--wcui-scrollbar-compensate, 0px);
 }
 
 body {

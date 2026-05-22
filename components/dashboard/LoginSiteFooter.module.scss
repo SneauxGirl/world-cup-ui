@@ -1,0 +1,333 @@
+.footer {
+  --footer-gutter: var(--content-gutter, clamp(1.25rem, 2vw, 1.8rem));
+  --footer-divider: color-mix(in oklab, var(--wcui-white-text) 22%, transparent);
+  flex-shrink: 0;
+  width: 100%;
+  background: var(--wcui-background-black);
+  color: var(--wcui-white-text);
+}
+
+/* —— Partners: one row of 5 when space allows; else three columns (3 + 2, shrinks) —— */
+.partners {
+  container-type: inline-size;
+  container-name: login-partners;
+  border-bottom: 1px solid var(--footer-divider);
+}
+
+.partnersGrid {
+  --partner-gap-x: clamp(1.25rem, 2.5vw, 2rem);
+  --partner-gap-y: clamp(1.25rem, 2.5vw, 2rem);
+  --partner-cols: 5;
+  --partner-col-width: calc(
+    (100% - (var(--partner-cols) - 1) * var(--partner-gap-x)) / var(--partner-cols)
+  );
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 3vw, 2.25rem) var(--footer-gutter);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--partner-gap-y) var(--partner-gap-x);
+  box-sizing: border-box;
+}
+
+.partnerCell {
+  display: flex;
+  flex: 1 1 var(--partner-col-width);
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  min-width: 0;
+  max-width: var(--partner-col-width);
+  text-align: center;
+}
+
+.partnerLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  width: 100%;
+  min-height: 3.5rem;
+}
+
+.partnerLogoHasImage {
+  min-height: clamp(2.75rem, 5vw, 3.5rem);
+}
+
+.partnerLogoImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: clamp(2.75rem, 5vw, 3.5rem);
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+/* When a sixth slot would overflow, force three columns and scale logos down. */
+@container login-partners (max-width: 68rem) {
+  .partnersGrid {
+    --partner-cols: 3;
+    --partner-logo-max-h: clamp(3rem, 5.5vw, 4rem);
+    --partner-logo-max-w: min(10rem, 100%);
+  }
+
+  .partnerLogoHasImage {
+    min-height: var(--partner-logo-max-h);
+  }
+
+  .partnerLogoImg {
+    max-width: var(--partner-logo-max-w);
+    max-height: var(--partner-logo-max-h);
+  }
+
+}
+
+.partnerName {
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.partnerRole {
+  margin: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+}
+
+/* —— Main nav (3 columns × 2 rows; dividers span full column height) —— */
+.mainNav {
+  border-bottom: 1px solid var(--footer-divider);
+}
+
+.navColumns {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: clamp(2rem, 4vw, 3.5rem) var(--footer-gutter);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  box-sizing: border-box;
+}
+
+.navColumn {
+  position: relative;
+  display: flex;
+  flex: 1 1 10rem;
+  flex-direction: column;
+  align-items: center;
+  min-width: 8rem;
+  max-width: 16rem;
+  padding: 0 clamp(1.5rem, 3vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+.navDivider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: var(--footer-divider);
+}
+
+.navColumnList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  width: 100%;
+  text-align: center;
+}
+
+.navLink {
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--wcui-white-text);
+  text-decoration: none;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: color-mix(in oklab, var(--wcui-white-text) 75%, var(--wcui-sky-blue));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 3px;
+  }
+}
+
+/* —— Legal bar —— */
+.legalBar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 1rem var(--footer-gutter) calc(1rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--footer-divider);
+}
+
+.legalNav {
+  display: flex;
+  flex: 1 1 18rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.copyright {
+  margin: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: color-mix(in oklab, var(--wcui-white-text) 85%, transparent);
+}
+
+.legalList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.15rem;
+}
+
+.legalList > li {
+  display: inline-flex;
+  align-items: center;
+
+  &:not(:last-child)::after {
+    content: "•";
+    margin-left: 0.35rem;
+    color: color-mix(in oklab, var(--wcui-white-text) 45%, transparent);
+    pointer-events: none;
+  }
+}
+
+.legalLink {
+  padding: 0.15rem 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: color-mix(in oklab, var(--wcui-white-text) 85%, transparent);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: var(--wcui-white-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.legalBrand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--wcui-white-text);
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 3px;
+  }
+}
+
+.legalBrandText {
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .partnersGrid {
+    --partner-gap-x: 1rem;
+    --partner-gap-y: 1.25rem;
+  }
+
+  @container login-partners (max-width: 68rem) {
+    .partnersGrid {
+      --partner-logo-max-h: 2.75rem;
+      --partner-logo-max-w: min(8.5rem, 100%);
+    }
+
+  }
+
+  .navColumns {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .navColumn {
+    flex: 1 1 100%;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+    padding: 0 0 1.5rem;
+  }
+
+  .navColumn:last-child {
+    padding-bottom: 0;
+  }
+
+  .navDivider {
+    display: none;
+  }
+
+  .legalBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .legalBrand {
+    align-self: flex-end;
+  }
+}

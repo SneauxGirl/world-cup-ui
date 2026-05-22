@@ -62,10 +62,10 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  max-width: 1440px;
+  max-width: var(--content-max, 1440px);
   height: 100%;
   margin-inline: auto;
-  padding: var(--hero-gap-top) var(--main-gutter, 1.25rem) var(--hero-gap-bottom);
+  padding: var(--hero-gap-top) var(--content-gutter, var(--main-gutter, 1.25rem)) var(--hero-gap-bottom);
   box-sizing: border-box;
 }
 
@@ -80,12 +80,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-.heroStackGrow {
-  flex: 1 1 auto;
-  min-height: 0;
-  width: 100%;
 }
 
 .heroMenu {
@@ -119,26 +113,80 @@
   text-shadow: var(--hero-text-shadow);
 }
 
-.heroContent {
+.heroPrimary {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: flex-start;
-  align-content: flex-start;
   flex-shrink: 0;
-  gap: 0.65rem;
+  gap: 2.5rem; /* 40px below welcome before stats card */
   width: 100%;
-  max-width: 450px;
+  max-width: min(42rem, 100%);
   min-width: 0;
-  margin: 0;
+  margin: 2.5rem 0 0; /* 40px below World Cup Challenge kicker */
   padding: 0;
   box-sizing: border-box;
 }
 
-.heroContent > .title {
-  flex: 1 1 100%;
-  min-width: 0;
+.heroNoFeed .heroPrimary {
+  gap: 0;
+}
+
+/* Login: stadium art + kicker; sign-in card overlays via Login.formOverlay. */
+.heroLogin .heroLayout {
+  min-height: 0;
+}
+
+.heroLogin .heroTopRow {
+  justify-content: flex-end;
+  margin-bottom: 0;
+}
+
+.heroLogin .heroStack {
+  z-index: 2;
+}
+
+.heroActionRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  width: 100%;
+  margin-top: auto;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.heroCtaWrap {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  min-width: min(100%, 16rem);
+  box-sizing: border-box;
+}
+
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.85rem, 2vw, 1.1rem) clamp(2rem, 5vw, 3.25rem);
+  font-family: var(--font-alumni-sans), sans-serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--wcui-pitch-black);
+  background: var(--wcui-lime-pulse);
+  box-shadow:
+    0 0 20px color-mix(in oklab, var(--wcui-lime-pulse) 45%, transparent),
+    0 4px 24px color-mix(in oklab, var(--wcui-pitch-black) 55%, transparent);
+  text-shadow: none;
+}
+
+.heroCta:focus-visible {
+  outline: 2px solid var(--wcui-white-text);
+  outline-offset: 3px;
 }
 
 .title {
@@ -173,10 +221,9 @@
   --wcui-chamfer-tr: 20px;
   --wcui-chamfer-br: 25px;
   --wcui-chamfer-bl: 20px;
-  --stats-layout-col-gap: 0.75rem;
   flex: 0 1 auto;
-  width: fit-content;
-  max-width: 100%;
+  width: 100%;
+  max-width: 300px;
   box-sizing: border-box;
   @include frame.wcui-chamfer-frame-asymmetric;
 }
@@ -188,144 +235,10 @@
   border: 1px solid var(--wcui-border-aqua-soft);
 }
 
-/* Grid: row 2 height follows the taller cell (e.g. wrapped Round); Percentile stays top-aligned in that row. */
-.statsLayout {
-  display: grid;
-  grid-template-columns: max-content 1px max-content;
-  grid-template-rows: auto auto;
-  align-items: stretch;
-  width: fit-content;
-  max-width: 100%;
-  column-gap: var(--stats-layout-col-gap);
-  row-gap: clamp(1rem, 2.5vw, 1.35rem);
-}
-
-.statPoints {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.statsDivider {
-  grid-column: 2;
-  grid-row: 1 / -1;
-  justify-self: stretch;
-  align-self: stretch;
-  width: 1px;
-  min-height: 0;
-  margin-block: 0.1rem;
-  background: color-mix(in oklab, var(--wcui-aqua-mint) 35%, transparent);
-}
-
-.statRank {
-  grid-column: 3;
-  grid-row: 1;
-  padding-left: var(--stats-layout-col-gap);
-}
-
-.statRound {
-  grid-column: 1;
-  grid-row: 2;
-  align-self: start;
-}
-
-.statPercentile {
-  grid-column: 3;
-  grid-row: 2;
-  align-self: start;
-  padding-left: var(--stats-layout-col-gap);
-}
-
-.statPoints,
-.statRank,
-.statRound,
-.statPercentile {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.35rem;
-}
-
-.statPoints,
-.statRank {
-  min-height: 100%;
-}
-
-.statPointsLabel,
-.statRankLabel,
-.statRoundLabel,
-.statPercentileLabel {
-  /* Floor = size at 1000px viewport (1.4vw → 0.875rem). */
-  font-size: clamp(0.875rem, 1.4vw, 0.95rem);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--wcui-white-text) 72%, transparent);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.statPointsValue,
-.statRankValue {
-  font-weight: 700;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.statPointsValue {
-  margin-top: auto;
-  /* Floor = size at 1000px (5.5vw caps at 2.15rem). */
-  font-size: clamp(2.15rem, 5.5vw, 2.15rem);
-  color: var(--wcui-aqua-mint);
-}
-
-.statRankValue {
-  margin-top: auto;
-  padding-bottom: 0.3rem;
-  /* Floor = size at 1000px (2.1vw → 1.3125rem). */
-  font-size: clamp(1.3125rem, 2.1vw, 1.5rem);
-  color: color-mix(in oklab, var(--wcui-sky-blue) 2%, white);
-}
-
-.statRoundValue {
-  /* Floor = size at 1000px (2vw caps at 1.1rem). */
-  font-size: clamp(1.1rem, 2vw, 1.1rem);
-  font-weight: 700;
-  color: color-mix(in oklab, var(--wcui-sky-blue) 2%, white);
-  line-height: 1.15;
-  font-variant-numeric: tabular-nums;
-}
-
-.statPercentileValue {
-  font-size: clamp(1.1rem, 2vw, 1.1rem);
-  font-weight: 700;
-  line-height: 1.15;
-  font-variant-numeric: tabular-nums;
-  color: color-mix(in oklab, var(--wcui-white-text) 28%, var(--wcui-signal-yellow));
-}
-
 .hero:has(button[aria-expanded="true"]) {
   .titleGreeting,
   .titleName {
     color: color-mix(in oklab, var(--wcui-white-text) 92%, transparent);
-  }
-
-  .statPointsLabel,
-  .statRankLabel,
-  .statRoundLabel,
-  .statPercentileLabel {
-    color: color-mix(in oklab, var(--wcui-white-text) 68%, transparent);
-  }
-
-  .statPointsValue {
-    color: color-mix(in oklab, var(--wcui-aqua-mint) 92%, transparent);
-  }
-
-  .statRankValue,
-  .statRoundValue {
-    color: color-mix(in oklab, var(--wcui-border-blue) 92%, white);
-  }
-
-  .statPercentileValue {
-    color: color-mix(in oklab, var(--wcui-white-text) 24%, var(--wcui-signal-yellow));
   }
 }
 
@@ -338,6 +251,10 @@
     aspect-ratio: unset;
     min-height: min(clamp(14rem, 32vw, 22rem), var(--hero-photo-max));
     overflow: hidden;
+  }
+
+  .heroLogin {
+    overflow: visible;
   }
 
   .heroStack {
@@ -354,16 +271,12 @@
     min-height: inherit;
   }
 
-  .heroStackGrow {
-    display: none;
-  }
-
   .kicker {
     max-width: min(450px, 100%);
   }
 
-  .heroContent {
-    max-width: min(450px, 100%);
+  .heroPrimary {
+    max-width: min(42rem, 100%);
     flex-shrink: 1;
     min-width: 0;
   }
@@ -381,9 +294,12 @@
     --wcui-chamfer-tr: clamp(12px, 2vw, 20px);
     --wcui-chamfer-br: clamp(14px, 2.2vw, 25px);
     --wcui-chamfer-bl: clamp(12px, 2vw, 20px);
-    max-width: min(100%, 22rem);
+    max-width: 100%;
   }
 
+  .heroActionRow {
+    row-gap: clamp(1rem, 3vw, 1.5rem);
+  }
 }
 
 @media (max-width: 768px) {
@@ -399,8 +315,9 @@
     max-width: none;
   }
 
-  .heroContent {
-    max-width: min(450px, 100%);
+  .heroPrimary {
+    margin-top: clamp(1.25rem, 4vw, 2.5rem);
+    gap: clamp(1.25rem, 4vw, 2.5rem);
   }
 
   .titleGreeting {
@@ -419,37 +336,4 @@
     max-width: 100%;
   }
 
-  .statsLayout {
-    grid-template-columns: max-content max-content;
-    grid-template-rows: auto auto auto;
-    row-gap: clamp(0.75rem, 2vw, 1rem);
-  }
-
-  .statPoints {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .statRank {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .statsDivider {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    width: 100%;
-    height: 1px;
-    margin-block: 0;
-  }
-
-  .statRound {
-    grid-column: 1;
-    grid-row: 3;
-  }
-
-  .statPercentile {
-    grid-column: 2;
-    grid-row: 3;
-  }
 }

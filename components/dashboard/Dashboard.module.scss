@@ -8,13 +8,47 @@
 
 .shell {
   --main-gutter: clamp(1.25rem, 2vw, 1.8rem);
+  position: relative;
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  min-height: 100dvh;
   overflow-x: clip;
   background: var(--wcui-background-black);
+}
+
+.shellTop {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  flex-shrink: 0;
+  width: 100%;
+  border-bottom: 1px solid var(--wcui-border-blue);
+  background: var(--wcui-page-black);
+}
+
+.shellHeader {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Sidebar open (≥1200px): search / account in header row, right of FIFA nav. */
+.shellUtilities {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  align-self: center;
+  padding-right: var(--main-gutter);
+  z-index: 5;
+}
+
+@media (min-width: 1200px) {
+  .shellUtilities {
+    display: flex;
+  }
 }
 
 .shellHero {
@@ -89,17 +123,17 @@
   }
 
   .mainLayout {
-    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
-  }
-
-  .areaMatches {
-    order: 2;
-    min-width: 0;
-    width: 100%;
+    padding-bottom: 1.5rem;
   }
 
   .areaPerformers {
+    order: 2;
+  }
+
+  .areaMatches {
     order: 3;
+    min-width: 0;
+    width: 100%;
   }
 
   .areaRoster {
@@ -118,6 +152,5 @@
 @media (max-height: 520px) and (max-width: 768px) {
   .mainLayout {
     gap: 0.65rem;
-    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
   }
 }

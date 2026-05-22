@@ -141,6 +141,49 @@ export function IconChevronRight(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconChevronLeft(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <path d="m15 6-6 6 6 6" />
+    </svg>
+  );
+}
+
+export function IconChevronDown(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
+export function IconSearch(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </svg>
+  );
+}
+
+export function IconBell(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <path d="M18 16v-5.5a6 6 0 1 0-12 0V16l-2 2h16l-2-2z" />
+      <path d="M9.5 20a2.5 2.5 0 0 0 5 0" />
+    </svg>
+  );
+}
+
+export function IconUser(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M5 20.5v-1a7 7 0 0 1 14 0v1" />
+    </svg>
+  );
+}
+
 export function IconBall(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...iconProps} {...props}>

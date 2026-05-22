@@ -1,0 +1,68 @@
+@use "../../styles/wcui-frame" as frame;
+
+/** Primary / hero CTA — bilateral wash + edge highlights on hover/focus. */
+@mixin login-sign-in-glow {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--wcui-primary-blue) 32%, transparent) 0%,
+      transparent 30%,
+      transparent 70%,
+      color-mix(in oklab, var(--wcui-primary-blue) 32%, transparent) 100%
+    );
+    box-shadow: inset 0 0 26px color-mix(in oklab, var(--wcui-primary-blue) 9%, transparent);
+    transition: opacity 160ms ease;
+    @include frame.wcui-chamfer-clip-tl-br;
+  }
+}
+
+@mixin login-sign-in-glow-active {
+  box-shadow:
+    inset 3px 0 0 0 var(--wcui-aqua-mint),
+    inset -3px 0 0 0 var(--wcui-aqua-mint),
+    inset 0 1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 18%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 18%, transparent),
+    inset 0 1px 0 var(--wcui-card-glass-highlight);
+
+  &::before {
+    opacity: 1;
+  }
+}
+
+/** Hero Sign up — left wash + left edge only (matches Sign in fade depth, no right glow). */
+@mixin login-sign-up-glow {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--wcui-primary-blue) 32%, transparent) 0%,
+      transparent 30%
+    );
+    box-shadow: inset 0 0 26px color-mix(in oklab, var(--wcui-primary-blue) 9%, transparent);
+    transition: opacity 160ms ease;
+    @include frame.wcui-chamfer-clip-tl-br;
+  }
+}
+
+@mixin login-sign-up-glow-active {
+  box-shadow:
+    inset 3px 0 0 0 var(--wcui-aqua-mint),
+    inset 0 1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 18%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 18%, transparent),
+    inset 0 1px 0 var(--wcui-card-glass-highlight);
+
+  &::before {
+    opacity: 1;
+  }
+}

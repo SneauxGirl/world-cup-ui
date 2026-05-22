@@ -54,13 +54,13 @@ export function MatchCard({ match }: Props) {
           <div className={styles.scoreWrap}>
             {isUpcoming ? (
               <span className={styles.scoreDash} aria-label={t("match.scorePending")}>
-                –
+                -
               </span>
             ) : (
               <>
                 <span className={styles.score}>{match.homeScore}</span>
                 <span className={styles.sep} aria-hidden="true">
-                  –
+                  -
                 </span>
                 <span className={styles.score}>{match.awayScore}</span>
               </>

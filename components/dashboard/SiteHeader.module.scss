@@ -1,0 +1,227 @@
+.header {
+  --header-gutter: clamp(1.25rem, 2vw, 1.8rem);
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  background: transparent;
+}
+
+.inner {
+  box-sizing: border-box;
+  max-width: var(--content-max, 1440px);
+  margin: 0 auto;
+  padding:
+    calc(0.85rem + env(safe-area-inset-top, 0px))
+    var(--content-gutter, var(--header-gutter))
+    0.85rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.siteNav {
+  position: relative;
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.measureList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.35rem 1.1rem;
+}
+
+.measureProbe {
+  display: inline-flex;
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.25rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.brandCell {
+  flex: 0 0 auto;
+}
+
+.menuCell {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.menuList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem 1.1rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.siteTitle {
+  display: inline-block;
+  padding: 0.35rem 0;
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: clamp(0.9rem, 1.35vw, 1.1rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wcui-white-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: var(--wcui-white-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.navControl {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.35rem 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: clamp(0.85rem, 1.15vw, 1rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: color-mix(in oklab, var(--wcui-white-text) 92%, transparent);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: var(--wcui-white-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.chevron {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.1rem;
+  color: color-mix(in oklab, var(--wcui-white-text) 72%, transparent);
+}
+
+.moreWrap {
+  position: relative;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.moreMenu {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0.35rem 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 32;
+  min-width: 12rem;
+  border: 1px solid var(--wcui-border-blue);
+  background: var(--wcui-pitch-black);
+  box-shadow: 0 12px 32px color-mix(in oklab, var(--wcui-pitch-black) 65%, transparent);
+}
+
+.moreMenuLink {
+  display: block;
+  padding: 0.55rem 1rem;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: clamp(0.85rem, 1.15vw, 1rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: color-mix(in oklab, var(--wcui-white-text) 92%, transparent);
+  white-space: nowrap;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: var(--wcui-white-text);
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--wcui-primary-blue) 34%, transparent) 0%,
+      transparent 68%
+    );
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: -2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+
+  .linkList {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+
+  .menuCell {
+    margin-left: 0;
+  }
+
+  .menuList {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.35rem 0.9rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .inner {
+    padding-top: calc(0.65rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 0.65rem;
+  }
+}

@@ -105,29 +105,28 @@
 .scoreWrap {
   display: flex;
   flex-shrink: 1;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
   gap: clamp(0.2rem, 1vw, 0.35rem);
   min-width: 0;
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
 }
 
-.score {
+.score,
+.sep,
+.scoreDash {
   font-size: clamp(1.25rem, 3.2vw, 2rem);
   font-weight: 700;
-  color: var(--wcui-white-text);
-  line-height: 1.2;
+  line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 
-.sep {
-  font-size: clamp(0.85rem, 2vw, 1.15rem);
-  color: var(--wcui-text-standard);
+.score {
+  color: var(--wcui-white-text);
 }
 
+.sep,
 .scoreDash {
-  font-size: clamp(1rem, 3.2vw, 1.5rem);
-  font-weight: 700;
-  line-height: 1.2;
   color: var(--wcui-text-standard);
 }
 

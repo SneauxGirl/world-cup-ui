@@ -1,0 +1,107 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.35rem;
+  width: 100%;
+}
+
+.avatarFrame {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--wcui-stadium-navy);
+  background: var(--wcui-border-blue);
+  overflow: hidden;
+
+  &:is(button) {
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    appearance: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.avatarOctocat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.statCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  min-width: 0;
+
+  &:last-child {
+    align-items: flex-end;
+    margin-left: auto;
+  }
+}
+
+.statLabel,
+.statSub {
+  display: block;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.statLabel {
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--wcui-white-text) 52%, transparent);
+}
+
+.statValue {
+  display: block;
+  margin: 0;
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--wcui-white-text);
+}
+
+.statSub {
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--wcui-sky-blue) 90%, white);
+}
+
+.statCol:first-child .statSub {
+  color: color-mix(in oklab, var(--wcui-white-text) 48%, transparent);
+}
+
+.statTopPercent {
+  color: var(--wcui-signal-yellow);
+}

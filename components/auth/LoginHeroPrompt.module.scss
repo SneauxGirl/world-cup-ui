@@ -1,0 +1,82 @@
+@use "../../styles/wcui-frame" as frame;
+@use "./login-glow" as glow;
+
+/* Outer 1px aqua ring follows 30px TL+BR chamfers (same pattern as buttons). */
+.promptFrame {
+  --login-chamfer: 30px;
+  --wcui-chamfer-tl: 30px;
+  --wcui-chamfer-br: 30px;
+  width: min(100%, 22rem);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
+}
+
+.promptCard {
+  --login-chamfer: 30px;
+  --wcui-chamfer-tl: 30px;
+  --wcui-chamfer-br: 30px;
+  width: 100%;
+  margin-inline: 0;
+  gap: 1.15rem;
+  border: none;
+  box-shadow:
+    inset 0 1px 0 var(--wcui-card-glass-highlight),
+    0 14px 48px color-mix(in oklab, var(--wcui-pitch-black) 80%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
+}
+
+.brandLogo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.brandLogoImg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 0.55rem;
+}
+
+/* Sign up — same strong aqua chamfer frame as Sign in */
+.signUpTrim {
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
+}
+
+.signUpBtn {
+  position: relative;
+  isolation: isolate;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  font-weight: 700;
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+  cursor: default;
+  border: none;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
+  @include frame.wcui-card-glass-surface;
+  transition:
+    color 160ms ease,
+    box-shadow 160ms ease;
+  @include glow.login-sign-up-glow;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--wcui-white-text);
+    @include glow.login-sign-up-glow-active;
+  }
+}

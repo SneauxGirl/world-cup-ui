@@ -1,0 +1,95 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  padding: 0;
+  border: none;
+  background: color-mix(in oklab, var(--wcui-pitch-black) 72%, transparent);
+  cursor: pointer;
+}
+
+.shell {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 31;
+  width: min(22rem, calc(100vw - 2rem));
+  max-height: min(92dvh, 48rem);
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: min(92dvh, 48rem);
+}
+
+.closeBtn {
+  position: absolute;
+  top: clamp(0.85rem, 2vw, 1.15rem);
+  right: clamp(0.85rem, 2vw, 1.15rem);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+  color: color-mix(in oklab, var(--wcui-white-text) 72%, var(--wcui-aqua-mint));
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover {
+    color: var(--wcui-white-text);
+    border-color: var(--wcui-aqua-mint);
+    background: var(--wcui-pitch-black);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    color: var(--wcui-white-text);
+    border-color: var(--wcui-aqua-mint);
+    background: var(--wcui-pitch-black);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.formScroll {
+  width: 100%;
+  max-height: min(92dvh, 48rem);
+  overflow-y: auto;
+}
+
+.modalForm {
+  width: 100%;
+  margin-inline: 0;
+}

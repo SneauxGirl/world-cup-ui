@@ -7,9 +7,22 @@ const dateFmt = new Intl.DateTimeFormat("en", {
   timeZoneName: "short",
 });
 
+const kickoffTimeFmt = new Intl.DateTimeFormat("en", {
+  hour: "numeric",
+  minute: "2-digit",
+});
+
 export function formatKickoff(iso: string): string {
   try {
     return dateFmt.format(new Date(iso));
+  } catch {
+    return iso;
+  }
+}
+
+export function formatKickoffTime(iso: string): string {
+  try {
+    return kickoffTimeFmt.format(new Date(iso));
   } catch {
     return iso;
   }

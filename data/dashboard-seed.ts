@@ -65,6 +65,26 @@ export const liveMatches: DashboardMatch[] = [
     clockLabel: "2026-06-28T20:00:00Z",
     fantasyPoints: 0,
   },
+  {
+    id: "m5",
+    status: "upcoming",
+    home: { code: "USA", name: "United States" },
+    away: { code: "MEX", name: "Mexico" },
+    homeScore: 0,
+    awayScore: 0,
+    clockLabel: "2026-06-28T16:00:00Z",
+    fantasyPoints: 0,
+  },
+  {
+    id: "m6",
+    status: "upcoming",
+    home: { code: "COL", name: "Colombia" },
+    away: { code: "URU", name: "Uruguay" },
+    homeScore: 0,
+    awayScore: 0,
+    clockLabel: "2026-06-29T18:00:00Z",
+    fantasyPoints: 0,
+  },
 ];
 
 export const topPerformers: DashboardPerformer[] = [
