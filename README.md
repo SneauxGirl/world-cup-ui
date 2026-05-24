@@ -4,6 +4,12 @@ Work in progress: a fantasy UI for international soccer play featuring live matc
 
 ![World Cup UI dashboard: hero, live matches, and top performers](docs/screenshots/dashboard.png)
 
+## What to Expect
+
+Established: Globals and general design parameters
+Currently Editing: Layout, content assignment, accessibility
+Don't Trust: Responsiveness
+
 ## Stack
 
 - [Next.js](https://nextjs.org/) 16 (App Router)
