@@ -15,10 +15,10 @@ export function LoginHeroPrompt({ onSignIn }: Props) {
       <div className={[formStyles.loginCard, styles.promptCard].join(" ")}>
         <div className={styles.brandLogo}>
           <Image
-            src="/world-cup-challenge-logo.png"
+            src="/wcc-words-logo.png"
             alt={t("app.worldCupChallenge")}
-            width={1024}
-            height={307}
+            width={512}
+            height={256}
             className={styles.brandLogoImg}
             priority
             unoptimized

@@ -16,15 +16,20 @@
     0.85rem;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.75rem 1.25rem;
 }
 
 .siteNav {
+  /* Finlandica — FIFA nav links, More menu */
+  --site-header-nav-size: clamp(0.85rem, 1.15vw, 1rem);
+  /* Alumni Sans — WCUI; ~1.22× nav em for matched cap height at min / fluid / max */
+  --site-header-brand-size: clamp(1.1rem, 1.5vw, 1.25rem);
   position: relative;
-  flex: 1 1 12rem;
+  flex: 1 1 auto;
   min-width: 0;
+  width: 100%;
 }
 
 .measureList {
@@ -56,7 +61,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 1.25rem;
   width: 100%;
   min-width: 0;
@@ -67,8 +72,9 @@
 }
 
 .menuCell {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   min-width: 0;
+  margin-left: auto;
 }
 
 .menuList {
@@ -79,34 +85,53 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   gap: 0.35rem 1.1rem;
-  width: 100%;
-  min-width: 0;
 }
 
-.siteTitle {
-  display: inline-block;
+.brandTitleLink {
+  display: inline-flex;
+  align-items: center;
   padding: 0.35rem 0;
-  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
-  font-size: clamp(0.9rem, 1.35vw, 1.1rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: var(--site-header-brand-size);
+  line-height: 1;
   color: var(--wcui-white-text);
   text-decoration: none;
-  white-space: nowrap;
-  transition: color 160ms ease;
-
-  &:hover {
-    color: var(--wcui-white-text);
-  }
 
   &:focus-visible {
     outline: 2px solid var(--wcui-aqua-mint);
     outline-offset: 2px;
   }
+}
+
+.headerBrand {
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: inherit;
+  font-weight: 700;
+  line-height: inherit;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brandLogoLink {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 3px;
+  }
+}
+
+.brandLogo {
+  display: block;
+  width: auto;
+  height: clamp(1.75rem, 3vw, 2.15rem);
+  max-width: min(12rem, 42vw);
+  object-fit: contain;
 }
 
 .navControl {
@@ -117,7 +142,7 @@
   border: none;
   background: transparent;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(0.85rem, 1.15vw, 1rem);
+  font-size: var(--site-header-nav-size, clamp(0.85rem, 1.15vw, 1rem));
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.04em;
@@ -149,7 +174,6 @@
 .moreWrap {
   position: relative;
   flex-shrink: 0;
-  margin-left: auto;
 }
 
 .moreMenu {
@@ -170,7 +194,7 @@
   display: block;
   padding: 0.55rem 1rem;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(0.85rem, 1.15vw, 1rem);
+  font-size: var(--site-header-nav-size, clamp(0.85rem, 1.15vw, 1rem));
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.04em;
@@ -195,27 +219,29 @@
   }
 }
 
-@media (max-width: 768px) {
-  .inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.65rem;
-  }
+/* —— Collapsed header (≤400px): brand + optional pinned + hamburger —— */
+.linkListMobile {
+  justify-content: space-between;
+  gap: 0.65rem;
+}
 
-  .linkList {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.65rem;
-  }
+.linkListMobile .menuCell {
+  margin-left: 0;
+}
 
-  .menuCell {
-    margin-left: 0;
-  }
+.linkListMobile .menuList {
+  justify-content: flex-end;
+}
 
-  .menuList {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 0.35rem 0.9rem;
+.menuBtnWrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+@media (min-width: 1100px) {
+  .siteNav {
+    --site-header-brand-size: 1.5rem;
   }
 }
 

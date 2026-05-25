@@ -61,10 +61,10 @@ export function SidebarNav({ onLogoutConfirm }: SidebarNavProps) {
       <div className={styles.brand}>
         <Link href="/dashboard" className={styles.brandLogoLink}>
           <Image
-            src="/wcc-logo2.png"
+            src="/wcc-logo-white.png"
             alt="WCC"
             width={512}
-            height={512}
+            height={256}
             className={styles.brandLogo}
             priority
           />

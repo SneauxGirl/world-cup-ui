@@ -1,10 +1,22 @@
-/* Login page — 1440px content column; form overlays hero photo. */
+/* Login page — 1440px content column; login card in flex within hero band. */
 .page {
   --content-max: 1440px;
-  --content-gutter: clamp(1.25rem, 2vw, 1.8rem);
+  --content-gutter: 1.25rem; /* 20px — holds at all breakpoints */
+  --content-inset: max(
+    var(--content-gutter),
+    calc((100vw - min(100vw, var(--content-max))) / 2 + var(--content-gutter))
+  );
   --main-gutter: var(--content-gutter);
   --footer-gutter: var(--content-gutter);
   --header-gutter: var(--content-gutter);
+  --hero-photo-max: 450px;
+  --hero-photo-aspect: 2000 / 600;
+  /* Fallback until ResizeObserver sets --hero-photo-rendered-height. */
+  --hero-band-height: min(
+    var(--hero-photo-max),
+    100vw * 600 / 2000
+  );
+  --hero-photo-rendered-height: var(--hero-band-height);
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -21,17 +33,26 @@
   background: var(--wcui-background-black);
 }
 
-.shellTop {
+.heroBand {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: stretch;
+  flex-direction: column;
+  width: 100%;
+  flex-shrink: 0;
+  overflow: visible;
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+/* Header in-flow above hero art so login never stacks under it. */
+.heroHeader {
+  position: relative;
+  z-index: 10;
   flex-shrink: 0;
   width: 100%;
   max-width: var(--content-max);
   margin-inline: auto;
-  background: var(--wcui-page-black);
   box-sizing: border-box;
+  background: var(--wcui-page-black);
 }
 
 .shellHeader {
@@ -39,46 +60,76 @@
   min-width: 0;
 }
 
-.heroBand {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
+.heroArtWrap {
   flex-shrink: 0;
-  overflow: visible;
-  box-sizing: border-box;
+  width: 100%;
 }
 
 .heroPhoto {
   width: 100%;
 }
 
-.formOverlay {
-  position: absolute;
-  top: 60px;
-  left: 30vw;
+/* Pull login onto hero art only; header row above keeps card below nav. */
+.heroContentShell {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-top: calc(
+    -1 * var(--hero-photo-rendered-height, var(--hero-band-height)) + var(--content-gutter)
+  );
+  position: relative;
   z-index: 3;
+  box-sizing: border-box;
+}
+
+.heroContent {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  width: auto;
-  max-width: calc(100% - 30vw - var(--content-gutter));
-  margin: 0;
-  padding: 0 0 clamp(1.5rem, 3vh, 2rem);
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding: 0 var(--content-inset) clamp(1.5rem, 3vh, 2rem);
   box-sizing: border-box;
-  pointer-events: none;
 }
 
-.formOverlay > * {
-  pointer-events: auto;
+.contentRail {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--content-inset);
+  box-sizing: border-box;
+}
+
+@media (min-width: 1440px) {
+  .contentRail {
+    padding-inline: 0;
+  }
+}
+
+/* Match HeroSection.module.scss hero height rules below 1500px / 768px. */
+@media (max-width: 1499px) {
+  .page {
+    --hero-photo-max: 400px;
+    --hero-band-height: min(
+      clamp(14rem, 32vw, 22rem),
+      var(--hero-photo-max)
+    );
+  }
 }
 
 @media (max-width: 768px) {
-  .formOverlay {
-    top: clamp(2.5rem, 10vw, 60px);
-    left: var(--content-gutter);
-    max-width: calc(100% - 2 * var(--content-gutter));
+  .page {
+    --hero-photo-max: 350px;
+    --hero-band-height: min(
+      clamp(12rem, 28vw, 18rem),
+      var(--hero-photo-max)
+    );
+  }
+
+  .heroContent {
     padding-bottom: 1rem;
   }
 }

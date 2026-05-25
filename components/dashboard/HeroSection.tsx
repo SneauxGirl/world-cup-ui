@@ -62,9 +62,11 @@ export function HeroSection({
             {!loginHero ? (
               <p className={styles.kicker}>{t("app.worldCupChallenge")}</p>
             ) : null}
-            <div className={styles.heroMenu}>
-              <HeroNavMenu onAccountClick={onMenuAccountClick} />
-            </div>
+            {!loginHero ? (
+              <div className={styles.heroMenu}>
+                <HeroNavMenu onAccountClick={onMenuAccountClick} />
+              </div>
+            ) : null}
           </div>
           {!loginHero ? (
             <div className={styles.heroPrimary}>

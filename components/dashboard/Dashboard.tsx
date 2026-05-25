@@ -57,7 +57,11 @@ export function Dashboard() {
       <SidebarNav onLogoutConfirm={confirmSidebarLogout} />
       <div className={styles.shell}>
         <div className={styles.shellTop}>
-          <SiteHeader className={styles.shellHeader} />
+          <SiteHeader
+            brand="dashboard"
+            className={styles.shellHeader}
+            onAccountClick={requestLogout}
+          />
           <div className={styles.shellUtilities}>
             <SiteUtilities onAccountClick={requestLogout} />
           </div>

@@ -1,0 +1,21 @@
+.panelShellTall {
+  --wcui-menu-max-height: min(90dvh, 680px);
+}
+
+.sectionLabel {
+  margin: 0.85rem 1rem 0.35rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid color-mix(in oklab, var(--wcui-white-text) 14%, transparent);
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--wcui-sky-blue) 90%, transparent);
+}
+
+.panelShellTall .sectionLabel:first-of-type {
+  margin-top: 0.25rem;
+  padding-top: 0;
+  border-top: none;
+}

@@ -7,9 +7,9 @@
 }
 
 .inner {
-  max-width: var(--content-max, 1440px);
-  margin-inline: auto;
-  padding: clamp(1.5rem, 3vw, 2.25rem) var(--content-gutter, clamp(1.25rem, 2vw, 1.8rem));
+  width: 100%;
+  margin-inline: 0;
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
   box-sizing: border-box;
 }
 

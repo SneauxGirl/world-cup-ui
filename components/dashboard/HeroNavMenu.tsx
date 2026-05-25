@@ -5,10 +5,15 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { IconClose, IconMenu, IconSearch } from "@/components/icons/DashboardIcons";
 import { MenuUserFooter } from "@/components/dashboard/MenuUserFooter";
 import { SearchModal } from "@/components/dashboard/SearchModal";
+import {
+  getSiteHeaderMobileDrawerItems,
+  SITE_HEADER_MORE_KEY,
+} from "@/data/site-header-nav";
 import { userDashboard } from "@/data/dashboard-seed";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
 import navStyles from "./Navigation.module.scss";
+import drawerStyles from "./SiteHeaderDrawer.module.scss";
 
 const menuItems = [
   { key: "dashboard" as const, href: "/dashboard" },
@@ -27,6 +32,8 @@ const FOCUSABLE =
 type Props = {
   onAccountClick?: () => void;
 };
+
+const siteDrawerItems = getSiteHeaderMobileDrawerItems();
 
 export function HeroNavMenu({ onAccountClick }: Props) {
   const [open, setOpen] = useState(false);
@@ -136,7 +143,7 @@ export function HeroNavMenu({ onAccountClick }: Props) {
             aria-label={t("nav.closeMenu")}
             onClick={closeMenu}
           />
-          <div className={navStyles.menuPanelShell}>
+          <div className={[navStyles.menuPanelShell, drawerStyles.panelShellTall].join(" ")}>
             <div
               id={menuId}
               ref={panelRef}
@@ -176,6 +183,20 @@ export function HeroNavMenu({ onAccountClick }: Props) {
                       </li>
                     );
                   })}
+                </ul>
+                <p className={drawerStyles.sectionLabel}>{t(`footer.${SITE_HEADER_MORE_KEY}`)}</p>
+                <ul className={navStyles.menuList}>
+                  {siteDrawerItems.map((item) => (
+                    <li key={item.key}>
+                      <Link
+                        className={navStyles.menuLink}
+                        href={item.href}
+                        onClick={closeMenu}
+                      >
+                        {t(`footer.${item.key}`)}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
                 <div className={navStyles.menuSearchRow}>
                   <button

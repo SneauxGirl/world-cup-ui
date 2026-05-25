@@ -93,7 +93,8 @@
   margin-right: -2px;
 }
 
-@media (max-width: 1199px) {
+/* Tablet only: hero hamburger; ≤400 uses site header bar menu instead. */
+@media (min-width: 769px) and (max-width: 1199px) {
   .heroMenu {
     display: flex;
   }
