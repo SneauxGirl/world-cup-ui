@@ -6,9 +6,9 @@ Work in progress: a fantasy UI for international soccer play featuring live matc
 
 ## What to Expect
 
-Established: Globals and general design parameters
-Currently Editing: Layout, content assignment, accessibility
-Don't Trust: Responsiveness
+- Established: Globals and general design parameters
+- Currently Editing: Layout, content assignment, accessibility
+- Todo: Responsiveness
 
 ## Stack
 
