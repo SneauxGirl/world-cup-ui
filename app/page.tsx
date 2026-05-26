@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Login } from "@/components/dashboard/Login";
+import { Login } from "@/components/login/Login";
 
 export const metadata: Metadata = {
   title: "Login — World Cup UI",

@@ -1,0 +1,284 @@
+/** Slide-out nav: cut bottom-left (single 45° notch). */
+@mixin wcui-menu-bl-chamfer {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    var(--wcui-menu-bl-chamfer) 100%,
+    0 calc(100% - var(--wcui-menu-bl-chamfer))
+  );
+}
+
+/* —— Site header / hero hamburger drawer —— */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.menuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--wcui-border-blue);
+  border-radius: 2px;
+  background: var(--wcui-pitch-black);
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, var(--wcui-sky-blue));
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover {
+    color: color-mix(in oklab, var(--wcui-white-text) 92%, var(--wcui-sky-blue));
+    border-color: var(--wcui-aqua-mint);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    color: var(--wcui-aqua-mint);
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+    border-color: var(--wcui-aqua-mint);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+  }
+}
+
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 21;
+  padding: 0;
+  border: none;
+  background: color-mix(in oklab, var(--wcui-pitch-black) 72%, transparent);
+  cursor: pointer;
+}
+
+.menuPanelShell {
+  --wcui-menu-width: calc(18rem - 20px);
+  --wcui-menu-bl-chamfer: 20px;
+  --wcui-menu-max-height: 550px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 22;
+  width: min(var(--wcui-menu-width), 88vw);
+  height: auto;
+  max-height: min(var(--wcui-menu-max-height), 100dvh);
+  box-sizing: border-box;
+  background: var(--wcui-border-blue);
+  @include wcui-menu-bl-chamfer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: var(--wcui-menu-bl-chamfer);
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--wcui-border-blue);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: 0;
+    width: calc(var(--wcui-menu-bl-chamfer) * 1.41421356237);
+    height: 1px;
+    background: var(--wcui-border-blue);
+    transform-origin: 0 50%;
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+}
+
+.menuPanel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-height: calc(min(var(--wcui-menu-max-height), 100dvh) - 1px);
+  box-sizing: border-box;
+  margin-left: 1px;
+  margin-bottom: 1px;
+  padding: calc(1.1rem + env(safe-area-inset-top, 0px)) 0 0;
+  background: var(--wcui-pitch-black);
+  @include wcui-menu-bl-chamfer;
+  overflow-y: auto;
+
+  :focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.menuPanelHead {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 1rem 0;
+  margin-bottom: -0.15rem;
+}
+
+.menuPanelIconBtn,
+.menuPanelCloseBtn {
+  position: relative;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--wcui-white-text);
+  cursor: pointer;
+  transition: color 160ms ease;
+
+  svg {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  &:hover {
+    z-index: 5;
+    color: var(--wcui-aqua-mint);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    z-index: 5;
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.menuNav {
+  flex-shrink: 0;
+}
+
+.menuSearchRow {
+  flex-shrink: 0;
+  padding: 0 0.75rem 1.25rem 0.75rem;
+}
+
+.menuProfile {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 1.25rem;
+  border-top: 1px solid var(--wcui-border-blue);
+}
+
+.menuList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.menuLink {
+  &,
+  &Active {
+    position: relative;
+    isolation: isolate;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding-block: 0.75rem;
+    padding-inline: 1.25rem;
+    font-family: var(--font-finlandica), sans-serif;
+    font-size: var(--wcui-font-body);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-align: left;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+    border: none;
+    border-left: 3px solid transparent;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    transition:
+      border-color 160ms ease,
+      color 160ms ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--wcui-primary-blue) 34%, transparent) 0%,
+        transparent 68%
+      );
+      box-shadow: inset 0 0 28px color-mix(in oklab, var(--wcui-primary-blue) 10%, transparent);
+      transition: opacity 160ms ease;
+    }
+  }
+
+  &:hover,
+  &:focus-visible,
+  &:focus:hover,
+  &Active {
+    color: var(--wcui-white-text);
+    border-left-color: var(--wcui-aqua-mint);
+    border-top-color: color-mix(in oklab, var(--wcui-aqua-mint) 16%, transparent);
+    border-bottom-color: color-mix(in oklab, var(--wcui-aqua-mint) 16%, transparent);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:focus:not(:focus-visible):not(:hover) {
+    color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+
+    &::before {
+      opacity: 0;
+    }
+  }
+}

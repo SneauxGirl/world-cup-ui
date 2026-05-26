@@ -4,11 +4,11 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { userDashboard } from "@/data/dashboard-seed";
 import { LoginHeroPrompt } from "@/components/auth/LoginHeroPrompt";
 import { LoginModal } from "@/components/auth/LoginModal";
-import { HeroSection } from "@/components/dashboard/HeroSection";
-import { LoginSiteFooter } from "@/components/dashboard/LoginSiteFooter";
-import { LoginStoryPromos } from "@/components/dashboard/LoginStoryPromos";
-import { LoginUpcomingMatches } from "@/components/dashboard/LoginUpcomingMatches";
-import { SiteHeader } from "@/components/dashboard/SiteHeader";
+import { HeroSection } from "@/components/shared/HeroSection";
+import { LoginSiteFooter } from "@/components/login/LoginSiteFooter";
+import { LoginStoryPromos } from "@/components/login/LoginStoryPromos";
+import { LoginUpcomingMatches } from "@/components/login/LoginUpcomingMatches";
+import { SiteHeader } from "@/components/shared/SiteHeader";
 import { t } from "@/lib/i18n/t";
 import styles from "./Login.module.scss";
 

@@ -3,7 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { LogoutConfirmModal } from "@/components/dashboard/LogoutConfirmModal";
+import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import {
   IconCalendar,
   IconDashboard,

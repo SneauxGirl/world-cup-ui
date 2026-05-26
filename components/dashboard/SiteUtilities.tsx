@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { IconSearch, IconUser } from "@/components/icons/DashboardIcons";
-import { SearchModal } from "@/components/dashboard/SearchModal";
+import { SearchModal } from "@/components/shared/SearchModal";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
 import styles from "./SiteUtilities.module.scss";

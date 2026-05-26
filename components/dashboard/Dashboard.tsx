@@ -10,15 +10,15 @@ import {
   topPerformers,
   userDashboard,
 } from "@/data/dashboard-seed";
-import { HeroSection } from "@/components/dashboard/HeroSection";
+import { HeroSection } from "@/components/shared/HeroSection";
 import { LiveMatchesSection } from "@/components/dashboard/LiveMatchesSection";
 import { TopPerformersSection } from "@/components/dashboard/TopPerformersSection";
 import { RosterHealthSection } from "@/components/dashboard/RosterHealthSection";
 import { StrategyInsightBlock } from "@/components/dashboard/StrategyFeedSections";
 import { SidebarNav } from "@/components/dashboard/Navigation";
-import { SiteHeader } from "@/components/dashboard/SiteHeader";
+import { SiteHeader } from "@/components/shared/SiteHeader";
 import { SiteUtilities } from "@/components/dashboard/SiteUtilities";
-import { LogoutConfirmModal } from "@/components/dashboard/LogoutConfirmModal";
+import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import styles from "./Dashboard.module.scss";
 
 export function Dashboard() {

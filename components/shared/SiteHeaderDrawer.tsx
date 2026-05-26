@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { IconClose, IconSearch } from "@/components/icons/DashboardIcons";
-import { MenuUserFooter } from "@/components/dashboard/MenuUserFooter";
-import { SearchModal } from "@/components/dashboard/SearchModal";
+import { MenuUserFooter } from "@/components/shared/MenuUserFooter";
+import { SearchModal } from "@/components/shared/SearchModal";
 import {
   getSiteHeaderMobileDrawerItems,
   SITE_HEADER_MORE_KEY,
@@ -14,7 +14,7 @@ import {
 import { userDashboard } from "@/data/dashboard-seed";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
-import navStyles from "./Navigation.module.scss";
+import navStyles from "./SiteNavMenu.module.scss";
 import styles from "./SiteHeaderDrawer.module.scss";
 
 const dashboardMenuItems = [

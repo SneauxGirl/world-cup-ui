@@ -11,7 +11,7 @@ import {
   useState,
 } from "react";
 import { IconChevronDown, IconMenu } from "@/components/icons/DashboardIcons";
-import { SiteHeaderDrawer } from "@/components/dashboard/SiteHeaderDrawer";
+import { SiteHeaderDrawer } from "@/components/shared/SiteHeaderDrawer";
 import {
   getSiteHeaderMobilePinnedItems,
   SITE_HEADER_MORE_KEY,
@@ -20,7 +20,7 @@ import {
 } from "@/data/site-header-nav";
 import { useSiteHeaderCollapsed } from "@/hooks/useMediaQuery";
 import { t } from "@/lib/i18n/t";
-import navStyles from "./Navigation.module.scss";
+import navStyles from "./SiteNavMenu.module.scss";
 import styles from "./SiteHeader.module.scss";
 
 const ITEM_GAP_PX = 17.6; /* ~1.1rem — matches .menuList gap */
