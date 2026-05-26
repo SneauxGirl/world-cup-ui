@@ -132,7 +132,7 @@
   gap: 0;
 }
 
-/* Login: stadium art + kicker; sign-in card overlays via Login.formOverlay. */
+/* Login: stadium art only; sign-in card overlays via Login heroContentShell. */
 .heroLogin .heroLayout {
   min-height: 0;
 }
@@ -255,7 +255,23 @@
   }
 
   .heroLogin {
-    overflow: visible;
+    aspect-ratio: var(--hero-photo-aspect);
+    height: auto;
+    max-height: var(--hero-photo-max);
+    min-height: unset;
+    overflow: hidden;
+  }
+
+  .heroLogin .heroStack {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    pointer-events: none;
+  }
+
+  .heroLogin .heroPhoto {
+    object-fit: cover;
+    object-position: var(--hero-photo-focus-x, 32%) center;
   }
 
   .heroStack {

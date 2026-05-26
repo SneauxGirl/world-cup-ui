@@ -32,17 +32,9 @@ const FOCUSABLE =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 function DrawerSiteLink({ item, onNavigate }: { item: SiteHeaderNavItem; onNavigate: () => void }) {
-  const label = t(`footer.${item.key}`);
-  if (item.hasMenu) {
-    return (
-      <button type="button" className={navStyles.menuLink} aria-haspopup="true">
-        {label}
-      </button>
-    );
-  }
   return (
     <Link href={item.href} className={navStyles.menuLink} onClick={onNavigate}>
-      {label}
+      {t(`footer.${item.key}`)}
     </Link>
   );
 }

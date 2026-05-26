@@ -100,6 +100,13 @@
   box-sizing: border-box;
 }
 
+/* Login card ~⅓ across the content column from 1100px up. */
+@media (min-width: 1100px) {
+  .heroContent {
+    padding-inline-start: 13.333%;
+  }
+}
+
 /* Match HeroSection.module.scss hero height rules below 1500px / 768px. */
 @media (max-width: 1499px) {
   .page {
