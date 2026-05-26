@@ -1,24 +1,26 @@
 @use "../../styles/wcui-frame" as frame;
 @use "./login-glow" as glow;
 
-/* Outer 1px aqua ring follows 30px TL+BR chamfers (same pattern as buttons). */
+/* Outer 1px aqua ring follows TL+BR chamfers (same pattern as buttons). */
 .promptFrame {
-  --login-chamfer: 30px;
-  --wcui-chamfer-tl: 30px;
-  --wcui-chamfer-br: 30px;
-  width: min(100%, 22rem);
+  --login-chamfer: var(--login-hero-chamfer, 30px);
+  --wcui-chamfer-tl: var(--login-chamfer);
+  --wcui-chamfer-br: var(--login-chamfer);
+  width: min(100%, var(--login-hero-card-max, 22rem));
   flex-shrink: 0;
   box-sizing: border-box;
   @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
 }
 
-.promptCard {
-  --login-chamfer: 30px;
-  --wcui-chamfer-tl: 30px;
-  --wcui-chamfer-br: 30px;
+.promptFrame .promptCard {
+  --login-chamfer: var(--login-hero-chamfer, 30px);
+  --wcui-chamfer-tl: var(--login-chamfer);
+  --wcui-chamfer-br: var(--login-chamfer);
   width: 100%;
+  max-width: none;
   margin-inline: 0;
-  gap: 1.15rem;
+  padding: var(--login-hero-card-padding, clamp(1.15rem, 2.5vw, 1.65rem));
+  gap: var(--login-hero-card-gap, 1.15rem);
   border: none;
   box-shadow:
     inset 0 1px 0 var(--wcui-card-glass-highlight),
@@ -39,10 +41,18 @@
 .brandLogoImg {
   display: block;
   width: 100%;
-  max-width: 100%;
+  max-width: var(--login-hero-logo-max-width, 100%);
   height: auto;
   object-fit: contain;
   object-position: left center;
+}
+
+.promptFrame .promptTitle {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  text-wrap: balance;
+  font-size: var(--login-hero-title-size, clamp(1.35rem, 3vw, 1.75rem));
 }
 
 .actions {
@@ -50,7 +60,7 @@
   flex-direction: column;
   align-items: stretch;
   width: 100%;
-  gap: 0.55rem;
+  gap: clamp(0.4rem, 1.5vw, 0.55rem);
 }
 
 /* Sign up — same strong aqua chamfer frame as Sign in */

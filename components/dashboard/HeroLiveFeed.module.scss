@@ -9,7 +9,7 @@
 
 .feedTitle {
   margin: 0;
-  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+  font-size: var(--wcui-font-control);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 700;
@@ -109,7 +109,7 @@
 .feedText {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: clamp(0.8rem, 1.15vw, 0.9rem);
+  font-size: var(--wcui-font-secondary);
   font-weight: 400;
   color: var(--wcui-white-text);
   line-height: 1.3;
@@ -117,7 +117,7 @@
 
 .feedPts {
   flex: 0 0 auto;
-  font-size: clamp(0.8rem, 1.15vw, 0.9rem);
+  font-size: var(--wcui-font-secondary);
   font-weight: 700;
   color: var(--wcui-signal-yellow);
   font-variant-numeric: tabular-nums;

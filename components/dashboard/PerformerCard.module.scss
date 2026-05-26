@@ -47,7 +47,7 @@
 }
 
 .name {
-  font-size: 1.6rem;
+  font-size: var(--wcui-font-heading-panel);
   font-weight: 700;
   line-height: 1;
   color: var(--wcui-white-text);
@@ -61,7 +61,7 @@
   flex-wrap: nowrap;
   align-items: baseline;
   gap: 0;
-  font-size: 1rem;
+  font-size: var(--wcui-font-control);
   line-height: 1.2;
   color: var(--wcui-text-standard);
   font-weight: 500;
@@ -84,7 +84,7 @@
   margin: 0;
   margin-top: auto;
   padding: 0;
-  font-size: 1.6rem;
+  font-size: var(--wcui-font-heading-panel);
   font-weight: 700;
   color: var(--wcui-white-text);
   font-variant-numeric: tabular-nums;

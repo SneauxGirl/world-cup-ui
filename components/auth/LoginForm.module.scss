@@ -123,14 +123,18 @@
 }
 
 .title {
-  display: flex;
+  display: block;
   align-self: center;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   font-family: var(--font-alumni-sans), sans-serif;
   font-size: clamp(1.35rem, 3vw, 1.75rem);
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 1.15;
+  text-align: center;
+  text-wrap: balance;
   color: var(--wcui-white-text);
 }
 

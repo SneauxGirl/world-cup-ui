@@ -12,7 +12,7 @@
 }
 
 .title {
-  font-size: 1rem;
+  font-size: var(--wcui-font-heading-section);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 700;
@@ -23,7 +23,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 1rem;
+  font-size: var(--wcui-font-control);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 500;

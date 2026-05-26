@@ -184,10 +184,10 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
     brand === "dashboard" ? (
       <Link href={brandHref} className={styles.brandLogoLink} ref={brandRef}>
         <Image
-          src="/WCC words LogoWht.png"
+          src="/wcc-words-only-logo.png"
           alt={t("app.name")}
-          width={512}
-          height={512}
+          width={370}
+          height={40}
           className={styles.brandLogo}
           priority
         />

@@ -36,7 +36,7 @@ export function HeroSection({
       className={[
         styles.hero,
         !showFeed && styles.heroNoFeed,
-        loginHero && styles.heroLogin,
+        loginHero ? styles.heroLogin : styles.heroDashboard,
         className,
       ]
         .filter(Boolean)
@@ -44,53 +44,70 @@ export function HeroSection({
       aria-labelledby={loginHero ? undefined : "dashboard-hero-heading"}
       aria-label={loginHero ? t("login.heroRegion") : undefined}
     >
-      <div className={styles.heroPhotoShell} aria-hidden="true">
-        <div className={styles.heroMedia}>
-          <Image
-            src="/SoccerHero1800final.png"
-            alt=""
-            fill
-            priority
-            className={styles.heroPhoto}
-            sizes="100vw"
-          />
-        </div>
-      </div>
-      <div className={styles.heroStack}>
-        <div className={styles.heroLayout}>
-          <div className={styles.heroTopRow}>
-            {!loginHero ? (
-              <p className={styles.kicker}>{t("app.worldCupChallenge")}</p>
-            ) : null}
-            {!loginHero ? (
-              <div className={styles.heroMenu}>
-                <HeroNavMenu onAccountClick={onMenuAccountClick} />
-              </div>
-            ) : null}
+      {loginHero ? (
+        <div className={styles.heroPhotoShell} aria-hidden="true">
+          <div className={styles.heroMedia}>
+            <Image
+              src="/SoccerHero1800final.png"
+              alt=""
+              fill
+              priority
+              className={styles.heroPhoto}
+              sizes="100vw"
+            />
           </div>
+        </div>
+      ) : null}
+      <div className={styles.heroStack}>
+        <div
+          className={[styles.heroLayout, !loginHero && styles.heroLayoutDashboard]
+            .filter(Boolean)
+            .join(" ")}
+        >
           {!loginHero ? (
-            <div className={styles.heroPrimary}>
-              <h1 id="dashboard-hero-heading" className={styles.title}>
-                <span className={styles.titleGreeting}>{t("dashboard.welcomeBackGreeting")}</span>
-                <span className={styles.titleName}>{user.displayName}</span>
-              </h1>
-              {showFeed ? (
-                <div className={styles.statsCardFrame}>
-                  <div className={styles.statsCardInner}>
-                    <HeroLiveFeed items={feedItems} />
+            <>
+              <div className={styles.heroDashboardMain}>
+                <div className={styles.heroTopRow}>
+                  <p className={styles.kicker}>{t("app.worldCupChallenge")}</p>
+                  <div className={styles.heroMenu}>
+                    <HeroNavMenu onAccountClick={onMenuAccountClick} />
                   </div>
                 </div>
-              ) : null}
-            </div>
-          ) : null}
-          {!loginHero ? (
-            <div className={styles.heroActionRow}>
-              <div className={styles.heroCtaWrap}>
-                <Link className={styles.heroCta} href={ctaHref}>
-                  {ctaLabel}
-                </Link>
+                <div className={styles.heroPrimary}>
+                  <h1 id="dashboard-hero-heading" className={styles.title}>
+                    <span className={styles.titleGreeting}>
+                      {t("dashboard.welcomeBackGreeting")}
+                    </span>
+                    <span className={styles.titleName}>{user.displayName}</span>
+                  </h1>
+                  {showFeed ? (
+                    <div className={styles.statsCardFrame}>
+                      <div className={styles.statsCardInner}>
+                        <HeroLiveFeed items={feedItems} />
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+                <div className={styles.heroActionRow}>
+                  <div className={styles.heroCtaWrap}>
+                    <Link className={styles.heroCta} href={ctaHref}>
+                      {ctaLabel}
+                    </Link>
+                  </div>
+                </div>
               </div>
-            </div>
+              <figure className={styles.heroConstruction} aria-hidden="true">
+                <Image
+                  src="/underconstructiontrsp.png"
+                  alt=""
+                  width={1152}
+                  height={768}
+                  priority
+                  className={styles.heroConstructionImage}
+                  sizes="(max-width: 768px) 80vw, (max-width: 1200px) 42vw, 520px"
+                />
+              </figure>
+            </>
           ) : null}
         </div>
       </div>

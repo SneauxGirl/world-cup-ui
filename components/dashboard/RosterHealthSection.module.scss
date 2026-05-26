@@ -52,7 +52,7 @@
 }
 
 .label {
-  font-size: 1rem;
+  font-size: var(--wcui-font-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--wcui-text-standard);
@@ -60,7 +60,7 @@
 }
 
 .value {
-  font-size: 1.5rem;
+  font-size: var(--wcui-font-subheading);
   font-weight: 700;
   color: var(--wcui-white-text);
   font-variant-numeric: tabular-nums;

@@ -36,7 +36,11 @@ export function LoginForm({ className }: Props = {}) {
 
   return (
     <div className={[styles.loginCard, className].filter(Boolean).join(" ")}>
-      <h1 className={styles.title}>{t("login.title")}</h1>
+      <h1 className={styles.title}>
+        {t("login.titleLine1")}
+        <br />
+        {t("login.titleLine2")}
+      </h1>
 
       <form className={styles.form} action="/dashboard" method="get">
         <div className={styles.field}>

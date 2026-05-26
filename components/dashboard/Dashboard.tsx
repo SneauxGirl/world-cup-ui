@@ -2,11 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useLiveScoreDemo } from "@/hooks/useLiveScoreDemo";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import {
   feedItems,
-  liveMatches as seedMatches,
   rosterHealth,
   strategyInsight,
   topPerformers,
@@ -16,10 +14,7 @@ import { HeroSection } from "@/components/dashboard/HeroSection";
 import { LiveMatchesSection } from "@/components/dashboard/LiveMatchesSection";
 import { TopPerformersSection } from "@/components/dashboard/TopPerformersSection";
 import { RosterHealthSection } from "@/components/dashboard/RosterHealthSection";
-import {
-  LiveFeedBlock,
-  StrategyInsightBlock,
-} from "@/components/dashboard/StrategyFeedSections";
+import { StrategyInsightBlock } from "@/components/dashboard/StrategyFeedSections";
 import { SidebarNav } from "@/components/dashboard/Navigation";
 import { SiteHeader } from "@/components/dashboard/SiteHeader";
 import { SiteUtilities } from "@/components/dashboard/SiteUtilities";
@@ -29,7 +24,6 @@ import styles from "./Dashboard.module.scss";
 export function Dashboard() {
   const router = useRouter();
   const [logoutOpen, setLogoutOpen] = useState(false);
-  const { matches, announcerText } = useLiveScoreDemo(seedMatches);
 
   const requestLogout = useCallback(() => setLogoutOpen(true), []);
   const cancelLogout = useCallback(() => setLogoutOpen(false), []);
@@ -68,7 +62,7 @@ export function Dashboard() {
         </div>
         <HeroSection
           user={userDashboard}
-          feedItems={feedItems}
+          showLiveFeed={false}
           onMenuAccountClick={requestLogout}
           className={styles.shellHero}
         />
@@ -77,11 +71,7 @@ export function Dashboard() {
             performers={topPerformers}
             className={styles.areaPerformers}
           />
-          <LiveMatchesSection
-            matches={matches}
-            liveSummary={announcerText}
-            className={styles.areaMatches}
-          />
+          <LiveMatchesSection items={feedItems} className={styles.areaMatches} />
           <div className={styles.pairRow}>
             <RosterHealthSection data={rosterHealth} className={styles.areaRoster} />
             <StrategyInsightBlock
@@ -89,7 +79,6 @@ export function Dashboard() {
               className={styles.areaStrategy}
             />
           </div>
-          <LiveFeedBlock items={feedItems} className={styles.areaFeed} />
         </main>
       </div>
     </div>

@@ -41,9 +41,23 @@
 
 /* Below 1100px: reframe crop — lower % reveals more left art; higher % keeps player further right. */
 @media (max-width: 1800px) {
-  .hero {
+  .heroLogin {
     --hero-photo-focus-x: 62%;
   }
+}
+
+/* Dashboard: no stadium art — height from welcome, stats, and CTA only. */
+.heroDashboard {
+  aspect-ratio: unset;
+  max-height: none;
+  min-height: 0;
+  overflow: visible;
+  --hero-text-shadow: none;
+}
+
+.heroDashboard .heroStack {
+  position: relative;
+  inset: auto;
 }
 
 .heroStack {
@@ -67,6 +81,54 @@
   margin-inline: auto;
   padding: var(--hero-gap-top) var(--content-gutter, var(--main-gutter, 1.25rem)) var(--hero-gap-bottom);
   box-sizing: border-box;
+}
+
+/* Must follow .heroLayout — same specificity would otherwise keep column from winning. */
+.heroLayout.heroLayoutDashboard {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  height: auto;
+  min-height: 0;
+}
+
+.heroDashboardMain {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+.heroLayout.heroLayoutDashboard .heroPrimary {
+  margin-top: 0;
+}
+
+.heroLayout.heroLayoutDashboard .heroActionRow {
+  margin-top: 0;
+  width: auto;
+}
+
+.heroConstruction {
+  flex: 0 1 auto;
+  align-self: center;
+  width: min(46%, 32rem);
+  min-width: 0;
+  margin: 0;
+  line-height: 0;
+}
+
+.heroConstructionImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(22rem, 42vh);
+  object-fit: contain;
+  object-position: center right;
 }
 
 .heroTopRow {
@@ -106,7 +168,7 @@
   max-width: 450px;
   margin: 0;
   font-family: var(--font-alumni-sans), sans-serif;
-  font-size: clamp(1.3rem, 2.2vw, 1.5rem);
+  font-size: var(--wcui-font-heading-section);
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -134,7 +196,9 @@
 
 /* Login: stadium art only; sign-in card overlays via Login heroContentShell. */
 .heroLogin .heroLayout {
+  height: 100%;
   min-height: 0;
+  padding: 0;
 }
 
 .heroLogin .heroTopRow {
@@ -172,7 +236,7 @@
   justify-content: center;
   padding: clamp(0.85rem, 2vw, 1.1rem) clamp(2rem, 5vw, 3.25rem);
   font-family: var(--font-alumni-sans), sans-serif;
-  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-size: var(--wcui-font-body);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -201,7 +265,7 @@
 
 .titleGreeting {
   font-family: var(--font-alumni-sans), sans-serif;
-  font-size: 2.5rem;
+  font-size: var(--wcui-font-heading-panel);
   font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -210,7 +274,7 @@
 
 .titleName {
   font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
-  font-size: 4rem;
+  font-size: var(--wcui-font-heading-card);
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -243,23 +307,21 @@
   }
 }
 
-/* Below 1500px: hero grows with content; stats card scales; no overflow into matches. */
+/* Below 1500px: login keeps stadium art; dashboard stacks copy only. */
 @media (max-width: 1499px) {
-  .hero {
+  .heroLogin {
     --hero-photo-max: 400px;
     height: auto;
     max-height: var(--hero-photo-max);
-    aspect-ratio: unset;
-    min-height: min(clamp(14rem, 32vw, 22rem), var(--hero-photo-max));
+    aspect-ratio: var(--hero-photo-aspect);
+    min-height: unset;
     overflow: hidden;
   }
 
-  .heroLogin {
-    aspect-ratio: var(--hero-photo-aspect);
-    height: auto;
-    max-height: var(--hero-photo-max);
-    min-height: unset;
-    overflow: hidden;
+  .heroDashboard {
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
   }
 
   .heroLogin .heroStack {
@@ -271,21 +333,21 @@
 
   .heroLogin .heroPhoto {
     object-fit: cover;
-    object-position: var(--hero-photo-focus-x, 32%) center;
+    object-position: center center;
   }
 
-  .heroStack {
+  .heroDashboard .heroStack {
     position: relative;
     inset: auto;
     align-items: center;
     flex: 1 1 auto;
-    min-height: inherit;
+    min-height: 0;
   }
 
   .heroLayout {
     gap: clamp(0.75rem, 2vw, 1.25rem);
     height: auto;
-    min-height: inherit;
+    min-height: 0;
   }
 
   .kicker {
@@ -299,11 +361,11 @@
   }
 
   .titleGreeting {
-    font-size: clamp(1.35rem, 2.2vw, 2.5rem);
+    font-size: var(--wcui-font-heading-panel);
   }
 
   .titleName {
-    font-size: clamp(2rem, 4.2vw, 3.25rem);
+    font-size: var(--wcui-font-heading-card);
   }
 
   .statsCardFrame {
@@ -317,13 +379,25 @@
   .heroActionRow {
     row-gap: clamp(1rem, 3vw, 1.5rem);
   }
+
+  .heroConstruction {
+    width: min(42%, 28rem);
+  }
+
+  .heroConstructionImage {
+    max-height: min(18rem, 38vh);
+  }
 }
 
 @media (max-width: 768px) {
-  .hero {
+  .heroLogin {
     --hero-photo-max: 350px;
     max-height: var(--hero-photo-max);
     min-height: min(clamp(12rem, 28vw, 18rem), var(--hero-photo-max));
+  }
+
+  .heroDashboard,
+  .heroLogin {
     --hero-gap-top: clamp(1.25rem, 4vw, 2.5rem);
     --hero-gap-bottom: clamp(1.5rem, 5vw, 3.75rem);
   }
@@ -338,11 +412,11 @@
   }
 
   .titleGreeting {
-    font-size: clamp(1.15rem, 4.5vw, 1.35rem);
+    font-size: var(--wcui-font-heading-panel);
   }
 
   .titleName {
-    font-size: clamp(1.75rem, 9vw, 2.25rem);
+    font-size: var(--wcui-font-heading-card);
   }
 
   .statsCardFrame {
@@ -353,4 +427,24 @@
     max-width: 100%;
   }
 
+  .heroConstruction {
+    width: min(40%, 16rem);
+  }
+
+  .heroConstructionImage {
+    max-height: min(14rem, 32vh);
+  }
+}
+
+/* Very narrow only: stack copy above illustration. */
+@media (max-width: 480px) {
+  .heroLayout.heroLayoutDashboard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .heroConstruction {
+    width: min(100%, 18rem);
+    align-self: center;
+  }
 }

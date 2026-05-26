@@ -26,7 +26,7 @@
 }
 
 .strategyTitle {
-  font-size: 1rem;
+  font-size: var(--wcui-font-heading-section);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 700;
@@ -35,7 +35,7 @@
 }
 
 .strategyBody {
-  font-size: 1rem;
+  font-size: var(--wcui-font-secondary);
   line-height: 1.45;
   font-weight: 400;
   color: var(--wcui-text-standard);
@@ -64,7 +64,7 @@
 }
 
 .feedTitle {
-  font-size: 1rem;
+  font-size: var(--wcui-font-heading-section);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 700;
@@ -113,13 +113,13 @@
 
 .feedText {
   flex: 1;
-  font-size: 1rem;
+  font-size: var(--wcui-font-control);
   font-weight: 400;
   color: var(--wcui-white-text);
 }
 
 .feedPts {
-  font-size: 1rem;
+  font-size: var(--wcui-font-control);
   font-weight: 700;
   color: var(--wcui-lime-pulse);
   font-variant-numeric: tabular-nums;

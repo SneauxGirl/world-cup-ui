@@ -69,6 +69,17 @@ $wcui-token-pairs: (
 
   --wcui-panel-fill: var(--wcui-panel-blueblack);
 
+  /* Typography scale — login page reference (font-size only). */
+  --wcui-font-meta: 0.72rem;
+  --wcui-font-label: 0.8rem;
+  --wcui-font-secondary: clamp(0.8rem, 1.4vw, 0.9rem);
+  --wcui-font-control: clamp(0.85rem, 1.5vw, 0.95rem);
+  --wcui-font-body: 1rem;
+  --wcui-font-subheading: clamp(1rem, 1.8vw, 1.15rem);
+  --wcui-font-heading-section: clamp(1.15rem, 2vw, 1.45rem);
+  --wcui-font-heading-panel: clamp(1.35rem, 2.4vw, 1.65rem);
+  --wcui-font-heading-card: clamp(1.35rem, 3vw, 1.75rem);
+
   /* Hero stats interior only — gradient kept for the hero card. */
   --wcui-hero-panel-fill: linear-gradient(
     180deg,

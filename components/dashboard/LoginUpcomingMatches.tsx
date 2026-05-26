@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { CountryFlag } from "@/components/CountryFlag";
 import {
   IconChevronLeft,
@@ -69,7 +69,14 @@ function MatchBlock({ match }: { match: DashboardMatch }) {
   );
 }
 
+function getMatchesScrollStep(scroller: HTMLElement): number {
+  const col = scroller.querySelector<HTMLElement>("[data-match-col]");
+  if (!col) return 280;
+  return col.offsetWidth;
+}
+
 export function LoginUpcomingMatches() {
+  const matchesScrollerRef = useRef<HTMLDivElement | null>(null);
   const fixtureDates = useMemo(() => buildFixtureDates(liveMatches), []);
   const [activeTab, setActiveTab] = useState<MatchTabKey>("games");
   const [dateIndex, setDateIndex] = useState(() => defaultFixtureDateIndex(fixtureDates));
@@ -89,6 +96,78 @@ export function LoginUpcomingMatches() {
       return next;
     });
   };
+
+  const scrollMatches = useCallback((direction: -1 | 1) => {
+    const scroller = matchesScrollerRef.current;
+    if (!scroller) return;
+    scroller.scrollBy({
+      left: direction * getMatchesScrollStep(scroller),
+      behavior: "auto",
+    });
+  }, []);
+
+  const focusTab = useCallback((tabKey: MatchTabKey) => {
+    document.getElementById(`login-match-tab-${tabKey}`)?.focus();
+  }, []);
+
+  const handleTabKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLButtonElement>, tabKey: MatchTabKey) => {
+      const currentIndex = MATCH_TABS.indexOf(tabKey);
+      let nextIndex: number | null = null;
+
+      switch (event.key) {
+        case "ArrowRight":
+          nextIndex = (currentIndex + 1) % MATCH_TABS.length;
+          break;
+        case "ArrowLeft":
+          nextIndex = (currentIndex - 1 + MATCH_TABS.length) % MATCH_TABS.length;
+          break;
+        case "Home":
+          nextIndex = 0;
+          break;
+        case "End":
+          nextIndex = MATCH_TABS.length - 1;
+          break;
+        default:
+          return;
+      }
+
+      event.preventDefault();
+      const nextTab = MATCH_TABS[nextIndex];
+      setActiveTab(nextTab);
+      focusTab(nextTab);
+    },
+    [focusTab],
+  );
+
+  const handleMatchesKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      const scroller = matchesScrollerRef.current;
+      if (!scroller) return;
+
+      switch (event.key) {
+        case "ArrowRight":
+          event.preventDefault();
+          scrollMatches(1);
+          break;
+        case "ArrowLeft":
+          event.preventDefault();
+          scrollMatches(-1);
+          break;
+        case "Home":
+          event.preventDefault();
+          scroller.scrollLeft = 0;
+          break;
+        case "End":
+          event.preventDefault();
+          scroller.scrollLeft = scroller.scrollWidth;
+          break;
+        default:
+          break;
+      }
+    },
+    [scrollMatches],
+  );
 
   return (
     <section className={styles.section} aria-labelledby="login-upcoming-matches-heading">
@@ -118,9 +197,10 @@ export function LoginUpcomingMatches() {
                 id={`login-match-tab-${tabKey}`}
                 aria-selected={isActive}
                 aria-controls="login-match-tabpanel"
-                tabIndex={isActive ? 0 : -1}
                 className={[styles.tab, isActive && styles.tabActive].filter(Boolean).join(" ")}
                 onClick={() => setActiveTab(tabKey)}
+                onFocus={() => setActiveTab(tabKey)}
+                onKeyDown={(event) => handleTabKeyDown(event, tabKey)}
               >
                 {t(`loginMatches.tabs.${tabKey}`)}
               </button>
@@ -189,9 +269,21 @@ export function LoginUpcomingMatches() {
 
               <div className={styles.matchesDivider} aria-hidden="true" />
 
-              <div className={styles.matchesRow}>
+              <p id="login-matches-scroller-hint" className={styles.scrollerHint}>
+                {t("loginMatches.matchesScrollerHint")}
+              </p>
+
+              <div
+                ref={matchesScrollerRef}
+                className={styles.matchesRow}
+                role="region"
+                tabIndex={0}
+                aria-label={t("loginMatches.matchesScrollerLabel")}
+                aria-describedby="login-matches-scroller-hint"
+                onKeyDown={handleMatchesKeyDown}
+              >
                 {matches.map((match, index) => (
-                  <div key={match.id} className={styles.matchCol}>
+                  <div key={match.id} className={styles.matchCol} data-match-col>
                     {index > 0 ? (
                       <span className={styles.matchColDivider} aria-hidden="true" />
                     ) : null}

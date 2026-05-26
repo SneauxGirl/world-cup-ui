@@ -24,7 +24,11 @@ export function LoginHeroPrompt({ onSignIn }: Props) {
             unoptimized
           />
         </div>
-        <h1 className={formStyles.title}>{t("login.title")}</h1>
+        <h1 className={[formStyles.title, styles.promptTitle].join(" ")}>
+          {t("login.titleLine1")}
+          <br />
+          {t("login.titleLine2")}
+        </h1>
 
         <div className={styles.actions}>
           <div className={formStyles.chamferTrim}>

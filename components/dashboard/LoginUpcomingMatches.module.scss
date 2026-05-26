@@ -5,6 +5,9 @@
 }
 
 .panel {
+  --login-matches-scroll-gap: 20px;
+  /* Room for 2px outline + 4px offset on the matches scroller (keyboard focus). */
+  --login-matches-focus-padding: 6px;
   width: 100%;
   margin-inline: 0;
   padding: clamp(1.5rem, 3vw, 2.25rem) var(--content-gutter, 1.25rem);
@@ -249,18 +252,41 @@
   background: color-mix(in oklab, var(--wcui-white-text) 14%, transparent);
 }
 
+.scrollerHint {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .matchesRow {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
+  padding: var(--login-matches-focus-padding);
+  padding-bottom: calc(var(--login-matches-scroll-gap) + var(--login-matches-focus-padding));
+  box-sizing: border-box;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in oklab, var(--wcui-aqua-mint) 35%, transparent) transparent;
-  padding-bottom: 0.35rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 4px;
+  }
 }
 
 .matchCol {

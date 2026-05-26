@@ -1,20 +1,18 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useRef } from "react";
-import type { DashboardMatch } from "@/data/types";
-import { MatchCard } from "@/components/dashboard/MatchCard";
+import { FeedCard } from "@/components/dashboard/FeedCard";
 import { IconChevronRight } from "@/components/icons/DashboardIcons";
+import type { FeedItem } from "@/data/types";
 import { t } from "@/lib/i18n/t";
 import styles from "./LiveMatchesSection.module.scss";
 
 type Props = {
-  matches: DashboardMatch[];
-  liveSummary: string;
+  items: FeedItem[];
   className?: string;
 };
 
-export function LiveMatchesSection({ matches, liveSummary, className }: Props) {
+export function LiveMatchesSection({ items, className }: Props) {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   const scrollByCard = useCallback((dir: -1 | 1) => {
@@ -28,20 +26,13 @@ export function LiveMatchesSection({ matches, liveSummary, className }: Props) {
   return (
     <section
       className={[styles.section, className].filter(Boolean).join(" ")}
-      aria-labelledby="live-matches-heading"
+      aria-labelledby="live-feed-heading"
     >
       <div className={styles.head}>
-        <h2 id="live-matches-heading" className={styles.title}>
-          {t("dashboard.liveMatches")}
+        <h2 id="live-feed-heading" className={styles.title}>
+          {t("dashboard.liveFeed")}
         </h2>
-        <Link className={styles.viewAll} href="/">
-          {t("dashboard.viewAllMatches")}
-          <IconChevronRight className={styles.viewIcon} />
-        </Link>
       </div>
-      <p className={styles.srOnly} aria-live="polite" aria-atomic="true">
-        {liveSummary}
-      </p>
       <div className={styles.controls}>
         <span className={styles.navBtnFrame}>
           <button
@@ -65,8 +56,8 @@ export function LiveMatchesSection({ matches, liveSummary, className }: Props) {
         </span>
       </div>
       <div ref={scrollerRef} className={styles.scroller}>
-        {matches.map((m) => (
-          <MatchCard key={m.id} match={m} />
+        {items.map((item) => (
+          <FeedCard key={item.id} item={item} />
         ))}
       </div>
     </section>

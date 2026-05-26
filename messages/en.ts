@@ -18,6 +18,8 @@ export const en = {
   login: {
     heroRegion: "Login",
     title: "Login to World Cup Challenge",
+    titleLine1: "Login to",
+    titleLine2: "World Cup Challenge",
     emailLabel: "Email address",
     emailPlaceholder: "you@example.com",
     passwordLabel: "Password",
@@ -39,6 +41,8 @@ export const en = {
   },
   loginStoryPromos: {
     heading: "Latest from World Cup Challenge",
+    carouselLabel: "Latest stories",
+    carouselHint: "Use left and right arrow keys to move between stories.",
     items: {
       danilo: {
         eyebrow: "Brazil",
@@ -80,6 +84,8 @@ export const en = {
     comingSoon: "Coming soon",
     homeScore: "Home score",
     awayScore: "Away score",
+    matchesScrollerLabel: "Matches for selected date",
+    matchesScrollerHint: "Use left and right arrow keys to scroll through matches.",
   },
   loginFooter: {
     partnersLabel: "Official partners",
@@ -154,8 +160,6 @@ export const en = {
   dashboard: {
     title: "Dashboard",
     welcomeBackGreeting: "Welcome back,",
-    liveMatches: "Live matches",
-    viewAllMatches: "View all matches",
     topPerformers: "Top performers",
     viewAllPlayers: "View all players",
     rosterHealth: "Roster health",
@@ -171,8 +175,8 @@ export const en = {
     topPercent: "Top {pct}%",
     percentile: "Percentile",
     fantasyPts: "+{pts} pts",
-    previousSlide: "Previous match",
-    nextSlide: "Next match",
+    previousSlide: "Previous update",
+    nextSlide: "Next update",
     feedScrollUp: "Show newer updates",
     feedScrollDown: "Show older updates",
     liveRegionLabel: "Live score updates",

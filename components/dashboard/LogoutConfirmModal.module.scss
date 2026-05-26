@@ -42,7 +42,7 @@
 .title {
   margin: 0;
   font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
-  font-size: 1.15rem;
+  font-size: var(--wcui-font-heading-section);
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -66,7 +66,7 @@
   padding: 0.55rem 1rem;
   border-radius: 2px;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: 0.9rem;
+  font-size: var(--wcui-font-secondary);
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
