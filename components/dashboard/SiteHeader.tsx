@@ -54,7 +54,13 @@ function NavItemControl({ item }: { item: SiteHeaderNavItem }) {
 }
 
 export function SiteHeader({ className, brand = "login", onAccountClick }: Props) {
-  const rootClass = [styles.header, className].filter(Boolean).join(" ");
+  const rootClass = [
+    styles.header,
+    brand === "login" && styles.headerEdgeAlign,
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
   const navId = useId();
   const moreMenuId = useId();
   const isHeaderCollapsed = useSiteHeaderCollapsed();

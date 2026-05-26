@@ -6,6 +6,11 @@
   background: transparent;
 }
 
+/* Login: outer pageGutter supplies screen inset; no extra inner horizontal padding. */
+.headerEdgeAlign .inner {
+  padding-inline: 0;
+}
+
 .inner {
   box-sizing: border-box;
   max-width: var(--content-max, 1440px);

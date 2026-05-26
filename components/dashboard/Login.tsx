@@ -45,7 +45,11 @@ export function Login() {
       <div className={styles.shell}>
         <section className={styles.heroBand} aria-label={t("login.heroRegion")}>
           <div className={styles.heroHeader}>
-            <SiteHeader brand="login" className={styles.shellHeader} />
+            <div className={styles.pageGutter}>
+              <div className={styles.pageColumn}>
+                <SiteHeader brand="login" className={styles.shellHeader} />
+              </div>
+            </div>
           </div>
           <div ref={heroArtRef} className={styles.heroArtWrap}>
             <HeroSection
@@ -56,19 +60,33 @@ export function Login() {
             />
           </div>
           <div className={styles.heroContentShell}>
-            <div className={styles.heroContent}>
-              <LoginHeroPrompt onSignIn={() => setLoginOpen(true)} />
+            <div className={styles.pageGutter}>
+              <div className={styles.pageColumn}>
+                <div className={styles.heroContent}>
+                  <LoginHeroPrompt onSignIn={() => setLoginOpen(true)} />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <LoginUpcomingMatches />
-
-        <div className={styles.contentRail}>
-          <LoginStoryPromos />
+        <div className={styles.pageGutter}>
+          <div className={styles.pageColumn}>
+            <LoginUpcomingMatches />
+          </div>
         </div>
 
-        <LoginSiteFooter />
+        <div className={styles.pageGutter}>
+          <div className={styles.pageColumn}>
+            <LoginStoryPromos />
+          </div>
+        </div>
+
+        <div className={styles.pageGutter}>
+          <div className={styles.pageColumn}>
+            <LoginSiteFooter />
+          </div>
+        </div>
       </div>
 
       <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />

@@ -1,6 +1,8 @@
 @use "../../styles/wcui-frame" as frame;
 
 .section {
+  --login-story-gap: 40px;
+  --login-story-scroll-gap: 20px;
   flex-shrink: 0;
   width: 100%;
   background: var(--wcui-background-black);
@@ -31,22 +33,25 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: space-between;
-  gap: clamp(0.85rem, 1.8vw, 1.15rem);
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--login-story-gap);
   width: 100%;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in oklab, var(--wcui-aqua-mint) 35%, transparent) transparent;
-  padding-bottom: 0.35rem;
+  padding-bottom: var(--login-story-scroll-gap);
+}
+
+.gridLoop {
+  scroll-behavior: auto;
 }
 
 .item {
-  flex: 1 1 0;
-  min-width: 10.5rem;
-  max-width: 13.75rem;
+  flex: 0 0 clamp(10.5rem, 22vw, 13.75rem);
+  min-width: 0;
 }
 
 .card {
@@ -54,7 +59,6 @@
   flex-direction: column;
   align-items: stretch;
   gap: 0.65rem;
-  height: 100%;
   color: inherit;
   text-decoration: none;
   transition: color 160ms ease;

@@ -1,10 +1,18 @@
 .footer {
   --footer-gutter: var(--content-gutter, clamp(1.25rem, 2vw, 1.8rem));
   --footer-divider: color-mix(in oklab, var(--wcui-white-text) 22%, transparent);
+  display: flex;
+  flex-direction: column;
   flex-shrink: 0;
+  align-items: stretch;
   width: 100%;
   background: var(--wcui-background-black);
   color: var(--wcui-white-text);
+}
+
+.partners,
+.mainNav {
+  flex: 0 0 auto;
 }
 
 /* —— Partners: one row of 5 when space allows; else three columns (3 + 2, shrinks) —— */
@@ -24,9 +32,10 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: var(--content-max, 1440px);
-  margin-inline: auto;
-  padding: clamp(1.5rem, 3vw, 2.25rem) var(--footer-gutter);
+  width: 100%;
+  margin-inline: 0;
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  padding-inline: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -120,9 +129,10 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: var(--content-max, 1440px);
-  margin-inline: auto;
-  padding: clamp(2rem, 4vw, 3.5rem) var(--footer-gutter);
+  width: 100%;
+  margin-inline: 0;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  padding-inline: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -165,6 +175,19 @@
   text-align: center;
 }
 
+/* Single column below 600px — row-major (zipper) order, not column stack. */
+.navStack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  text-align: center;
+}
+
 .navLink {
   font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
   font-size: clamp(1.35rem, 2.2vw, 2rem);
@@ -186,36 +209,40 @@
   }
 }
 
-/* —— Legal bar —— */
+/* —— Legal bar: row (browser + tablet) | centered column (mobile) —— */
 .legalBar {
   display: flex;
+  flex: 0 0 auto;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem 1.5rem;
-  max-width: var(--content-max, 1440px);
-  margin-inline: auto;
-  padding: 1rem var(--footer-gutter) calc(1rem + env(safe-area-inset-bottom));
+  gap: 1rem 1.25rem;
+  width: 100%;
+  margin-inline: 0;
+  padding: 1rem 0 calc(1rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--footer-divider);
-}
-
-.legalNav {
-  display: flex;
-  flex: 1 1 18rem;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-  min-width: 0;
+  box-sizing: border-box;
 }
 
 .copyright {
+  flex: 0 1 auto;
   margin: 0;
   font-family: var(--font-finlandica), sans-serif;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.03em;
   color: color-mix(in oklab, var(--wcui-white-text) 85%, transparent);
+  white-space: nowrap;
+}
+
+.legalLinks {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: min-content;
 }
 
 .legalList {
@@ -226,7 +253,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem 0.15rem;
+  justify-content: center;
+  row-gap: 0.35rem;
+  column-gap: 0;
+  max-width: 100%;
 }
 
 .legalList > li {
@@ -235,7 +265,7 @@
 
   &:not(:last-child)::after {
     content: "•";
-    margin-left: 0.35rem;
+    margin-inline: 0.35rem;
     color: color-mix(in oklab, var(--wcui-white-text) 45%, transparent);
     pointer-events: none;
   }
@@ -266,9 +296,10 @@
 
 .legalBrand {
   display: inline-flex;
+  flex: 0 0 auto;
   flex-shrink: 0;
   align-items: center;
-  gap: 0.5rem;
+  line-height: 0;
   color: var(--wcui-white-text);
   text-decoration: none;
 
@@ -278,12 +309,47 @@
   }
 }
 
-.legalBrandText {
-  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.legalBrandLogo {
+  display: block;
+  width: auto;
+  height: clamp(1.25rem, 2.5vw, 1.75rem);
+  max-width: min(10rem, 32vw);
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Mobile: centered column (copyright → links → logo). Browser/tablet keep the row above. */
+@media (max-width: 712px) {
+  .legalBar {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .copyright {
+    flex: 0 0 auto;
+    width: 100%;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .legalLinks {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .legalList {
+    width: 100%;
+  }
+
+  .legalBrand {
+    align-self: center;
+  }
 }
 
 @media (max-width: 600px) {
@@ -301,33 +367,16 @@
   }
 
   .navColumns {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+    display: none;
   }
 
-  .navColumn {
-    flex: 1 1 100%;
-    align-items: center;
-    width: 100%;
-    max-width: none;
-    padding: 0 0 1.5rem;
-  }
-
-  .navColumn:last-child {
-    padding-bottom: 0;
+  .navStack {
+    display: flex;
+    padding-block: clamp(2rem, 4vw, 3.5rem);
   }
 
   .navDivider {
     display: none;
   }
-
-  .legalBar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .legalBrand {
-    align-self: flex-end;
-  }
 }
+

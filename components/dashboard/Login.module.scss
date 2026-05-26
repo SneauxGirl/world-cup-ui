@@ -1,11 +1,7 @@
-/* Login page — 1440px content column; login card in flex within hero band. */
+/* Login page — 1440px content column; outer gutter wraps sections (not inner padding). */
 .page {
   --content-max: 1440px;
-  --content-gutter: 1.25rem; /* 20px — holds at all breakpoints */
-  --content-inset: max(
-    var(--content-gutter),
-    calc((100vw - min(100vw, var(--content-max))) / 2 + var(--content-gutter))
-  );
+  --content-gutter: 1.25rem; /* 20px from viewport edge to section boxes */
   --main-gutter: var(--content-gutter);
   --footer-gutter: var(--content-gutter);
   --header-gutter: var(--content-gutter);
@@ -17,7 +13,6 @@
     100vw * 600 / 2000
   );
   --hero-photo-rendered-height: var(--hero-band-height);
-  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   color: var(--wcui-white-text);
@@ -43,14 +38,26 @@
   isolation: isolate;
 }
 
-/* Header in-flow above hero art so login never stacks under it. */
+/* Screen-edge gutter around section boxes; never removed at 1440+. */
+.pageGutter {
+  flex-shrink: 0;
+  width: 100%;
+  padding-inline: var(--content-gutter);
+  box-sizing: border-box;
+}
+
+.pageColumn {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
 .heroHeader {
   position: relative;
   z-index: 10;
   flex-shrink: 0;
   width: 100%;
-  max-width: var(--content-max);
-  margin-inline: auto;
   box-sizing: border-box;
   background: var(--wcui-page-black);
 }
@@ -89,24 +96,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  max-width: var(--content-max);
-  margin-inline: auto;
-  padding: 0 var(--content-inset) clamp(1.5rem, 3vh, 2rem);
+  padding-bottom: clamp(1.5rem, 3vh, 2rem);
   box-sizing: border-box;
-}
-
-.contentRail {
-  width: 100%;
-  max-width: var(--content-max);
-  margin-inline: auto;
-  padding-inline: var(--content-inset);
-  box-sizing: border-box;
-}
-
-@media (min-width: 1440px) {
-  .contentRail {
-    padding-inline: 0;
-  }
 }
 
 /* Match HeroSection.module.scss hero height rules below 1500px / 768px. */

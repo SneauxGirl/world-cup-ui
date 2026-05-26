@@ -49,6 +49,21 @@ export const loginFooterNavColumns = [
   ["standings", "players"] as const,
 ] as const;
 
+/** Row-major order for single-column footer nav (zipper merge across columns). */
+export function getLoginFooterNavItemsRowMajor() {
+  const rowCount = Math.max(...loginFooterNavColumns.map((column) => column.length));
+  const items: string[] = [];
+
+  for (let row = 0; row < rowCount; row += 1) {
+    for (const column of loginFooterNavColumns) {
+      const item = column[row];
+      if (item) items.push(item);
+    }
+  }
+
+  return items;
+}
+
 export const loginFooterLegalLinks = [
   "terms",
   "policies",

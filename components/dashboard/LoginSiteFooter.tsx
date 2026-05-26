@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  getLoginFooterNavItemsRowMajor,
   loginFooterLegalLinks,
   loginFooterNavColumns,
   loginFooterPartners,
@@ -80,13 +81,22 @@ export function LoginSiteFooter() {
             </li>
           ))}
         </ul>
+        <ul className={styles.navStack}>
+          {getLoginFooterNavItemsRowMajor().map((itemKey) => (
+            <li key={itemKey}>
+              <Link href="#" className={styles.navLink}>
+                {t(`loginFooter.nav.${itemKey}`)}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </nav>
 
       <div className={styles.legalBar}>
-        <nav className={styles.legalNav} aria-label={t("loginFooter.legalLabel")}>
-          <p className={styles.copyright}>
-            {t("loginFooter.legal.copyright", { year: COPYRIGHT_YEAR })}
-          </p>
+        <p className={styles.copyright}>
+          {t("loginFooter.legal.copyright", { year: COPYRIGHT_YEAR })}
+        </p>
+        <nav className={styles.legalLinks} aria-label={t("loginFooter.legalLabel")}>
           <ul className={styles.legalList}>
             {loginFooterLegalLinks.map((key) => (
               <li key={key}>
@@ -103,7 +113,14 @@ export function LoginSiteFooter() {
           </ul>
         </nav>
         <Link href="/" className={styles.legalBrand} aria-label={t("app.name")}>
-          <span className={styles.legalBrandText}>{t("app.name")}</span>
+          <Image
+            src="/wcc-words-logo.png"
+            alt=""
+            width={512}
+            height={256}
+            className={styles.legalBrandLogo}
+            unoptimized
+          />
         </Link>
       </div>
     </footer>
