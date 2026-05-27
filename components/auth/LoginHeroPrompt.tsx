@@ -31,10 +31,10 @@ export function LoginHeroPrompt({ onSignIn }: Props) {
         </h1>
 
         <div className={styles.actions}>
-          <div className={formStyles.chamferTrim}>
+          <div className={[formStyles.chamferTrim, styles.signInTrim].join(" ")}>
             <button
               type="button"
-              className={[formStyles.chamferBtn, formStyles.signInBtn].join(" ")}
+              className={[formStyles.chamferBtn, formStyles.signInBtn, styles.heroSignInBtn].join(" ")}
               onClick={onSignIn}
             >
               {t("login.signIn")}

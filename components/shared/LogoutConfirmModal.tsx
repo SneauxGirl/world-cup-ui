@@ -138,8 +138,8 @@ export function LogoutConfirmModal({
 
   if (!open) return null;
 
-  const panelClass = [
-    styles.panel,
+  const panelShellClass = [
+    styles.panelShell,
     isAnchored ? styles.panelAnchored : styles.panelCentered,
   ].join(" ");
 
@@ -164,27 +164,37 @@ export function LogoutConfirmModal({
       <div
         id={dialogId}
         ref={panelRef}
-        className={panelClass}
+        className={panelShellClass}
         style={panelStyle}
         role="alertdialog"
         aria-modal="true"
         aria-labelledby={titleId}
       >
-        <p id={titleId} className={styles.title}>
-          {t("auth.logoutTitle")}
-        </p>
-        <div className={styles.actions}>
-          <button
-            ref={cancelRef}
-            type="button"
-            className={styles.cancelBtn}
-            onClick={handleCancel}
-          >
-            {t("auth.cancel")}
-          </button>
-          <button type="button" className={styles.confirmBtn} onClick={onConfirm}>
-            {t("auth.confirm")}
-          </button>
+        <div className={styles.panel}>
+          <p id={titleId} className={styles.title}>
+            {t("auth.logoutTitle")}
+          </p>
+          <div className={styles.actions}>
+            <div className={styles.chamferTrim}>
+              <button
+                ref={cancelRef}
+                type="button"
+                className={[styles.chamferBtn, styles.cancelBtn].join(" ")}
+                onClick={handleCancel}
+              >
+                {t("auth.cancel")}
+              </button>
+            </div>
+            <div className={styles.chamferTrim}>
+              <button
+                type="button"
+                className={[styles.chamferBtn, styles.confirmBtn].join(" ")}
+                onClick={onConfirm}
+              >
+                {t("auth.confirm")}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -4,7 +4,7 @@
  */
 export const en = {
   app: {
-    name: "WCUI",
+    name: "WCC-UI",
     tagline: "World Cup 2026",
     worldCupChallenge: "World Cup Challenge",
   },

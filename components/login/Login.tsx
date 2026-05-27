@@ -15,22 +15,54 @@ import styles from "./Login.module.scss";
 export function Login() {
   const [loginOpen, setLoginOpen] = useState(false);
   const pageRef = useRef<HTMLDivElement>(null);
+  const heroContentShellRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
   const heroArtRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const page = pageRef.current;
+    const heroContentShell = heroContentShellRef.current;
+    const heroContent = heroContentRef.current;
     const heroArt = heroArtRef.current;
-    if (!page || !heroArt) return;
+    if (!page || !heroContentShell || !heroContent || !heroArt) return;
+
+    const measurePhotoBandHeight = () => {
+      const section = heroArt.firstElementChild;
+      if (section instanceof HTMLElement) {
+        return Math.round(section.getBoundingClientRect().height);
+      }
+      return Math.round(heroArt.getBoundingClientRect().height);
+    };
 
     const syncHeroHeight = () => {
-      const height = Math.round(heroArt.getBoundingClientRect().height);
-      if (height > 0) {
-        page.style.setProperty("--hero-photo-rendered-height", `${height}px`);
-      }
+      const photoBandHeight = measurePhotoBandHeight();
+      if (photoBandHeight <= 0) return;
+
+      page.style.setProperty("--hero-photo-rendered-height", `${photoBandHeight}px`);
+
+      const card = heroContent.firstElementChild;
+      const cardHeight = card instanceof HTMLElement
+        ? Math.round(card.getBoundingClientRect().height)
+        : 0;
+
+      const computedContent = window.getComputedStyle(heroContent);
+      const contentBottom = Number.parseFloat(computedContent.paddingBottom) || 0;
+      const topStart = Number.parseFloat(
+        window.getComputedStyle(page).getPropertyValue("--login-hero-card-top-start")
+      ) || 0;
+
+      const overlayHeight = Math.max(
+        photoBandHeight,
+        Math.ceil(cardHeight + contentBottom + photoBandHeight * topStart)
+      );
+
+      page.style.setProperty("--hero-overlay-height", `${overlayHeight}px`);
     };
 
     syncHeroHeight();
     const observer = new ResizeObserver(syncHeroHeight);
+    observer.observe(heroContentShell);
+    observer.observe(heroContent);
     observer.observe(heroArt);
     window.addEventListener("resize", syncHeroHeight);
 
@@ -51,21 +83,23 @@ export function Login() {
               </div>
             </div>
           </div>
-          <div ref={heroArtRef} className={styles.heroArtWrap}>
-            <HeroSection
-              user={userDashboard}
-              showLiveFeed={false}
-              loginHero
-              className={styles.heroPhoto}
-            />
-          </div>
-          <div className={styles.heroContentShell}>
-            <div className={styles.pageGutter}>
-              <div className={styles.pageColumn}>
-                <div className={styles.heroContent}>
-                  <LoginHeroPrompt onSignIn={() => setLoginOpen(true)} />
+          <div className={styles.heroContentWrapper}>
+            <div ref={heroContentShellRef} className={styles.heroContentShell}>
+              <div className={styles.pageGutter}>
+                <div className={styles.pageColumn}>
+                  <div ref={heroContentRef} className={styles.heroContent}>
+                    <LoginHeroPrompt onSignIn={() => setLoginOpen(true)} />
+                  </div>
                 </div>
               </div>
+            </div>
+            <div ref={heroArtRef} className={styles.heroArtWrap}>
+              <HeroSection
+                user={userDashboard}
+                showLiveFeed={false}
+                loginHero
+                className={styles.heroPhoto}
+              />
             </div>
           </div>
         </section>

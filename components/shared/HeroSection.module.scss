@@ -393,7 +393,14 @@
   .heroLogin {
     --hero-photo-max: 350px;
     max-height: var(--hero-photo-max);
-    min-height: min(clamp(12rem, 28vw, 18rem), var(--hero-photo-max));
+    min-height: min(
+      var(--hero-photo-lock-height, calc(768px * 600 / 2000)),
+      var(--hero-photo-max)
+    );
+  }
+
+  .heroLogin .heroPhoto {
+    object-position: var(--login-hero-photo-focus-x, 45%) center;
   }
 
   .heroDashboard,

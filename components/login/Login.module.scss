@@ -13,6 +13,11 @@
     100vw * 600 / 2000
   );
   --hero-photo-rendered-height: var(--hero-band-height);
+  --hero-overlay-height: var(--hero-photo-rendered-height);
+  /* Computed band height at 768px viewport (2000×600); min at/below 768px breakpoint. */
+  --hero-photo-lock-height: calc(620px * 600 / 2000);
+  /* Login-only vertical offset inside the hero band (0.13 = 13%). */
+  --login-hero-card-top-start: 0.13;
   display: flex;
   flex-direction: column;
   color: var(--wcui-white-text);
@@ -67,47 +72,90 @@
   min-width: 0;
 }
 
-.heroArtWrap {
-  flex-shrink: 0;
-  width: 100%;
+.heroContentWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: var(
+    --hero-overlay-height,
+    var(--hero-photo-rendered-height, var(--hero-band-height))
+  );
+  position: relative;
 }
 
-.heroPhoto {
-  width: 100%;
-}
-
-/* Pull login onto hero art only; header row above keeps card below nav. */
+/* Login establishes hero height; art wrap slides up underneath (see .heroArtWrap). */
 .heroContentShell {
   display: flex;
   flex-direction: row;
+  flex-shrink: 0;
+  align-items: stretch;
   justify-content: center;
   width: 100%;
-  min-height: var(--hero-photo-rendered-height, var(--hero-band-height));
-  margin-top: calc(-1 * var(--hero-photo-rendered-height, var(--hero-band-height)));
+  min-height: 100%;
   position: relative;
   z-index: 3;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.heroContentShell .pageGutter,
+.heroContentShell .pageColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 100%;
+  width: 100%;
   box-sizing: border-box;
 }
 
 .heroContent {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  flex: 1 1 auto;
+  align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  min-height: var(--hero-photo-rendered-height, var(--hero-band-height));
+  height: 100%;
+  min-height: 100%;
+  padding-top: calc(
+    var(--hero-photo-rendered-height, var(--hero-band-height)) * var(--login-hero-card-top-start)
+  );
   padding-bottom: var(--content-gutter);
   box-sizing: border-box;
+  overflow: visible;
 }
 
-/* Login card ~⅓ across the content column from 1300px up. */
-@media (min-width: 1300px) {
-  .heroContent {
-    padding-inline-start: 13.333%;
+.heroArtWrap {
+  flex-shrink: 0;
+  width: 100%;
+  /* Center photo band vertically when overlay grows taller than the photo. */
+  margin-top: calc(
+    -1 * (
+      (
+        var(--hero-overlay-height, var(--hero-photo-rendered-height, var(--hero-band-height))) +
+        var(--hero-photo-rendered-height, var(--hero-band-height))
+      ) / 2
+    )
+  );
+  position: relative;
+  z-index: 0;
+}
+
+.heroPhoto {
+  width: 100%;
+}
+
+/* Match HeroSection.module.scss breakpoints: 1499px, 1299px, 768px; min 1300px for card inset. */
+@media (max-width: 1499px) {
+  .page {
+    --hero-photo-max: 400px;
+    --hero-band-height: min(
+      clamp(14rem, 32vw, 22rem),
+      var(--hero-photo-max)
+    );
   }
 }
 
-/* Below 1300px: card matches main login size at 1299px, then scales down with hero height. */
+/* Below 1300px: card scales with hero height; horizontal inset removed. */
 @media (max-width: 1299px) {
   .page {
     --login-hero-card-max: clamp(
@@ -143,27 +191,25 @@
   }
 }
 
-/* Match HeroSection.module.scss hero height rules below 1500px / 768px. */
-@media (max-width: 1499px) {
-  .page {
-    --hero-photo-max: 400px;
-    --hero-band-height: min(
-      clamp(14rem, 32vw, 22rem),
-      var(--hero-photo-max)
-    );
-  }
-}
-
+/* At/below 768: lock photo band to 768px-width height (no further vertical shrink). */
 @media (max-width: 768px) {
   .page {
     --hero-photo-max: 350px;
-    --hero-band-height: min(
-      clamp(12rem, 28vw, 18rem),
-      var(--hero-photo-max)
-    );
+    --hero-band-height: min(var(--hero-photo-lock-height), var(--hero-photo-max));
+    /* Crop focus for compressed band — lower % shifts art left (50% = center). */
+    --login-hero-photo-focus-x: 56%;
   }
+}
 
+@media (max-width: 430px) {
+  .page {
+    --login-hero-photo-focus-x: 60%;
+  }
+}
+
+
+@media (min-width: 1300px) {
   .heroContent {
-    min-height: var(--hero-photo-rendered-height, var(--hero-band-height));
+    padding-inline-start: 13.333%;
   }
 }

@@ -63,9 +63,36 @@
   gap: clamp(0.4rem, 1.5vw, 0.55rem);
 }
 
-/* Sign up — same strong aqua chamfer frame as Sign in */
+/* Sign in / Sign up — aqua chamfer frame at rest (matches pair on hero). */
+.signInTrim,
 .signUpTrim {
   @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
+
+  &:has(button:hover),
+  &:has(button:focus-visible) {
+    padding: 2px;
+    margin-bottom: -2px;
+  }
+
+  button:focus-visible {
+    outline: none;
+  }
+}
+
+.heroSignInBtn {
+  color: var(--wcui-white-text);
+  @include glow.login-sign-in-glow-active;
+}
+
+/* When Sign up is active, Sign in falls back to Sign up's rest look. */
+.actions:has(.signUpBtn:hover) .heroSignInBtn,
+.actions:has(.signUpBtn:focus-visible) .heroSignInBtn {
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+  box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+
+  &::before {
+    opacity: 0;
+  }
 }
 
 .signUpBtn {

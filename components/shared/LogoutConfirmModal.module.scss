@@ -1,3 +1,15 @@
+@use "../../styles/wcui-frame" as frame;
+@use "../auth/login-glow" as glow;
+
+@mixin logout-cancel-rest {
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+  box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+
+  &::before {
+    opacity: 0;
+  }
+}
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -8,22 +20,13 @@
   cursor: pointer;
 }
 
-.panel {
+.panelShell {
+  --logout-chamfer: 14px;
+  --wcui-chamfer-tl: var(--logout-chamfer);
+  --wcui-chamfer-br: var(--logout-chamfer);
   z-index: 27;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 1.25rem;
-  padding: 1.25rem;
-  border: 1px solid var(--wcui-border-blue);
-  background: var(--wcui-pitch-black);
   box-sizing: border-box;
-  box-shadow: 0 12px 32px color-mix(in oklab, var(--wcui-pitch-black) 65%, transparent);
-
-  :focus-visible {
-    outline: 2px solid var(--wcui-aqua-mint);
-    outline-offset: 2px;
-  }
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
 }
 
 .panelCentered {
@@ -39,62 +42,145 @@
   max-width: calc(100vw - 1rem);
 }
 
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(0.85rem, 2vw, 1.15rem);
+  padding: clamp(1.15rem, 2.5vw, 1.35rem);
+  box-sizing: border-box;
+  background: var(--wcui-card-glass-fill);
+  box-shadow:
+    inset 0 1px 0 var(--wcui-card-glass-highlight),
+    0 12px 32px color-mix(in oklab, var(--wcui-pitch-black) 65%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
+}
+
 .title {
   margin: 0;
-  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
-  font-size: var(--wcui-font-heading-section);
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: var(--font-alumni-sans), sans-serif;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--wcui-white-text);
 }
 
 .actions {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 0.65rem;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: clamp(0.4rem, 1.5vw, 0.55rem);
 }
 
-.cancelBtn,
-.confirmBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 5.5rem;
-  padding: 0.55rem 1rem;
-  border-radius: 2px;
-  font-family: var(--font-finlandica), sans-serif;
-  font-size: var(--wcui-font-secondary);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
+.chamferTrim {
+  --wcui-chamfer-tl: var(--logout-chamfer);
+  --wcui-chamfer-br: var(--logout-chamfer);
+  width: 100%;
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--wcui-border-blue);
   transition:
-    border-color 160ms ease,
-    color 160ms ease,
-    background-color 160ms ease;
-}
+    background 160ms ease,
+    box-shadow 160ms ease;
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
 
-.cancelBtn {
-  border: 1px solid var(--wcui-border-blue);
-  background: transparent;
-  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
-
-  &:hover {
-    color: var(--wcui-white-text);
-    border-color: var(--wcui-aqua-mint);
+  &:has(.cancelBtn),
+  &:has(.confirmBtn) {
+    @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
   }
 }
 
-.confirmBtn {
-  border: 1px solid var(--wcui-aqua-mint);
-  background: color-mix(in oklab, var(--wcui-primary-blue) 35%, transparent);
-  color: var(--wcui-white-text);
+.chamferBtn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: none;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-pitch-black));
+}
 
-  &:hover {
-    border-color: var(--wcui-aqua-mint);
-    background: color-mix(in oklab, var(--wcui-primary-blue) 50%, transparent);
+.cancelBtn {
+  position: relative;
+  isolation: isolate;
+  font-weight: 700;
+  background: var(--wcui-card-glass-fill);
+  transition:
+    color 160ms ease,
+    box-shadow 160ms ease;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
+  @include glow.login-sign-in-glow(22%);
+  @include logout-cancel-rest;
+
+  &:hover,
+  &:focus {
+    color: var(--wcui-white-text);
+    @include glow.login-sign-in-glow-active;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+/* Drop cancel glow while Confirm is hovered or focused (incl. initial focus on open). */
+.actions:has(.confirmBtn:hover) .cancelBtn,
+.actions:has(.confirmBtn:focus) .cancelBtn,
+.actions:has(.confirmBtn:focus-visible) .cancelBtn,
+.actions:has(.confirmBtn:hover) .cancelBtn:hover,
+.actions:has(.confirmBtn:hover) .cancelBtn:focus,
+.actions:has(.confirmBtn:hover) .cancelBtn:focus-visible,
+.actions:has(.confirmBtn:focus) .cancelBtn:hover,
+.actions:has(.confirmBtn:focus) .cancelBtn:focus,
+.actions:has(.confirmBtn:focus) .cancelBtn:focus-visible,
+.actions:has(.confirmBtn:focus-visible) .cancelBtn:hover,
+.actions:has(.confirmBtn:focus-visible) .cancelBtn:focus,
+.actions:has(.confirmBtn:focus-visible) .cancelBtn:focus-visible {
+  @include logout-cancel-rest;
+}
+
+.confirmBtn {
+  position: relative;
+  isolation: isolate;
+  font-weight: 700;
+  color: var(--wcui-white-text);
+  background: color-mix(in oklab, var(--wcui-primary-blue) 50%, transparent);
+  box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
+  @include glow.login-sign-in-glow;
+
+  &:hover,
+  &:focus-visible {
+    @include glow.login-sign-in-glow-active;
+  }
+
+  &:focus:not(:focus-visible) {
+    box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+
+    &::before {
+      opacity: 0;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
   }
 }

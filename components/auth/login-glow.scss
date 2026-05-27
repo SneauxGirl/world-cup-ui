@@ -1,7 +1,7 @@
 @use "../../styles/wcui-frame" as frame;
 
 /** Primary / hero CTA — bilateral wash + edge highlights on hover/focus. */
-@mixin login-sign-in-glow {
+@mixin login-sign-in-glow($primary-mix: 42%) {
   &::before {
     content: "";
     position: absolute;
@@ -11,10 +11,10 @@
     opacity: 0;
     background: linear-gradient(
       90deg,
-      color-mix(in oklab, var(--wcui-primary-blue) 32%, transparent) 0%,
-      transparent 30%,
-      transparent 70%,
-      color-mix(in oklab, var(--wcui-primary-blue) 32%, transparent) 100%
+      color-mix(in oklab, var(--wcui-primary-blue) #{$primary-mix}, transparent) 0%,
+      transparent 40%,
+      transparent 60%,
+      color-mix(in oklab, var(--wcui-primary-blue) #{$primary-mix}, transparent) 100%
     );
     box-shadow: inset 0 0 26px color-mix(in oklab, var(--wcui-primary-blue) 9%, transparent);
     transition: opacity 160ms ease;
@@ -24,8 +24,6 @@
 
 @mixin login-sign-in-glow-active {
   box-shadow:
-    inset 3px 0 0 0 var(--wcui-aqua-mint),
-    inset -3px 0 0 0 var(--wcui-aqua-mint),
     inset 0 1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 18%, transparent),
     inset 0 -1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 18%, transparent),
     inset 0 1px 0 var(--wcui-card-glass-highlight);
@@ -46,8 +44,8 @@
     opacity: 0;
     background: linear-gradient(
       90deg,
-      color-mix(in oklab, var(--wcui-primary-blue) 32%, transparent) 0%,
-      transparent 30%
+      color-mix(in oklab, var(--wcui-primary-blue) 42%, transparent) 0%,
+      transparent 40%
     );
     box-shadow: inset 0 0 26px color-mix(in oklab, var(--wcui-primary-blue) 9%, transparent);
     transition: opacity 160ms ease;
@@ -57,7 +55,6 @@
 
 @mixin login-sign-up-glow-active {
   box-shadow:
-    inset 3px 0 0 0 var(--wcui-aqua-mint),
     inset 0 1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 18%, transparent),
     inset 0 -1px 0 color-mix(in oklab, var(--wcui-aqua-mint) 18%, transparent),
     inset 0 1px 0 var(--wcui-card-glass-highlight);

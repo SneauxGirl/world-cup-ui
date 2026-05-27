@@ -1,14 +1,16 @@
 # World Cup UI
 
-Work in progress: a fantasy UI for international soccer play featuring live matches, player cards, and team assignments.
+Work in progress: Portfolio UI for international soccer fantasy game
 
-![World Cup UI dashboard: hero, live matches, and top performers](docs/screenshots/dashboard.png)
+![World Cup Challenge UI Landing Page and Login](docs/screenshots/LandingPageWithLoginFinal.png)
 
-## What to Expect
+## Currently Available
 
-- Established: Globals and general design parameters
-- Currently Editing: Layout, content assignment, accessibility
-- Todo: Responsiveness
+- **Landing Page and Login**: final and responsive
+
+## Under Construction
+ 
+ - **Dashboard**: disconnected for refactor
 
 ## Stack
 
@@ -40,7 +42,9 @@ Work in progress: a fantasy UI for international soccer play featuring live matc
    npm run dev
    ```
 
-4. **Open the app** at [http://localhost:3000](http://localhost:3000). The home page renders the dashboard.
+4. **Open the app** at [http://localhost:3000](http://localhost:3000). The home page renders the Landing page.
+
+5. **Re-enable sign-in** → dashboard: Remove onSubmit={(event) => event.preventDefault()} from components/auth/LoginForm.tsx
 
 
 ## License

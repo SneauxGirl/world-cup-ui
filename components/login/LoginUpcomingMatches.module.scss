@@ -29,7 +29,7 @@
 .brandTitle {
   margin: 0;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-size: calc(clamp(1.35rem, 2.4vw, 1.65rem) + 2px);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: 0.01em;
@@ -48,7 +48,7 @@
 .stageLine {
   margin: 0;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(0.8rem, 1.4vw, 0.9rem);
+  font-size: calc(clamp(0.8rem, 1.4vw, 0.9rem) + 2px);
   font-weight: 400;
   line-height: 1.25;
   color: var(--wcui-text-standard);
@@ -75,7 +75,7 @@
   border-radius: 0.55rem;
   background: transparent;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  font-size: calc(clamp(0.85rem, 1.5vw, 0.95rem) + 2px);
   font-weight: 500;
   line-height: 1.2;
   color: color-mix(in oklab, var(--wcui-white-text) 55%, transparent);
@@ -108,7 +108,7 @@
   margin: 0;
   padding: 1.5rem 0;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: 0.95rem;
+  font-size: calc(0.95rem + 2px);
   font-weight: 400;
   line-height: 1.4;
   text-align: center;
@@ -134,7 +134,7 @@
 .monthName {
   margin: 0;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  font-size: calc(clamp(1rem, 1.8vw, 1.15rem) + 2px);
   font-weight: 700;
   line-height: 1.1;
   color: var(--wcui-white-text);
@@ -143,7 +143,7 @@
 .monthYear {
   margin: 0;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(0.8rem, 1.4vw, 0.9rem);
+  font-size: calc(clamp(0.8rem, 1.4vw, 0.9rem) + 2px);
   font-weight: 400;
   line-height: 1.2;
   color: var(--wcui-text-standard);
@@ -236,12 +236,12 @@
 }
 
 .dateWeekday {
-  font-size: clamp(0.72rem, 1.2vw, 0.8rem);
+  font-size: calc(clamp(0.72rem, 1.2vw, 0.8rem) + 2px);
   font-weight: 500;
 }
 
 .dateDay {
-  font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+  font-size: calc(clamp(0.85rem, 1.4vw, 0.95rem) + 2px);
   font-weight: 700;
 }
 
@@ -351,7 +351,7 @@
   flex: 1 1 auto;
   min-width: 0;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  font-size: calc(clamp(0.85rem, 1.5vw, 0.95rem) + 2px);
   font-weight: 500;
   line-height: 1.2;
   color: var(--wcui-white-text);
@@ -364,7 +364,7 @@
   flex-shrink: 0;
   min-width: 1.25rem;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  font-size: calc(clamp(0.85rem, 1.5vw, 0.95rem) + 2px);
   font-weight: 700;
   line-height: 1.2;
   text-align: right;
@@ -383,7 +383,7 @@
   flex-shrink: 0;
   margin: 0;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: clamp(0.8rem, 1.4vw, 0.9rem);
+  font-size: calc(clamp(0.8rem, 1.4vw, 0.9rem) + 2px);
   font-weight: 400;
   line-height: 1.2;
   color: var(--wcui-text-standard);
