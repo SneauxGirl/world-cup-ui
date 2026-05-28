@@ -1,3 +1,5 @@
+@use "../../styles/wcui-close-control" as close;
+
 /** Slide-out nav: cut bottom-left (single 45° notch). */
 @mixin wcui-menu-bl-chamfer {
   clip-path: polygon(
@@ -24,13 +26,9 @@
 }
 
 .menuBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  @include close.wcui-close-control-base;
+
   flex-shrink: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
   border: 1px solid var(--wcui-border-blue);
   border-radius: 2px;
   background: var(--wcui-pitch-black);
@@ -146,27 +144,21 @@
   margin-bottom: -0.15rem;
 }
 
-.menuPanelIconBtn,
-.menuPanelCloseBtn {
+.menuPanelIconBtn {
+  @include close.wcui-close-control-base;
+
   position: relative;
   z-index: 4;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
   margin: 0;
   border: none;
   border-radius: 0;
   background: transparent;
   color: var(--wcui-white-text);
-  cursor: pointer;
   transition: color 160ms ease;
 
   svg {
-    width: 1.35rem;
-    height: 1.35rem;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   &:hover {
@@ -182,6 +174,26 @@
     z-index: 5;
     outline: 2px solid var(--wcui-aqua-mint);
     outline-offset: 2px;
+  }
+}
+
+.menuPanelCloseBtn {
+  @include close.wcui-close-control;
+
+  position: relative;
+  z-index: 4;
+  margin: 0;
+  background: transparent;
+  color: var(--wcui-white-text);
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover,
+  &:focus-visible {
+    z-index: 5;
+    color: var(--wcui-aqua-mint);
   }
 }
 

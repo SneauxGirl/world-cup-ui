@@ -1,3 +1,5 @@
+@use "../../styles/wcui-frame" as frame;
+
 @mixin wcui-chamfer-clip {
   clip-path: polygon(
     var(--wcui-card-corner) 0,
@@ -118,6 +120,13 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+
+  /* Dim the active (Dashboard) link while another item is hovered or focused (~20%). */
+  &:has(.sideLink:not(.sideLinkActive):hover) .sideLinkActive:not(:hover),
+  &:has(.sideLink:not(.sideLinkActive):is(:focus-visible, :focus))
+    .sideLinkActive:not(:is(:focus-visible, :focus)) {
+    opacity: 0.82;
+  }
 }
 
 /* SidebarNavLink: .sideLink > ::before, svg, .sideLinkLabel */
@@ -143,7 +152,8 @@
     background: transparent;
     transition:
       border-color 160ms ease,
-      color 160ms ease;
+      color 160ms ease,
+      opacity 160ms ease;
 
     &::before {
       content: "";
@@ -221,6 +231,8 @@
 
 .profile {
   --wcui-card-corner: 15px;
+  --wcui-chamfer-tl: var(--wcui-card-corner);
+  --wcui-chamfer-br: var(--wcui-card-corner);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -253,17 +265,19 @@
 
   &Card {
     padding: 1px;
+    box-sizing: border-box;
     background: var(--wcui-border-blue);
-    @include wcui-chamfer-clip;
+    @include frame.wcui-chamfer-clip-tl-br;
   }
 
   &CardInner {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 1.2rem 1rem;
+    padding: .8rem 1rem;
+    box-sizing: border-box;
     background: var(--wcui-page-black);
-    @include wcui-chamfer-clip;
+    @include frame.wcui-chamfer-clip-tl-br;
   }
 
   &Text {
@@ -340,7 +354,7 @@
   flex-direction: column;
   align-items: stretch;
   gap: 0.2rem;
-  padding: 1.25rem 1rem;
+  padding: .8rem 1rem;
   background: var(--wcui-page-black);
   @include wcui-chamfer-clip;
 }

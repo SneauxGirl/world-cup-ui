@@ -1,3 +1,5 @@
+@use "../../styles/wcui-close-control" as close;
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -29,45 +31,24 @@
 }
 
 .closeBtn {
+  @include close.wcui-close-control;
+
   position: absolute;
   top: clamp(0.85rem, 2vw, 1.15rem);
   right: clamp(0.85rem, 2vw, 1.15rem);
   z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  border: 1px solid transparent;
-  border-radius: 2px;
   background: transparent;
   color: color-mix(in oklab, var(--wcui-white-text) 72%, var(--wcui-aqua-mint));
-  cursor: pointer;
   transition:
     border-color 160ms ease,
     color 160ms ease,
     background-color 160ms ease,
     box-shadow 160ms ease;
 
-  &:hover {
-    color: var(--wcui-white-text);
-    border-color: var(--wcui-aqua-mint);
-    background: var(--wcui-pitch-black);
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
-  }
-
-  &:focus {
-    outline: none;
-  }
-
+  &:hover,
   &:focus-visible {
     color: var(--wcui-white-text);
-    border-color: var(--wcui-aqua-mint);
     background: var(--wcui-pitch-black);
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
-    outline: 2px solid var(--wcui-aqua-mint);
-    outline-offset: 2px;
   }
 }
 

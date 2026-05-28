@@ -1,0 +1,93 @@
+@use "../../styles/wcui-frame" as frame;
+
+.slot {
+  --slot-chamfer: 10px;
+  --wcui-chamfer-tl: var(--slot-chamfer);
+  --wcui-chamfer-br: var(--slot-chamfer);
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: clamp(3rem, 8.5vw, 3.85rem);
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  appearance: none;
+  font: inherit;
+  color: inherit;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible .slotInner {
+    box-shadow:
+      inset 0 1px 0 var(--wcui-card-glass-highlight),
+      0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+  }
+
+  &:hover .slotInner {
+    background: color-mix(in oklab, var(--wcui-pitch-black) 42%, transparent);
+  }
+}
+
+.slotInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.35rem 0.3rem 0.3rem;
+  box-sizing: border-box;
+  border: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 var(--wcui-card-glass-highlight),
+    0 4px 16px color-mix(in oklab, var(--wcui-pitch-black) 45%, transparent);
+  @include frame.wcui-chamfer-fill-tl-br(
+    color-mix(in oklab, var(--wcui-pitch-black) 52%, transparent)
+  );
+}
+
+.slotIconRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.slotPlus {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+  line-height: 0;
+  margin-left: -0.35rem;
+}
+
+.slotPerson {
+  flex-shrink: 0;
+  color: var(--wcui-white-text);
+  margin-left: -0.38rem;
+}
+
+.slotPosition {
+  flex-shrink: 0;
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--wcui-white-text);
+}

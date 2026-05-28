@@ -79,8 +79,27 @@ export function IconMenu(props: SVGProps<SVGSVGElement>) {
 
 export function IconClose(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg {...iconProps} {...props}>
+    <svg
+      width={16}
+      height={16}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      {...props}
+    >
       <path d="m6 6 12 12M18 6 6 18" />
+    </svg>
+  );
+}
+
+export function IconPlus(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <path d="M12 5v14M5 12h14" />
     </svg>
   );
 }

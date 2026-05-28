@@ -1,3 +1,5 @@
+@use "../../styles/wcui-close-control" as close;
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -11,24 +13,22 @@
 .panel {
   position: fixed;
   z-index: 25;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  row-gap: 1rem;
+  column-gap: 0.75rem;
+  align-items: center;
   padding: 1rem;
   border: 1px solid var(--wcui-border-blue);
   background: var(--wcui-pitch-black);
   box-sizing: border-box;
-
-  :focus-visible {
-    outline: 2px solid var(--wcui-aqua-mint);
-    outline-offset: 2px;
-  }
 }
 
 .panelDesktop {
-  top: calc(2.5rem + env(safe-area-inset-top, 0px));
+  top: calc(var(--wcui-control-close-size) + env(safe-area-inset-top, 0px));
   right: clamp(1.25rem, 2vw, 1.8rem);
-  width: min(22rem, calc(100vw - 2.5rem));
+  width: min(22rem, calc(100vw - var(--wcui-control-close-size) * 2));
 }
 
 .panelMenu {
@@ -38,11 +38,14 @@
 }
 
 .head {
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .title {
@@ -56,35 +59,35 @@
 }
 
 .closeBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  border: 1px solid var(--wcui-border-blue);
-  border-radius: 2px;
-  background: var(--wcui-pitch-black);
+  @include close.wcui-close-control;
+
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  background: transparent;
   color: var(--wcui-aqua-mint);
-  cursor: pointer;
   transition:
     border-color 160ms ease,
     color 160ms ease,
     box-shadow 160ms ease;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: var(--wcui-white-text);
-    border-color: var(--wcui-aqua-mint);
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
-  }
-
-  &:focus {
-    outline: none;
   }
 }
 
+.searchForm {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
 .field {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -92,17 +95,73 @@
   padding: 0.55rem 0.75rem;
   border: 1px solid var(--wcui-border-blue);
   background: var(--wcui-page-black);
+  box-sizing: border-box;
+  cursor: text;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover {
+    border-color: color-mix(in oklab, var(--wcui-aqua-mint) 45%, var(--wcui-border-blue));
+  }
+
+  &:focus-within {
+    border-color: var(--wcui-aqua-mint);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+  }
+}
+
+/* After Enter — neutral field (distinct from initial open focus). */
+.fieldCommitted {
+  &,
+  &:hover,
+  &:focus-within {
+    border-color: var(--wcui-border-blue);
+    box-shadow: none;
+  }
+}
+
+.fieldCommitted .fieldIcon {
+  color: color-mix(in oklab, var(--wcui-white-text) 72%, transparent);
+}
+
+.panel:focus {
+  outline: none;
+}
+
+/* One active ring at a time — close wins over field while close is hovered or focused. */
+.panel:has(.closeBtn:hover, .closeBtn:focus-visible) .field {
+  &,
+  &:hover,
+  &:focus-within {
+    border-color: var(--wcui-border-blue);
+    box-shadow: none;
+  }
+}
+
+.panel:has(.closeBtn:hover, .closeBtn:focus-visible) .field .fieldIcon {
+  color: color-mix(in oklab, var(--wcui-white-text) 72%, transparent);
 }
 
 .fieldIcon {
   display: inline-flex;
   flex-shrink: 0;
   color: color-mix(in oklab, var(--wcui-white-text) 72%, transparent);
+  transition: color 160ms ease;
 
   svg {
     width: 1.25rem;
     height: 1.25rem;
   }
+}
+
+.panel:not(:has(.closeBtn:hover, .closeBtn:focus-visible)):not(:has(.fieldCommitted))
+  .field:hover
+  .fieldIcon,
+.panel:not(:has(.closeBtn:hover, .closeBtn:focus-visible)):not(:has(.fieldCommitted))
+  .field:focus-within
+  .fieldIcon {
+  color: var(--wcui-aqua-mint);
 }
 
 .input {
@@ -117,10 +176,14 @@
   color: var(--wcui-white-text);
 
   &::placeholder {
-    color: color-mix(in oklab, var(--wcui-white-text) 48%, transparent);
+    color: color-mix(in oklab, var(--wcui-white-text) 72%, transparent);
   }
 
   &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
     outline: none;
   }
 }

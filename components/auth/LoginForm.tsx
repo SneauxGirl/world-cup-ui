@@ -42,12 +42,7 @@ export function LoginForm({ className }: Props = {}) {
         {t("login.titleLine2")}
       </h1>
 
-      <form
-        className={styles.form}
-        action="/dashboard"
-        method="get"
-        onSubmit={(event) => event.preventDefault()}
-      >
+      <form className={styles.form} action="/dashboard" method="get">
         <div className={styles.field}>
           <label className={styles.label} htmlFor={emailId}>
             {t("login.emailLabel")}

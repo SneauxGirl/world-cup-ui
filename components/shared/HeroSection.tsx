@@ -11,10 +11,12 @@ type Props = {
   feedItems?: FeedItem[];
   /** When false, omits the hero live-feed stats card (login layout). */
   showLiveFeed?: boolean;
-  /** Login page: stadium art + kicker only (no welcome, feed, or CTA). */
+  /** Login page: stadium art only (no welcome, feed, or CTA). */
   loginHero?: boolean;
   ctaHref?: string;
   ctaLabel?: string;
+  /** When set, CTA opens squad flow instead of navigating. */
+  onCtaClick?: () => void;
   onMenuAccountClick?: () => void;
   className?: string;
 };
@@ -26,6 +28,7 @@ export function HeroSection({
   loginHero = false,
   ctaHref = "/dashboard",
   ctaLabel = t("dashboard.setYourRoster"),
+  onCtaClick,
   onMenuAccountClick,
   className,
 }: Props) {
@@ -68,7 +71,6 @@ export function HeroSection({
             <>
               <div className={styles.heroDashboardMain}>
                 <div className={styles.heroTopRow}>
-                  <p className={styles.kicker}>{t("app.worldCupChallenge")}</p>
                   <div className={styles.heroMenu}>
                     <HeroNavMenu onAccountClick={onMenuAccountClick} />
                   </div>
@@ -90,9 +92,21 @@ export function HeroSection({
                 </div>
                 <div className={styles.heroActionRow}>
                   <div className={styles.heroCtaWrap}>
-                    <Link className={styles.heroCta} href={ctaHref}>
-                      {ctaLabel}
-                    </Link>
+                    <div className={styles.heroCtaTrim}>
+                      {onCtaClick ? (
+                        <button
+                          type="button"
+                          className={styles.heroCta}
+                          onClick={onCtaClick}
+                        >
+                          {ctaLabel}
+                        </button>
+                      ) : (
+                        <Link className={styles.heroCta} href={ctaHref}>
+                          {ctaLabel}
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -19,11 +19,13 @@ import { SidebarNav } from "@/components/dashboard/Navigation";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { SiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
+import { SquadSelectionModal } from "@/components/dashboard/SquadSelectionModal";
 import styles from "./Dashboard.module.scss";
 
 export function Dashboard() {
   const router = useRouter();
   const [logoutOpen, setLogoutOpen] = useState(false);
+  const [squadSelectionOpen, setSquadSelectionOpen] = useState(false);
 
   const requestLogout = useCallback(() => setLogoutOpen(true), []);
   const cancelLogout = useCallback(() => setLogoutOpen(false), []);
@@ -35,11 +37,14 @@ export function Dashboard() {
     router.push("/");
   }, [router]);
 
+  const requestSquadSelection = useCallback(() => setSquadSelectionOpen(true), []);
+  const closeSquadSelection = useCallback(() => setSquadSelectionOpen(false), []);
+
   useEffect(() => {
-    if (!logoutOpen) return;
+    if (!logoutOpen && !squadSelectionOpen) return;
     lockBodyScroll();
     return () => unlockBodyScroll();
-  }, [logoutOpen]);
+  }, [logoutOpen, squadSelectionOpen]);
 
   return (
     <div className={styles.page}>
@@ -47,6 +52,11 @@ export function Dashboard() {
         open={logoutOpen}
         onCancel={cancelLogout}
         onConfirm={confirmLogout}
+      />
+      <SquadSelectionModal
+        open={squadSelectionOpen}
+        onClose={closeSquadSelection}
+        managerName={userDashboard.displayName}
       />
       <SidebarNav onLogoutConfirm={confirmSidebarLogout} />
       <div className={styles.shell}>
@@ -63,6 +73,7 @@ export function Dashboard() {
         <HeroSection
           user={userDashboard}
           showLiveFeed={false}
+          onCtaClick={requestSquadSelection}
           onMenuAccountClick={requestLogout}
           className={styles.shellHero}
         />

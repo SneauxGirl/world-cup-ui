@@ -80,6 +80,11 @@ $wcui-token-pairs: (
   --wcui-font-heading-panel: clamp(1.35rem, 2.4vw, 1.65rem);
   --wcui-font-heading-card: clamp(1.35rem, 3vw, 1.75rem);
 
+  /* Close / dismiss controls — 16px icon, 24px target, ~44px outer with focus ring. */
+  --wcui-icon-close-size: 1rem;
+  --wcui-control-close-size: 1.5rem;
+  --wcui-control-close-focus-outer: 2.75rem;
+
   /* Hero stats interior only — gradient kept for the hero card. */
   --wcui-hero-panel-fill: linear-gradient(
     180deg,
