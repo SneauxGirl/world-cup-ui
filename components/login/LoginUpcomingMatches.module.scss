@@ -78,6 +78,19 @@
   );
 }
 
+@mixin login-date-clip {
+  clip-path: polygon(
+    var(--login-date-chamfer, 4px) 0,
+    calc(100% - var(--login-date-chamfer, 4px)) 0,
+    100% var(--login-date-chamfer, 4px),
+    100% calc(100% - var(--login-date-chamfer, 4px)),
+    calc(100% - var(--login-date-chamfer, 4px)) 100%,
+    var(--login-date-chamfer, 4px) 100%,
+    0 calc(100% - var(--login-date-chamfer, 4px)),
+    0 var(--login-date-chamfer, 4px)
+  );
+}
+
 .tabStrip {
   --login-tab-strip-fill: color-mix(in oklab, var(--wcui-white-text) 7%, transparent);
   --wcui-chamfer-tl: var(--login-hero-chamfer, 14px);
@@ -103,30 +116,43 @@
   padding: 1px;
   box-sizing: border-box;
   background: transparent;
+  overflow: hidden;
 }
 
-/* Active tab trim: blends with strip until keyboard focus shows aqua. */
 .tabCellActive {
   --login-tab-active-chamfer: 10px;
-  background: var(--login-tab-strip-fill);
-  transition: background-color 160ms ease;
 }
 
-.tabCellActive:has(.tab:hover),
-.tabCellActive:has(.tab:focus) {
-  background: var(--wcui-aqua-mint);
-}
-
-.tabCellActive_games {
+/* Back layer (cell): chamfer must match front layer (button) at all times. */
+.tabCell.tabCellActive_games {
   @include login-tab-clip-tl;
 }
 
-.tabCellActive_bracket {
+.tabCell.tabCellActive_bracket {
+  @include login-tab-clip-br;
+}
+
+/* Aqua trim on hover/focus — re-clip so corners stay chamfered, not square. */
+.tabCell:not(.tabCellActive_games):not(.tabCellActive_bracket):has(.tab:hover),
+.tabCell:not(.tabCellActive_games):not(.tabCellActive_bracket):has(.tab:focus) {
+  background: var(--wcui-aqua-mint);
+}
+
+.tabCell.tabCellActive_games:has(.tab:hover),
+.tabCell.tabCellActive_games:has(.tab:focus) {
+  background: var(--wcui-aqua-mint);
+  @include login-tab-clip-tl;
+}
+
+.tabCell.tabCellActive_bracket:has(.tab:hover),
+.tabCell.tabCellActive_bracket:has(.tab:focus) {
+  background: var(--wcui-aqua-mint);
   @include login-tab-clip-br;
 }
 
 .tab {
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -134,7 +160,6 @@
   padding: 0.55rem 0.75rem;
   border: none;
   border-radius: 0;
-  background: transparent;
   font-family: var(--font-finlandica), sans-serif;
   font-size: calc(clamp(0.85rem, 1.5vw, 0.95rem) + 2px);
   font-weight: 500;
@@ -142,16 +167,14 @@
   color: color-mix(in oklab, var(--wcui-white-text) 55%, transparent);
   cursor: pointer;
   box-sizing: border-box;
-  transition:
-    color 160ms ease,
-    font-weight 160ms ease;
+  transition: color 160ms ease;
 
-  &:not(.tabActive):hover {
-    font-weight: 700;
-    color: var(--wcui-aqua-mint);
+  /* Opaque match for strip veil: 7% white on transparent ≈ 7% white on panel-fill. */
+  &:not(.tabActive) {
+    background: color-mix(in oklab, var(--wcui-white-text) 7%, var(--wcui-panel-fill));
   }
 
-  &.tabActive:hover {
+  &:hover {
     color: var(--wcui-white-text);
   }
 
@@ -161,9 +184,9 @@
   }
 }
 
-.tabCellActive .tab:hover,
-.tabCellActive .tab:focus,
-.tabCellActive .tab:focus-visible {
+.tabCell:has(.tab:hover) .tab,
+.tabCell:has(.tab:focus) .tab,
+.tabCell:has(.tab:focus-visible) .tab {
   outline: none;
 }
 
@@ -172,11 +195,12 @@
   color: var(--wcui-white-text);
 }
 
-.tabActive_games {
+/* Front layer (button): same chamfer as cell so trim edges align. */
+.tab.tabActive.tabActive_games {
   @include login-tab-clip-tl;
 }
 
-.tabActive_bracket {
+.tab.tabActive.tabActive_bracket {
   @include login-tab-clip-br;
 }
 
@@ -248,20 +272,23 @@
   width: 2rem;
   height: 2rem;
   padding: 0;
-  border: none;
-  border-radius: 0.35rem;
+  border: 1px solid transparent;
+  border-radius: 0;
   background: transparent;
   color: color-mix(in oklab, var(--wcui-white-text) 55%, transparent);
   cursor: pointer;
-  transition: color 160ms ease;
+  box-sizing: border-box;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:focus-visible,
+  &:active {
+    border-color: var(--wcui-aqua-mint);
     color: var(--wcui-white-text);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--wcui-aqua-mint);
-    outline-offset: 2px;
+    outline: none;
   }
 }
 
@@ -281,8 +308,29 @@
   gap: 0.35rem;
 }
 
-.dateBtn {
+/* Date cells: two-layer trim; 4px chamfer on all four corners (cell + date button). */
+.dateCell {
+  --login-date-chamfer: 4px;
   display: flex;
+  flex: 0 0 auto;
+  padding: 1px;
+  box-sizing: border-box;
+  background: transparent;
+  overflow: hidden;
+  @include login-date-clip;
+}
+
+.dateCell:has(.dateBtn:hover),
+.dateCell:has(.dateBtn:focus) {
+  background: var(--wcui-aqua-mint);
+  @include login-date-clip;
+}
+
+.dateBtn {
+  --login-date-chamfer: 4px;
+  @include login-date-clip;
+  display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -290,15 +338,17 @@
   min-width: 3.25rem;
   padding: 0.4rem 0.55rem;
   border: none;
-  border-radius: 0.45rem;
-  background: transparent;
+  border-radius: 0;
   font-family: var(--font-finlandica), sans-serif;
   line-height: 1.1;
   color: color-mix(in oklab, var(--wcui-white-text) 55%, transparent);
   cursor: pointer;
-  transition:
-    color 160ms ease,
-    background-color 160ms ease;
+  box-sizing: border-box;
+  transition: color 160ms ease;
+
+  &:not(.dateBtnActive) {
+    background: color-mix(in oklab, var(--wcui-white-text) 7%, var(--wcui-panel-fill));
+  }
 
   &:hover {
     color: var(--wcui-white-text);
@@ -306,13 +356,20 @@
 
   &:focus-visible {
     outline: 2px solid var(--wcui-aqua-mint);
-    outline-offset: 2px;
+    outline-offset: 1px;
   }
 }
 
-.dateBtnActive {
-  background: color-mix(in oklab, var(--wcui-pitch-black) 88%, transparent);
+.dateCell:has(.dateBtn:hover) .dateBtn,
+.dateCell:has(.dateBtn:focus) .dateBtn,
+.dateCell:has(.dateBtn:focus-visible) .dateBtn {
+  outline: none;
+}
+
+.dateBtn.dateBtnActive {
+  background: var(--wcui-pitch-black);
   color: var(--wcui-white-text);
+  @include login-date-clip;
 }
 
 .dateWeekday {

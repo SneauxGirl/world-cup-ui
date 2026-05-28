@@ -252,20 +252,22 @@ export function LoginUpcomingMatches() {
                       const isSelected = index === dateIndex;
                       return (
                         <li key={date.id}>
-                          <button
-                            type="button"
-                            className={[
-                              styles.dateBtn,
-                              isSelected && styles.dateBtnActive,
-                            ]
-                              .filter(Boolean)
-                              .join(" ")}
-                            aria-pressed={isSelected}
-                            onClick={() => setDateIndex(index)}
-                          >
-                            <span className={styles.dateWeekday}>{date.weekdayLabel}</span>
-                            <span className={styles.dateDay}>{date.dayLabel}</span>
-                          </button>
+                          <div className={styles.dateCell}>
+                            <button
+                              type="button"
+                              className={[
+                                styles.dateBtn,
+                                isSelected && styles.dateBtnActive,
+                              ]
+                                .filter(Boolean)
+                                .join(" ")}
+                              aria-pressed={isSelected}
+                              onClick={() => setDateIndex(index)}
+                            >
+                              <span className={styles.dateWeekday}>{date.weekdayLabel}</span>
+                              <span className={styles.dateDay}>{date.dayLabel}</span>
+                            </button>
+                          </div>
                         </li>
                       );
                     })}
