@@ -1,3 +1,5 @@
+@use "../../styles/wcui-frame" as frame;
+
 .section {
   width: 100%;
   flex-shrink: 0;
@@ -8,12 +10,14 @@
   --login-matches-scroll-gap: 20px;
   /* Room for 2px outline + 4px offset on the matches scroller (keyboard focus). */
   --login-matches-focus-padding: 6px;
+  --wcui-card-corner: 20px;
   width: 100%;
   margin-inline: 0;
   padding: clamp(1.5rem, 3vw, 2.25rem) var(--content-gutter, 1.25rem);
-  border-radius: 0.65rem;
-  background: var(--wcui-panel-fill);
+  border: none;
+  border-radius: 0;
   box-sizing: border-box;
+  @include frame.wcui-chamfer-fill(var(--wcui-panel-fill));
 }
 
 .panelHead {
@@ -54,25 +58,82 @@
   color: var(--wcui-text-standard);
 }
 
+@mixin login-tab-clip-tl {
+  clip-path: polygon(
+    var(--login-tab-active-chamfer) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--login-tab-active-chamfer)
+  );
+}
+
+@mixin login-tab-clip-br {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--login-tab-active-chamfer)),
+    calc(100% - var(--login-tab-active-chamfer)) 100%,
+    0 100%
+  );
+}
+
 .tabStrip {
+  --login-tab-strip-fill: color-mix(in oklab, var(--wcui-white-text) 7%, transparent);
+  --wcui-chamfer-tl: var(--login-hero-chamfer, 14px);
+  --wcui-chamfer-br: var(--login-hero-chamfer, 14px);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: stretch;
   gap: 0.35rem;
   width: 100%;
   padding: 0.3rem;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--wcui-white-text) 7%, transparent);
+  border-radius: 0;
   box-sizing: border-box;
+  background: var(--login-tab-strip-fill);
+  @include frame.wcui-chamfer-clip-tl-br;
+}
+
+.tabCell {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  /* Reserve trim space so active/inactive tabs do not shift layout. */
+  padding: 1px;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* Active tab trim: blends with strip until keyboard focus shows aqua. */
+.tabCellActive {
+  --login-tab-active-chamfer: 10px;
+  background: var(--login-tab-strip-fill);
+  transition: background-color 160ms ease;
+}
+
+.tabCellActive:has(.tab:hover),
+.tabCellActive:has(.tab:focus) {
+  background: var(--wcui-aqua-mint);
+}
+
+.tabCellActive_games {
+  @include login-tab-clip-tl;
+}
+
+.tabCellActive_bracket {
+  @include login-tab-clip-br;
 }
 
 .tab {
-  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   min-width: 0;
   padding: 0.55rem 0.75rem;
   border: none;
-  border-radius: 0.55rem;
+  border-radius: 0;
   background: transparent;
   font-family: var(--font-finlandica), sans-serif;
   font-size: calc(clamp(0.85rem, 1.5vw, 0.95rem) + 2px);
@@ -80,24 +141,43 @@
   line-height: 1.2;
   color: color-mix(in oklab, var(--wcui-white-text) 55%, transparent);
   cursor: pointer;
+  box-sizing: border-box;
   transition:
     color 160ms ease,
-    background-color 160ms ease;
+    font-weight 160ms ease;
 
-  &:hover {
+  &:not(.tabActive):hover {
+    font-weight: 700;
+    color: var(--wcui-aqua-mint);
+  }
+
+  &.tabActive:hover {
     color: var(--wcui-white-text);
   }
 
   &:focus-visible {
     outline: 2px solid var(--wcui-aqua-mint);
-    outline-offset: 2px;
+    outline-offset: 1px;
   }
 }
 
+.tabCellActive .tab:hover,
+.tabCellActive .tab:focus,
+.tabCellActive .tab:focus-visible {
+  outline: none;
+}
+
 .tabActive {
-  background: color-mix(in oklab, var(--wcui-pitch-black) 88%, transparent);
+  background: var(--wcui-pitch-black);
   color: var(--wcui-white-text);
-  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--wcui-white-text) 8%, transparent);
+}
+
+.tabActive_games {
+  @include login-tab-clip-tl;
+}
+
+.tabActive_bracket {
+  @include login-tab-clip-br;
 }
 
 .tabPanel {

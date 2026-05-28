@@ -94,9 +94,8 @@
 }
 
 .mediaFrame {
-  --promo-chamfer: 12px;
-  --wcui-chamfer-tl: var(--promo-chamfer);
-  --wcui-chamfer-br: var(--promo-chamfer);
+  --wcui-chamfer-tl: var(--login-card-chamfer, 12px);
+  --wcui-chamfer-br: var(--login-card-chamfer, 12px);
   flex-shrink: 0;
   width: 100%;
   aspect-ratio: 1 / 1;

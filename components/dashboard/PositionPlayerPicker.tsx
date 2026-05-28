@@ -35,12 +35,12 @@ export function PositionPlayerPicker({ position, onClose, onAddPlayer }: Props) 
         {players.map((player) => (
           <article key={player.id} className={styles.row} role="listitem">
             <span className={styles.numberTag} aria-label={`Squad number ${player.squadNumber}`}>
-              {player.squadNumber}
+              {player.squadNumber > 0 ? player.squadNumber : "-"}
             </span>
 
             <img
               className={styles.flag}
-              src={getFlagUrl(player.countryCode)}
+              src={getFlagUrl(player.countryIso2)}
               alt={`${player.countryName} flag`}
               width={30}
               height={22}
@@ -50,7 +50,7 @@ export function PositionPlayerPicker({ position, onClose, onAddPlayer }: Props) 
             <div className={styles.playerMeta}>
               <p className={styles.playerLastName}>{player.lastName}</p>
               <p className={styles.playerSubline}>
-                {player.countryCode} {player.position}
+                {player.teamCode} {player.position}
               </p>
             </div>
 

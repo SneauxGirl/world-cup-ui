@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { IconPeople, IconPlus } from "@/components/icons/DashboardIcons";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import type { SquadPitchSlot as SquadPitchSlotData } from "@/data/squad-pitch-formation";
+import { getTeamJerseyPath } from "@/lib/nationalTeams";
 import { t } from "@/lib/i18n/t";
 import styles from "./SquadPitchSlot.module.scss";
 
@@ -13,6 +15,7 @@ type Props = {
 export function SquadPitchSlot({ slot, onSelect, selectedPlayer }: Props) {
   const top = `${slot.top}%`;
   const isFilled = Boolean(selectedPlayer);
+  const jerseySrc = selectedPlayer ? getTeamJerseyPath(selectedPlayer.teamCode) : null;
 
   return (
     <button
@@ -34,12 +37,22 @@ export function SquadPitchSlot({ slot, onSelect, selectedPlayer }: Props) {
             </span>
             <IconPeople className={styles.slotPerson} width={34} height={34} />
           </span>
-          {isFilled ? (
+          {isFilled && jerseySrc ? (
             <>
-              <span className={styles.slotPlayerName}>{selectedPlayer?.lastName}</span>
-              <span className={styles.slotPlayerMeta}>
-                {selectedPlayer?.countryCode} {slot.position}
+              <span className={styles.slotTopMeta}>
+                <span className={styles.slotPlayerPoints}>{selectedPlayer?.points ?? 0} pts</span>
+                <span className={styles.slotPlayerMeta}>{slot.position}</span>
               </span>
+              <span className={styles.slotPlayerImageWrap} aria-hidden="true">
+                <Image
+                  src={jerseySrc}
+                  alt=""
+                  fill
+                  className={styles.slotPlayerImage}
+                  sizes="90px"
+                />
+              </span>
+              <span className={styles.slotPlayerName}>{selectedPlayer?.lastName}</span>
             </>
           ) : (
             <span className={styles.slotPosition}>{slot.position}</span>

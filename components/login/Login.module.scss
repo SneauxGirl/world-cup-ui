@@ -18,6 +18,8 @@
   --hero-photo-lock-height: calc(620px * 600 / 2000);
   /* Login-only vertical offset inside the hero band (0.13 = 13%). */
   --login-hero-card-top-start: 0.13;
+  /* TL+BR chamfer for login content panels (matches story promo cards). */
+  --login-card-chamfer: 12px;
   display: flex;
   flex-direction: column;
   color: var(--wcui-white-text);

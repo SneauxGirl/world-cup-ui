@@ -190,20 +190,35 @@ export function LoginUpcomingMatches() {
           {MATCH_TABS.map((tabKey) => {
             const isActive = activeTab === tabKey;
             return (
-              <button
+              <div
                 key={tabKey}
-                type="button"
-                role="tab"
-                id={`login-match-tab-${tabKey}`}
-                aria-selected={isActive}
-                aria-controls="login-match-tabpanel"
-                className={[styles.tab, isActive && styles.tabActive].filter(Boolean).join(" ")}
-                onClick={() => setActiveTab(tabKey)}
-                onFocus={() => setActiveTab(tabKey)}
-                onKeyDown={(event) => handleTabKeyDown(event, tabKey)}
+                className={[
+                  styles.tabCell,
+                  isActive && styles.tabCellActive,
+                  isActive && styles[`tabCellActive_${tabKey}`],
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
               >
-                {t(`loginMatches.tabs.${tabKey}`)}
-              </button>
+                <button
+                  type="button"
+                  role="tab"
+                  id={`login-match-tab-${tabKey}`}
+                  aria-selected={isActive}
+                  aria-controls="login-match-tabpanel"
+                  className={[
+                    styles.tab,
+                    isActive && styles.tabActive,
+                    isActive && styles[`tabActive_${tabKey}`],
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                  onClick={() => setActiveTab(tabKey)}
+                  onKeyDown={(event) => handleTabKeyDown(event, tabKey)}
+                >
+                  {t(`loginMatches.tabs.${tabKey}`)}
+                </button>
+              </div>
             );
           })}
         </div>

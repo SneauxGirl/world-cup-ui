@@ -1,0 +1,16 @@
+---
+description: Remind user to place chat-dropped images in the repo directly; do not re-save via agent
+alwaysApply: true
+---
+
+# User images from chat
+
+When the user drops an image in chat and asks to use it in the project (logos, icons, partner marks, etc.):
+
+1. **Remind them** to copy the file into the target folder themselves (e.g. `public/partners/`, `public/`) instead of having the agent write or convert the image. Agent-saved images are often re-encoded (e.g. JPEG without alpha, flattened backgrounds) and do not match the user’s transparent originals.
+
+2. **Do not** use GenerateImage, base64 writes, or image processing to “fix” backgrounds unless the user explicitly asks for that workflow.
+
+3. After they place the file, only update **references** (paths in data/components, `width`/`height`, alt text, CSS). Do not overwrite the binary asset unless they explicitly request it.
+
+4. If logos look wrong (boxed backgrounds on a dark page), check whether repo assets were agent-written; suggest replacing files in place rather than CSS or background-removal hacks.
