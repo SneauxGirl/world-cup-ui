@@ -274,7 +274,7 @@
   bottom: var(--panel-inline-padding);
   width: auto;
   z-index: 1;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .pitchSlots {

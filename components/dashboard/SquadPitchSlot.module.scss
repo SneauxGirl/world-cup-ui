@@ -69,6 +69,12 @@
   );
 }
 
+.slotSurfaceFilled {
+  @extend .slotSurface;
+  gap: 0.15rem;
+  padding-top: 0.38rem;
+}
+
 .slotIconRow {
   position: relative;
   z-index: 1;
@@ -113,4 +119,29 @@
   text-transform: uppercase;
   color: var(--wcui-white-text);
   text-shadow: 0 1px 0 color-mix(in oklab, var(--wcui-pitch-black) 62%, transparent);
+}
+
+.slotPlayerName {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 0.96rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--wcui-white-text);
+  text-transform: uppercase;
+}
+
+.slotPlayerMeta {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 0.67rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: color-mix(in oklab, var(--wcui-white-text) 78%, transparent);
+  text-transform: uppercase;
 }

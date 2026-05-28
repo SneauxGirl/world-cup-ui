@@ -10,7 +10,7 @@ Work in progress: Portfolio UI for international soccer fantasy game
 
 ## Under Construction
  
- - **Dashboard**: disconnected for refactor
+ - **Dashboard**: disconnected for refactor. Click "Set Your Roster" to see squad selection progress.
 
 ## Stack
 

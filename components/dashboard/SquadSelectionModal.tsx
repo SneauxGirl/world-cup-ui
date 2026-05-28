@@ -3,9 +3,11 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { PositionPlayerPicker } from "@/components/dashboard/PositionPlayerPicker";
 import { SquadPitchSlot } from "@/components/dashboard/SquadPitchSlot";
 import { IconClose } from "@/components/icons/DashboardIcons";
-import { squadPitchFormation } from "@/data/squad-pitch-formation";
+import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
+import { squadPitchFormation, type SquadPositionCode } from "@/data/squad-pitch-formation";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { formatInteger } from "@/lib/i18n/format";
 import { t } from "@/lib/i18n/t";
@@ -32,6 +34,7 @@ const tallyCountToneClass: Record<TallyCountTone, string> = {
 };
 
 type ViewMode = "pitch" | "list";
+type ActivePickerState = { slotId: string; position: SquadPositionCode } | null;
 
 type Props = {
   open: boolean;
@@ -53,6 +56,8 @@ export function SquadSelectionModal({
   const descriptionId = useId();
   const dialogId = useId();
   const [view, setView] = useState<ViewMode>("pitch");
+  const [activePicker, setActivePicker] = useState<ActivePickerState>(null);
+  const [selectedBySlot, setSelectedBySlot] = useState<Record<string, SquadPlayerPoolEntry>>({});
   const tallyTone = getTallyCountTone(selectedCount);
 
   const handleClose = useCallback(() => onClose(), [onClose]);
@@ -61,6 +66,8 @@ export function SquadSelectionModal({
     if (!open) return;
     lockBodyScroll();
     setView("pitch");
+    setActivePicker(null);
+    setSelectedBySlot({});
     return () => unlockBodyScroll();
   }, [open]);
 
@@ -185,7 +192,10 @@ export function SquadSelectionModal({
               aria-selected={view === "pitch"}
               aria-controls={`${dialogId}-panel-pitch`}
               className={view === "pitch" ? styles.viewTabActive : styles.viewTab}
-              onClick={() => setView("pitch")}
+              onClick={() => {
+                setActivePicker(null);
+                setView("pitch");
+              }}
             >
               {t("squadSelection.pitchView")}
             </button>
@@ -196,7 +206,10 @@ export function SquadSelectionModal({
               aria-selected={view === "list"}
               aria-controls={`${dialogId}-panel-list`}
               className={view === "list" ? styles.viewTabActive : styles.viewTab}
-              onClick={() => setView("list")}
+              onClick={() => {
+                setActivePicker(null);
+                setView("list");
+              }}
             >
               {t("squadSelection.listView")}
             </button>
@@ -225,9 +238,32 @@ export function SquadSelectionModal({
                     <div className={styles.pitchAnchor}>
                       <div className={styles.pitchSlots}>
                         {squadPitchFormation.map((slot) => (
-                          <SquadPitchSlot key={slot.id} slot={slot} />
+                          <SquadPitchSlot
+                            key={slot.id}
+                            slot={slot}
+                            selectedPlayer={selectedBySlot[slot.id]}
+                            onSelect={(selectedSlot) =>
+                              setActivePicker({
+                                slotId: selectedSlot.id,
+                                position: selectedSlot.position,
+                              })
+                            }
+                          />
                         ))}
                       </div>
+                      {activePicker ? (
+                        <PositionPlayerPicker
+                          position={activePicker.position}
+                          onClose={() => setActivePicker(null)}
+                          onAddPlayer={(player) => {
+                            setSelectedBySlot((current) => ({
+                              ...current,
+                              [activePicker.slotId]: player,
+                            }));
+                            setActivePicker(null);
+                          }}
+                        />
+                      ) : null}
                     </div>
                   </div>
                 </div>
