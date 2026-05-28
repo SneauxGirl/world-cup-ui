@@ -8,21 +8,25 @@ type Props = {
 };
 
 export function SquadPitchSlot({ slot }: Props) {
+  const top = typeof slot.top === "number" ? `${slot.top}%` : slot.top;
+
   return (
     <button
       type="button"
       className={styles.slot}
-      style={{ top: `${slot.top}%`, left: `${slot.left}%` }}
+      style={{ top, left: `${slot.left}%` }}
       aria-label={t("squadSelection.addPlayerSlot", { position: slot.position })}
     >
       <span className={styles.slotInner}>
-        <span className={styles.slotIconRow} aria-hidden="true">
-          <span className={styles.slotPlus}>
-            <IconPlus width={11} height={11} strokeWidth={2} />
+        <span className={styles.slotSurface}>
+          <span className={styles.slotIconRow} aria-hidden="true">
+            <span className={styles.slotPlus}>
+              <IconPlus width={14} height={14} strokeWidth={3.5} />
+            </span>
+            <IconPeople className={styles.slotPerson} width={34} height={34} />
           </span>
-          <IconPeople className={styles.slotPerson} width={26} height={26} />
+          <span className={styles.slotPosition}>{slot.position}</span>
         </span>
-        <span className={styles.slotPosition}>{slot.position}</span>
       </span>
     </button>
   );

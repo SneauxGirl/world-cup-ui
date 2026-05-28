@@ -90,31 +90,31 @@ export const liveMatches: DashboardMatch[] = [
 export const topPerformers: DashboardPerformer[] = [
   {
     id: "p1",
-    name: "Mbappé",
+    name: "Kylian Mbappé",
     teamCode: "FRA",
     position: "FWD",
-    points: 126,
+    points: 107,
   },
   {
     id: "p2",
-    name: "Messi",
+    name: "Lionel Messi",
     teamCode: "ARG",
     position: "FWD",
     points: 118,
   },
   {
     id: "p3",
-    name: "Bellingham",
-    teamCode: "ENG",
+    name: "Kees Smit",
+    teamCode: "NED",
     position: "MID",
-    points: 112,
+    points: 126,
   },
   {
     id: "p4",
-    name: "Vinícius Jr.",
+    name: "Vinícius Júnior",
     teamCode: "BRA",
     position: "FWD",
-    points: 108,
+    points: 121,
   },
 ];
 

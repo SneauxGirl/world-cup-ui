@@ -11,6 +11,8 @@ type Props = {
 };
 
 export function TopPerformersSection({ performers, className }: Props) {
+  const sortedPerformers = [...performers].sort((a, b) => b.points - a.points);
+
   return (
     <section
       className={[styles.section, className].filter(Boolean).join(" ")}
@@ -26,7 +28,7 @@ export function TopPerformersSection({ performers, className }: Props) {
         </Link>
       </div>
       <div className={styles.grid}>
-        {performers.map((p) => (
+        {sortedPerformers.map((p) => (
           <PerformerCard key={p.id} performer={p} />
         ))}
       </div>

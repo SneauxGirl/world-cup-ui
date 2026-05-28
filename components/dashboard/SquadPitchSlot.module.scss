@@ -1,18 +1,18 @@
 @use "../../styles/wcui-frame" as frame;
 
 .slot {
-  --slot-chamfer: 10px;
+  --slot-chamfer: 15px;
   --wcui-chamfer-tl: var(--slot-chamfer);
   --wcui-chamfer-br: var(--slot-chamfer);
   position: absolute;
   z-index: 2;
   display: block;
-  width: clamp(3rem, 8.5vw, 3.85rem);
+  width: clamp(4.5rem, 12.75vw, 5.78rem);
   aspect-ratio: 1;
   margin: 0;
-  padding: 0;
+  padding: 1px;
   border: none;
-  background: transparent;
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-card-glass-border));
   cursor: pointer;
   transform: translate(-50%, -50%);
   appearance: none;
@@ -24,38 +24,54 @@
   }
 
   &:focus-visible .slotInner {
-    box-shadow:
-      inset 0 1px 0 var(--wcui-card-glass-highlight),
-      0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 58%, transparent);
   }
 
-  &:hover .slotInner {
-    background: color-mix(in oklab, var(--wcui-pitch-black) 42%, transparent);
+  &:hover .slotSurface {
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, var(--wcui-white-overlay-soft) 95%, transparent),
+      0 6px 18px color-mix(in oklab, var(--wcui-pitch-black) 42%, transparent);
   }
 }
 
 .slotInner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 1px;
+  box-sizing: border-box;
+  border: none;
+  @include frame.wcui-chamfer-frame-tl-br(
+    color-mix(in oklab, var(--wcui-pitch-black) 22%, var(--wcui-white-overlay-soft) 42%, transparent)
+  );
+}
+
+.slotSurface {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.38rem;
   width: 100%;
   height: 100%;
-  padding: 0.35rem 0.3rem 0.3rem;
+  padding: 0.53rem 0.45rem 0.45rem;
   box-sizing: border-box;
   border: none;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow:
-    inset 0 1px 0 var(--wcui-card-glass-highlight),
-    0 4px 16px color-mix(in oklab, var(--wcui-pitch-black) 45%, transparent);
+    inset 0 1px 0 color-mix(in oklab, var(--wcui-white-overlay-soft) 72%, transparent),
+    0 0 18px color-mix(in oklab, var(--wcui-shadow-aqua-soft) 45%, transparent);
   @include frame.wcui-chamfer-fill-tl-br(
-    color-mix(in oklab, var(--wcui-pitch-black) 52%, transparent)
+    color-mix(in oklab, var(--wcui-pitch-black) 56%, transparent)
   );
 }
 
 .slotIconRow {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -70,24 +86,31 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+  color: var(--wcui-white-text);
   line-height: 0;
-  margin-left: -0.35rem;
+  margin-left: -0.53rem;
+  filter: drop-shadow(0 0 2px color-mix(in oklab, var(--wcui-pitch-black) 48%, transparent));
 }
 
 .slotPerson {
+  position: relative;
+  z-index: 1;
   flex-shrink: 0;
   color: var(--wcui-white-text);
-  margin-left: -0.38rem;
+  margin-left: -0.58rem;
+  filter: drop-shadow(0 0 2px color-mix(in oklab, var(--wcui-pitch-black) 48%, transparent));
 }
 
 .slotPosition {
+  position: relative;
+  z-index: 1;
   flex-shrink: 0;
   font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
-  font-size: 1rem;
+  font-size: 1.32rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1;
   text-transform: uppercase;
   color: var(--wcui-white-text);
+  text-shadow: 0 1px 0 color-mix(in oklab, var(--wcui-pitch-black) 62%, transparent);
 }

@@ -214,18 +214,20 @@ export function SquadSelectionModal({
                 <div className={styles.pitchStage}>
                   <div className={styles.pitchFrame}>
                     <Image
-                      src="/PitchSq.png"
+                      src="/SoccerPitchSqDrk.png"
                       alt=""
                       fill
                       className={styles.pitchImage}
-                      sizes="(max-width: 768px) 92vw, 40rem"
+                      sizes="(max-width: 768px) 100vw, 42rem"
                       priority
                       aria-hidden
                     />
-                    <div className={styles.pitchOverlay}>
-                      {squadPitchFormation.map((slot) => (
-                        <SquadPitchSlot key={slot.id} slot={slot} />
-                      ))}
+                    <div className={styles.pitchAnchor}>
+                      <div className={styles.pitchSlots}>
+                        {squadPitchFormation.map((slot) => (
+                          <SquadPitchSlot key={slot.id} slot={slot} />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>

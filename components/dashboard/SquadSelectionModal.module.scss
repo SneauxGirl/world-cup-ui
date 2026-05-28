@@ -16,7 +16,7 @@
   z-index: 31;
   display: flex;
   flex-direction: column;
-  width: min(42rem, calc(100vw - 1.5rem));
+  width: min(calc(42rem - 50px), calc(100vw - 1.5rem));
   max-height: min(96dvh, 56rem);
   box-sizing: border-box;
   transform: translate(-50%, -50%);
@@ -24,6 +24,8 @@
 }
 
 .panel {
+  --panel-inline-padding: clamp(1.25rem, 3vw, 1.75rem);
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -31,10 +33,11 @@
   min-height: 0;
   width: 100%;
   max-height: min(96dvh, 56rem);
-  padding: clamp(1.25rem, 3vw, 1.75rem);
+  padding: var(--panel-inline-padding) var(--panel-inline-padding) 0;
   border: 1px solid var(--wcui-border-blue);
   background: var(--wcui-page-black);
   box-sizing: border-box;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -137,10 +140,6 @@
   box-sizing: border-box;
   text-align: center;
   border: none;
-  // backdrop-filter: blur(10px);
-  // -webkit-backdrop-filter: blur(10px);
-  // box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
-  // @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
 }
 
 .tallyCount {
@@ -244,16 +243,20 @@
   margin: 0;
 }
 
+.pitchPanel {
+  align-items: stretch;
+  width: calc(100% + 2 * var(--panel-inline-padding));
+  margin-inline: calc(-1 * var(--panel-inline-padding));
+}
+
 .pitchStage {
-  width: min(100%, 40rem);
-  margin-inline: auto;
+  width: 100%;
 }
 
 .pitchFrame {
   position: relative;
   width: 100%;
   aspect-ratio: 1;
-  border: 1px solid var(--wcui-border-blue);
   background: var(--wcui-pitch-black);
   overflow: hidden;
 }
@@ -263,10 +266,23 @@
   object-position: center top;
 }
 
-.pitchOverlay {
+.pitchAnchor {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: var(--panel-inline-padding);
+  right: var(--panel-inline-padding);
+  bottom: var(--panel-inline-padding);
+  width: auto;
   z-index: 1;
+  pointer-events: none;
+}
+
+.pitchSlots {
+  position: absolute;
+  top: var(--pitch-slot-group-offset, 60px);
+  left: 0;
+  right: 0;
+  height: 100%;
   pointer-events: none;
 
   > * {
@@ -276,10 +292,13 @@
 
 .listPanel {
   flex: 1 1 auto;
+  align-self: stretch;
   align-items: center;
   justify-content: center;
-  width: min(100%, 40rem);
-  min-height: min(20rem, 40dvh);
+  width: calc(100% + 2 * var(--panel-inline-padding));
+  margin-inline: calc(-1 * var(--panel-inline-padding));
+  aspect-ratio: 1;
+  min-height: 0;
   padding: 1.5rem;
   border: 1px solid var(--wcui-border-blue);
   background: var(--wcui-pitch-black);

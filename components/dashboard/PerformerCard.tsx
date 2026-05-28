@@ -9,8 +9,14 @@ type Props = {
   performer: DashboardPerformer;
 };
 
+function getLastName(fullName: string): string {
+  const parts = fullName.trim().split(/\s+/);
+  return parts[parts.length - 1] ?? fullName;
+}
+
 export function PerformerCard({ performer }: Props) {
   const jerseySrc = getTeamJerseyPath(performer.teamCode);
+  const displayName = getLastName(performer.name);
 
   return (
     <article className={styles.cardFrame}>
@@ -26,7 +32,7 @@ export function PerformerCard({ performer }: Props) {
           />
         </div>
         <header className={styles.header}>
-          <h3 className={styles.name}>{performer.name}</h3>
+          <h3 className={styles.name}>{displayName}</h3>
           <p className={styles.meta}>
             <span>{performer.teamCode}</span>
             <span className={styles.metaDivider} aria-hidden="true">

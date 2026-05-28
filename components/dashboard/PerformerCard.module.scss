@@ -29,7 +29,7 @@
   overflow: hidden;
   isolation: isolate;
   @include frame.wcui-chamfer-clip-tl-br;
-  @include frame.wcui-card-glass-surface;
+  @include frame.wcui-panel-card-surface;
 }
 
 .header {
