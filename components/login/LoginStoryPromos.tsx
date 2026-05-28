@@ -3,11 +3,14 @@
 import Image from "next/image";
 import {
   useCallback,
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
   type FocusEvent,
   type KeyboardEvent,
+  type MouseEvent as ReactMouseEvent,
+  type PointerEvent as ReactPointerEvent,
 } from "react";
 import { loginStoryPromos, type LoginStoryPromo } from "@/data/login-story-promos";
 import { t } from "@/lib/i18n/t";
@@ -87,8 +90,15 @@ export function LoginStoryPromos() {
     loginStoryPromos.map(() => null),
   );
   const setWidthRef = useRef(0);
+  const dragRef = useRef<{
+    pointerId: number | null;
+    startX: number;
+    startScrollLeft: number;
+    didDrag: boolean;
+  }>({ pointerId: null, startX: 0, startScrollLeft: 0, didDrag: false });
   const [motionPref, setMotionPref] = useState<"unknown" | "reduce" | "ok">("unknown");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const infiniteScroll = motionPref === "ok";
 
   const measureSetWidth = useCallback(() => {
@@ -224,6 +234,95 @@ export function LoginStoryPromos() {
     return () => mq.removeEventListener("change", updateMotion);
   }, []);
 
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+
+    const onWheel = (event: WheelEvent) => {
+      const delta =
+        Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      if (delta === 0) return;
+
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (maxScroll <= 0 && !infiniteScroll) return;
+
+      if (infiniteScroll) {
+        event.preventDefault();
+        el.scrollLeft += delta;
+        wrapScrollPosition();
+        return;
+      }
+
+      const scrollingRight = delta > 0;
+      const scrollingLeft = delta < 0;
+      const canScroll =
+        (scrollingRight && el.scrollLeft < maxScroll - 1) ||
+        (scrollingLeft && el.scrollLeft > 0);
+
+      if (canScroll) {
+        event.preventDefault();
+      }
+
+      el.scrollLeft += delta;
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [infiniteScroll, wrapScrollPosition]);
+
+  const handleScrollerPointerDown = useCallback((event: ReactPointerEvent<HTMLUListElement>) => {
+    if (event.button !== 0) return;
+    const el = scrollerRef.current;
+    if (!el) return;
+
+    dragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startScrollLeft: el.scrollLeft,
+      didDrag: false,
+    };
+    setIsDragging(true);
+    el.setPointerCapture(event.pointerId);
+  }, []);
+
+  const handleScrollerPointerMove = useCallback(
+    (event: ReactPointerEvent<HTMLUListElement>) => {
+      if (dragRef.current.pointerId !== event.pointerId) return;
+      const el = scrollerRef.current;
+      if (!el) return;
+
+      const dx = event.clientX - dragRef.current.startX;
+      if (Math.abs(dx) > 4) {
+        dragRef.current.didDrag = true;
+      }
+
+      el.scrollLeft = dragRef.current.startScrollLeft - dx;
+      if (infiniteScroll) {
+        wrapScrollPosition();
+      }
+    },
+    [infiniteScroll, wrapScrollPosition],
+  );
+
+  const endScrollerDrag = useCallback((event: ReactPointerEvent<HTMLUListElement>) => {
+    const el = scrollerRef.current;
+    if (!el || dragRef.current.pointerId !== event.pointerId) return;
+
+    if (el.hasPointerCapture(event.pointerId)) {
+      el.releasePointerCapture(event.pointerId);
+    }
+
+    dragRef.current.pointerId = null;
+    setIsDragging(false);
+  }, []);
+
+  const handleScrollerClickCapture = useCallback((event: ReactMouseEvent<HTMLUListElement>) => {
+    if (!dragRef.current.didDrag) return;
+    event.preventDefault();
+    event.stopPropagation();
+    dragRef.current.didDrag = false;
+  }, []);
+
   useLayoutEffect(() => {
     if (!infiniteScroll) return;
 
@@ -254,11 +353,22 @@ export function LoginStoryPromos() {
         </p>
         <ul
           ref={scrollerRef}
-          className={[styles.grid, infiniteScroll && styles.gridLoop].filter(Boolean).join(" ")}
+          className={[
+            styles.grid,
+            infiniteScroll && styles.gridLoop,
+            isDragging && styles.gridDragging,
+          ]
+            .filter(Boolean)
+            .join(" ")}
           role="list"
           aria-label={t("loginStoryPromos.carouselLabel")}
           aria-describedby="login-story-promos-carousel-hint"
           onScroll={infiniteScroll ? wrapScrollPosition : undefined}
+          onPointerDown={handleScrollerPointerDown}
+          onPointerMove={handleScrollerPointerMove}
+          onPointerUp={endScrollerDrag}
+          onPointerCancel={endScrollerDrag}
+          onClickCapture={handleScrollerClickCapture}
         >
           {items.map(({ promo, setIndex }) => {
             const promoIndex = getPromoIndex(promo.id);

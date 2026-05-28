@@ -192,11 +192,7 @@ export function LoginUpcomingMatches() {
             return (
               <div
                 key={tabKey}
-                className={[
-                  styles.tabCell,
-                  isActive && styles.tabCellActive,
-                  isActive && styles[`tabCellActive_${tabKey}`],
-                ]
+                className={[styles.tabCell, styles[`tabCell_${tabKey}`]]
                   .filter(Boolean)
                   .join(" ")}
               >
@@ -206,11 +202,7 @@ export function LoginUpcomingMatches() {
                   id={`login-match-tab-${tabKey}`}
                   aria-selected={isActive}
                   aria-controls="login-match-tabpanel"
-                  className={[
-                    styles.tab,
-                    isActive && styles.tabActive,
-                    isActive && styles[`tabActive_${tabKey}`],
-                  ]
+                  className={[styles.tab, isActive && styles.tabActive]
                     .filter(Boolean)
                     .join(" ")}
                   onClick={() => setActiveTab(tabKey)}

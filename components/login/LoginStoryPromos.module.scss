@@ -58,10 +58,21 @@
   scrollbar-width: thin;
   scrollbar-color: color-mix(in oklab, var(--wcui-aqua-mint) 35%, transparent) transparent;
   box-sizing: border-box;
+  cursor: grab;
+  touch-action: pan-y pinch-zoom;
 }
 
 .gridLoop {
   scroll-behavior: auto;
+}
+
+.gridDragging {
+  cursor: grabbing;
+  user-select: none;
+
+  .card {
+    pointer-events: none;
+  }
 }
 
 .item {

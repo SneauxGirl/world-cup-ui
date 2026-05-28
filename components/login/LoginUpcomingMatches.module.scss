@@ -60,11 +60,11 @@
 
 @mixin login-tab-clip-tl {
   clip-path: polygon(
-    var(--login-tab-active-chamfer) 0,
+    var(--login-tab-chamfer) 0,
     100% 0,
     100% 100%,
     0 100%,
-    0 var(--login-tab-active-chamfer)
+    0 var(--login-tab-chamfer)
   );
 }
 
@@ -72,8 +72,8 @@
   clip-path: polygon(
     0 0,
     100% 0,
-    100% calc(100% - var(--login-tab-active-chamfer)),
-    calc(100% - var(--login-tab-active-chamfer)) 100%,
+    100% calc(100% - var(--login-tab-chamfer)),
+    calc(100% - var(--login-tab-chamfer)) 100%,
     0 100%
   );
 }
@@ -119,35 +119,39 @@
   overflow: hidden;
 }
 
-.tabCellActive {
-  --login-tab-active-chamfer: 10px;
+.tabCell_games,
+.tabCell_bracket {
+  --login-tab-active-chamfer: 12px;
+  --login-tab-inner-chamfer: calc(var(--login-tab-active-chamfer) - 1px);
 }
 
-/* Back layer (cell): chamfer must match front layer (button) at all times. */
-.tabCell.tabCellActive_games {
+/* Back layer (cell): outer chamfer always on Games (TL) and Bracket (BR). */
+.tabCell.tabCell_games {
+  --login-tab-chamfer: var(--login-tab-active-chamfer);
   @include login-tab-clip-tl;
 }
 
-.tabCell.tabCellActive_bracket {
+.tabCell.tabCell_bracket {
+  --login-tab-chamfer: var(--login-tab-active-chamfer);
   @include login-tab-clip-br;
 }
 
-/* Aqua trim on hover/focus — re-clip so corners stay chamfered, not square. */
-.tabCell:not(.tabCellActive_games):not(.tabCellActive_bracket):has(.tab:hover),
-.tabCell:not(.tabCellActive_games):not(.tabCellActive_bracket):has(.tab:focus) {
+.tabCell.tabCell_standings:has(.tab:hover),
+.tabCell.tabCell_standings:has(.tab:focus),
+.tabCell.tabCell_standings:has(.tab:focus-visible) {
   background: var(--wcui-aqua-mint);
 }
 
-.tabCell.tabCellActive_games:has(.tab:hover),
-.tabCell.tabCellActive_games:has(.tab:focus) {
+.tabCell.tabCell_games:has(.tab:hover),
+.tabCell.tabCell_games:has(.tab:focus),
+.tabCell.tabCell_games:has(.tab:focus-visible) {
   background: var(--wcui-aqua-mint);
-  @include login-tab-clip-tl;
 }
 
-.tabCell.tabCellActive_bracket:has(.tab:hover),
-.tabCell.tabCellActive_bracket:has(.tab:focus) {
+.tabCell.tabCell_bracket:has(.tab:hover),
+.tabCell.tabCell_bracket:has(.tab:focus),
+.tabCell.tabCell_bracket:has(.tab:focus-visible) {
   background: var(--wcui-aqua-mint);
-  @include login-tab-clip-br;
 }
 
 .tab {
@@ -195,12 +199,14 @@
   color: var(--wcui-white-text);
 }
 
-/* Front layer (button): same chamfer as cell so trim edges align. */
-.tab.tabActive.tabActive_games {
+/* Front layer (button): inset chamfer always so shape matches the cell cut. */
+.tabCell.tabCell_games .tab {
+  --login-tab-chamfer: var(--login-tab-inner-chamfer);
   @include login-tab-clip-tl;
 }
 
-.tab.tabActive.tabActive_bracket {
+.tabCell.tabCell_bracket .tab {
+  --login-tab-chamfer: var(--login-tab-inner-chamfer);
   @include login-tab-clip-br;
 }
 
@@ -308,9 +314,10 @@
   gap: 0.35rem;
 }
 
-/* Date cells: two-layer trim; 4px chamfer on all four corners (cell + date button). */
+/* Date cells: two-layer trim; outer chamfer on cell, inset on button so trim follows the cut. */
 .dateCell {
-  --login-date-chamfer: 4px;
+  --login-date-chamfer-outer: 6px;
+  --login-date-chamfer: var(--login-date-chamfer-outer);
   display: flex;
   flex: 0 0 auto;
   padding: 1px;
@@ -321,13 +328,14 @@
 }
 
 .dateCell:has(.dateBtn:hover),
-.dateCell:has(.dateBtn:focus) {
+.dateCell:has(.dateBtn:focus),
+.dateCell:has(.dateBtn:focus-visible) {
   background: var(--wcui-aqua-mint);
   @include login-date-clip;
 }
 
 .dateBtn {
-  --login-date-chamfer: 4px;
+  --login-date-chamfer: calc(var(--login-date-chamfer-outer) - 1px);
   @include login-date-clip;
   display: flex;
   flex: 1;

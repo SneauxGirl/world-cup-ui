@@ -42,7 +42,8 @@ export const en = {
   loginStoryPromos: {
     heading: "Latest from World Cup Challenge",
     carouselLabel: "Latest stories",
-    carouselHint: "Use left and right arrow keys to move between stories.",
+    carouselHint:
+      "Scroll with the mouse wheel or drag sideways to browse stories. Use left and right arrow keys to move between stories.",
     items: {
       danilo: {
         eyebrow: "Brazil",
