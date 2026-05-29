@@ -1,3 +1,4 @@
+import { Providers } from "./providers";
 import type { Metadata, Viewport } from "next";
 import { Alumni_Sans, Alumni_Sans_SC, Finlandica } from "next/font/google";
 import "flag-icons/css/flag-icons.min.css";
@@ -45,7 +46,7 @@ export default function RootLayout({
       className={`${alumniSans.variable} ${alumniSansSc.variable} ${finlandica.variable}`}
     >
       <body>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -14,10 +14,10 @@ const FOCUSABLE =
 type Props = {
   open: boolean;
   onClose: () => void;
-  onRequestSignUp?: () => void;
+  onRequestSignIn?: () => void;
 };
 
-export function LoginModal({ open, onClose, onRequestSignUp }: Props) {
+export function SignUpModal({ open, onClose, onRequestSignIn }: Props) {
   const shellRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
@@ -84,7 +84,7 @@ export function LoginModal({ open, onClose, onRequestSignUp }: Props) {
       <button
         type="button"
         className={styles.overlay}
-        aria-label={t("login.closeDialog")}
+        aria-label={t("login.closeSignUpDialog")}
         onClick={handleClose}
       />
       <div
@@ -96,14 +96,14 @@ export function LoginModal({ open, onClose, onRequestSignUp }: Props) {
         aria-labelledby={titleId}
       >
         <h2 id={titleId} className={styles.srOnly}>
-          {t("login.dialogLabel")}
+          {t("login.signUpDialogLabel")}
         </h2>
         <div className={styles.panel}>
           <button
             ref={closeBtnRef}
             type="button"
             className={styles.closeBtn}
-            aria-label={t("login.closeDialog")}
+            aria-label={t("login.closeSignUpDialog")}
             onClick={handleClose}
           >
             <IconClose />
@@ -111,8 +111,9 @@ export function LoginModal({ open, onClose, onRequestSignUp }: Props) {
           <div className={styles.formScroll}>
             <LoginForm
               className={styles.modalForm}
+              mode="signUp"
               onSuccess={handleClose}
-              onRequestSignUp={onRequestSignUp}
+              onRequestSignIn={onRequestSignIn}
             />
           </div>
         </div>

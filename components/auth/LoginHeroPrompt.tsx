@@ -7,9 +7,10 @@ import styles from "./LoginHeroPrompt.module.scss";
 
 type Props = {
   onSignIn: () => void;
+  onSignUp: () => void;
 };
 
-export function LoginHeroPrompt({ onSignIn }: Props) {
+export function LoginHeroPrompt({ onSignIn, onSignUp }: Props) {
   return (
     <div className={styles.promptFrame}>
       <div className={[formStyles.loginCard, styles.promptCard].join(" ")}>
@@ -44,8 +45,7 @@ export function LoginHeroPrompt({ onSignIn }: Props) {
             <button
               type="button"
               className={[formStyles.chamferBtn, styles.signUpBtn].join(" ")}
-              aria-disabled="true"
-              onClick={(event) => event.preventDefault()}
+              onClick={onSignUp}
             >
               {t("login.signUp")}
             </button>

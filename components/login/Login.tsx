@@ -1,9 +1,10 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { userDashboard } from "@/data/dashboard-seed";
 import { LoginHeroPrompt } from "@/components/auth/LoginHeroPrompt";
 import { LoginModal } from "@/components/auth/LoginModal";
+import { SignUpModal } from "@/components/auth/SignUpModal";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { LoginSiteFooter } from "@/components/login/LoginSiteFooter";
 import { LoginStoryPromos } from "@/components/login/LoginStoryPromos";
@@ -14,6 +15,17 @@ import styles from "./Login.module.scss";
 
 export function Login() {
   const [loginOpen, setLoginOpen] = useState(false);
+  const [signUpOpen, setSignUpOpen] = useState(false);
+
+  const openSignIn = useCallback(() => {
+    setSignUpOpen(false);
+    setLoginOpen(true);
+  }, []);
+
+  const openSignUp = useCallback(() => {
+    setLoginOpen(false);
+    setSignUpOpen(true);
+  }, []);
   const pageRef = useRef<HTMLDivElement>(null);
   const heroContentShellRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
@@ -88,7 +100,10 @@ export function Login() {
               <div className={styles.pageGutter}>
                 <div className={styles.pageColumn}>
                   <div ref={heroContentRef} className={styles.heroContent}>
-                    <LoginHeroPrompt onSignIn={() => setLoginOpen(true)} />
+                    <LoginHeroPrompt
+                      onSignIn={() => setLoginOpen(true)}
+                      onSignUp={() => setSignUpOpen(true)}
+                    />
                   </div>
                 </div>
               </div>
@@ -123,7 +138,16 @@ export function Login() {
         </div>
       </div>
 
-      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
+      <LoginModal
+        open={loginOpen}
+        onClose={() => setLoginOpen(false)}
+        onRequestSignUp={openSignUp}
+      />
+      <SignUpModal
+        open={signUpOpen}
+        onClose={() => setSignUpOpen(false)}
+        onRequestSignIn={openSignIn}
+      />
     </div>
   );
 }

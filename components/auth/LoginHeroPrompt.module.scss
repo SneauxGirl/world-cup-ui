@@ -102,7 +102,7 @@
   padding: 0.7rem 1rem;
   font-weight: 700;
   color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
-  cursor: default;
+  cursor: pointer;
   border: none;
   @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
   @include frame.wcui-card-glass-surface;

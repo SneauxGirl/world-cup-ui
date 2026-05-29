@@ -63,6 +63,15 @@ $wcui-token-pairs: (
   --wcui-text-standard: rgb(255 255 255 / 0.8);
   --wcui-text-standard: oklch(0.98 0 0 / 0.8);
 
+  /* Placeholder copy — ~60% white (~7.3:1 on pitch black, WCAG AA). */
+  --wcui-text-placeholder-hex: rgb(255 255 255 / 0.6);
+  --wcui-text-placeholder: rgb(255 255 255 / 0.6);
+  --wcui-text-placeholder: oklch(0.98 0 0 / 0.6);
+
+  /* Validation / error copy — signal yellow on dark surfaces (~14.8:1 on pitch black). */
+  --wcui-text-error: color-mix(in oklab, var(--wcui-signal-orange-hex) 92%, white);
+  --wcui-text-error-hex: var(--wcui-signal-orange-hex);
+
   --wcui-shadow-aqua-soft-hex: rgb(0 230 236 / 0.055);
   --wcui-shadow-aqua-soft: rgb(0 230 236 / 0.055);
   --wcui-shadow-aqua-soft: oklch(0.84 0.15 205 / 0.055);
@@ -71,7 +80,9 @@ $wcui-token-pairs: (
 
   /* Typography scale — login page reference (font-size only). */
   --wcui-font-meta: 0.72rem;
-  --wcui-font-label: 0.8rem;
+  --wcui-font-label: 0.875rem;
+  --wcui-font-field-label: var(--wcui-font-label);
+  --wcui-font-field-input: 1rem;
   --wcui-font-secondary: clamp(0.8rem, 1.4vw, 0.9rem);
   --wcui-font-control: clamp(0.85rem, 1.5vw, 0.95rem);
   --wcui-font-body: 1rem;
