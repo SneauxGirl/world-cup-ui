@@ -7,6 +7,7 @@ import { LoginModal } from "@/components/auth/LoginModal";
 import { SignUpModal } from "@/components/auth/SignUpModal";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { LoginSiteFooter } from "@/components/login/LoginSiteFooter";
+import { LoginSteps } from "@/components/login/LoginSteps";
 import { LoginStoryPromos } from "@/components/login/LoginStoryPromos";
 import { LoginUpcomingMatches } from "@/components/login/LoginUpcomingMatches";
 import { SiteHeader } from "@/components/shared/SiteHeader";
@@ -118,6 +119,12 @@ export function Login() {
             </div>
           </div>
         </section>
+
+        <div className={styles.pageGutter}>
+          <div className={styles.pageColumn}>
+            <LoginSteps />
+          </div>
+        </div>
 
         <div className={styles.pageGutter}>
           <div className={styles.pageColumn}>

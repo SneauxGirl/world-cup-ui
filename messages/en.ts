@@ -67,11 +67,28 @@ export const en = {
       generic: "Something went wrong. Please try again.",
     },
   },
+  loginSteps: {
+    regionLabel: "How World Cup Challenge works",
+    steps: {
+      draft: {
+        title: "Draft Your Squad",
+        body: "Build your roster",
+      },
+      earnPoints: {
+        title: "Earn Points",
+        body: "Real matches generate fantasy points",
+      },
+      worldCup: {
+        title: "Take Home the World Cup",
+        body: "Compete against managers worldwide and win",
+      },
+    },
+  },
   loginStoryPromos: {
     heading: "Latest from World Cup Challenge",
     carouselLabel: "Latest stories",
     carouselHint:
-      "Scroll with the mouse wheel or drag sideways to browse stories. Use left and right arrow keys to move between stories.",
+      "Drag sideways to browse stories. Use left and right arrow keys to move between stories.",
     items: {
       danilo: {
         eyebrow: "Brazil",

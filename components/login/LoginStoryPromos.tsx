@@ -3,7 +3,6 @@
 import Image from "next/image";
 import {
   useCallback,
-  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -233,42 +232,6 @@ export function LoginStoryPromos() {
     mq.addEventListener("change", updateMotion);
     return () => mq.removeEventListener("change", updateMotion);
   }, []);
-
-  useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-
-    const onWheel = (event: WheelEvent) => {
-      const delta =
-        Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-      if (delta === 0) return;
-
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      if (maxScroll <= 0 && !infiniteScroll) return;
-
-      if (infiniteScroll) {
-        event.preventDefault();
-        el.scrollLeft += delta;
-        wrapScrollPosition();
-        return;
-      }
-
-      const scrollingRight = delta > 0;
-      const scrollingLeft = delta < 0;
-      const canScroll =
-        (scrollingRight && el.scrollLeft < maxScroll - 1) ||
-        (scrollingLeft && el.scrollLeft > 0);
-
-      if (canScroll) {
-        event.preventDefault();
-      }
-
-      el.scrollLeft += delta;
-    };
-
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, [infiniteScroll, wrapScrollPosition]);
 
   const handleScrollerPointerDown = useCallback((event: ReactPointerEvent<HTMLUListElement>) => {
     if (event.button !== 0) return;

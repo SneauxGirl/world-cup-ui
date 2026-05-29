@@ -1,0 +1,110 @@
+@use "../../styles/wcui-frame" as frame;
+
+.section {
+  --login-steps-gap: 40px;
+  flex-shrink: 0;
+  width: 100%;
+  background: var(--wcui-background-black);
+}
+
+.inner {
+  width: 100%;
+  margin-inline: 0;
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+  box-sizing: border-box;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: var(--login-steps-gap);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.item {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.card {
+  height: 100%;
+}
+
+.cardFrame {
+  --wcui-chamfer-tl: var(--login-card-chamfer, 12px);
+  --wcui-chamfer-br: var(--login-card-chamfer, 12px);
+  height: 100%;
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--wcui-border-blue);
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
+}
+
+.cardInner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-panel-blueblack));
+}
+
+.media {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--wcui-pitch-black);
+  box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
+}
+
+.mediaImg {
+  object-fit: cover;
+  object-position: center;
+}
+
+.copy {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.45rem;
+  padding: clamp(1rem, 2.2vw, 1.35rem) clamp(1rem, 2vw, 1.25rem);
+  border-top: 1px solid var(--wcui-border-blue);
+  background: var(--wcui-panel-blueblack);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-alumni-sans), sans-serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: var(--wcui-white-text);
+}
+
+.body {
+  margin: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: var(--wcui-font-secondary);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--wcui-text-standard);
+}
+
+@media (max-width: 768px) {
+  .item {
+    flex: 1 1 100%;
+  }
+}
