@@ -7,17 +7,17 @@ export type LoginStep = {
 export const loginSteps: LoginStep[] = [
   {
     id: "draft",
-    imageSrc: "/steps/step1.png",
+    imageSrc: "/steps/step1-flush.png",
     copyKey: "draft",
   },
   {
     id: "earn-points",
-    imageSrc: "/steps/step2.png",
+    imageSrc: "/steps/step2-points.png",
     copyKey: "earnPoints",
   },
   {
     id: "world-cup",
-    imageSrc: "/steps/step3.png",
+    imageSrc: "/steps/step3-champion.png",
     copyKey: "worldCup",
   },
 ];

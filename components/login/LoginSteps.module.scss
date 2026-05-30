@@ -2,6 +2,7 @@
 
 .section {
   --login-steps-gap: 40px;
+  --login-steps-chamfer: 24px;
   flex-shrink: 0;
   width: 100%;
   background: var(--wcui-background-black);
@@ -34,16 +35,42 @@
 }
 
 .card {
+  display: block;
+  width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: inherit;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover .title,
+  &:focus-visible .title {
+    color: var(--wcui-aqua-mint);
+  }
+
+  &:hover .cardFrame,
+  &:focus-visible .cardFrame {
+    background: var(--wcui-aqua-mint);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 4px;
+  }
 }
 
 .cardFrame {
-  --wcui-chamfer-tl: var(--login-card-chamfer, 12px);
-  --wcui-chamfer-br: var(--login-card-chamfer, 12px);
+  --wcui-chamfer-tl: var(--login-steps-chamfer);
+  --wcui-chamfer-br: var(--login-steps-chamfer);
   height: 100%;
   padding: 1px;
   box-sizing: border-box;
   background: var(--wcui-border-blue);
+  transition: background-color 160ms ease;
   @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
 }
 
@@ -59,11 +86,17 @@
 
 .media {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
   flex-shrink: 0;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
+  padding: 0;
+  box-sizing: border-box;
   overflow: hidden;
-  background: var(--wcui-pitch-black);
+  background: var(--wcui-background-black);
   box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
 }
 
@@ -78,32 +111,39 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.45rem;
-  padding: clamp(1rem, 2.2vw, 1.35rem) clamp(1rem, 2vw, 1.25rem);
+  gap: 0.35rem;
+  padding: clamp(1.1rem, 2.4vw, 1.45rem) clamp(1rem, 2vw, 1.25rem);
   border-top: 1px solid var(--wcui-border-blue);
   background: var(--wcui-panel-blueblack);
 }
 
 .title {
   margin: 0;
-  font-family: var(--font-alumni-sans), sans-serif;
-  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: calc(clamp(1.15rem, 2vw, 1.45rem) + 2px);
   font-weight: 700;
   line-height: 1.15;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--wcui-white-text);
+  transition: color 160ms ease;
 }
 
 .body {
   margin: 0;
   font-family: var(--font-finlandica), sans-serif;
-  font-size: var(--wcui-font-secondary);
+  font-size: calc(clamp(0.8rem, 1.4vw, 0.9rem) + 2px);
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.25;
   color: var(--wcui-text-standard);
 }
 
 @media (max-width: 768px) {
+  .section {
+    /* Full-width cards — scale chamfer up with card width (matches hero login panel feel). */
+    --login-steps-chamfer: clamp(24px, 6vw, 30px);
+  }
+
   .item {
     flex: 1 1 100%;
   }

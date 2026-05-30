@@ -71,8 +71,8 @@ export const en = {
     regionLabel: "How World Cup Challenge works",
     steps: {
       draft: {
-        title: "Draft Your Squad",
-        body: "Build your roster",
+        title: "Build Your Roster",
+        body: "Select from the world's best players",
       },
       earnPoints: {
         title: "Earn Points",
@@ -117,7 +117,7 @@ export const en = {
     },
   },
   loginMatches: {
-    worldCup: "World Cup",
+    heading: "Match Play",
     season: "2026 season",
     tabsLabel: "Tournament views",
     tabs: {

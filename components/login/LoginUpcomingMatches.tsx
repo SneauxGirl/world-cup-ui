@@ -173,8 +173,8 @@ export function LoginUpcomingMatches() {
     <section className={styles.section} aria-labelledby="login-upcoming-matches-heading">
       <div className={styles.panel}>
         <header className={styles.panelHead}>
-          <h2 id="login-upcoming-matches-heading" className={styles.brandTitle}>
-            {t("loginMatches.worldCup")}
+          <h2 id="login-upcoming-matches-heading" className={styles.heading}>
+            {t("loginMatches.heading")}
           </h2>
           <div className={styles.seasonMeta}>
             <p className={styles.seasonLine}>{t("loginMatches.season")}</p>

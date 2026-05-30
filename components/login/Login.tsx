@@ -122,7 +122,7 @@ export function Login() {
 
         <div className={styles.pageGutter}>
           <div className={styles.pageColumn}>
-            <LoginSteps />
+            <LoginSteps onSignIn={openSignIn} />
           </div>
         </div>
 
