@@ -1,0 +1,67 @@
+@use "../../../styles/wcui-frame" as frame;
+
+.cardFrame {
+  --wcui-card-corner: 10px;
+  flex: 0 0 auto;
+  width: clamp(5.5rem, 14vw, 6.75rem);
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--wcui-border-blue);
+  scroll-snap-align: start;
+  @include frame.wcui-chamfer-frame-tl-br;
+}
+
+.cardInner {
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-pitch-black));
+  min-height: 100%;
+}
+
+.openBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.65rem 0.45rem 0.75rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: center;
+}
+
+.openBtn:focus-visible {
+  outline: 2px solid var(--wcui-aqua-mint);
+  outline-offset: -2px;
+}
+
+.name {
+  font-size: var(--wcui-font-label);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--wcui-white-text);
+  line-height: 1.1;
+}
+
+.meta {
+  font-size: var(--wcui-font-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wcui-text-standard);
+}
+
+.delta {
+  font-size: var(--wcui-font-control);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.delta_bullish,
+.delta_elite {
+  color: var(--wcui-sky-blue);
+}
+
+.delta_bearish {
+  color: var(--wcui-broadcast-orange);
+}
