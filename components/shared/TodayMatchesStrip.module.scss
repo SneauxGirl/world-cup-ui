@@ -1,0 +1,153 @@
+.strip {
+  --banner-min-game-width: 85px;
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding-block: 8px;
+  // background: var(--wcui-panel-blueblack);
+  border-bottom: 1px solid var(--wcui-border-blue);
+}
+
+.measureRow {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+
+  .dateLabel {
+    flex: 0 0 auto;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  min-height: 2.65rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dateLabel {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.3rem clamp(1.25rem, 2vw, 1.8rem);
+  border-right: 1px solid color-mix(in oklab, var(--wcui-border-blue) 72%, transparent);
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: clamp(0.62rem, 1.6vw, 0.72rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wcui-text-standard);
+  white-space: nowrap;
+}
+
+.gameWrap {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: row;
+  align-items: stretch;
+  min-width: var(--banner-min-game-width);
+}
+
+.gameDivider {
+  flex: 0 0 1px;
+  align-self: stretch;
+  width: 1px;
+  background: color-mix(in oklab, var(--wcui-border-blue) 55%, transparent);
+}
+
+.game {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.12rem;
+  min-width: 0;
+  padding: 0.28rem clamp(0.35rem, 1vw, 0.65rem);
+  box-sizing: border-box;
+}
+
+.gameStatus {
+  margin: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: clamp(0.58rem, 1.4vw, 0.65rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  text-align: right;
+  color: var(--wcui-text-standard);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gameStatusLive {
+  font-weight: 700;
+  color: var(--wcui-lime-pulse);
+}
+
+.gameStatusFinished {
+  color: color-mix(in oklab, var(--wcui-white-text) 65%, transparent);
+}
+
+.teamList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.teamRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.teamFlag {
+  flex-shrink: 0;
+  width: 0.95rem;
+  height: 0.64rem;
+  border-radius: 0.08rem;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.teamCode {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: clamp(0.62rem, 1.5vw, 0.7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  color: var(--wcui-white-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teamScore {
+  flex-shrink: 0;
+  min-width: 0.85rem;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: clamp(0.62rem, 1.5vw, 0.7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: right;
+  color: var(--wcui-white-text);
+  font-variant-numeric: tabular-nums;
+}

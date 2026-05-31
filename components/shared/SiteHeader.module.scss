@@ -15,10 +15,9 @@
   box-sizing: border-box;
   max-width: var(--content-max, 1440px);
   margin: 0 auto;
-  padding:
-    calc(0.85rem + env(safe-area-inset-top, 0px))
-    var(--content-gutter, var(--header-gutter))
-    0.85rem;
+  padding-inline: var(--content-gutter, var(--header-gutter));
+  padding-bottom: 0.8rem;
+  padding-top: calc(0.8rem + env(safe-area-inset-top, 0px));
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -252,9 +251,3 @@
   }
 }
 
-@media (min-width: 1200px) {
-  .inner {
-    padding-top: calc(0.65rem + env(safe-area-inset-top, 0px));
-    padding-bottom: 0.65rem;
-  }
-}

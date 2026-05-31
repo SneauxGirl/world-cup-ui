@@ -3,6 +3,8 @@
  * Maps FIFA / project codes to flag-icons ISO 3166-1-alpha-2 class suffixes.
  */
 
+import { countryToFifa } from "@/lib/nationalTeams";
+
 /** FIFA (and project) codes → flag-icons `fi-xx` suffix (4:3 landscape by default). */
 export const FIFA_TO_FLAG_ICON: Record<string, string> = {
   ALG: "dz",
@@ -17,6 +19,8 @@ export const FIFA_TO_FLAG_ICON: Record<string, string> = {
   COD: "cd",
   COL: "co",
   CPV: "cv",
+  CRC: "cr",
+  CRO: "hr",
   CUW: "cw",
   CZE: "cz",
   ECU: "ec",
@@ -30,6 +34,7 @@ export const FIFA_TO_FLAG_ICON: Record<string, string> = {
   HRV: "hr",
   IRN: "ir",
   IRQ: "iq",
+  ITA: "it",
   JOR: "jo",
   JPN: "jp",
   KOR: "kr",
@@ -41,6 +46,7 @@ export const FIFA_TO_FLAG_ICON: Record<string, string> = {
   NZL: "nz",
   PAN: "pa",
   PAR: "py",
+  POL: "pl",
   POR: "pt",
   QAT: "qa",
   RSA: "za",
@@ -50,6 +56,7 @@ export const FIFA_TO_FLAG_ICON: Record<string, string> = {
   SWE: "se",
   TUN: "tn",
   TUR: "tr",
+  URU: "uy",
   URY: "uy",
   USA: "us",
   UZB: "uz",
@@ -57,7 +64,8 @@ export const FIFA_TO_FLAG_ICON: Record<string, string> = {
 
 /** CSS classes for a 4:3 landscape flag from a FIFA-style country code. */
 export function getFlagIconClasses(code: string): string | undefined {
-  const icon = FIFA_TO_FLAG_ICON[code.toUpperCase()];
+  const fifaCode = countryToFifa(code.trim().toUpperCase());
+  const icon = FIFA_TO_FLAG_ICON[fifaCode];
   if (!icon) return undefined;
   return `fi fi-${icon}`;
 }

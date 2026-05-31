@@ -17,6 +17,7 @@ import { RosterHealthSection } from "@/components/dashboard/RosterHealthSection"
 import { StrategyInsightBlock } from "@/components/dashboard/StrategyFeedSections";
 import { SidebarNav } from "@/components/dashboard/Navigation";
 import { SiteHeader } from "@/components/shared/SiteHeader";
+import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { SiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import { SquadSelectionModal } from "@/components/dashboard/SquadSelectionModal";
@@ -60,6 +61,7 @@ export function Dashboard() {
       />
       <SidebarNav onLogoutConfirm={confirmSidebarLogout} />
       <div className={styles.shell}>
+        <TodayMatchesStrip className={styles.shellMatches} />
         <div className={styles.shellTop}>
           <SiteHeader
             brand="dashboard"

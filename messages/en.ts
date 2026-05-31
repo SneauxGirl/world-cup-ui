@@ -133,6 +133,13 @@ export const en = {
     matchesScrollerLabel: "Matches for selected date",
     matchesScrollerHint: "Use left and right arrow keys to scroll through matches.",
   },
+  todayMatches: {
+    regionLabel: "Today's matches",
+    gamesLabel: "Match scores",
+    final: "Final",
+    homeScore: "Home score",
+    awayScore: "Away score",
+  },
   loginFooter: {
     partnersLabel: "Official partners",
     navLabel: "Site links",
@@ -255,10 +262,17 @@ export const en = {
     position: "{team} · {pos}",
   },
   feed: {
-    mbappeGoal: "Mbappé scores!",
+    kaneGoal: "Kane goal",
+    bellinghamAssist: "Bellingham assist",
+    ronaldoShot: "Ronaldo header saved",
+    fodenChance: "Foden shot wide",
+    riceTackle: "Rice tackle",
+    walkerClearance: "Walker clearance",
+    brunoFernandesCorner: "Bruno Fernandes corner",
+    alvarezGoal: "Álvarez goal",
+    griezmannAssist: "Griezmann assist",
     brazilCleanSheet: "Brazil clean sheet",
-    debruyneAssist: "De Bruyne assist",
-    argentinaGoal: "Argentina goal",
+    virgilBlock: "van Dijk block",
   },
 } as const;
 

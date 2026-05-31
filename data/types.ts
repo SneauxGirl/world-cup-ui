@@ -3,10 +3,17 @@ export type FifaCountryCode = string;
 export type MatchStatus = "live" | "upcoming" | "finished";
 
 export type FeedMessageKey =
-  | "mbappeGoal"
+  | "alvarezGoal"
+  | "griezmannAssist"
   | "brazilCleanSheet"
-  | "debruyneAssist"
-  | "argentinaGoal";
+  | "virgilBlock"
+  | "kaneGoal"
+  | "bellinghamAssist"
+  | "ronaldoShot"
+  | "fodenChance"
+  | "riceTackle"
+  | "brunoFernandesCorner"
+  | "walkerClearance";
 
 export type DashboardMatch = {
   id: string;
@@ -17,6 +24,8 @@ export type DashboardMatch = {
   awayScore: number;
   clockLabel: string;
   fantasyPoints: number;
+  /** Chronological slot on the match day (lower = earlier kickoff). */
+  kickoffOrder?: number;
   /** ISO time of the latest goal; triggers a short red border flash while live. */
   lastGoalAt?: string;
 };

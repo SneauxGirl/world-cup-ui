@@ -36,15 +36,16 @@ const API_TO_FIFA: Record<string, string> = {
   IRA: "IRN",
   SAU: "KSA",
   COS: "CRC",
+  CRC: "CRC",
+  CRO: "HRV",
+  URU: "URY",
   JAP: "JPN",
   SPA: "ESP",
-  CRO: "HRV",
   MOR: "MAR",
   CAM: "CMR",
   SER: "SRB",
   SWI: "SUI",
   SOU: "KOR",
-  URU: "URY",
 };
 
 const teams = nationalTeamsData.teams as NationalTeam[];
