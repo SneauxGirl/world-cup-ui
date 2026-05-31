@@ -1,5 +1,3 @@
-@use "../../../styles/wcui-frame" as frame;
-
 .chart {
   position: relative;
   display: flex;
@@ -10,21 +8,20 @@
 
 .svg {
   display: block;
-  width: 100%;
-  height: auto;
+  overflow: visible;
 }
 
 .wick {
-  stroke-width: 2;
+  stroke-width: 1;
   stroke-linecap: round;
 }
 
 .body {
-  stroke-width: 1;
+  stroke-width: 1.25;
 }
 
 .volume {
-  opacity: 0.85;
+  opacity: 0.7;
 }
 
 .tooltip {
@@ -55,10 +52,14 @@
 }
 
 .bullish {
-  .wick,
+  .wick {
+    stroke: color-mix(in oklab, var(--wcui-sky-blue) 55%, transparent);
+  }
+
   .body {
     stroke: var(--wcui-sky-blue);
-    fill: color-mix(in oklab, var(--wcui-sky-blue) 72%, var(--wcui-pitch-black));
+    fill: color-mix(in oklab, var(--wcui-sky-blue) 55%, var(--wcui-pitch-black));
+    filter: drop-shadow(0 0 3px color-mix(in oklab, var(--wcui-sky-blue) 70%, transparent));
   }
 
   .volume {
@@ -67,10 +68,14 @@
 }
 
 .bearish {
-  .wick,
+  .wick {
+    stroke: color-mix(in oklab, var(--wcui-broadcast-orange) 55%, transparent);
+  }
+
   .body {
     stroke: var(--wcui-broadcast-orange);
-    fill: color-mix(in oklab, var(--wcui-broadcast-orange) 68%, var(--wcui-pitch-black));
+    fill: color-mix(in oklab, var(--wcui-broadcast-orange) 52%, var(--wcui-pitch-black));
+    filter: drop-shadow(0 0 3px color-mix(in oklab, var(--wcui-broadcast-orange) 65%, transparent));
   }
 
   .volume {
@@ -79,53 +84,53 @@
 }
 
 .elite {
-  .wick,
+  .wick {
+    stroke: color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+  }
+
   .body {
-    stroke: var(--wcui-sky-blue);
-    fill: color-mix(in oklab, var(--wcui-sky-blue) 78%, var(--wcui-pitch-black));
+    stroke: var(--wcui-aqua-mint);
+    fill: color-mix(in oklab, var(--wcui-sky-blue) 58%, var(--wcui-pitch-black));
+    filter: drop-shadow(0 0 4px color-mix(in oklab, var(--wcui-aqua-mint) 75%, transparent));
   }
 
   .volume {
-    fill: color-mix(in oklab, var(--wcui-border-blue) 75%, var(--wcui-sky-blue));
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    border: 1px solid color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
-    box-shadow: 0 0 12px color-mix(in oklab, var(--wcui-aqua-mint) 45%, transparent);
-    pointer-events: none;
+    fill: color-mix(in oklab, var(--wcui-border-blue) 75%, var(--wcui-aqua-mint));
   }
 }
 
 .volatile {
-  .wick,
+  .wick {
+    stroke: color-mix(in oklab, var(--wcui-lime-pulse) 50%, transparent);
+  }
+
   .body {
-    stroke: var(--wcui-sky-blue);
-    fill: color-mix(in oklab, var(--wcui-sky-blue) 65%, var(--wcui-pitch-black));
+    stroke: var(--wcui-lime-pulse);
+    fill: color-mix(in oklab, var(--wcui-signal-yellow) 42%, var(--wcui-pitch-black));
+    filter: drop-shadow(0 0 4px color-mix(in oklab, var(--wcui-lime-pulse) 80%, transparent));
   }
 
   .volume {
     fill: color-mix(in oklab, var(--wcui-border-blue) 70%, var(--wcui-lime-pulse));
   }
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    border: 1px dashed color-mix(in oklab, var(--wcui-lime-pulse) 55%, var(--wcui-border-blue));
-    box-shadow: 0 0 10px color-mix(in oklab, var(--wcui-lime-pulse) 35%, transparent);
-    pointer-events: none;
-  }
 }
 
 .compact {
-  min-width: 2.75rem;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  flex-shrink: 0;
+
+  .svg {
+    width: 40px;
+    height: auto;
+    max-width: none;
+  }
 }
 
 .full {
-  min-width: 3.25rem;
+  width: 40px;
+  min-width: 40px;
 }
 
 @media (prefers-reduced-motion: reduce) {

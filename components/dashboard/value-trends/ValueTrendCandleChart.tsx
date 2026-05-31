@@ -21,9 +21,14 @@ type Props = {
   labelledBy?: string;
 };
 
-const CHART_HEIGHT = 72;
-const VOLUME_HEIGHT = 10;
-const BODY_WIDTH = 14;
+const STRIP_WIDTH = 40;
+const STRIP_HEIGHT = 96;
+const STRIP_BODY = 31;
+
+const FULL_WIDTH = 40;
+const FULL_HEIGHT = 72;
+const FULL_BODY = 12;
+const FULL_VOLUME_HEIGHT = 8;
 
 function getTrendClass(trend: ValueTrendTrend, volatile: boolean): string {
   if (volatile) return styles.volatile;
@@ -44,22 +49,27 @@ export function ValueTrendCandleChart({
   labelledBy,
 }: Props) {
   const volatile = isCandleVolatile(candle);
+  const chartWidth = compact ? STRIP_WIDTH : FULL_WIDTH;
+  const chartHeight = compact ? STRIP_HEIGHT : FULL_HEIGHT;
+  const bodyWidth = compact ? STRIP_BODY : FULL_BODY;
+  const centerX = chartWidth / 2;
+
   const min = scaleMin ?? Math.min(candle.low, candle.open, candle.close) - 2;
   const max = scaleMax ?? Math.max(candle.high, candle.open, candle.close) + 2;
   const range = Math.max(max - min, 1);
 
-  const toY = (value: number) =>
-    CHART_HEIGHT - ((value - min) / range) * CHART_HEIGHT;
+  const toY = (value: number) => chartHeight - ((value - min) / range) * chartHeight;
 
   const openY = toY(candle.open);
   const closeY = toY(candle.close);
   const highY = toY(candle.high);
   const lowY = toY(candle.low);
   const bodyTop = Math.min(openY, closeY);
-  const bodyHeight = Math.max(Math.abs(closeY - openY), 2);
-  const centerX = compact ? 18 : 24;
+  const bodyHeight = Math.max(Math.abs(closeY - openY), compact ? 6 : 2);
   const volumeMax = 480;
-  const volumeWidth = (candle.minutesPlayed / volumeMax) * (compact ? 28 : 36);
+  const volumeWidth = (candle.minutesPlayed / volumeMax) * (compact ? 32 : 28);
+  const volumeBlock = showVolume && !compact;
+  const viewHeight = chartHeight + (volumeBlock ? FULL_VOLUME_HEIGHT + 4 : 0);
   const delta = getCandleDelta(candle);
 
   const tooltip = t("valueTrends.candleTooltip", {
@@ -88,7 +98,9 @@ export function ValueTrendCandleChart({
     >
       <svg
         className={styles.svg}
-        viewBox={`0 0 ${compact ? 36 : 48} ${CHART_HEIGHT + (showVolume ? VOLUME_HEIGHT + 4 : 0)}`}
+        width={chartWidth}
+        height={viewHeight}
+        viewBox={`0 0 ${chartWidth} ${viewHeight}`}
         role="img"
         aria-label={tooltip}
       >
@@ -101,20 +113,20 @@ export function ValueTrendCandleChart({
         />
         <rect
           className={styles.body}
-          x={centerX - BODY_WIDTH / 2}
+          x={centerX - bodyWidth / 2}
           y={bodyTop}
-          width={BODY_WIDTH}
+          width={bodyWidth}
           height={bodyHeight}
-          rx={1}
+          rx={0.75}
         />
-        {showVolume ? (
+        {volumeBlock ? (
           <rect
             className={styles.volume}
             x={centerX - volumeWidth / 2}
-            y={CHART_HEIGHT + 4}
+            y={chartHeight + 4}
             width={volumeWidth}
-            height={VOLUME_HEIGHT}
-            rx={1}
+            height={FULL_VOLUME_HEIGHT}
+            rx={0.75}
           />
         ) : null}
       </svg>

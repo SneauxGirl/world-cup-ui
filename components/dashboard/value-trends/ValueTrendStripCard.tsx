@@ -7,6 +7,7 @@ import {
   getCurrentCandle,
   formatTrendDelta,
   getCandleDelta,
+  isCandleVolatile,
 } from "@/lib/value-trends/compute";
 import { ValueTrendCandleChart } from "@/components/dashboard/value-trends/ValueTrendCandleChart";
 import { t } from "@/lib/i18n/t";
@@ -29,13 +30,14 @@ export function ValueTrendStripCard({
 }: Props) {
   const candle = getCurrentCandle(template.candles);
   const trend = getCandleTrend(candle, template.rollingAverage);
+  const volatile = isCandleVolatile(candle);
   const delta = getCandleDelta(candle);
+  const deltaClass = volatile ? "volatile" : trend;
   const displayName = player?.lastName.toUpperCase() ?? slotLabel;
   const titleId = `value-trend-${slotId}-title`;
 
   return (
     <article className={styles.cardFrame} aria-labelledby={titleId}>
-      <div className={styles.cardInner}>
         <button
           type="button"
           className={styles.openBtn}
@@ -47,6 +49,7 @@ export function ValueTrendStripCard({
             trend={trend}
             rollingAverage={template.rollingAverage}
             compact
+            showVolume={false}
             labelledBy={titleId}
           />
           <span id={titleId} className={styles.name}>
@@ -63,11 +66,10 @@ export function ValueTrendStripCard({
               slotLabel
             )}
           </span>
-          <span className={[styles.delta, styles[`delta_${trend}`]].join(" ")}>
+          <span className={[styles.delta, styles[`delta_${deltaClass}`]].join(" ")}>
             {formatTrendDelta(delta)}
           </span>
         </button>
-      </div>
     </article>
   );
 }
