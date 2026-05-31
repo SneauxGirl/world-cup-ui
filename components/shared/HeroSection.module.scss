@@ -122,6 +122,15 @@
   line-height: 0;
 }
 
+.heroPerformers {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: min(52%, 36rem);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 .heroConstructionImage {
   display: block;
   width: 100%;
@@ -411,6 +420,10 @@
     width: min(42%, 28rem);
   }
 
+  .heroPerformers {
+    width: min(48%, 32rem);
+  }
+
   .heroConstructionImage {
     max-height: min(18rem, 38vh);
   }
@@ -460,6 +473,10 @@
     width: min(40%, 16rem);
   }
 
+  .heroPerformers {
+    width: min(100%, 100%);
+  }
+
   .heroConstructionImage {
     max-height: min(14rem, 32vh);
   }
@@ -475,5 +492,10 @@
   .heroConstruction {
     width: min(100%, 18rem);
     align-self: center;
+  }
+
+  .heroPerformers {
+    width: 100%;
+    align-self: stretch;
   }
 }

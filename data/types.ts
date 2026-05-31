@@ -60,3 +60,45 @@ export type UserDashboard = {
   isRoundLive: boolean;
   topPercent: number;
 };
+
+/** One rolling five-game window (e.g. games 1–5, 2–6). */
+export type ValueTrendCandle = {
+  windowIndex: number;
+  gameStart: number;
+  gameEnd: number;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  minutesPlayed: number;
+};
+
+export type ValueTrendStatKey =
+  | "goalThreat"
+  | "form"
+  | "matchup"
+  | "minutes"
+  | "saves"
+  | "cleanSheets";
+
+export type ValueTrendKeyStat = {
+  labelKey: ValueTrendStatKey;
+  value: number;
+  max: number;
+};
+
+export type ValueTrendTrend = "bullish" | "bearish" | "elite";
+
+/** Position-slot mock profile — not tied to a real player until roster assigns one. */
+export type ValueTrendTemplate = {
+  rollingAverage: number;
+  candles: ValueTrendCandle[];
+  lastFiveMatchPoints: number[];
+  keyStats: ValueTrendKeyStat[];
+  expectedPoints: number;
+  /** MVP-only insight copy (not wired to i18n). */
+  insightLines: string[];
+};
+
+/** Persisted roster: pitch slot id → squad pool player id. */
+export type UserRosterMap = Record<string, string>;

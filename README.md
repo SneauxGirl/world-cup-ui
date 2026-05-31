@@ -10,7 +10,7 @@ Work in progress: Portfolio UI for international soccer fantasy game
 
 ## Under Construction
  
- - **Dashboard**: disconnected for refactor. Click "Set Your Roster" to see squad selection progress.
+ - **Dashboard / Roster**: dashboard home plus `/roster` for squad selection (same app shell; roster embeds the selection UI).
 
 ## Stack
 

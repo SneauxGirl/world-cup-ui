@@ -127,10 +127,6 @@
     padding-bottom: 1.5rem;
   }
 
-  .areaPerformers {
-    order: 2;
-  }
-
   .areaMatches {
     order: 3;
     min-width: 0;
@@ -143,6 +139,12 @@
 
   .areaStrategy {
     order: 5;
+  }
+
+  .areaValueTrends {
+    order: 6;
+    min-width: 0;
+    width: 100%;
   }
 }
 

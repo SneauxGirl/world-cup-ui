@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { IconClose, IconSearch } from "@/components/icons/DashboardIcons";
 import { MenuUserFooter } from "@/components/shared/MenuUserFooter";
@@ -12,6 +13,7 @@ import {
   type SiteHeaderNavItem,
 } from "@/data/site-header-nav";
 import { userDashboard } from "@/data/dashboard-seed";
+import { getDashboardAppNavActiveKey } from "@/lib/dashboard-app-nav";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
 import navStyles from "./SiteNavMenu.module.scss";
@@ -19,13 +21,13 @@ import styles from "./SiteHeaderDrawer.module.scss";
 
 const dashboardMenuItems = [
   { key: "dashboard" as const, href: "/dashboard" },
-  { key: "roster" as const, href: "/dashboard" },
-  { key: "matches" as const, href: "/dashboard" },
-  { key: "standings" as const, href: "/dashboard" },
-  { key: "players" as const, href: "/dashboard" },
-  { key: "tournament" as const, href: "/dashboard" },
-  { key: "store" as const, href: "/dashboard" },
-  { key: "settings" as const, href: "/dashboard" },
+  { key: "roster" as const, href: "/roster" },
+  { key: "matches" as const, href: "#" },
+  { key: "standings" as const, href: "#" },
+  { key: "players" as const, href: "#" },
+  { key: "tournament" as const, href: "#" },
+  { key: "store" as const, href: "#" },
+  { key: "settings" as const, href: "#" },
 ];
 
 const FOCUSABLE =
@@ -47,6 +49,8 @@ type Props = {
 };
 
 export function SiteHeaderDrawer({ open, onClose, variant, onAccountClick }: Props) {
+  const pathname = usePathname();
+  const activeKey = getDashboardAppNavActiveKey(pathname);
   const [searchOpen, setSearchOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
@@ -154,14 +158,18 @@ export function SiteHeaderDrawer({ open, onClose, variant, onAccountClick }: Pro
             {showDashboardSections ? (
               <ul className={navStyles.menuList}>
                 {dashboardMenuItems.map((item) => {
-                  const active = item.key === "dashboard";
+                  const active = item.key === activeKey;
                   return (
                     <li key={item.key}>
                       <Link
                         className={active ? navStyles.menuLinkActive : navStyles.menuLink}
                         href={item.href}
                         aria-current={active ? "page" : undefined}
-                        onClick={handleNavigate}
+                        aria-disabled={item.href === "#" ? true : undefined}
+                        onClick={(event) => {
+                          if (item.href === "#") event.preventDefault();
+                          handleNavigate();
+                        }}
                       >
                         {t(`nav.${item.key}`)}
                       </Link>

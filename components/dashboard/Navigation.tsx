@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import {
   IconCalendar,
@@ -15,29 +16,30 @@ import {
 import { SidebarNavLink } from "@/components/dashboard/SidebarNavLink";
 import { GitHubOctocatIcon } from "@/components/icons/GitHubOctocatIcon";
 import { userDashboard } from "@/data/dashboard-seed";
+import { getDashboardAppNavActiveKey } from "@/lib/dashboard-app-nav";
 import { t } from "@/lib/i18n/t";
 import { formatFirstNameLastInitial, formatInteger } from "@/lib/i18n/format";
 import styles from "./Navigation.module.scss";
 
 const sidebarNavItems = [
   { key: "dashboard" as const, href: "/dashboard", icon: IconDashboard, label: "Dashboard" },
-  { key: "roster" as const, href: "/dashboard", icon: IconShirt, label: "My Roster" },
-  { key: "matches" as const, href: "/dashboard", icon: IconCalendar, label: "Matches" },
+  { key: "roster" as const, href: "/roster", icon: IconShirt, label: "My Roster" },
+  { key: "matches" as const, href: "#", icon: IconCalendar, label: "Matches" },
   {
     key: "standings" as const,
-    href: "/dashboard",
+    href: "#",
     label: "Standings",
     animateIcon: "trophy" as const,
   },
-  { key: "players" as const, href: "/dashboard", icon: IconPeople, label: "Players" },
-  { key: "tournament" as const, href: "/dashboard", icon: IconTournament, label: "Tournament" },
+  { key: "players" as const, href: "#", icon: IconPeople, label: "Players" },
+  { key: "tournament" as const, href: "#", icon: IconTournament, label: "Tournament" },
   {
     key: "store" as const,
-    href: "/dashboard",
+    href: "#",
     label: "Store",
     animateIcon: "cart" as const,
   },
-  { key: "settings" as const, href: "/dashboard", icon: IconGear, label: "Settings" },
+  { key: "settings" as const, href: "#", icon: IconGear, label: "Settings" },
 ];
 
 type SidebarNavProps = {
@@ -45,6 +47,8 @@ type SidebarNavProps = {
 };
 
 export function SidebarNav({ onLogoutConfirm }: SidebarNavProps) {
+  const pathname = usePathname();
+  const activeKey = getDashboardAppNavActiveKey(pathname);
   const [logoutOpen, setLogoutOpen] = useState(false);
   const profileCardRef = useRef<HTMLButtonElement>(null);
 
@@ -72,20 +76,17 @@ export function SidebarNav({ onLogoutConfirm }: SidebarNavProps) {
       </div>
       <nav className={styles.sideNav} aria-label="Primary">
         <ul className={styles.sideList}>
-          {sidebarNavItems.map((item) => {
-            const isDashboard = item.key === "dashboard";
-            return (
-              <li key={item.key}>
-                <SidebarNavLink
-                  href={item.href}
-                  label={item.label}
-                  icon={"icon" in item ? item.icon : undefined}
-                  active={isDashboard}
-                  animateIcon={"animateIcon" in item ? item.animateIcon : undefined}
-                />
-              </li>
-            );
-          })}
+          {sidebarNavItems.map((item) => (
+            <li key={item.key}>
+              <SidebarNavLink
+                href={item.href}
+                label={item.label}
+                icon={"icon" in item ? item.icon : undefined}
+                active={item.key === activeKey}
+                animateIcon={"animateIcon" in item ? item.animateIcon : undefined}
+              />
+            </li>
+          ))}
         </ul>
       </nav>
       <div className={styles.profile}>

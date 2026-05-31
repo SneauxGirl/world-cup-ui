@@ -12,7 +12,6 @@ import {
 } from "@/data/dashboard-seed";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { LiveMatchesSection } from "@/components/dashboard/LiveMatchesSection";
-import { TopPerformersSection } from "@/components/dashboard/TopPerformersSection";
 import { RosterHealthSection } from "@/components/dashboard/RosterHealthSection";
 import { StrategyInsightBlock } from "@/components/dashboard/StrategyFeedSections";
 import { SidebarNav } from "@/components/dashboard/Navigation";
@@ -20,13 +19,12 @@ import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { SiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
-import { SquadSelectionModal } from "@/components/dashboard/SquadSelectionModal";
+import { ValueTrendsSection } from "@/components/dashboard/value-trends/ValueTrendsSection";
 import styles from "./Dashboard.module.scss";
 
 export function Dashboard() {
   const router = useRouter();
   const [logoutOpen, setLogoutOpen] = useState(false);
-  const [squadSelectionOpen, setSquadSelectionOpen] = useState(false);
 
   const requestLogout = useCallback(() => setLogoutOpen(true), []);
   const cancelLogout = useCallback(() => setLogoutOpen(false), []);
@@ -38,14 +36,13 @@ export function Dashboard() {
     router.push("/");
   }, [router]);
 
-  const requestSquadSelection = useCallback(() => setSquadSelectionOpen(true), []);
-  const closeSquadSelection = useCallback(() => setSquadSelectionOpen(false), []);
+  const goToRoster = useCallback(() => router.push("/roster"), [router]);
 
   useEffect(() => {
-    if (!logoutOpen && !squadSelectionOpen) return;
+    if (!logoutOpen) return;
     lockBodyScroll();
     return () => unlockBodyScroll();
-  }, [logoutOpen, squadSelectionOpen]);
+  }, [logoutOpen]);
 
   return (
     <div className={styles.page}>
@@ -53,11 +50,6 @@ export function Dashboard() {
         open={logoutOpen}
         onCancel={cancelLogout}
         onConfirm={confirmLogout}
-      />
-      <SquadSelectionModal
-        open={squadSelectionOpen}
-        onClose={closeSquadSelection}
-        managerName={userDashboard.displayName}
       />
       <SidebarNav onLogoutConfirm={confirmSidebarLogout} />
       <div className={styles.shell}>
@@ -75,15 +67,12 @@ export function Dashboard() {
         <HeroSection
           user={userDashboard}
           showLiveFeed={false}
-          onCtaClick={requestSquadSelection}
+          performers={topPerformers}
+          onCtaClick={goToRoster}
           onMenuAccountClick={requestLogout}
           className={styles.shellHero}
         />
         <main id="dashboard-main" className={styles.mainLayout}>
-          <TopPerformersSection
-            performers={topPerformers}
-            className={styles.areaPerformers}
-          />
           <LiveMatchesSection items={feedItems} className={styles.areaMatches} />
           <div className={styles.pairRow}>
             <RosterHealthSection data={rosterHealth} className={styles.areaRoster} />
@@ -92,6 +81,7 @@ export function Dashboard() {
               className={styles.areaStrategy}
             />
           </div>
+          <ValueTrendsSection className={styles.areaValueTrends} />
         </main>
       </div>
     </div>

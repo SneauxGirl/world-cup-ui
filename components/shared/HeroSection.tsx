@@ -3,7 +3,8 @@ import Link from "next/link";
 import { HeroLiveFeed } from "@/components/dashboard/HeroLiveFeed";
 import { HeroNavMenu } from "@/components/dashboard/HeroNavMenu";
 import { t } from "@/lib/i18n/t";
-import type { FeedItem, UserDashboard } from "@/data/types";
+import { HeroTopPerformers } from "@/components/dashboard/HeroTopPerformers";
+import type { DashboardPerformer, FeedItem, UserDashboard } from "@/data/types";
 import styles from "./HeroSection.module.scss";
 
 type Props = {
@@ -18,6 +19,7 @@ type Props = {
   /** When set, CTA opens squad flow instead of navigating. */
   onCtaClick?: () => void;
   onMenuAccountClick?: () => void;
+  performers?: DashboardPerformer[];
   className?: string;
 };
 
@@ -30,6 +32,7 @@ export function HeroSection({
   ctaLabel = t("dashboard.setYourRoster"),
   onCtaClick,
   onMenuAccountClick,
+  performers = [],
   className,
 }: Props) {
   const showFeed = showLiveFeed && feedItems.length > 0;
@@ -110,17 +113,24 @@ export function HeroSection({
                   </div>
                 </div>
               </div>
-              <figure className={styles.heroConstruction} aria-hidden="true">
-                <Image
-                  src="/underconstructiontrsp.png"
-                  alt=""
-                  width={1152}
-                  height={768}
-                  priority
-                  className={styles.heroConstructionImage}
-                  sizes="(max-width: 768px) 80vw, (max-width: 1200px) 42vw, 520px"
+              {performers.length > 0 ? (
+                <HeroTopPerformers
+                  performers={performers}
+                  className={styles.heroPerformers}
                 />
-              </figure>
+              ) : (
+                <figure className={styles.heroConstruction} aria-hidden="true">
+                  <Image
+                    src="/underconstructiontrsp.png"
+                    alt=""
+                    width={1152}
+                    height={768}
+                    priority
+                    className={styles.heroConstructionImage}
+                    sizes="(max-width: 768px) 80vw, (max-width: 1200px) 42vw, 520px"
+                  />
+                </figure>
+              )}
             </>
           ) : null}
         </div>

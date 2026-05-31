@@ -7,6 +7,7 @@ import styles from "./PerformerCard.module.scss";
 
 type Props = {
   performer: DashboardPerformer;
+  variant?: "default" | "hero";
 };
 
 function getLastName(fullName: string): string {
@@ -14,12 +15,16 @@ function getLastName(fullName: string): string {
   return parts[parts.length - 1] ?? fullName;
 }
 
-export function PerformerCard({ performer }: Props) {
+export function PerformerCard({ performer, variant = "default" }: Props) {
   const jerseySrc = getTeamJerseyPath(performer.teamCode);
   const displayName = getLastName(performer.name);
 
   return (
-    <article className={styles.cardFrame}>
+    <article
+      className={[styles.cardFrame, variant === "hero" && styles.cardFrameHero]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <div className={styles.cardInner}>
         <div className={styles.portrait} aria-hidden="true">
           <Image

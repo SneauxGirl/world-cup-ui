@@ -1,12 +1,26 @@
 import { IconClose, IconPlus } from "@/components/icons/DashboardIcons";
 import { squadPlayerPool, type SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import type { SquadPositionCode } from "@/data/squad-pitch-formation";
+import { formatInteger } from "@/lib/i18n/format";
+import { t } from "@/lib/i18n/t";
+import { SquadPlayerFilters } from "@/components/dashboard/SquadPlayerFilters";
+import { SquadPlayerSearch } from "@/components/dashboard/SquadPlayerSearch";
 import styles from "./PositionPlayerPicker.module.scss";
 
+export type PositionPlayerPickerLayout = "overlay" | "sidebar";
+
 type Props = {
-  position: SquadPositionCode;
-  onClose: () => void;
+  searchQuery: string;
+  onSearchQueryChange: (value: string) => void;
+  positionFilter: SquadPositionCode | null;
+  teamCodeFilter: string | null;
+  onPositionFilterChange: (position: SquadPositionCode | null) => void;
+  onTeamCodeFilterChange: (teamCode: string | null) => void;
+  layout?: PositionPlayerPickerLayout;
+  showClose?: boolean;
+  onClose?: () => void;
   onAddPlayer: (player: SquadPlayerPoolEntry) => void;
+  isPlayerDisabled?: (player: SquadPlayerPoolEntry) => boolean;
 };
 
 function getFlagUrl(countryCode: string): string {
@@ -17,58 +31,112 @@ function sortByCountry(a: SquadPlayerPoolEntry, b: SquadPlayerPoolEntry): number
   return a.countryName.localeCompare(b.countryName) || a.lastName.localeCompare(b.lastName);
 }
 
-export function PositionPlayerPicker({ position, onClose, onAddPlayer }: Props) {
-  const players = squadPlayerPool.filter((player) => player.position === position).sort(sortByCountry);
+function matchesSearch(player: SquadPlayerPoolEntry, query: string): boolean {
+  const normalized = query.trim().toLowerCase();
+  if (!normalized) return true;
 
   return (
-    <section className={styles.overlay} role="dialog" aria-modal="false" aria-label={`${position} players`}>
-      <header className={styles.header}>
-        <h3 className={styles.title}>Player Selection</h3>
-        <button type="button" className={styles.closeBtn} aria-label="Close player picker" onClick={onClose}>
-          <IconClose />
-        </button>
-      </header>
+    player.firstName.toLowerCase().includes(normalized) ||
+    player.lastName.toLowerCase().includes(normalized) ||
+    player.countryName.toLowerCase().includes(normalized) ||
+    player.teamCode.toLowerCase().includes(normalized)
+  );
+}
 
-      <p className={styles.subtitle}>{position} players, sorted by country</p>
+export function PositionPlayerPicker({
+  searchQuery,
+  onSearchQueryChange,
+  positionFilter,
+  teamCodeFilter,
+  onPositionFilterChange,
+  onTeamCodeFilterChange,
+  layout = "overlay",
+  showClose = false,
+  onClose,
+  onAddPlayer,
+  isPlayerDisabled,
+}: Props) {
+  const players = squadPlayerPool
+    .filter((player) => (positionFilter ? player.position === positionFilter : true))
+    .filter((player) => (teamCodeFilter ? player.teamCode === teamCodeFilter : true))
+    .filter((player) => matchesSearch(player, searchQuery))
+    .sort(sortByCountry);
+
+  const rootClass = layout === "sidebar" ? styles.sidebar : styles.overlay;
+
+  return (
+    <section className={rootClass} role="region" aria-label="Player selection">
+      {(showClose || layout === "overlay") && onClose ? (
+        <header className={styles.header}>
+          <h3 className={styles.title}>Player Selection</h3>
+          <button
+            type="button"
+            className={styles.closeBtn}
+            aria-label={t("squadSelection.closePlayerPicker")}
+            onClick={onClose}
+          >
+            <IconClose />
+          </button>
+        </header>
+      ) : (
+        <h3 className={styles.titleStatic}>Player Selection</h3>
+      )}
+
+      <SquadPlayerSearch value={searchQuery} onChange={onSearchQueryChange} />
+
+      <SquadPlayerFilters
+        positionFilter={positionFilter}
+        teamCodeFilter={teamCodeFilter}
+        onPositionFilterChange={onPositionFilterChange}
+        onTeamCodeFilterChange={onTeamCodeFilterChange}
+      />
+
+      <p className={styles.subtitle}>
+        {t("squadSelection.playersShown", { count: formatInteger(players.length) })}
+      </p>
 
       <div className={styles.rows} role="list">
-        {players.map((player) => (
-          <article key={player.id} className={styles.row} role="listitem">
-            <span className={styles.numberTag} aria-label={`Squad number ${player.squadNumber}`}>
-              {player.squadNumber > 0 ? player.squadNumber : "-"}
-            </span>
+        {players.map((player) => {
+          const disabled = isPlayerDisabled?.(player) ?? false;
+          return (
+            <article key={player.id} className={styles.row} role="listitem">
+              <span className={styles.numberTag} aria-label={`Squad number ${player.squadNumber}`}>
+                {player.squadNumber > 0 ? player.squadNumber : "-"}
+              </span>
 
-            <img
-              className={styles.flag}
-              src={getFlagUrl(player.countryIso2)}
-              alt={`${player.countryName} flag`}
-              width={30}
-              height={22}
-              loading="lazy"
-            />
+              <img
+                className={styles.flag}
+                src={getFlagUrl(player.countryIso2)}
+                alt={`${player.countryName} flag`}
+                width={30}
+                height={22}
+                loading="lazy"
+              />
 
-            <div className={styles.playerMeta}>
-              <p className={styles.playerLastName}>{player.lastName}</p>
-              <p className={styles.playerSubline}>
-                {player.teamCode} {player.position}
-              </p>
-            </div>
+              <div className={styles.playerMeta}>
+                <p className={styles.playerLastName}>{player.lastName}</p>
+                <p className={styles.playerSubline}>
+                  {player.teamCode} {player.position}
+                </p>
+              </div>
 
-            <div className={styles.actions}>
-              <button type="button" className={styles.iconBtn} aria-label={`More info for ${player.lastName}`}>
-                ?
-              </button>
-              <button
-                type="button"
-                className={styles.iconBtn}
-                aria-label={`Add ${player.lastName}`}
-                onClick={() => onAddPlayer(player)}
-              >
-                <IconPlus width={16} height={16} strokeWidth={2.2} />
-              </button>
-            </div>
-          </article>
-        ))}
+              <div className={styles.actions}>
+                <button type="button" className={styles.iconBtn} aria-label={`More info for ${player.lastName}`}>
+                  ?
+                </button>
+                <button
+                  type="button"
+                  className={styles.iconBtn}
+                  aria-label={`Add ${player.lastName}`}
+                  disabled={disabled}
+                  onClick={() => onAddPlayer(player)}
+                >
+                  <IconPlus width={16} height={16} strokeWidth={2.2} />
+                </button>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

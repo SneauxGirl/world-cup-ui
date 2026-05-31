@@ -50,11 +50,15 @@ export function SidebarNavLink({
     color: "currentColor",
   };
 
+  const isPlaceholder = href === "#";
+
   return (
     <Link
       href={href}
       className={linkClass}
       aria-current={active ? "page" : undefined}
+      aria-disabled={isPlaceholder ? true : undefined}
+      onClick={isPlaceholder ? (event) => event.preventDefault() : undefined}
       {...animatedHandlers}
     >
       {animatedIcon === "trophy" ? (

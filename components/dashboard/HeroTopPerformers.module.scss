@@ -1,0 +1,105 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--wcui-font-heading-section);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--wcui-white-text);
+}
+
+.viewAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--wcui-font-control);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--wcui-aqua-mint);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.viewAll:focus-visible {
+  outline: 2px solid var(--wcui-aqua-mint);
+  outline-offset: 3px;
+}
+
+.viewIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.grid {
+  --performer-card-min: 9.5rem;
+  --performer-gap: 0.65rem;
+  container-type: inline-size;
+  container-name: hero-performers;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: var(--performer-gap);
+  width: 100%;
+  min-width: 0;
+}
+
+.slot {
+  flex: 1 1 var(--performer-card-min);
+  min-width: var(--performer-card-min);
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* Drop cards when the hero performer band cannot fit their min width. */
+@container hero-performers (max-width: 29.75rem) {
+  .slot:nth-child(3) {
+    display: none;
+  }
+}
+
+@container hero-performers (max-width: 19.5rem) {
+  .slot:nth-child(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    gap: 0.5rem;
+  }
+
+  .grid {
+    --performer-card-min: 8.75rem;
+    --performer-gap: 0.5rem;
+  }
+
+  @container hero-performers (max-width: 27.25rem) {
+    .slot:nth-child(3) {
+      display: none;
+    }
+  }
+
+  @container hero-performers (max-width: 18rem) {
+    .slot:nth-child(2) {
+      display: none;
+    }
+  }
+}
