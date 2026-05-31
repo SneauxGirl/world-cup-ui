@@ -3,17 +3,17 @@ export type FifaCountryCode = string;
 export type MatchStatus = "live" | "upcoming" | "finished";
 
 export type FeedMessageKey =
-  | "alvarezGoal"
-  | "griezmannAssist"
-  | "brazilCleanSheet"
-  | "virgilBlock"
   | "kaneGoal"
   | "bellinghamAssist"
   | "ronaldoShot"
-  | "fodenChance"
-  | "riceTackle"
+  | "musialaShot"
+  | "deBruyneKeyPass"
+  | "hakimiCross"
   | "brunoFernandesCorner"
-  | "walkerClearance";
+  | "haalandGoal"
+  | "modricAssist"
+  | "brazilCleanSheet"
+  | "virgilBlock";
 
 export type DashboardMatch = {
   id: string;

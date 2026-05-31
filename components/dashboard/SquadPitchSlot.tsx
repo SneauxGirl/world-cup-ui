@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { IconPeople, IconPlus } from "@/components/icons/DashboardIcons";
+import { IconClose, IconPeople, IconPlus } from "@/components/icons/DashboardIcons";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import type { SquadPitchSlot as SquadPitchSlotData } from "@/data/squad-pitch-formation";
 import { getTeamJerseyPath } from "@/lib/nationalTeams";
@@ -9,10 +9,11 @@ import styles from "./SquadPitchSlot.module.scss";
 type Props = {
   slot: SquadPitchSlotData;
   onSelect?: (slot: SquadPitchSlotData) => void;
+  onClear?: (slot: SquadPitchSlotData) => void;
   selectedPlayer?: SquadPlayerPoolEntry;
 };
 
-export function SquadPitchSlot({ slot, onSelect, selectedPlayer }: Props) {
+export function SquadPitchSlot({ slot, onSelect, onClear, selectedPlayer }: Props) {
   const top = `${slot.top}%`;
   const isFilled = Boolean(selectedPlayer);
   const jerseySrc = selectedPlayer ? getTeamJerseyPath(selectedPlayer.teamCode) : null;
@@ -39,6 +40,19 @@ export function SquadPitchSlot({ slot, onSelect, selectedPlayer }: Props) {
           </span>
           {isFilled && jerseySrc ? (
             <>
+              <button
+                type="button"
+                className={styles.slotClearBtn}
+                aria-label={t("squadSelection.removePlayerFromSlot", {
+                  player: selectedPlayer?.lastName ?? slot.position,
+                })}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onClear?.(slot);
+                }}
+              >
+                <IconClose width={12} height={12} />
+              </button>
               <span className={styles.slotTopMeta}>
                 <span className={styles.slotPlayerPoints}>{selectedPlayer?.points ?? 0} pts</span>
                 <span className={styles.slotPlayerMeta}>{slot.position}</span>

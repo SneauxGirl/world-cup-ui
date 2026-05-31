@@ -10,9 +10,12 @@ import {
   type ReactNode,
 } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { isDefaultPreloadPlayer, isDefaultRosterMap } from "@/data/default-roster";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import {
   dehydrateRoster,
+  getDefaultRosterMap,
+  hydrateDefaultRoster,
   hydrateRoster,
   loadRosterFromFirestore,
   loadRosterFromLocal,
@@ -23,10 +26,14 @@ import {
 type RosterContextValue = {
   rosterBySlot: Record<string, SquadPlayerPoolEntry>;
   rosterCount: number;
+  /** No saved roster and no default preload applied yet (should not occur once defaults load). */
   isDemoMode: boolean;
+  /** Current roster matches the built-in preload squad exactly. */
+  isDefaultRoster: boolean;
   loading: boolean;
   setPlayerForSlot: (slotId: string, player: SquadPlayerPoolEntry) => void;
   removePlayerFromSlot: (slotId: string) => void;
+  isDefaultPreloadPlayer: (playerId: string) => boolean;
 };
 
 const RosterContext = createContext<RosterContextValue | null>(null);
@@ -43,18 +50,35 @@ export function RosterProvider({ children }: { children: ReactNode }) {
       setLoading(true);
 
       let rosterMap = null;
+      let source: "firestore" | "local" | "default" = "default";
 
       if (user) {
         rosterMap = await loadRosterFromFirestore(user.uid);
+        if (rosterMap) source = "firestore";
       }
 
       if (!rosterMap) {
         rosterMap = loadRosterFromLocal();
+        if (rosterMap) source = "local";
       }
 
+      if (!rosterMap) {
+        rosterMap = getDefaultRosterMap();
+        source = "default";
+      }
+
+      const hydrated = rosterMap ? hydrateRoster(rosterMap) : hydrateDefaultRoster();
+
       if (!cancelled) {
-        setRosterBySlot(rosterMap ? hydrateRoster(rosterMap) : {});
+        setRosterBySlot(hydrated);
         setLoading(false);
+
+        if (source === "default") {
+          saveRosterToLocal(rosterMap ?? getDefaultRosterMap());
+          if (user) {
+            void saveRosterToFirestore(user.uid, rosterMap ?? getDefaultRosterMap());
+          }
+        }
       }
     }
 
@@ -103,20 +127,24 @@ export function RosterProvider({ children }: { children: ReactNode }) {
 
   const rosterCount = Object.keys(rosterBySlot).length;
   const isDemoMode = rosterCount === 0;
+  const isDefaultRoster = isDefaultRosterMap(dehydrateRoster(rosterBySlot));
 
   const value = useMemo(
     () => ({
       rosterBySlot,
       rosterCount,
       isDemoMode,
+      isDefaultRoster,
       loading: loading || authLoading,
       setPlayerForSlot,
       removePlayerFromSlot,
+      isDefaultPreloadPlayer,
     }),
     [
       rosterBySlot,
       rosterCount,
       isDemoMode,
+      isDefaultRoster,
       loading,
       authLoading,
       setPlayerForSlot,

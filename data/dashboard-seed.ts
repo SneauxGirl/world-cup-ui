@@ -5,6 +5,7 @@ import type {
   RosterHealth,
   UserDashboard,
 } from "@/data/types";
+import { squadPlayerPool } from "@/data/squad-player-pool";
 
 export const userDashboard: UserDashboard = {
   displayName: "Heather Hugo",
@@ -23,6 +24,36 @@ export const rosterHealth: RosterHealth = {
 
 export const strategyInsight =
   "France's left side is generating 63% of their attacks — chances cluster on that flank early.";
+
+function normalizeName(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+function findPoolPlayer(playerName: string) {
+  const target = normalizeName(playerName);
+  return squadPlayerPool.find(
+    (entry) => normalizeName(`${entry.firstName} ${entry.lastName}`) === target,
+  );
+}
+
+function toPerformer(playerName: string): DashboardPerformer {
+  const entry = findPoolPlayer(playerName);
+  if (!entry) {
+    throw new Error(`[dashboard-seed] Player not in keep list: ${playerName}`);
+  }
+
+  return {
+    id: entry.id,
+    name: `${entry.firstName} ${entry.lastName}`.trim(),
+    teamCode: entry.teamCode,
+    position: entry.position,
+    points: entry.points,
+  };
+}
 
 export const liveMatches: DashboardMatch[] = [
   {
@@ -82,7 +113,7 @@ export const liveMatches: DashboardMatch[] = [
     id: "m6",
     status: "upcoming",
     home: { code: "COL", name: "Colombia" },
-    away: { code: "URU", name: "Uruguay" },
+    away: { code: "PAR", name: "Paraguay" },
     homeScore: 0,
     awayScore: 0,
     clockLabel: "2026-06-29T18:00:00Z",
@@ -101,8 +132,8 @@ export const liveMatches: DashboardMatch[] = [
   {
     id: "m8",
     status: "upcoming",
-    home: { code: "CRO", name: "Croatia" },
-    away: { code: "ITA", name: "Italy" },
+    home: { code: "HRV", name: "Croatia" },
+    away: { code: "TUR", name: "Turkey" },
     homeScore: 0,
     awayScore: 0,
     clockLabel: "2026-06-29T20:30:00Z",
@@ -122,7 +153,7 @@ export const liveMatches: DashboardMatch[] = [
     id: "m10",
     status: "upcoming",
     home: { code: "CAN", name: "Canada" },
-    away: { code: "CRC", name: "Costa Rica" },
+    away: { code: "USA", name: "United States" },
     homeScore: 0,
     awayScore: 0,
     clockLabel: "2026-06-30T17:00:00Z",
@@ -141,8 +172,8 @@ export const liveMatches: DashboardMatch[] = [
   {
     id: "m12",
     status: "upcoming",
-    home: { code: "AUS", name: "Australia" },
-    away: { code: "NZL", name: "New Zealand" },
+    home: { code: "EGY", name: "Egypt" },
+    away: { code: "GHA", name: "Ghana" },
     homeScore: 0,
     awayScore: 0,
     clockLabel: "2026-06-30T14:00:00Z",
@@ -151,7 +182,7 @@ export const liveMatches: DashboardMatch[] = [
   {
     id: "m13",
     status: "upcoming",
-    home: { code: "POL", name: "Poland" },
+    home: { code: "NOR", name: "Norway" },
     away: { code: "SWE", name: "Sweden" },
     homeScore: 0,
     awayScore: 0,
@@ -160,47 +191,27 @@ export const liveMatches: DashboardMatch[] = [
   },
 ];
 
-export const topPerformers: DashboardPerformer[] = [
-  {
-    id: "p1",
-    name: "Kylian Mbappé",
-    teamCode: "FRA",
-    position: "FWD",
-    points: 107,
-  },
-  {
-    id: "p2",
-    name: "Lionel Messi",
-    teamCode: "ARG",
-    position: "FWD",
-    points: 118,
-  },
-  {
-    id: "p3",
-    name: "Kees Smit",
-    teamCode: "NED",
-    position: "MID",
-    points: 126,
-  },
-  {
-    id: "p4",
-    name: "Vinícius Júnior",
-    teamCode: "BRA",
-    position: "FWD",
-    points: 121,
-  },
-];
+const topPerformerNames = [
+  "Lionel Messi",
+  "Kylian Mbappé",
+  "Vinícius Júnior",
+  "Jude Bellingham",
+] as const;
+
+export const topPerformers: DashboardPerformer[] = topPerformerNames
+  .map((name) => toPerformer(name))
+  .sort((a, b) => b.points - a.points);
 
 export const feedItems: FeedItem[] = [
   { id: "f1", messageKey: "kaneGoal", pts: 14, kind: "ball" },
   { id: "f2", messageKey: "bellinghamAssist", pts: 9, kind: "badge" },
   { id: "f3", messageKey: "ronaldoShot", pts: 5, kind: "ball" },
-  { id: "f4", messageKey: "fodenChance", pts: 7, kind: "ball" },
-  { id: "f5", messageKey: "riceTackle", pts: 6, kind: "badge" },
-  { id: "f6", messageKey: "walkerClearance", pts: 4, kind: "badge" },
+  { id: "f4", messageKey: "musialaShot", pts: 7, kind: "ball" },
+  { id: "f5", messageKey: "deBruyneKeyPass", pts: 6, kind: "badge" },
+  { id: "f6", messageKey: "hakimiCross", pts: 4, kind: "badge" },
   { id: "f7", messageKey: "brunoFernandesCorner", pts: 3, kind: "ball" },
-  { id: "f8", messageKey: "alvarezGoal", pts: 12, kind: "ball" },
-  { id: "f9", messageKey: "griezmannAssist", pts: 8, kind: "badge" },
+  { id: "f8", messageKey: "haalandGoal", pts: 12, kind: "ball" },
+  { id: "f9", messageKey: "modricAssist", pts: 8, kind: "badge" },
   {
     id: "f10",
     messageKey: "brazilCleanSheet",

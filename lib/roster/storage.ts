@@ -1,4 +1,5 @@
 import type { UserRosterMap } from "@/data/types";
+import { DEFAULT_ROSTER_BY_SLOT } from "@/data/default-roster";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getFirebaseDb } from "@/lib/firebase/client";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
@@ -76,4 +77,12 @@ export function dehydrateRoster(
 
 export function findPlayerById(playerId: string): SquadPlayerPoolEntry | undefined {
   return playerById.get(playerId);
+}
+
+export function hydrateDefaultRoster(): Record<string, SquadPlayerPoolEntry> {
+  return hydrateRoster(DEFAULT_ROSTER_BY_SLOT);
+}
+
+export function getDefaultRosterMap(): UserRosterMap {
+  return { ...DEFAULT_ROSTER_BY_SLOT };
 }

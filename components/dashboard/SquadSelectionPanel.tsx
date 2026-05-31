@@ -67,7 +67,7 @@ export function SquadSelectionPanel({
   const [playerSearchQuery, setPlayerSearchQuery] = useState("");
   const [positionFilter, setPositionFilter] = useState<SquadPositionCode | null>(null);
   const [teamCodeFilter, setTeamCodeFilter] = useState<string | null>(null);
-  const { rosterBySlot, rosterCount, setPlayerForSlot } = useRoster();
+  const { rosterBySlot, rosterCount, setPlayerForSlot, removePlayerFromSlot } = useRoster();
   const tallyTone = getTallyCountTone(rosterCount);
   const isModal = variant === "modal";
   const showSidebarPicker = isSideBySide;
@@ -114,6 +114,19 @@ export function SquadSelectionPanel({
       }
     },
     [showSidebarPicker],
+  );
+
+  const handleSlotClear = useCallback(
+    (slot: (typeof squadPitchFormation)[number]) => {
+      removePlayerFromSlot(slot.id);
+      if (focusedSlotId === slot.id) {
+        setFocusedSlotId(null);
+        if (!showSidebarPicker) {
+          setPickerOverlayOpen(false);
+        }
+      }
+    },
+    [focusedSlotId, removePlayerFromSlot, showSidebarPicker],
   );
 
   const pickerProps = {
@@ -256,6 +269,7 @@ export function SquadSelectionPanel({
                           slot={slot}
                           selectedPlayer={rosterBySlot[slot.id]}
                           onSelect={handleSlotSelect}
+                          onClear={handleSlotClear}
                         />
                       ))}
                     </div>

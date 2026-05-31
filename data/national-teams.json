@@ -1,17 +1,6 @@
 {
-  "description": "2026 FIFA World Cup \u2014 48 nations. Jersey assets match likely home kit; otherwise flag primary via color classification. USA mapped to White.",
+  "description": "2026 FIFA World Cup — curated 30 nations (60-player MVP roster). Jersey assets match likely home kit; otherwise flag primary via color classification. USA mapped to White.",
   "teams": [
-    {
-      "code": "ALG",
-      "colors": {
-        "primary": "#006233",
-        "secondary": "#FFFFFF",
-        "alt": "#D21034",
-        "text": "#FFFFFF"
-      },
-      "jersey": "Green",
-      "jerseyPath": "/Players/Green.png"
-    },
     {
       "code": "ARG",
       "colors": {
@@ -22,17 +11,6 @@
       },
       "jersey": "LightBlue",
       "jerseyPath": "/Players/LightBlue.png"
-    },
-    {
-      "code": "AUS",
-      "colors": {
-        "primary": "#000066",
-        "secondary": "#4D4D94",
-        "alt": "#FFCC00",
-        "text": "#FFFFFF"
-      },
-      "jersey": "RoyalBlue1",
-      "jerseyPath": "/Players/RoyalBlue1.png"
     },
     {
       "code": "AUT",
@@ -55,17 +33,6 @@
       },
       "jersey": "Black",
       "jerseyPath": "/Players/Black.png"
-    },
-    {
-      "code": "BIH",
-      "colors": {
-        "primary": "#002395",
-        "secondary": "#FECB00",
-        "alt": "#FFFFFF",
-        "text": "#FFFFFF"
-      },
-      "jersey": "RoyalBlue2",
-      "jerseyPath": "/Players/RoyalBlue2.png"
     },
     {
       "code": "BRA",
@@ -121,50 +88,6 @@
       },
       "jersey": "Yellow",
       "jerseyPath": "/Players/Yellow.png"
-    },
-    {
-      "code": "CPV",
-      "colors": {
-        "primary": "#003893",
-        "secondary": "#CF2027",
-        "alt": "#FFFFFF",
-        "text": "#FFFFFF"
-      },
-      "jersey": "RoyalBlue2",
-      "jerseyPath": "/Players/RoyalBlue2.png"
-    },
-    {
-      "code": "CUW",
-      "colors": {
-        "primary": "#002B7F",
-        "secondary": "#FED100",
-        "alt": "#FFFFFF",
-        "text": "#FFFFFF"
-      },
-      "jersey": "RoyalBlue1",
-      "jerseyPath": "/Players/RoyalBlue1.png"
-    },
-    {
-      "code": "CZE",
-      "colors": {
-        "primary": "#D7141A",
-        "secondary": "#11457E",
-        "alt": "#FFFFFF",
-        "text": "#FFFFFF"
-      },
-      "jersey": "Red",
-      "jerseyPath": "/Players/Red.png"
-    },
-    {
-      "code": "ECU",
-      "colors": {
-        "primary": "#FFD100",
-        "secondary": "#003893",
-        "alt": "#CE1126",
-        "text": "#000000"
-      },
-      "jersey": "Gold",
-      "jerseyPath": "/Players/Gold.png"
     },
     {
       "code": "EGY",
@@ -233,17 +156,6 @@
       "jerseyPath": "/Players/Green.png"
     },
     {
-      "code": "HAI",
-      "colors": {
-        "primary": "#00209F",
-        "secondary": "#D21034",
-        "alt": "#FFFFFF",
-        "text": "#FFFFFF"
-      },
-      "jersey": "RoyalBlue2",
-      "jerseyPath": "/Players/RoyalBlue2.png"
-    },
-    {
       "code": "HRV",
       "colors": {
         "primary": "#FF0000",
@@ -253,39 +165,6 @@
       },
       "jersey": "Red",
       "jerseyPath": "/Players/Red.png"
-    },
-    {
-      "code": "IRN",
-      "colors": {
-        "primary": "#DA0000",
-        "secondary": "#990000",
-        "alt": "#239F40",
-        "text": "#FFFFFF"
-      },
-      "jersey": "MidRed",
-      "jerseyPath": "/Players/MidRed.png"
-    },
-    {
-      "code": "IRQ",
-      "colors": {
-        "primary": "#007A3D",
-        "secondary": "#CE1126",
-        "alt": "#000000",
-        "text": "#FFFFFF"
-      },
-      "jersey": "Green",
-      "jerseyPath": "/Players/Green.png"
-    },
-    {
-      "code": "JOR",
-      "colors": {
-        "primary": "#007A3D",
-        "secondary": "#000000",
-        "alt": "#CE1126",
-        "text": "#FFFFFF"
-      },
-      "jersey": "Green",
-      "jerseyPath": "/Players/Green.png"
     },
     {
       "code": "JPN",
@@ -308,17 +187,6 @@
       },
       "jersey": "Red",
       "jerseyPath": "/Players/Red.png"
-    },
-    {
-      "code": "KSA",
-      "colors": {
-        "primary": "#006C35",
-        "secondary": "#004C25",
-        "alt": "#006C35",
-        "text": "#FFFFFF"
-      },
-      "jersey": "Green",
-      "jerseyPath": "/Players/Green.png"
     },
     {
       "code": "MAR",
@@ -365,17 +233,6 @@
       "jerseyPath": "/Players/MidRed.png"
     },
     {
-      "code": "NZL",
-      "colors": {
-        "primary": "#000000",
-        "secondary": "#FFFFFF",
-        "alt": "#000000",
-        "text": "#FFFFFF"
-      },
-      "jersey": "White",
-      "jerseyPath": "/Players/White.png"
-    },
-    {
       "code": "PAN",
       "colors": {
         "primary": "#DA121A",
@@ -407,28 +264,6 @@
       },
       "jersey": "Green-mid",
       "jerseyPath": "/Players/Green-mid.png"
-    },
-    {
-      "code": "QAT",
-      "colors": {
-        "primary": "#8A1538",
-        "secondary": "#610F27",
-        "alt": "#8A1538",
-        "text": "#FFFFFF"
-      },
-      "jersey": "Maroon",
-      "jerseyPath": "/Players/Maroon.png"
-    },
-    {
-      "code": "RSA",
-      "colors": {
-        "primary": "#007749",
-        "secondary": "#FFB500",
-        "alt": "#000000",
-        "text": "#FFFFFF"
-      },
-      "jersey": "Green2",
-      "jerseyPath": "/Players/Green2.png"
     },
     {
       "code": "SCO",
@@ -475,17 +310,6 @@
       "jerseyPath": "/Players/Gold.png"
     },
     {
-      "code": "TUN",
-      "colors": {
-        "primary": "#E30B17",
-        "secondary": "#9F0810",
-        "alt": "#E30B17",
-        "text": "#FFFFFF"
-      },
-      "jersey": "MidRed",
-      "jerseyPath": "/Players/MidRed.png"
-    },
-    {
       "code": "TUR",
       "colors": {
         "primary": "#E30A17",
@@ -497,17 +321,6 @@
       "jerseyPath": "/Players/Red.png"
     },
     {
-      "code": "URY",
-      "colors": {
-        "primary": "#75AADB",
-        "secondary": "#9EC4E6",
-        "alt": "#000000",
-        "text": "#000000"
-      },
-      "jersey": "LightBlue",
-      "jerseyPath": "/Players/LightBlue.png"
-    },
-    {
       "code": "USA",
       "colors": {
         "primary": "#B22234",
@@ -517,17 +330,6 @@
       },
       "jersey": "White",
       "jerseyPath": "/Players/White.png"
-    },
-    {
-      "code": "UZB",
-      "colors": {
-        "primary": "#0099B5",
-        "secondary": "#1EB53A",
-        "alt": "#FFFFFF",
-        "text": "#FFFFFF"
-      },
-      "jersey": "LightBlue",
-      "jerseyPath": "/Players/LightBlue.png"
     }
   ]
 }
