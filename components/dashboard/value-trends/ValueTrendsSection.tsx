@@ -3,14 +3,15 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ValueTrendDetailModal } from "@/components/dashboard/value-trends/ValueTrendDetailModal";
-import { ValueTrendStripCard } from "@/components/dashboard/value-trends/ValueTrendStripCard";
-import { IconChevronRight } from "@/components/icons/DashboardIcons";
+import { ValueTrendInfoModal } from "@/components/dashboard/value-trends/ValueTrendInfoModal";
+import { ValueTrendStripPlot } from "@/components/dashboard/value-trends/ValueTrendStripPlot";
+import { IconChevronRight, IconInfo } from "@/components/icons/DashboardIcons";
 import {
   buildValueTrendHighlights,
   buildValueTrendStripItems,
   type ValueTrendStripItem,
 } from "@/lib/value-trends/buildStripItems";
-import { formatTrendDelta } from "@/lib/value-trends/compute";
+import { formatTrendDelta, getStripPlotScale } from "@/lib/value-trends/compute";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import { t } from "@/lib/i18n/t";
 import styles from "./ValueTrendsSection.module.scss";
@@ -23,6 +24,7 @@ export function ValueTrendsSection({ className }: Props) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const { rosterBySlot, isDemoMode, loading } = useRoster();
   const [activeItem, setActiveItem] = useState<ValueTrendStripItem | null>(null);
+  const [infoOpen, setInfoOpen] = useState(false);
 
   const items = useMemo(
     () => buildValueTrendStripItems(rosterBySlot, isDemoMode),
@@ -31,10 +33,12 @@ export function ValueTrendsSection({ className }: Props) {
 
   const highlights = useMemo(() => buildValueTrendHighlights(items), [items]);
 
+  const stripScale = getStripPlotScale();
+
   const scrollByCard = useCallback((dir: -1 | 1) => {
     const el = scrollerRef.current;
     if (!el) return;
-    const card = el.querySelector("article");
+    const card = el.querySelector("[data-value-trend-column]");
     const delta = card ? card.getBoundingClientRect().width + 12 : 120;
     el.scrollBy({ left: dir * delta, behavior: "smooth" });
   }, []);
@@ -54,9 +58,19 @@ export function ValueTrendsSection({ className }: Props) {
         >
           <div className={styles.content} inert={isDemoMode ? true : undefined}>
             <div className={styles.head}>
-              <h2 id="value-trends-heading" className={styles.title}>
-                {t("valueTrends.title")}
-              </h2>
+              <div className={styles.titleRow}>
+                <h2 id="value-trends-heading" className={styles.title}>
+                  {t("valueTrends.title")}
+                </h2>
+                <button
+                  type="button"
+                  className={styles.infoBtn}
+                  aria-label={t("valueTrends.openInfoModal")}
+                  onClick={() => setInfoOpen(true)}
+                >
+                  <IconInfo className={styles.infoIcon} />
+                </button>
+              </div>
             </div>
 
             {highlights.length > 0 ? (
@@ -102,18 +116,12 @@ export function ValueTrendsSection({ className }: Props) {
               </span>
             </div>
 
-            <div ref={scrollerRef} className={styles.scroller}>
-              {items.map((item) => (
-                <ValueTrendStripCard
-                  key={item.slotId}
-                  slotId={item.slotId}
-                  slotLabel={item.slotLabel}
-                  player={item.player}
-                  template={item.template}
-                  onOpen={() => setActiveItem(item)}
-                />
-              ))}
-            </div>
+            <ValueTrendStripPlot
+              scale={stripScale}
+              items={items}
+              scrollerRef={scrollerRef}
+              onOpenItem={setActiveItem}
+            />
           </div>
 
           {isDemoMode ? (
@@ -138,6 +146,8 @@ export function ValueTrendsSection({ className }: Props) {
           ) : null}
         </div>
       </section>
+
+      <ValueTrendInfoModal open={infoOpen} onClose={() => setInfoOpen(false)} />
 
       {activeItem ? (
         <ValueTrendDetailModal

@@ -43,6 +43,17 @@
   top: 0.75rem;
   right: 0.75rem;
   z-index: 2;
+  background: transparent;
+  color: color-mix(in oklab, var(--wcui-white-text) 72%, var(--wcui-aqua-mint));
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--wcui-aqua-mint);
+  }
 }
 
 .hero {
@@ -117,7 +128,6 @@
 
 .flag {
   width: 1.1rem;
-  border-radius: 2px;
 }
 
 .body {
@@ -180,7 +190,6 @@
   width: 100%;
   max-width: 2rem;
   min-height: 0.75rem;
-  border-radius: 2px 2px 0 0;
 }
 
 .barHigh {

@@ -1,13 +1,15 @@
 import rawSquadData from "@/data/wc2026-squads-formatted.json";
 import type { SquadPositionCode } from "@/data/squad-pitch-formation";
 
+/** One row in `wc2026-squads-formatted.json` — identity + mock fantasy only (no caps/goals). */
 type RawSquadEntry = {
   nation: string;
   position: "GK" | "DF" | "MF" | "FW";
-  player: string;
-  caps: number;
-  goals: number;
-  numberWC22: number | null;
+  firstName: string;
+  lastName: string;
+  squadNumber: number | null;
+  /** MVP demo: made-up recent fantasy total, not international caps or career stats. */
+  fantasyPoints: number;
 };
 
 export type SquadPlayerPoolEntry = {
@@ -19,7 +21,8 @@ export type SquadPlayerPoolEntry = {
   countryIso2: string;
   teamCode: string;
   position: SquadPositionCode;
-  points: number;
+  /** MVP demo fantasy points — sourced from `fantasyPoints` in squad JSON. */
+  fantasyPoints: number;
 };
 
 const nationCodeMap: Record<string, { iso2: string; fifa: string }> = {
@@ -62,20 +65,9 @@ function toSlotPosition(position: RawSquadEntry["position"]): SquadPositionCode 
   return "FWD";
 }
 
-function splitName(player: string): { firstName: string; lastName: string } {
-  const parts = player.trim().split(/\s+/);
-  return {
-    firstName: parts.slice(0, -1).join(" ") || parts[0] || player,
-    lastName: parts[parts.length - 1] || player,
-  };
-}
-
-function toPoints(caps: number, goals: number): number {
-  return Math.max(0, Math.round(caps * 1.1 + goals * 5.5));
-}
-
-function makeId(entry: RawSquadEntry): string {
-  return `${entry.nation}-${entry.position}-${entry.player}`
+export function makeSquadPlayerId(entry: RawSquadEntry): string {
+  const label = `${entry.firstName} ${entry.lastName}`.trim();
+  return `${entry.nation}-${entry.position}-${label}`
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -87,16 +79,15 @@ const typedSquad = rawSquadData as RawSquadEntry[];
 
 export const squadPlayerPool: SquadPlayerPoolEntry[] = typedSquad.map((entry) => {
   const codes = nationCodeMap[entry.nation] ?? { iso2: "un", fifa: "UNK" };
-  const name = splitName(entry.player);
   return {
-    id: makeId(entry),
-    squadNumber: entry.numberWC22 ?? 0,
-    firstName: name.firstName,
-    lastName: name.lastName,
+    id: makeSquadPlayerId(entry),
+    squadNumber: entry.squadNumber ?? 0,
+    firstName: entry.firstName,
+    lastName: entry.lastName,
     countryName: entry.nation,
     countryIso2: codes.iso2,
     teamCode: codes.fifa,
     position: toSlotPosition(entry.position),
-    points: toPoints(entry.caps, entry.goals),
+    fantasyPoints: entry.fantasyPoints,
   };
 });

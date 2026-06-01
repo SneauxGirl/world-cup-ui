@@ -96,6 +96,15 @@ export function IconClose(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconInfo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v6M12 8h.01" />
+    </svg>
+  );
+}
+
 export function IconPlus(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...iconProps} {...props}>

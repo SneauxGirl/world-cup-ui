@@ -118,29 +118,3 @@
     min-height: 260px;
   }
 }
-
-.cardFrameHero {
-  min-height: 11.25rem;
-
-  .cardInner {
-    padding: 0.85rem 1rem 0.65rem;
-  }
-
-  .name {
-    font-size: var(--wcui-font-body);
-  }
-
-  .meta {
-    font-size: var(--wcui-font-meta);
-  }
-
-  .points {
-    font-size: var(--wcui-font-body);
-  }
-}
-
-@media (min-width: 769px) {
-  .cardFrameHero {
-    min-height: 12.5rem;
-  }
-}

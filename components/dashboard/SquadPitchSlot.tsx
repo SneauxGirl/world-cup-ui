@@ -54,7 +54,9 @@ export function SquadPitchSlot({ slot, onSelect, onClear, selectedPlayer }: Prop
                 <IconClose width={12} height={12} />
               </button>
               <span className={styles.slotTopMeta}>
-                <span className={styles.slotPlayerPoints}>{selectedPlayer?.points ?? 0} pts</span>
+                <span className={styles.slotPlayerPoints}>
+                  {selectedPlayer?.fantasyPoints ?? 0} pts
+                </span>
                 <span className={styles.slotPlayerMeta}>{slot.position}</span>
               </span>
               <span className={styles.slotPlayerImageWrap} aria-hidden="true">

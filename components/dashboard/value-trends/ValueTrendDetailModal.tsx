@@ -15,7 +15,12 @@ import { ValueTrendCandleChart } from "@/components/dashboard/value-trends/Value
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import type { ValueTrendTemplate } from "@/data/types";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
-import { formatAvgPoints, getCandleTrend, getCurrentCandle } from "@/lib/value-trends/compute";
+import {
+  formatAvgPoints,
+  getCandleTrend,
+  getCurrentCandle,
+  minutesToPlotPoints,
+} from "@/lib/value-trends/compute";
 import { getTeamJerseyPath } from "@/lib/nationalTeams";
 import { t } from "@/lib/i18n/t";
 import styles from "./ValueTrendDetailModal.module.scss";
@@ -178,19 +183,25 @@ export function ValueTrendDetailModal({
                   </h3>
                 </div>
                 <ul className={styles.matchBars}>
-                  {template.lastFiveMatchPoints.map((points, index) => (
-                    <li key={index} className={styles.matchBarItem}>
-                      <span className={styles.matchPts}>
-                        {points >= 0 ? "+" : ""}
-                        {points}
-                      </span>
-                      <span
-                        className={[styles.matchBar, getMatchBarTone(points)].join(" ")}
-                        style={{ height: `${Math.max(18, Math.min(100, points * 4))}%` }}
-                        aria-hidden="true"
-                      />
-                    </li>
-                  ))}
+                  {template.lastFiveMatchPoints.map((points, index) => {
+                    const minutes = template.lastFiveMatchMinutes[index] ?? 0;
+                    const appearancePts = minutesToPlotPoints(minutes);
+                    const total = points + appearancePts;
+
+                    return (
+                      <li key={index} className={styles.matchBarItem}>
+                        <span className={styles.matchPts}>
+                          {total >= 0 ? "+" : ""}
+                          {total}
+                        </span>
+                        <span
+                          className={[styles.matchBar, getMatchBarTone(total)].join(" ")}
+                          style={{ height: `${Math.max(18, Math.min(100, total * 4))}%` }}
+                          aria-hidden="true"
+                        />
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
 

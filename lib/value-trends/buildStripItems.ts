@@ -3,9 +3,9 @@ import { squadPitchFormation } from "@/data/squad-pitch-formation";
 import type { ValueTrendTemplate } from "@/data/types";
 import { getTemplateForSlot, getSlotLabel } from "@/data/value-trends-templates";
 import {
+  buildStripSummaryCandle,
   getCandleDelta,
   getCandleRange,
-  getCurrentCandle,
 } from "@/lib/value-trends/compute";
 
 export type ValueTrendStripItem = {
@@ -44,7 +44,7 @@ export function buildValueTrendHighlights(
   if (items.length === 0) return [];
 
   const scored = items.map((item) => {
-    const candle = getCurrentCandle(item.template.candles);
+    const candle = buildStripSummaryCandle(item.template);
     return {
       item,
       delta: getCandleDelta(candle),
@@ -77,7 +77,7 @@ export function buildValueTrendHighlights(
     });
   }
 
-  if (volatile && volatile.range > 20) {
+  if (volatile && volatile.range > 0) {
     highlights.push({
       kind: "volatile",
       slotId: volatile.item.slotId,

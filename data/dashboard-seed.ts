@@ -51,7 +51,7 @@ function toPerformer(playerName: string): DashboardPerformer {
     name: `${entry.firstName} ${entry.lastName}`.trim(),
     teamCode: entry.teamCode,
     position: entry.position,
-    points: entry.points,
+    points: entry.fantasyPoints,
   };
 }
 

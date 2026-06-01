@@ -141,8 +141,14 @@
     order: 5;
   }
 
-  .areaValueTrends {
+  .areaPlayerStats {
     order: 6;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .areaValueTrends {
+    order: 7;
     min-width: 0;
     width: 100%;
   }

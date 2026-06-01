@@ -19,6 +19,7 @@ import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { SiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
+import { PlayerStatsSection } from "@/components/dashboard/player-stats/PlayerStatsSection";
 import { ValueTrendsSection } from "@/components/dashboard/value-trends/ValueTrendsSection";
 import styles from "./Dashboard.module.scss";
 
@@ -81,6 +82,7 @@ export function Dashboard() {
               className={styles.areaStrategy}
             />
           </div>
+          <PlayerStatsSection className={styles.areaPlayerStats} />
           <ValueTrendsSection className={styles.areaValueTrends} />
         </main>
       </div>

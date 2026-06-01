@@ -71,6 +71,10 @@ export type ValueTrendCandle = {
   low: number;
   close: number;
   minutesPlayed: number;
+  /** Sum of ceil(minutes/10) per game in the window (appearance points). */
+  minutesPlotPoints?: number;
+  /** Per-game average appearance pts for the strip base bar (0–40 scale). */
+  minutesBarPlotPoints?: number;
 };
 
 export type ValueTrendStatKey =
@@ -94,6 +98,7 @@ export type ValueTrendTemplate = {
   rollingAverage: number;
   candles: ValueTrendCandle[];
   lastFiveMatchPoints: number[];
+  lastFiveMatchMinutes: number[];
   keyStats: ValueTrendKeyStat[];
   expectedPoints: number;
   /** MVP-only insight copy (not wired to i18n). */
@@ -102,3 +107,23 @@ export type ValueTrendTemplate = {
 
 /** Persisted roster: pitch slot id → squad pool player id. */
 export type UserRosterMap = Record<string, string>;
+
+/** Tournament stat line for roster comparison (MVP mock data). */
+export type RosterPlayerStatKey =
+  | "gp"
+  | "gs"
+  | "mp"
+  | "g"
+  | "hg"
+  | "pkg"
+  | "a"
+  | "s"
+  | "sog"
+  | "soff"
+  | "off"
+  | "ck"
+  | "yc"
+  | "rc"
+  | "yrc";
+
+export type RosterPlayerSeasonStats = Record<RosterPlayerStatKey, number>;

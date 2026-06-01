@@ -17,6 +17,24 @@ type SlotProfile = {
   insightLines: string[];
 };
 
+function buildMatchMinutes(
+  minutesBase: number,
+  trend: "up" | "down" | "flat" | "volatile",
+): number[] {
+  const avg = minutesBase / 5;
+  const multipliers: Record<typeof trend, number[]> = {
+    up: [0.92, 0.96, 1, 0.94, 0.98],
+    down: [1, 0.9, 0.86, 0.88, 0.84],
+    flat: [0.96, 0.94, 0.98, 0.95, 0.97],
+    volatile: [1, 0.28, 0.95, 0.22, 0.9],
+  };
+
+  return multipliers[trend].map((mult, index) => {
+    const raw = avg * mult + (index % 2) * 3;
+    return Math.min(95, Math.max(1, Math.round(raw)));
+  });
+}
+
 function buildCandles(
   baseForm: number,
   volatility: number,
@@ -119,6 +137,7 @@ function buildTemplate(
     rollingAverage: Math.round(rollingAverage * 10) / 10,
     candles,
     lastFiveMatchPoints: profile.matchPoints,
+    lastFiveMatchMinutes: buildMatchMinutes(profile.minutesBase, trend),
     keyStats: statsForPosition(position, profile.statValues),
     expectedPoints: profile.expectedPoints,
     insightLines: profile.insightLines,

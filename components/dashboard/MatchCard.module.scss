@@ -89,7 +89,6 @@
   width: clamp(2rem, 10vw, 3rem);
   aspect-ratio: 4 / 3;
   line-height: 0;
-  border-radius: 7px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -209,7 +208,6 @@
   width: clamp(1.75rem, 6vw, 2.15rem);
   font-size: var(--wcui-font-subheading);
   line-height: 1;
-  border-radius: 5px;
   overflow: hidden;
 }
 

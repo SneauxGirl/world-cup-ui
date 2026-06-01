@@ -21,7 +21,15 @@
 }
 
 .volume {
-  opacity: 0.7;
+  opacity: 0.45;
+}
+
+.stripPlot .volume {
+  opacity: 0.5;
+}
+
+.stripPlot .body {
+  filter: none;
 }
 
 .tooltip {
@@ -125,6 +133,18 @@
     width: 40px;
     height: auto;
     max-width: none;
+  }
+}
+
+.stripPlot {
+  height: var(--value-trend-plot-height, 96px);
+  justify-content: flex-end;
+
+  .svg {
+    width: 40px;
+    height: var(--value-trend-plot-height, 96px);
+    max-width: none;
+    overflow: hidden;
   }
 }
 

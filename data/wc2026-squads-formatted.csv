@@ -1,61 +1,61 @@
-group,nation,position,player,caps,goals,numberWC22
-Group J,Argentina,GK,Emiliano Martínez,59,0,
-Group J,Argentina,MF,Enzo Fernández,40,6,
-Group J,Argentina,FW,Lionel Messi,198,116,
-Group J,Austria,DF,David Alaba,112,15,
-Group J,Austria,MF,Marcel Sabitzer,97,25,
-Group G,Belgium,GK,Thibaut Courtois,107,0,
-Group G,Belgium,MF,Kevin De Bruyne,117,36,
-Group G,Belgium,FW,Romelu Lukaku,124,89,
-Group C,Brazil,GK,Alisson,76,0,
-Group C,Brazil,DF,Marquinhos,104,7,
-Group C,Brazil,FW,Vinícius Júnior,47,8,
-Group B,Canada,DF,Alphonso Davies,58,15,
-Group B,Canada,FW,Jonathan David,75,39,
-Group K,Colombia,DF,Daniel Muñoz,44,3,
-Group K,Colombia,FW,Luis Díaz,72,21,
-Group L,Croatia,DF,Joško Gvardiol,46,4,
-Group L,Croatia,MF,Luka Modrić,196,28,
-Group K,DR Congo,DF,Chancel Mbemba,107,7,
-Group G,Egypt,FW,Mohamed Salah,116,67,
-Group L,England,GK,Jordan Pickford,82,0,
-Group L,England,MF,Jude Bellingham,46,6,
-Group L,England,FW,Harry Kane,112,78,
-Group I,France,GK,Mike Maignan,38,0,
-Group I,France,DF,Théo Hernandez,42,2,
-Group I,France,FW,Kylian Mbappé,96,56,
-Group E,Germany,DF,Antonio Rüdiger,82,3,2
-Group E,Germany,MF,Florian Wirtz,39,10,17
-Group E,Germany,MF,Jamal Musiala,40,8,10
-Group L,Ghana,MF,Thomas Partey,56,15,
-Group E,Ivory Coast,MF,Franck Kessié,102,15,
-Group F,Japan,MF,Junya Itō,68,15,14
-Group A,Mexico,DF,César Montes,65,4,
-Group C,Morocco,GK,Yassine Bounou,89,0,
-Group C,Morocco,DF,Achraf Hakimi,95,11,
-Group C,Morocco,MF,Azzedine Ounahi,47,9,
-Group F,Netherlands,DF,Virgil van Dijk,90,12,
-Group F,Netherlands,MF,Tijjani Reijnders,30,7,
-Group I,Norway,MF,Martin Ødegaard,67,4,
-Group I,Norway,FW,Erling Haaland,49,55,
-Group L,Panama,DF,Michael Amir Murillo,91,9,
-Group D,Paraguay,DF,Gustavo Gómez,88,4,
-Group K,Portugal,GK,Diogo Costa,42,0,
-Group K,Portugal,MF,Bruno Fernandes,87,28,
-Group K,Portugal,FW,Cristiano Ronaldo,226,143,
-Group C,Scotland,MF,John McGinn,85,20,
-Group C,Scotland,MF,Scott McTominay,69,14,
-Group I,Senegal,DF,Kalidou Koulibaly,103,2,
-Group A,South Korea,DF,Kim Min-jae,77,4,
-Group A,South Korea,FW,Son Heung-min,142,54,
-Group H,Spain,DF,Aymeric Laporte,44,2,
-Group H,Spain,MF,Rodri,61,4,
-Group H,Spain,FW,Lamine Yamal,25,6,
-Group F,Sweden,DF,Victor Lindelöf,75,3,
-Group B,Switzerland,GK,Gregor Kobel,20,0,1
-Group B,Switzerland,DF,Manuel Akanji,79,4,5
-Group B,Switzerland,MF,Granit Xhaka,144,16,
-Group D,Turkey,DF,Ferdi Kadıoğlu,30,2,
-Group D,Turkey,MF,Hakan Çalhanoğlu,104,22,
-Group D,United States,DF,Antonee Robinson,52,4,5
-Group D,United States,MF,Weston McKennie,64,12,8
+group,nation,position,firstName,lastName,squadNumber,fantasyPoints
+Group J,Argentina,GK,Emiliano,Martínez,1,72
+Group J,Argentina,MF,Enzo,Fernández,21,88
+Group J,Argentina,FW,Lionel,Messi,9,128
+Group J,Austria,DF,David,Alaba,41,65
+Group J,Austria,MF,Marcel,Sabitzer,22,58
+Group G,Belgium,GK,Thibaut,Courtois,2,54
+Group G,Belgium,MF,Kevin,De Bruyne,23,112
+Group G,Belgium,FW,Romelu,Lukaku,10,79
+Group C,Brazil,GK,,Alisson,3,68
+Group C,Brazil,DF,,Marquinhos,42,74
+Group C,Brazil,FW,Vinícius,Júnior,11,118
+Group B,Canada,DF,Alphonso,Davies,43,82
+Group B,Canada,FW,Jonathan,David,12,91
+Group K,Colombia,DF,Daniel,Muñoz,44,63
+Group K,Colombia,FW,Luis,Díaz,13,96
+Group L,Croatia,DF,Joško,Gvardiol,45,77
+Group L,Croatia,MF,Luka,Modrić,24,86
+Group K,DR Congo,DF,Chancel,Mbemba,46,61
+Group G,Egypt,FW,Mohamed,Salah,14,124
+Group L,England,GK,Jordan,Pickford,4,59
+Group L,England,MF,Jude,Bellingham,25,115
+Group L,England,FW,Harry,Kane,15,108
+Group I,France,GK,Mike,Maignan,5,52
+Group I,France,DF,Théo,Hernandez,47,84
+Group I,France,FW,Kylian,Mbappé,16,122
+Group E,Germany,DF,Antonio,Rüdiger,48,70
+Group E,Germany,MF,Florian,Wirtz,26,103
+Group E,Germany,MF,Jamal,Musiala,27,110
+Group L,Ghana,MF,Thomas,Partey,28,67
+Group E,Ivory Coast,MF,Franck,Kessié,29,64
+Group F,Japan,MF,Junya,Itō,30,71
+Group A,Mexico,DF,César,Montes,49,55
+Group C,Morocco,GK,Yassine,Bounou,6,57
+Group C,Morocco,DF,Achraf,Hakimi,50,89
+Group C,Morocco,MF,Azzedine,Ounahi,31,62
+Group F,Netherlands,DF,Virgil,van Dijk,51,81
+Group F,Netherlands,MF,Tijjani,Reijnders,32,93
+Group I,Norway,MF,Martin,Ødegaard,33,99
+Group I,Norway,FW,Erling,Haaland,17,135
+Group L,Panama,DF,Michael,Amir Murillo,52,48
+Group D,Paraguay,DF,Gustavo,Gómez,53,56
+Group K,Portugal,GK,Diogo,Costa,7,60
+Group K,Portugal,MF,Bruno,Fernandes,34,105
+Group K,Portugal,FW,Cristiano,Ronaldo,18,98
+Group C,Scotland,MF,John,McGinn,35,66
+Group C,Scotland,MF,Scott,McTominay,36,78
+Group I,Senegal,DF,Kalidou,Koulibaly,54,69
+Group A,South Korea,DF,Min-jae,Kim,55,76
+Group A,South Korea,FW,Heung-min,Son,19,114
+Group H,Spain,DF,Aymeric,Laporte,56,73
+Group H,Spain,MF,,Rodri,37,101
+Group H,Spain,FW,Lamine,Yamal,20,117
+Group F,Sweden,DF,Victor,Lindelöf,57,53
+Group B,Switzerland,GK,Gregor,Kobel,8,51
+Group B,Switzerland,DF,Manuel,Akanji,58,75
+Group B,Switzerland,MF,Granit,Xhaka,38,80
+Group D,Turkey,DF,Ferdi,Kadıoğlu,59,68
+Group D,Turkey,MF,Hakan,Çalhanoğlu,39,87
+Group D,United States,DF,Antonee,Robinson,60,72
+Group D,United States,MF,Weston,McKennie,40,70

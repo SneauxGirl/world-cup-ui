@@ -94,17 +94,65 @@
 
 .head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
 }
 
+.titleRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .title {
+  margin: 0;
   font-size: var(--wcui-font-heading-section);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 700;
   color: var(--wcui-white-text);
+}
+
+.infoBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--wcui-text-standard);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.infoIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  circle {
+    stroke: color-mix(in oklab, var(--wcui-white-text) 72%, var(--wcui-aqua-mint));
+    transition:
+      stroke 160ms ease,
+      stroke-width 160ms ease;
+  }
+}
+
+.infoBtn:hover .infoIcon circle,
+.infoBtn:focus-visible .infoIcon circle {
+  stroke: var(--wcui-aqua-mint);
+}
+
+.infoBtn:focus-visible .infoIcon circle {
+  stroke-width: 2.25;
 }
 
 .chips {
@@ -216,38 +264,8 @@
   transform: rotate(180deg);
 }
 
-.scroller {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: flex-end;
-  gap: clamp(0.35rem, 1.5vw, 0.65rem);
-  overflow-x: auto;
-  padding-bottom: 0.15rem;
-  min-width: 0;
-  width: 100%;
-  -webkit-overflow-scrolling: touch;
-}
-
 @media (max-width: 768px) {
   .controls {
     display: flex;
-  }
-
-  .scroller {
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 0.25rem;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1100px) {
-  .scroller {
-    flex-wrap: wrap;
-  }
-}
-
-@media (min-width: 1101px) {
-  .scroller {
-    flex-wrap: nowrap;
   }
 }

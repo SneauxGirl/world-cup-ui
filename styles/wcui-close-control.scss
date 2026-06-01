@@ -22,7 +22,6 @@
 
 @mixin wcui-close-control-ring {
   border: 1px solid transparent;
-  border-radius: 2px;
 
   &:hover,
   &:focus-visible {

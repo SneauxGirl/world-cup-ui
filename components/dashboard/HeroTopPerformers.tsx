@@ -33,10 +33,10 @@ export function HeroTopPerformers({ performers, className }: Props) {
           <IconChevronRight className={styles.viewIcon} aria-hidden="true" />
         </Link>
       </div>
-      <div className={styles.grid}>
+      <div className={styles.cardRow}>
         {sortedPerformers.map((performer) => (
           <div key={performer.id} className={styles.slot}>
-            <PerformerCard performer={performer} variant="hero" />
+            <PerformerCard performer={performer} />
           </div>
         ))}
       </div>

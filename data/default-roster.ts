@@ -18,7 +18,7 @@ export const DEFAULT_ROSTER_BY_SLOT: UserRosterMap = {
   "mid-5": "portugal-mf-bruno-fernandes",
   "fwd-1": "norway-fw-erling-haaland",
   "fwd-2": "egypt-fw-mohamed-salah",
-  "fwd-3": "south-korea-fw-son-heung-min",
+  "fwd-3": "south-korea-fw-heung-min-son",
 };
 
 /** All player ids in the default preload squad. */

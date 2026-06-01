@@ -1,542 +1,62 @@
 [
-  {
-    "group": "Group J",
-    "nation": "Argentina",
-    "position": "GK",
-    "player": "Emiliano Martínez",
-    "caps": 59,
-    "goals": 0,
-    "numberWC22": null
-  },
-  {
-    "group": "Group J",
-    "nation": "Argentina",
-    "position": "MF",
-    "player": "Enzo Fernández",
-    "caps": 40,
-    "goals": 6,
-    "numberWC22": null
-  },
-  {
-    "group": "Group J",
-    "nation": "Argentina",
-    "position": "FW",
-    "player": "Lionel Messi",
-    "caps": 198,
-    "goals": 116,
-    "numberWC22": null
-  },
-  {
-    "group": "Group J",
-    "nation": "Austria",
-    "position": "DF",
-    "player": "David Alaba",
-    "caps": 112,
-    "goals": 15,
-    "numberWC22": null
-  },
-  {
-    "group": "Group J",
-    "nation": "Austria",
-    "position": "MF",
-    "player": "Marcel Sabitzer",
-    "caps": 97,
-    "goals": 25,
-    "numberWC22": null
-  },
-  {
-    "group": "Group G",
-    "nation": "Belgium",
-    "position": "GK",
-    "player": "Thibaut Courtois",
-    "caps": 107,
-    "goals": 0,
-    "numberWC22": null
-  },
-  {
-    "group": "Group G",
-    "nation": "Belgium",
-    "position": "MF",
-    "player": "Kevin De Bruyne",
-    "caps": 117,
-    "goals": 36,
-    "numberWC22": null
-  },
-  {
-    "group": "Group G",
-    "nation": "Belgium",
-    "position": "FW",
-    "player": "Romelu Lukaku",
-    "caps": 124,
-    "goals": 89,
-    "numberWC22": null
-  },
-  {
-    "group": "Group C",
-    "nation": "Brazil",
-    "position": "GK",
-    "player": "Alisson",
-    "caps": 76,
-    "goals": 0,
-    "numberWC22": null
-  },
-  {
-    "group": "Group C",
-    "nation": "Brazil",
-    "position": "DF",
-    "player": "Marquinhos",
-    "caps": 104,
-    "goals": 7,
-    "numberWC22": null
-  },
-  {
-    "group": "Group C",
-    "nation": "Brazil",
-    "position": "FW",
-    "player": "Vinícius Júnior",
-    "caps": 47,
-    "goals": 8,
-    "numberWC22": null
-  },
-  {
-    "group": "Group B",
-    "nation": "Canada",
-    "position": "DF",
-    "player": "Alphonso Davies",
-    "caps": 58,
-    "goals": 15,
-    "numberWC22": null
-  },
-  {
-    "group": "Group B",
-    "nation": "Canada",
-    "position": "FW",
-    "player": "Jonathan David",
-    "caps": 75,
-    "goals": 39,
-    "numberWC22": null
-  },
-  {
-    "group": "Group K",
-    "nation": "Colombia",
-    "position": "DF",
-    "player": "Daniel Muñoz",
-    "caps": 44,
-    "goals": 3,
-    "numberWC22": null
-  },
-  {
-    "group": "Group K",
-    "nation": "Colombia",
-    "position": "FW",
-    "player": "Luis Díaz",
-    "caps": 72,
-    "goals": 21,
-    "numberWC22": null
-  },
-  {
-    "group": "Group L",
-    "nation": "Croatia",
-    "position": "DF",
-    "player": "Joško Gvardiol",
-    "caps": 46,
-    "goals": 4,
-    "numberWC22": null
-  },
-  {
-    "group": "Group L",
-    "nation": "Croatia",
-    "position": "MF",
-    "player": "Luka Modrić",
-    "caps": 196,
-    "goals": 28,
-    "numberWC22": null
-  },
-  {
-    "group": "Group K",
-    "nation": "DR Congo",
-    "position": "DF",
-    "player": "Chancel Mbemba",
-    "caps": 107,
-    "goals": 7,
-    "numberWC22": null
-  },
-  {
-    "group": "Group G",
-    "nation": "Egypt",
-    "position": "FW",
-    "player": "Mohamed Salah",
-    "caps": 116,
-    "goals": 67,
-    "numberWC22": null
-  },
-  {
-    "group": "Group L",
-    "nation": "England",
-    "position": "GK",
-    "player": "Jordan Pickford",
-    "caps": 82,
-    "goals": 0,
-    "numberWC22": null
-  },
-  {
-    "group": "Group L",
-    "nation": "England",
-    "position": "MF",
-    "player": "Jude Bellingham",
-    "caps": 46,
-    "goals": 6,
-    "numberWC22": null
-  },
-  {
-    "group": "Group L",
-    "nation": "England",
-    "position": "FW",
-    "player": "Harry Kane",
-    "caps": 112,
-    "goals": 78,
-    "numberWC22": null
-  },
-  {
-    "group": "Group I",
-    "nation": "France",
-    "position": "GK",
-    "player": "Mike Maignan",
-    "caps": 38,
-    "goals": 0,
-    "numberWC22": null
-  },
-  {
-    "group": "Group I",
-    "nation": "France",
-    "position": "DF",
-    "player": "Théo Hernandez",
-    "caps": 42,
-    "goals": 2,
-    "numberWC22": null
-  },
-  {
-    "group": "Group I",
-    "nation": "France",
-    "position": "FW",
-    "player": "Kylian Mbappé",
-    "caps": 96,
-    "goals": 56,
-    "numberWC22": null
-  },
-  {
-    "group": "Group E",
-    "nation": "Germany",
-    "position": "DF",
-    "player": "Antonio Rüdiger",
-    "caps": 82,
-    "goals": 3,
-    "numberWC22": 2
-  },
-  {
-    "group": "Group E",
-    "nation": "Germany",
-    "position": "MF",
-    "player": "Florian Wirtz",
-    "caps": 39,
-    "goals": 10,
-    "numberWC22": 17
-  },
-  {
-    "group": "Group E",
-    "nation": "Germany",
-    "position": "MF",
-    "player": "Jamal Musiala",
-    "caps": 40,
-    "goals": 8,
-    "numberWC22": 10
-  },
-  {
-    "group": "Group L",
-    "nation": "Ghana",
-    "position": "MF",
-    "player": "Thomas Partey",
-    "caps": 56,
-    "goals": 15,
-    "numberWC22": null
-  },
-  {
-    "group": "Group E",
-    "nation": "Ivory Coast",
-    "position": "MF",
-    "player": "Franck Kessié",
-    "caps": 102,
-    "goals": 15,
-    "numberWC22": null
-  },
-  {
-    "group": "Group F",
-    "nation": "Japan",
-    "position": "MF",
-    "player": "Junya Itō",
-    "caps": 68,
-    "goals": 15,
-    "numberWC22": 14
-  },
-  {
-    "group": "Group A",
-    "nation": "Mexico",
-    "position": "DF",
-    "player": "César Montes",
-    "caps": 65,
-    "goals": 4,
-    "numberWC22": null
-  },
-  {
-    "group": "Group C",
-    "nation": "Morocco",
-    "position": "GK",
-    "player": "Yassine Bounou",
-    "caps": 89,
-    "goals": 0,
-    "numberWC22": null
-  },
-  {
-    "group": "Group C",
-    "nation": "Morocco",
-    "position": "DF",
-    "player": "Achraf Hakimi",
-    "caps": 95,
-    "goals": 11,
-    "numberWC22": null
-  },
-  {
-    "group": "Group C",
-    "nation": "Morocco",
-    "position": "MF",
-    "player": "Azzedine Ounahi",
-    "caps": 47,
-    "goals": 9,
-    "numberWC22": null
-  },
-  {
-    "group": "Group F",
-    "nation": "Netherlands",
-    "position": "DF",
-    "player": "Virgil van Dijk",
-    "caps": 90,
-    "goals": 12,
-    "numberWC22": null
-  },
-  {
-    "group": "Group F",
-    "nation": "Netherlands",
-    "position": "MF",
-    "player": "Tijjani Reijnders",
-    "caps": 30,
-    "goals": 7,
-    "numberWC22": null
-  },
-  {
-    "group": "Group I",
-    "nation": "Norway",
-    "position": "MF",
-    "player": "Martin Ødegaard",
-    "caps": 67,
-    "goals": 4,
-    "numberWC22": null
-  },
-  {
-    "group": "Group I",
-    "nation": "Norway",
-    "position": "FW",
-    "player": "Erling Haaland",
-    "caps": 49,
-    "goals": 55,
-    "numberWC22": null
-  },
-  {
-    "group": "Group L",
-    "nation": "Panama",
-    "position": "DF",
-    "player": "Michael Amir Murillo",
-    "caps": 91,
-    "goals": 9,
-    "numberWC22": null
-  },
-  {
-    "group": "Group D",
-    "nation": "Paraguay",
-    "position": "DF",
-    "player": "Gustavo Gómez",
-    "caps": 88,
-    "goals": 4,
-    "numberWC22": null
-  },
-  {
-    "group": "Group K",
-    "nation": "Portugal",
-    "position": "GK",
-    "player": "Diogo Costa",
-    "caps": 42,
-    "goals": 0,
-    "numberWC22": null
-  },
-  {
-    "group": "Group K",
-    "nation": "Portugal",
-    "position": "MF",
-    "player": "Bruno Fernandes",
-    "caps": 87,
-    "goals": 28,
-    "numberWC22": null
-  },
-  {
-    "group": "Group K",
-    "nation": "Portugal",
-    "position": "FW",
-    "player": "Cristiano Ronaldo",
-    "caps": 226,
-    "goals": 143,
-    "numberWC22": null
-  },
-  {
-    "group": "Group C",
-    "nation": "Scotland",
-    "position": "MF",
-    "player": "John McGinn",
-    "caps": 85,
-    "goals": 20,
-    "numberWC22": null
-  },
-  {
-    "group": "Group C",
-    "nation": "Scotland",
-    "position": "MF",
-    "player": "Scott McTominay",
-    "caps": 69,
-    "goals": 14,
-    "numberWC22": null
-  },
-  {
-    "group": "Group I",
-    "nation": "Senegal",
-    "position": "DF",
-    "player": "Kalidou Koulibaly",
-    "caps": 103,
-    "goals": 2,
-    "numberWC22": null
-  },
-  {
-    "group": "Group A",
-    "nation": "South Korea",
-    "position": "DF",
-    "player": "Kim Min-jae",
-    "caps": 77,
-    "goals": 4,
-    "numberWC22": null
-  },
-  {
-    "group": "Group A",
-    "nation": "South Korea",
-    "position": "FW",
-    "player": "Son Heung-min",
-    "caps": 142,
-    "goals": 54,
-    "numberWC22": null
-  },
-  {
-    "group": "Group H",
-    "nation": "Spain",
-    "position": "DF",
-    "player": "Aymeric Laporte",
-    "caps": 44,
-    "goals": 2,
-    "numberWC22": null
-  },
-  {
-    "group": "Group H",
-    "nation": "Spain",
-    "position": "MF",
-    "player": "Rodri",
-    "caps": 61,
-    "goals": 4,
-    "numberWC22": null
-  },
-  {
-    "group": "Group H",
-    "nation": "Spain",
-    "position": "FW",
-    "player": "Lamine Yamal",
-    "caps": 25,
-    "goals": 6,
-    "numberWC22": null
-  },
-  {
-    "group": "Group F",
-    "nation": "Sweden",
-    "position": "DF",
-    "player": "Victor Lindelöf",
-    "caps": 75,
-    "goals": 3,
-    "numberWC22": null
-  },
-  {
-    "group": "Group B",
-    "nation": "Switzerland",
-    "position": "GK",
-    "player": "Gregor Kobel",
-    "caps": 20,
-    "goals": 0,
-    "numberWC22": 1
-  },
-  {
-    "group": "Group B",
-    "nation": "Switzerland",
-    "position": "DF",
-    "player": "Manuel Akanji",
-    "caps": 79,
-    "goals": 4,
-    "numberWC22": 5
-  },
-  {
-    "group": "Group B",
-    "nation": "Switzerland",
-    "position": "MF",
-    "player": "Granit Xhaka",
-    "caps": 144,
-    "goals": 16,
-    "numberWC22": null
-  },
-  {
-    "group": "Group D",
-    "nation": "Turkey",
-    "position": "DF",
-    "player": "Ferdi Kadıoğlu",
-    "caps": 30,
-    "goals": 2,
-    "numberWC22": null
-  },
-  {
-    "group": "Group D",
-    "nation": "Turkey",
-    "position": "MF",
-    "player": "Hakan Çalhanoğlu",
-    "caps": 104,
-    "goals": 22,
-    "numberWC22": null
-  },
-  {
-    "group": "Group D",
-    "nation": "United States",
-    "position": "DF",
-    "player": "Antonee Robinson",
-    "caps": 52,
-    "goals": 4,
-    "numberWC22": 5
-  },
-  {
-    "group": "Group D",
-    "nation": "United States",
-    "position": "MF",
-    "player": "Weston McKennie",
-    "caps": 64,
-    "goals": 12,
-    "numberWC22": 8
-  }
+  { "group": "Group J", "nation": "Argentina", "position": "GK", "firstName": "Emiliano", "lastName": "Martínez", "squadNumber": 1, "fantasyPoints": 72 },
+  { "group": "Group J", "nation": "Argentina", "position": "MF", "firstName": "Enzo", "lastName": "Fernández", "squadNumber": 21, "fantasyPoints": 88 },
+  { "group": "Group J", "nation": "Argentina", "position": "FW", "firstName": "Lionel", "lastName": "Messi", "squadNumber": 9, "fantasyPoints": 128 },
+  { "group": "Group J", "nation": "Austria", "position": "DF", "firstName": "David", "lastName": "Alaba", "squadNumber": 41, "fantasyPoints": 65 },
+  { "group": "Group J", "nation": "Austria", "position": "MF", "firstName": "Marcel", "lastName": "Sabitzer", "squadNumber": 22, "fantasyPoints": 58 },
+  { "group": "Group G", "nation": "Belgium", "position": "GK", "firstName": "Thibaut", "lastName": "Courtois", "squadNumber": 2, "fantasyPoints": 54 },
+  { "group": "Group G", "nation": "Belgium", "position": "MF", "firstName": "Kevin", "lastName": "De Bruyne", "squadNumber": 23, "fantasyPoints": 112 },
+  { "group": "Group G", "nation": "Belgium", "position": "FW", "firstName": "Romelu", "lastName": "Lukaku", "squadNumber": 10, "fantasyPoints": 79 },
+  { "group": "Group C", "nation": "Brazil", "position": "GK", "firstName": "", "lastName": "Alisson", "squadNumber": 3, "fantasyPoints": 68 },
+  { "group": "Group C", "nation": "Brazil", "position": "DF", "firstName": "", "lastName": "Marquinhos", "squadNumber": 42, "fantasyPoints": 74 },
+  { "group": "Group C", "nation": "Brazil", "position": "FW", "firstName": "Vinícius", "lastName": "Júnior", "squadNumber": 11, "fantasyPoints": 118 },
+  { "group": "Group B", "nation": "Canada", "position": "DF", "firstName": "Alphonso", "lastName": "Davies", "squadNumber": 43, "fantasyPoints": 82 },
+  { "group": "Group B", "nation": "Canada", "position": "FW", "firstName": "Jonathan", "lastName": "David", "squadNumber": 12, "fantasyPoints": 91 },
+  { "group": "Group K", "nation": "Colombia", "position": "DF", "firstName": "Daniel", "lastName": "Muñoz", "squadNumber": 44, "fantasyPoints": 63 },
+  { "group": "Group K", "nation": "Colombia", "position": "FW", "firstName": "Luis", "lastName": "Díaz", "squadNumber": 13, "fantasyPoints": 96 },
+  { "group": "Group L", "nation": "Croatia", "position": "DF", "firstName": "Joško", "lastName": "Gvardiol", "squadNumber": 45, "fantasyPoints": 77 },
+  { "group": "Group L", "nation": "Croatia", "position": "MF", "firstName": "Luka", "lastName": "Modrić", "squadNumber": 24, "fantasyPoints": 86 },
+  { "group": "Group K", "nation": "DR Congo", "position": "DF", "firstName": "Chancel", "lastName": "Mbemba", "squadNumber": 46, "fantasyPoints": 61 },
+  { "group": "Group G", "nation": "Egypt", "position": "FW", "firstName": "Mohamed", "lastName": "Salah", "squadNumber": 14, "fantasyPoints": 124 },
+  { "group": "Group L", "nation": "England", "position": "GK", "firstName": "Jordan", "lastName": "Pickford", "squadNumber": 4, "fantasyPoints": 59 },
+  { "group": "Group L", "nation": "England", "position": "MF", "firstName": "Jude", "lastName": "Bellingham", "squadNumber": 25, "fantasyPoints": 115 },
+  { "group": "Group L", "nation": "England", "position": "FW", "firstName": "Harry", "lastName": "Kane", "squadNumber": 15, "fantasyPoints": 108 },
+  { "group": "Group I", "nation": "France", "position": "GK", "firstName": "Mike", "lastName": "Maignan", "squadNumber": 5, "fantasyPoints": 52 },
+  { "group": "Group I", "nation": "France", "position": "DF", "firstName": "Théo", "lastName": "Hernandez", "squadNumber": 47, "fantasyPoints": 84 },
+  { "group": "Group I", "nation": "France", "position": "FW", "firstName": "Kylian", "lastName": "Mbappé", "squadNumber": 16, "fantasyPoints": 122 },
+  { "group": "Group E", "nation": "Germany", "position": "DF", "firstName": "Antonio", "lastName": "Rüdiger", "squadNumber": 48, "fantasyPoints": 70 },
+  { "group": "Group E", "nation": "Germany", "position": "MF", "firstName": "Florian", "lastName": "Wirtz", "squadNumber": 26, "fantasyPoints": 103 },
+  { "group": "Group E", "nation": "Germany", "position": "MF", "firstName": "Jamal", "lastName": "Musiala", "squadNumber": 27, "fantasyPoints": 110 },
+  { "group": "Group L", "nation": "Ghana", "position": "MF", "firstName": "Thomas", "lastName": "Partey", "squadNumber": 28, "fantasyPoints": 67 },
+  { "group": "Group E", "nation": "Ivory Coast", "position": "MF", "firstName": "Franck", "lastName": "Kessié", "squadNumber": 29, "fantasyPoints": 64 },
+  { "group": "Group F", "nation": "Japan", "position": "MF", "firstName": "Junya", "lastName": "Itō", "squadNumber": 30, "fantasyPoints": 71 },
+  { "group": "Group A", "nation": "Mexico", "position": "DF", "firstName": "César", "lastName": "Montes", "squadNumber": 49, "fantasyPoints": 55 },
+  { "group": "Group C", "nation": "Morocco", "position": "GK", "firstName": "Yassine", "lastName": "Bounou", "squadNumber": 6, "fantasyPoints": 57 },
+  { "group": "Group C", "nation": "Morocco", "position": "DF", "firstName": "Achraf", "lastName": "Hakimi", "squadNumber": 50, "fantasyPoints": 89 },
+  { "group": "Group C", "nation": "Morocco", "position": "MF", "firstName": "Azzedine", "lastName": "Ounahi", "squadNumber": 31, "fantasyPoints": 62 },
+  { "group": "Group F", "nation": "Netherlands", "position": "DF", "firstName": "Virgil", "lastName": "van Dijk", "squadNumber": 51, "fantasyPoints": 81 },
+  { "group": "Group F", "nation": "Netherlands", "position": "MF", "firstName": "Tijjani", "lastName": "Reijnders", "squadNumber": 32, "fantasyPoints": 93 },
+  { "group": "Group I", "nation": "Norway", "position": "MF", "firstName": "Martin", "lastName": "Ødegaard", "squadNumber": 33, "fantasyPoints": 99 },
+  { "group": "Group I", "nation": "Norway", "position": "FW", "firstName": "Erling", "lastName": "Haaland", "squadNumber": 17, "fantasyPoints": 135 },
+  { "group": "Group L", "nation": "Panama", "position": "DF", "firstName": "Michael", "lastName": "Amir Murillo", "squadNumber": 52, "fantasyPoints": 48 },
+  { "group": "Group D", "nation": "Paraguay", "position": "DF", "firstName": "Gustavo", "lastName": "Gómez", "squadNumber": 53, "fantasyPoints": 56 },
+  { "group": "Group K", "nation": "Portugal", "position": "GK", "firstName": "Diogo", "lastName": "Costa", "squadNumber": 7, "fantasyPoints": 60 },
+  { "group": "Group K", "nation": "Portugal", "position": "MF", "firstName": "Bruno", "lastName": "Fernandes", "squadNumber": 34, "fantasyPoints": 105 },
+  { "group": "Group K", "nation": "Portugal", "position": "FW", "firstName": "Cristiano", "lastName": "Ronaldo", "squadNumber": 18, "fantasyPoints": 98 },
+  { "group": "Group C", "nation": "Scotland", "position": "MF", "firstName": "John", "lastName": "McGinn", "squadNumber": 35, "fantasyPoints": 66 },
+  { "group": "Group C", "nation": "Scotland", "position": "MF", "firstName": "Scott", "lastName": "McTominay", "squadNumber": 36, "fantasyPoints": 78 },
+  { "group": "Group I", "nation": "Senegal", "position": "DF", "firstName": "Kalidou", "lastName": "Koulibaly", "squadNumber": 54, "fantasyPoints": 69 },
+  { "group": "Group A", "nation": "South Korea", "position": "DF", "firstName": "Min-jae", "lastName": "Kim", "squadNumber": 55, "fantasyPoints": 76 },
+  { "group": "Group A", "nation": "South Korea", "position": "FW", "firstName": "Heung-min", "lastName": "Son", "squadNumber": 19, "fantasyPoints": 114 },
+  { "group": "Group H", "nation": "Spain", "position": "DF", "firstName": "Aymeric", "lastName": "Laporte", "squadNumber": 56, "fantasyPoints": 73 },
+  { "group": "Group H", "nation": "Spain", "position": "MF", "firstName": "", "lastName": "Rodri", "squadNumber": 37, "fantasyPoints": 101 },
+  { "group": "Group H", "nation": "Spain", "position": "FW", "firstName": "Lamine", "lastName": "Yamal", "squadNumber": 20, "fantasyPoints": 117 },
+  { "group": "Group F", "nation": "Sweden", "position": "DF", "firstName": "Victor", "lastName": "Lindelöf", "squadNumber": 57, "fantasyPoints": 53 },
+  { "group": "Group B", "nation": "Switzerland", "position": "GK", "firstName": "Gregor", "lastName": "Kobel", "squadNumber": 8, "fantasyPoints": 51 },
+  { "group": "Group B", "nation": "Switzerland", "position": "DF", "firstName": "Manuel", "lastName": "Akanji", "squadNumber": 58, "fantasyPoints": 75 },
+  { "group": "Group B", "nation": "Switzerland", "position": "MF", "firstName": "Granit", "lastName": "Xhaka", "squadNumber": 38, "fantasyPoints": 80 },
+  { "group": "Group D", "nation": "Turkey", "position": "DF", "firstName": "Ferdi", "lastName": "Kadıoğlu", "squadNumber": 59, "fantasyPoints": 68 },
+  { "group": "Group D", "nation": "Turkey", "position": "MF", "firstName": "Hakan", "lastName": "Çalhanoğlu", "squadNumber": 39, "fantasyPoints": 87 },
+  { "group": "Group D", "nation": "United States", "position": "DF", "firstName": "Antonee", "lastName": "Robinson", "squadNumber": 60, "fantasyPoints": 72 },
+  { "group": "Group D", "nation": "United States", "position": "MF", "firstName": "Weston", "lastName": "McKennie", "squadNumber": 40, "fantasyPoints": 70 }
 ]

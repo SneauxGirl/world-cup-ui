@@ -36,6 +36,25 @@ export function HeroSection({
   className,
 }: Props) {
   const showFeed = showLiveFeed && feedItems.length > 0;
+  const hasPerformers = performers.length > 0;
+
+  const heroCta = (
+    <div className={styles.heroActionRow}>
+      <div className={styles.heroCtaWrap}>
+        <div className={styles.heroCtaTrim}>
+          {onCtaClick ? (
+            <button type="button" className={styles.heroCta} onClick={onCtaClick}>
+              {ctaLabel}
+            </button>
+          ) : (
+            <Link className={styles.heroCta} href={ctaHref}>
+              {ctaLabel}
+            </Link>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <section
@@ -65,14 +84,10 @@ export function HeroSection({
         </div>
       ) : null}
       <div className={styles.heroStack}>
-        <div
-          className={[styles.heroLayout, !loginHero && styles.heroLayoutDashboard]
-            .filter(Boolean)
-            .join(" ")}
-        >
+        <div className={styles.heroContent}>
           {!loginHero ? (
             <>
-              <div className={styles.heroDashboardMain}>
+              <div className={styles.heroCopy}>
                 <div className={styles.heroTopRow}>
                   <div className={styles.heroMenu}>
                     <HeroNavMenu onAccountClick={onMenuAccountClick} />
@@ -93,40 +108,22 @@ export function HeroSection({
                     </div>
                   ) : null}
                 </div>
-                <div className={styles.heroActionRow}>
-                  <div className={styles.heroCtaWrap}>
-                    <div className={styles.heroCtaTrim}>
-                      {onCtaClick ? (
-                        <button
-                          type="button"
-                          className={styles.heroCta}
-                          onClick={onCtaClick}
-                        >
-                          {ctaLabel}
-                        </button>
-                      ) : (
-                        <Link className={styles.heroCta} href={ctaHref}>
-                          {ctaLabel}
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                </div>
+                {heroCta}
               </div>
-              {performers.length > 0 ? (
+              {hasPerformers ? (
                 <HeroTopPerformers
                   performers={performers}
-                  className={styles.heroPerformers}
+                  className={styles.heroAsidePerformers}
                 />
               ) : (
-                <figure className={styles.heroConstruction} aria-hidden="true">
+                <figure className={styles.heroAsideConstruction} aria-hidden="true">
                   <Image
                     src="/underconstructiontrsp.png"
                     alt=""
                     width={1152}
                     height={768}
                     priority
-                    className={styles.heroConstructionImage}
+                    className={styles.heroAsideConstructionImage}
                     sizes="(max-width: 768px) 80vw, (max-width: 1200px) 42vw, 520px"
                   />
                 </figure>
