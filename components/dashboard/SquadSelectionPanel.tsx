@@ -66,13 +66,14 @@ export function SquadSelectionPanel({
   const [focusedSlotId, setFocusedSlotId] = useState<string | null>(null);
   const [pickerOverlayOpen, setPickerOverlayOpen] = useState(false);
   const [playerSearchQuery, setPlayerSearchQuery] = useState("");
-  const [positionFilter, setPositionFilter] = useState<SquadPositionCode | null>(null);
-  const [teamCodeFilter, setTeamCodeFilter] = useState<string | null>(null);
+  const [positionFilter, setPositionFilter] = useState<SquadPositionCode[]>([]);
+  const [teamCodeFilter, setTeamCodeFilter] = useState<string[]>([]);
   const { rosterBySlot, rosterCount, setPlayerForSlot, removePlayerFromSlot } = useRoster();
   const tallyTone = getTallyCountTone(rosterCount);
   const isModal = variant === "modal";
   const showSidebarPicker = isSideBySide;
   const showOverlayPicker = !showSidebarPicker && pickerOverlayOpen;
+  const showDesktopColumns = showSidebarPicker;
 
   const closeOverlayPicker = useCallback(() => {
     setPickerOverlayOpen(false);
@@ -109,7 +110,7 @@ export function SquadSelectionPanel({
   const handleSlotSelect = useCallback(
     (slot: (typeof squadPitchFormation)[number]) => {
       setFocusedSlotId(slot.id);
-      setPositionFilter(slot.position);
+      setPositionFilter([slot.position]);
       if (!showSidebarPicker) {
         setPickerOverlayOpen(true);
       }
@@ -163,117 +164,160 @@ export function SquadSelectionPanel({
         </button>
       ) : null}
 
-      <header className={styles.header}>
-        <h1 id={titleId} className={styles.title}>
-          {t("squadSelection.title")}
-        </h1>
-        <p id={descriptionId} className={styles.description}>
-          {t("squadSelection.description")}
-        </p>
-      </header>
-
-      <div className={styles.metaRow}>
-        <div className={styles.managerBlock}>
-          <span className={styles.managerLabel}>{t("dashboard.eliteManager")}</span>
-          <span className={styles.managerName}>{managerName}</span>
-        </div>
-        <div
-          className={styles.selectionTally}
-          aria-label={t("squadSelection.playersSelectedTally", {
-            selected: rosterCount,
-            max: MAX_SQUAD_PLAYERS,
-          })}
-        >
-          <span className={styles.tallyInner}>
-            <span
-              className={[styles.tallyCount, tallyCountToneClass[tallyTone]]
-                .filter(Boolean)
-                .join(" ")}
-            >
-              {formatInteger(rosterCount)} / {formatInteger(MAX_SQUAD_PLAYERS)}
-            </span>
-            <span className={styles.tallyLabel}>{t("squadSelection.playersSelected")}</span>
-          </span>
-        </div>
-      </div>
-
       <div
-        className={styles.viewToggle}
-        role="tablist"
-        aria-label={t("squadSelection.viewToggleLabel")}
+        className={showDesktopColumns ? styles.desktopColumns : undefined}
+        data-view={view}
       >
-        <button
-          type="button"
-          role="tab"
-          id={`${panelId}-tab-pitch`}
-          aria-selected={view === "pitch"}
-          aria-controls={`${panelId}-panel-pitch`}
-          className={view === "pitch" ? styles.viewTabActive : styles.viewTab}
-          onClick={() => {
-            closeOverlayPicker();
-            setView("pitch");
-          }}
-        >
-          {t("squadSelection.pitchView")}
-        </button>
-        <button
-          type="button"
-          role="tab"
-          id={`${panelId}-tab-list`}
-          aria-selected={view === "list"}
-          aria-controls={`${panelId}-panel-list`}
-          className={view === "list" ? styles.viewTabActive : styles.viewTab}
-          onClick={() => {
-            closeOverlayPicker();
-            setView("list");
-          }}
-        >
-          {t("squadSelection.listView")}
-        </button>
-      </div>
+        <div className={showDesktopColumns ? styles.desktopSidebar : undefined}>
+          <header className={styles.header}>
+            <h1 id={titleId} className={styles.title}>
+              {t("squadSelection.title")}
+            </h1>
+            <p id={descriptionId} className={styles.description}>
+              {t("squadSelection.description")}
+            </p>
+          </header>
 
-      <div className={styles.viewBody}>
-        {view === "pitch" ? (
+          <div className={styles.metaRow}>
+            <div className={styles.managerBlock}>
+              <span className={styles.managerLabel}>{t("dashboard.eliteManager")}</span>
+              <span className={styles.managerName}>{managerName}</span>
+            </div>
+            <div
+              className={styles.selectionTally}
+              aria-label={t("squadSelection.playersSelectedTally", {
+                selected: rosterCount,
+                max: MAX_SQUAD_PLAYERS,
+              })}
+            >
+              <span className={styles.tallyInner}>
+                <span
+                  className={[styles.tallyCount, tallyCountToneClass[tallyTone]]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  {formatInteger(rosterCount)} / {formatInteger(MAX_SQUAD_PLAYERS)}
+                </span>
+                <span className={styles.tallyLabel}>{t("squadSelection.playersSelected")}</span>
+              </span>
+            </div>
+          </div>
+
+          {showSidebarPicker ? (
+            <div className={styles.playerSelectionCol}>
+              <PositionPlayerPicker layout="sidebar" {...pickerProps} />
+            </div>
+          ) : null}
+        </div>
+
+        <div className={showDesktopColumns ? styles.desktopMain : undefined}>
           <div
-            id={`${panelId}-panel-pitch`}
-            role="tabpanel"
-            aria-labelledby={`${panelId}-tab-pitch`}
-            className={[
-              styles.pitchWorkspace,
-              showSidebarPicker ? styles.pitchWorkspaceSideBySide : styles.pitchWorkspaceStacked,
-            ]
-              .filter(Boolean)
-              .join(" ")}
+            className={styles.viewToggle}
+            role="tablist"
+            aria-label={t("squadSelection.viewToggleLabel")}
           >
-            {showSidebarPicker ? (
-              <div className={styles.playerSelectionCol}>
-                <PositionPlayerPicker layout="sidebar" {...pickerProps} />
-              </div>
-            ) : null}
-            <figure aria-label={t("squadSelection.pitchAlt")} className={styles.pitchPanel}>
-              <div className={styles.pitchStage}>
-                <div className={styles.pitchFrame}>
-                  <Image
-                    src="/SoccerPitchSqDrk.png"
-                    alt=""
-                    fill
-                    className={styles.pitchImage}
-                    sizes="(max-width: 900px) 100vw, 42rem"
-                    priority={!isModal}
-                    aria-hidden
-                  />
-                  <div className={styles.pitchAnchor}>
-                    <div className={styles.pitchSlots}>
-                      {squadPitchFormation.map((slot) => (
-                        <SquadPitchSlot
-                          key={slot.id}
-                          slot={slot}
-                          selectedPlayer={rosterBySlot[slot.id]}
-                          onSelect={handleSlotSelect}
-                          onClear={handleSlotClear}
-                        />
-                      ))}
+            <button
+              type="button"
+              role="tab"
+              id={`${panelId}-tab-pitch`}
+              aria-selected={view === "pitch"}
+              aria-controls={`${panelId}-panel-pitch`}
+              className={view === "pitch" ? styles.viewTabActive : styles.viewTab}
+              onClick={() => {
+                closeOverlayPicker();
+                setView("pitch");
+              }}
+            >
+              {t("squadSelection.pitchView")}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id={`${panelId}-tab-list`}
+              aria-selected={view === "list"}
+              aria-controls={`${panelId}-panel-list`}
+              className={view === "list" ? styles.viewTabActive : styles.viewTab}
+              onClick={() => {
+                closeOverlayPicker();
+                setView("list");
+              }}
+            >
+              {t("squadSelection.listView")}
+            </button>
+          </div>
+
+          <div className={styles.viewBody}>
+            {view === "pitch" ? (
+              <div
+                id={`${panelId}-panel-pitch`}
+                role="tabpanel"
+                aria-labelledby={`${panelId}-tab-pitch`}
+                className={[
+                  styles.pitchWorkspace,
+                  showSidebarPicker ? styles.pitchWorkspaceSideBySide : styles.pitchWorkspaceStacked,
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <figure aria-label={t("squadSelection.pitchAlt")} className={styles.pitchPanel}>
+                  <div className={styles.pitchStage}>
+                    <div className={styles.pitchFrame}>
+                      <Image
+                        src="/SoccerPitchSqDrk.png"
+                        alt=""
+                        fill
+                        className={styles.pitchImage}
+                        sizes="(max-width: 900px) 100vw, 42rem"
+                        priority={!isModal}
+                        aria-hidden
+                      />
+                      <div className={styles.pitchAnchor}>
+                        <div className={styles.pitchSlots}>
+                          {squadPitchFormation.map((slot) => (
+                            <SquadPitchSlot
+                              key={slot.id}
+                              slot={slot}
+                              selectedPlayer={rosterBySlot[slot.id]}
+                              onSelect={handleSlotSelect}
+                              onClear={handleSlotClear}
+                            />
+                          ))}
+                        </div>
+                        {showOverlayPicker ? (
+                          <PositionPlayerPicker
+                            layout="overlay"
+                            showClose
+                            onClose={closeOverlayPicker}
+                            {...pickerProps}
+                          />
+                        ) : null}
+                      </div>
                     </div>
+                  </div>
+                </figure>
+              </div>
+            ) : (
+              <div
+                id={`${panelId}-panel-list`}
+                role="tabpanel"
+                aria-labelledby={`${panelId}-tab-list`}
+                className={styles.listPanel}
+              >
+                <div
+                  className={[
+                    styles.listWorkspace,
+                    showSidebarPicker ? styles.listWorkspaceSideBySide : styles.listWorkspaceStacked,
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  <div className={styles.listViewCol}>
+                    <SquadSelectionListView
+                      rosterBySlot={rosterBySlot}
+                      onSlotSelect={handleSlotSelect}
+                      onSlotClear={handleSlotClear}
+                      className={styles.listView}
+                    />
                     {showOverlayPicker ? (
                       <PositionPlayerPicker
                         layout="overlay"
@@ -285,47 +329,9 @@ export function SquadSelectionPanel({
                   </div>
                 </div>
               </div>
-            </figure>
+            )}
           </div>
-        ) : (
-          <div
-            id={`${panelId}-panel-list`}
-            role="tabpanel"
-            aria-labelledby={`${panelId}-tab-list`}
-            className={styles.listPanel}
-          >
-            <div
-              className={[
-                styles.listWorkspace,
-                showSidebarPicker ? styles.listWorkspaceSideBySide : styles.listWorkspaceStacked,
-              ]
-                .filter(Boolean)
-                .join(" ")}
-            >
-              {showSidebarPicker ? (
-                <div className={styles.playerSelectionCol}>
-                  <PositionPlayerPicker layout="sidebar" {...pickerProps} />
-                </div>
-              ) : null}
-              <div className={styles.listViewCol}>
-                <SquadSelectionListView
-                  rosterBySlot={rosterBySlot}
-                  onSlotSelect={handleSlotSelect}
-                  onSlotClear={handleSlotClear}
-                  className={styles.listView}
-                />
-                {showOverlayPicker ? (
-                  <PositionPlayerPicker
-                    layout="overlay"
-                    showClose
-                    onClose={closeOverlayPicker}
-                    {...pickerProps}
-                  />
-                ) : null}
-              </div>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );

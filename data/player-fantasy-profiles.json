@@ -3,43 +3,43 @@
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 31
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 30
       },
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 27
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 29
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 34
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 22
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 33
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 23
       }
     ],
     "season": {
@@ -55,54 +55,54 @@
       "soff": 0,
       "off": 0,
       "ck": 0,
-      "yc": 1,
+      "yc": 0,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show a clean-sheet/save run with strong goalkeeper stability.",
-    "totalFantasyPoints": 137
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 290
   },
   "brazil-gk-alisson": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 31
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 33
       },
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 31
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 32
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 17
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 31
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 29
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 21
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 35
       }
     ],
     "season": {
@@ -122,14 +122,38 @@
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show a clean-sheet/save run with strong goalkeeper stability.",
-    "totalFantasyPoints": 137
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 295
   },
   "france-gk-mike-maignan": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 32
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 33
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
       },
       {
         "minutes": 90,
@@ -137,35 +161,11 @@
       },
       {
         "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 29
       },
       {
         "minutes": 90,
         "fantasyPoints": 16
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
       }
     ],
     "season": {
@@ -185,50 +185,50 @@
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show a clean-sheet/save run with strong goalkeeper stability.",
-    "totalFantasyPoints": 137
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 240
   },
   "morocco-gk-yassine-bounou": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 33
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 32
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 22
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 20
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 30
       }
     ],
     "season": {
@@ -248,50 +248,50 @@
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show heavy save volume, creating a strong fantasy floor.",
-    "totalFantasyPoints": 141
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 303
   },
   "switzerland-gk-gregor-kobel": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 24
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 29
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 27
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 28
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 33
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 29
       }
     ],
     "season": {
@@ -307,42 +307,18 @@
       "soff": 0,
       "off": 0,
       "ck": 0,
-      "yc": 1,
+      "yc": 0,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show heavy save volume, creating a strong fantasy floor.",
-    "totalFantasyPoints": 141
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 310
   },
   "belgium-gk-thibaut-courtois": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 33
       },
       {
         "minutes": 90,
@@ -350,11 +326,35 @@
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 22
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 29
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 33
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 33
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
       }
     ],
     "season": {
@@ -370,54 +370,54 @@
       "soff": 0,
       "off": 0,
       "ck": 0,
-      "yc": 1,
+      "yc": 0,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show a clean-sheet/save run with strong goalkeeper stability.",
-    "totalFantasyPoints": 137
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 264
   },
   "england-gk-jordan-pickford": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 24
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 20
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 28
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 28
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 29
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 34
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 35
       }
     ],
     "season": {
@@ -437,50 +437,50 @@
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show heavy save volume, creating a strong fantasy floor.",
-    "totalFantasyPoints": 141
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 294
   },
   "portugal-gk-diogo-costa": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 28
       },
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 28
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 19
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 24
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 27
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 35
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 23
       }
     ],
     "season": {
@@ -490,60 +490,60 @@
       "g": 0,
       "hg": 0,
       "pkg": 0,
-      "a": 0,
+      "a": 1,
       "s": 0,
       "sog": 0,
       "soff": 0,
       "off": 0,
       "ck": 0,
-      "yc": 1,
+      "yc": 0,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show a clean-sheet/save run with strong goalkeeper stability.",
-    "totalFantasyPoints": 137
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 280
   },
   "morocco-df-achraf-hakimi": {
     "games": [
       {
         "minutes": 62,
-        "fantasyPoints": 11
+        "fantasyPoints": 20
       },
       {
         "minutes": 70,
-        "fantasyPoints": 9
+        "fantasyPoints": 26
       },
       {
         "minutes": 76,
-        "fantasyPoints": 15
+        "fantasyPoints": 25
       },
       {
         "minutes": 82,
-        "fantasyPoints": 12
+        "fantasyPoints": 21
       },
       {
         "minutes": 85,
-        "fantasyPoints": 14
+        "fantasyPoints": 24
       },
       {
         "minutes": 88,
-        "fantasyPoints": 17
+        "fantasyPoints": 25
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 28
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 22
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 30
       }
     ],
     "season": {
@@ -553,91 +553,91 @@
       "g": 2,
       "hg": 0,
       "pkg": 0,
-      "a": 4,
-      "s": 15,
-      "sog": 6,
-      "soff": 9,
-      "off": 1,
-      "ck": 5,
-      "yc": 2,
+      "a": 3,
+      "s": 27,
+      "sog": 12,
+      "soff": 15,
+      "off": 8,
+      "ck": 16,
+      "yc": 1,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show rising form, heavier minutes, and stronger fantasy involvement.",
-    "totalFantasyPoints": 134
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 247
   },
   "netherlands-df-virgil-van-dijk": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 15
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 25
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 18
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 20
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 20
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 19
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 900,
-      "g": 1,
-      "hg": 1,
+      "g": 0,
+      "hg": 0,
       "pkg": 0,
       "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
+      "s": 19,
+      "sog": 10,
+      "soff": 9,
+      "off": 7,
       "ck": 0,
-      "yc": 2,
+      "yc": 1,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 221
   },
   "croatia-df-josko-gvardiol": {
     "games": [
       {
         "minutes": 55,
-        "fantasyPoints": 10
+        "fantasyPoints": 11
       },
       {
         "minutes": 64,
-        "fantasyPoints": 9
+        "fantasyPoints": 15
       },
       {
         "minutes": 70,
@@ -645,31 +645,31 @@
       },
       {
         "minutes": 72,
-        "fantasyPoints": 11
+        "fantasyPoints": 19
       },
       {
         "minutes": 75,
-        "fantasyPoints": 13
+        "fantasyPoints": 23
       },
       {
         "minutes": 84,
-        "fantasyPoints": 17
+        "fantasyPoints": 25
       },
       {
         "minutes": 88,
-        "fantasyPoints": 12
+        "fantasyPoints": 32
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 29
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 29
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 34
       }
     ],
     "season": {
@@ -677,38 +677,38 @@
       "gs": 10,
       "mp": 778,
       "g": 2,
-      "hg": 0,
+      "hg": 1,
       "pkg": 0,
-      "a": 4,
-      "s": 15,
-      "sog": 6,
-      "soff": 9,
-      "off": 1,
-      "ck": 5,
-      "yc": 2,
+      "a": 1,
+      "s": 30,
+      "sog": 11,
+      "soff": 19,
+      "off": 13,
+      "ck": 12,
+      "yc": 1,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show a late surge into a locked-in starting role.",
-    "totalFantasyPoints": 130
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 231
   },
   "france-df-theo-hernandez": {
     "games": [
       {
         "minutes": 62,
-        "fantasyPoints": 11
+        "fantasyPoints": 20
       },
       {
         "minutes": 70,
-        "fantasyPoints": 9
+        "fantasyPoints": 18
       },
       {
         "minutes": 76,
-        "fantasyPoints": 15
+        "fantasyPoints": 20
       },
       {
         "minutes": 82,
-        "fantasyPoints": 12
+        "fantasyPoints": 21
       },
       {
         "minutes": 85,
@@ -716,1073 +716,616 @@
       },
       {
         "minutes": 88,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
         "fantasyPoints": 15
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 34
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 29
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 823,
-      "g": 2,
+      "g": 1,
       "hg": 0,
       "pkg": 0,
-      "a": 4,
-      "s": 15,
-      "sog": 6,
-      "soff": 9,
-      "off": 1,
-      "ck": 5,
+      "a": 1,
+      "s": 21,
+      "sog": 10,
+      "soff": 11,
+      "off": 9,
+      "ck": 11,
       "yc": 2,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show rising form, heavier minutes, and stronger fantasy involvement.",
-    "totalFantasyPoints": 134
+    "narrative": "Final five show a clear upward trend with stronger event production layered on top of minutes.",
+    "totalFantasyPoints": 217
   },
   "canada-df-alphonso-davies": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 23
       },
       {
         "minutes": 84,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 73,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 89,
-        "fantasyPoints": 14
+        "fantasyPoints": 29
       },
       {
         "minutes": 90,
         "fantasyPoints": 17
       },
       {
-        "minutes": 65,
-        "fantasyPoints": 10
+        "minutes": 73,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 89,
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 29
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
       },
       {
         "minutes": 82,
-        "fantasyPoints": 13
+        "fantasyPoints": 28
       },
       {
         "minutes": 90,
-        "fantasyPoints": 16
+        "fantasyPoints": 27
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 843,
-      "g": 2,
+      "g": 1,
       "hg": 0,
       "pkg": 0,
-      "a": 4,
-      "s": 15,
-      "sog": 6,
-      "soff": 9,
-      "off": 1,
-      "ck": 5,
-      "yc": 2,
+      "a": 3,
+      "s": 19,
+      "sog": 5,
+      "soff": 14,
+      "off": 9,
+      "ck": 17,
+      "yc": 0,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 136
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 238
   },
   "germany-df-antonio-rudiger": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 1,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "brazil-df-marquinhos": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "south-korea-df-min-jae-kim": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 1,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "switzerland-df-manuel-akanji": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "united-states-df-antonee-robinson": {
-    "games": [
-      {
-        "minutes": 62,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 9
-      },
-      {
-        "minutes": 76,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 85,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 26
       },
       {
         "minutes": 90,
         "fantasyPoints": 15
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 823,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 4,
-      "s": 15,
-      "sog": 6,
-      "soff": 9,
-      "off": 1,
-      "ck": 5,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show rising form, heavier minutes, and stronger fantasy involvement.",
-    "totalFantasyPoints": 134
-  },
-  "colombia-df-daniel-munoz": {
-    "games": [
-      {
-        "minutes": 62,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 9
-      },
-      {
-        "minutes": 76,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 85,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 823,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 4,
-      "s": 15,
-      "sog": 6,
-      "soff": 9,
-      "off": 1,
-      "ck": 5,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show rising form, heavier minutes, and stronger fantasy involvement.",
-    "totalFantasyPoints": 134
-  },
-  "senegal-df-kalidou-koulibaly": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 1,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "austria-df-david-alaba": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "mexico-df-cesar-montes": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 1,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "panama-df-michael-amir-murillo": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "dr-congo-df-chancel-mbemba": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "turkey-df-ferdi-kad-oglu": {
-    "games": [
-      {
-        "minutes": 62,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 9
-      },
-      {
-        "minutes": 76,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 85,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 823,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 4,
-      "s": 15,
-      "sog": 6,
-      "soff": 9,
-      "off": 1,
-      "ck": 5,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show rising form, heavier minutes, and stronger fantasy involvement.",
-    "totalFantasyPoints": 134
-  },
-  "sweden-df-victor-lindelof": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "paraguay-df-gustavo-gomez": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "spain-df-aymeric-laporte": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 1,
-      "s": 8,
-      "sog": 3,
-      "soff": 5,
-      "off": 1,
-      "ck": 0,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "england-mf-jude-bellingham": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 84,
-        "fantasyPoints": 12
       },
       {
         "minutes": 90,
         "fantasyPoints": 18
       },
       {
-        "minutes": 73,
-        "fantasyPoints": 12
+        "minutes": 90,
+        "fantasyPoints": 22
       },
       {
-        "minutes": 89,
+        "minutes": 90,
+        "fantasyPoints": 29
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 1,
+      "hg": 1,
+      "pkg": 0,
+      "a": 1,
+      "s": 19,
+      "sog": 6,
+      "soff": 13,
+      "off": 12,
+      "ck": 0,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 220
+  },
+  "brazil-df-marquinhos": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 29
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 1,
+      "hg": 0,
+      "pkg": 0,
+      "a": 0,
+      "s": 23,
+      "sog": 8,
+      "soff": 15,
+      "off": 9,
+      "ck": 0,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 230
+  },
+  "south-korea-df-min-jae-kim": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 29
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 2,
+      "hg": 0,
+      "pkg": 0,
+      "a": 0,
+      "s": 19,
+      "sog": 9,
+      "soff": 10,
+      "off": 13,
+      "ck": 0,
+      "yc": 2,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 224
+  },
+  "switzerland-df-manuel-akanji": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 0,
+      "hg": 0,
+      "pkg": 0,
+      "a": 1,
+      "s": 15,
+      "sog": 5,
+      "soff": 10,
+      "off": 14,
+      "ck": 0,
+      "yc": 1,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 203
+  },
+  "united-states-df-antonee-robinson": {
+    "games": [
+      {
+        "minutes": 62,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 76,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 85,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 34
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 823,
+      "g": 2,
+      "hg": 0,
+      "pkg": 0,
+      "a": 2,
+      "s": 25,
+      "sog": 7,
+      "soff": 18,
+      "off": 14,
+      "ck": 10,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 218
+  },
+  "colombia-df-daniel-munoz": {
+    "games": [
+      {
+        "minutes": 62,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 76,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 85,
+        "fantasyPoints": 14
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 823,
+      "g": 1,
+      "hg": 1,
+      "pkg": 0,
+      "a": 2,
+      "s": 18,
+      "sog": 5,
+      "soff": 13,
+      "off": 9,
+      "ck": 9,
+      "yc": 2,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 201
+  },
+  "senegal-df-kalidou-koulibaly": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 29
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 32
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 1,
+      "hg": 1,
+      "pkg": 0,
+      "a": 1,
+      "s": 19,
+      "sog": 10,
+      "soff": 9,
+      "off": 10,
+      "ck": 0,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 223
+  },
+  "austria-df-david-alaba": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 0,
+      "hg": 0,
+      "pkg": 0,
+      "a": 0,
+      "s": 27,
+      "sog": 7,
+      "soff": 20,
+      "off": 5,
+      "ck": 0,
+      "yc": 2,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 199
+  },
+  "mexico-df-cesar-montes": {
+    "games": [
+      {
+        "minutes": 90,
         "fantasyPoints": 15
       },
       {
@@ -1790,16 +1333,410 @@
         "fantasyPoints": 19
       },
       {
-        "minutes": 65,
-        "fantasyPoints": 12
+        "minutes": 90,
+        "fantasyPoints": 25
       },
       {
         "minutes": 90,
         "fantasyPoints": 17
       },
       {
-        "minutes": 82,
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 1,
+      "hg": 0,
+      "pkg": 0,
+      "a": 1,
+      "s": 17,
+      "sog": 8,
+      "soff": 9,
+      "off": 12,
+      "ck": 0,
+      "yc": 2,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 209
+  },
+  "panama-df-michael-amir-murillo": {
+    "games": [
+      {
+        "minutes": 90,
         "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 0,
+      "hg": 0,
+      "pkg": 0,
+      "a": 0,
+      "s": 28,
+      "sog": 9,
+      "soff": 19,
+      "off": 10,
+      "ck": 0,
+      "yc": 1,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 207
+  },
+  "dr-congo-df-chancel-mbemba": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 1,
+      "hg": 0,
+      "pkg": 0,
+      "a": 0,
+      "s": 28,
+      "sog": 8,
+      "soff": 20,
+      "off": 8,
+      "ck": 0,
+      "yc": 2,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 207
+  },
+  "turkey-df-ferdi-kad-oglu": {
+    "games": [
+      {
+        "minutes": 62,
+        "fantasyPoints": 14
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 76,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 85,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 35
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 823,
+      "g": 2,
+      "hg": 1,
+      "pkg": 0,
+      "a": 3,
+      "s": 23,
+      "sog": 9,
+      "soff": 14,
+      "off": 12,
+      "ck": 17,
+      "yc": 1,
+      "rc": 1,
+      "yrc": 0
+    },
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 226
+  },
+  "sweden-df-victor-lindelof": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 0,
+      "hg": 0,
+      "pkg": 0,
+      "a": 1,
+      "s": 20,
+      "sog": 5,
+      "soff": 15,
+      "off": 9,
+      "ck": 0,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 209
+  },
+  "paraguay-df-gustavo-gomez": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 0,
+      "hg": 0,
+      "pkg": 0,
+      "a": 0,
+      "s": 22,
+      "sog": 5,
+      "soff": 17,
+      "off": 13,
+      "ck": 0,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 232
+  },
+  "spain-df-aymeric-laporte": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 27
       },
       {
         "minutes": 90,
@@ -1809,52 +1746,107 @@
     "season": {
       "gp": 10,
       "gs": 10,
-      "mp": 843,
-      "g": 4,
+      "mp": 900,
+      "g": 1,
       "hg": 0,
       "pkg": 0,
-      "a": 5,
-      "s": 28,
-      "sog": 12,
-      "soff": 16,
-      "off": 2,
-      "ck": 18,
-      "yc": 2,
+      "a": 1,
+      "s": 29,
+      "sog": 6,
+      "soff": 23,
+      "off": 12,
+      "ck": 0,
+      "yc": 0,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 152
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 214
+  },
+  "england-mf-jude-bellingham": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 84,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 73,
+        "fantasyPoints": 29
+      },
+      {
+        "minutes": 89,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 843,
+      "g": 3,
+      "hg": 0,
+      "pkg": 0,
+      "a": 7,
+      "s": 35,
+      "sog": 8,
+      "soff": 27,
+      "off": 9,
+      "ck": 14,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 219
   },
   "spain-mf-rodri": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 16
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 27
       },
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 21
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 21
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 18
       },
       {
         "minutes": 90,
@@ -1866,28 +1858,36 @@
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 900,
-      "g": 1,
+      "g": 0,
       "hg": 0,
       "pkg": 0,
-      "a": 2,
-      "s": 10,
-      "sog": 4,
-      "soff": 6,
-      "off": 2,
-      "ck": 1,
+      "a": 3,
+      "s": 22,
+      "sog": 7,
+      "soff": 15,
+      "off": 9,
+      "ck": 7,
       "yc": 2,
-      "rc": 0,
+      "rc": 1,
       "yrc": 0
     },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
+    "narrative": "Final five show a stable fantasy floor with limited volatility.",
+    "totalFantasyPoints": 177
   },
   "belgium-mf-kevin-de-bruyne": {
     "games": [
@@ -1897,11 +1897,11 @@
       },
       {
         "minutes": 88,
-        "fantasyPoints": 12
+        "fantasyPoints": 26
       },
       {
         "minutes": 72,
-        "fantasyPoints": 17
+        "fantasyPoints": 11
       },
       {
         "minutes": 0,
@@ -1909,133 +1909,133 @@
       },
       {
         "minutes": 25,
-        "fantasyPoints": 9
+        "fantasyPoints": 4
       },
       {
         "minutes": 63,
-        "fantasyPoints": 17
+        "fantasyPoints": 9
       },
       {
         "minutes": 76,
-        "fantasyPoints": 13
+        "fantasyPoints": 24
       },
       {
         "minutes": 85,
-        "fantasyPoints": 17
+        "fantasyPoints": 22
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 22
       },
       {
         "minutes": 90,
-        "fantasyPoints": 18
+        "fantasyPoints": 26
       }
     ],
     "season": {
       "gp": 9,
       "gs": 8,
       "mp": 679,
-      "g": 4,
+      "g": 0,
       "hg": 0,
       "pkg": 0,
-      "a": 5,
-      "s": 28,
-      "sog": 12,
-      "soff": 16,
-      "off": 2,
-      "ck": 18,
-      "yc": 2,
-      "rc": 0,
+      "a": 2,
+      "s": 32,
+      "sog": 10,
+      "soff": 22,
+      "off": 9,
+      "ck": 24,
+      "yc": 1,
+      "rc": 1,
       "yrc": 0
     },
-    "narrative": "Final five show a return from injury with minutes ramping back to full matches.",
-    "totalFantasyPoints": 132
+    "narrative": "Final five show a clear upward trend with stronger event production layered on top of minutes.",
+    "totalFantasyPoints": 158
   },
   "germany-mf-jamal-musiala": {
     "games": [
       {
         "minutes": 62,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 76,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 85,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 19
-      },
-      {
-        "minutes": 90,
         "fantasyPoints": 14
       },
       {
-        "minutes": 90,
-        "fantasyPoints": 17
+        "minutes": 70,
+        "fantasyPoints": 12
       },
       {
-        "minutes": 90,
+        "minutes": 76,
         "fantasyPoints": 15
       },
       {
+        "minutes": 82,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 85,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 23
+      },
+      {
         "minutes": 90,
-        "fantasyPoints": 18
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 29
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 34
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 823,
-      "g": 4,
+      "g": 2,
       "hg": 0,
       "pkg": 0,
-      "a": 5,
-      "s": 28,
-      "sog": 12,
+      "a": 8,
+      "s": 30,
+      "sog": 14,
       "soff": 16,
-      "off": 2,
-      "ck": 18,
-      "yc": 2,
+      "off": 12,
+      "ck": 8,
+      "yc": 0,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show rising form, heavier minutes, and stronger fantasy involvement.",
-    "totalFantasyPoints": 150
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 223
   },
   "germany-mf-florian-wirtz": {
     "games": [
       {
         "minutes": 75,
-        "fantasyPoints": 13
+        "fantasyPoints": 27
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 19
       },
       {
         "minutes": 68,
-        "fantasyPoints": 16
+        "fantasyPoints": 19
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 19
       },
       {
         "minutes": 60,
-        "fantasyPoints": 12
+        "fantasyPoints": 10
       },
       {
         "minutes": 82,
@@ -2043,46 +2043,66 @@
       },
       {
         "minutes": 74,
-        "fantasyPoints": 13
+        "fantasyPoints": 16
       },
       {
         "minutes": 90,
-        "fantasyPoints": 17
+        "fantasyPoints": 19
       },
       {
         "minutes": 70,
-        "fantasyPoints": 13
+        "fantasyPoints": 19
       },
       {
         "minutes": 88,
-        "fantasyPoints": 18
+        "fantasyPoints": 21
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 787,
-      "g": 4,
+      "g": 1,
       "hg": 0,
       "pkg": 0,
-      "a": 5,
-      "s": 28,
-      "sog": 12,
-      "soff": 16,
-      "off": 2,
-      "ck": 18,
-      "yc": 2,
+      "a": 3,
+      "s": 36,
+      "sog": 15,
+      "soff": 21,
+      "off": 12,
+      "ck": 7,
+      "yc": 1,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 146
+    "narrative": "Final five show a stable fantasy floor with limited volatility.",
+    "totalFantasyPoints": 188
   },
   "portugal-mf-bruno-fernandes": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 30
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 32
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
       },
       {
         "minutes": 90,
@@ -2090,78 +2110,58 @@
       },
       {
         "minutes": 90,
-        "fantasyPoints": 18
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 90,
         "fantasyPoints": 19
       },
       {
         "minutes": 90,
-        "fantasyPoints": 14
+        "fantasyPoints": 22
       },
       {
         "minutes": 90,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 18
+        "fantasyPoints": 23
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 900,
-      "g": 4,
+      "g": 3,
       "hg": 0,
-      "pkg": 1,
-      "a": 5,
-      "s": 28,
-      "sog": 12,
-      "soff": 16,
-      "off": 2,
-      "ck": 18,
-      "yc": 2,
-      "rc": 0,
+      "pkg": 0,
+      "a": 8,
+      "s": 29,
+      "sog": 11,
+      "soff": 18,
+      "off": 10,
+      "ck": 32,
+      "yc": 1,
+      "rc": 1,
       "yrc": 0
     },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 155
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 221
   },
   "argentina-mf-enzo-fernandez": {
     "games": [
       {
         "minutes": 75,
-        "fantasyPoints": 11
+        "fantasyPoints": 20
       },
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 19
       },
       {
         "minutes": 68,
-        "fantasyPoints": 13
+        "fantasyPoints": 14
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 14
       },
       {
         "minutes": 60,
-        "fantasyPoints": 10
+        "fantasyPoints": 15
       },
       {
         "minutes": 82,
@@ -2169,58 +2169,58 @@
       },
       {
         "minutes": 74,
-        "fantasyPoints": 11
+        "fantasyPoints": 24
       },
       {
         "minutes": 90,
-        "fantasyPoints": 15
+        "fantasyPoints": 19
       },
       {
         "minutes": 70,
-        "fantasyPoints": 11
+        "fantasyPoints": 15
       },
       {
         "minutes": 88,
-        "fantasyPoints": 15
+        "fantasyPoints": 18
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 787,
-      "g": 2,
+      "g": 1,
       "hg": 0,
       "pkg": 0,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
+      "a": 0,
+      "s": 26,
+      "sog": 12,
+      "soff": 14,
+      "off": 9,
+      "ck": 14,
+      "yc": 1,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 174
   },
   "norway-mf-martin-degaard": {
     "games": [
       {
         "minutes": 75,
-        "fantasyPoints": 13
+        "fantasyPoints": 19
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 18
       },
       {
         "minutes": 68,
-        "fantasyPoints": 16
+        "fantasyPoints": 22
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 22
       },
       {
         "minutes": 60,
@@ -2228,873 +2228,684 @@
       },
       {
         "minutes": 82,
-        "fantasyPoints": 19
+        "fantasyPoints": 22
       },
       {
         "minutes": 74,
-        "fantasyPoints": 13
+        "fantasyPoints": 15
       },
       {
         "minutes": 90,
-        "fantasyPoints": 17
+        "fantasyPoints": 12
       },
       {
         "minutes": 70,
-        "fantasyPoints": 13
+        "fantasyPoints": 14
       },
       {
         "minutes": 88,
-        "fantasyPoints": 18
+        "fantasyPoints": 19
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 787,
-      "g": 4,
+      "g": 1,
       "hg": 0,
       "pkg": 0,
-      "a": 5,
+      "a": 0,
       "s": 28,
-      "sog": 12,
-      "soff": 16,
-      "off": 2,
-      "ck": 18,
+      "sog": 10,
+      "soff": 18,
+      "off": 9,
+      "ck": 28,
       "yc": 2,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 146
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 175
   },
   "croatia-mf-luka-modric": {
     "games": [
       {
         "minutes": 75,
-        "fantasyPoints": 11
+        "fantasyPoints": 19
       },
       {
         "minutes": 90,
-        "fantasyPoints": 11
+        "fantasyPoints": 19
       },
       {
         "minutes": 68,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 15
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
-  },
-  "turkey-mf-hakan-calhanoglu": {
-    "games": [
-      {
-        "minutes": 75,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 68,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 15
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 2,
-      "hg": 0,
-      "pkg": 1,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
-  },
-  "switzerland-mf-granit-xhaka": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 2,
-      "s": 10,
-      "sog": 4,
-      "soff": 6,
-      "off": 2,
-      "ck": 1,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "ivory-coast-mf-franck-kessie": {
-    "games": [
-      {
-        "minutes": 75,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 68,
-        "fantasyPoints": 9
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 9
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 13
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 2,
-      "s": 10,
-      "sog": 4,
-      "soff": 6,
-      "off": 2,
-      "ck": 1,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 114
-  },
-  "united-states-mf-weston-mckennie": {
-    "games": [
-      {
-        "minutes": 75,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 68,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 15
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
-  },
-  "scotland-mf-john-mcginn": {
-    "games": [
-      {
-        "minutes": 75,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 68,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 15
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
-  },
-  "scotland-mf-scott-mctominay": {
-    "games": [
-      {
-        "minutes": 75,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 68,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 15
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
-  },
-  "austria-mf-marcel-sabitzer": {
-    "games": [
-      {
-        "minutes": 75,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 68,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 15
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
-  },
-  "netherlands-mf-tijjani-reijnders": {
-    "games": [
-      {
-        "minutes": 75,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 68,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 15
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
-  },
-  "ghana-mf-thomas-partey": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 1,
-      "hg": 0,
-      "pkg": 0,
-      "a": 2,
-      "s": 10,
-      "sog": 4,
-      "soff": 6,
-      "off": 2,
-      "ck": 1,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 123
-  },
-  "morocco-mf-azzedine-ounahi": {
-    "games": [
-      {
-        "minutes": 75,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 68,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 15
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
-  },
-  "japan-mf-junya-ito": {
-    "games": [
-      {
-        "minutes": 75,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 68,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 60,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 74,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 15
-      },
-      {
-        "minutes": 70,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 88,
-        "fantasyPoints": 15
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 787,
-      "g": 2,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 18,
-      "sog": 7,
-      "soff": 11,
-      "off": 2,
-      "ck": 7,
-      "yc": 2,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 125
-  },
-  "france-fw-kylian-mbappe": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 84,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 21
-      },
-      {
-        "minutes": 73,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 89,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
         "fantasyPoints": 23
       },
       {
-        "minutes": 65,
-        "fantasyPoints": 10
+        "minutes": 90,
+        "fantasyPoints": 29
       },
       {
-        "minutes": 90,
-        "fantasyPoints": 20
+        "minutes": 60,
+        "fantasyPoints": 15
       },
       {
         "minutes": 82,
-        "fantasyPoints": 14
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 74,
+        "fantasyPoints": 18
       },
       {
         "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 14
+      },
+      {
+        "minutes": 88,
         "fantasyPoints": 22
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
-      "mp": 843,
-      "g": 7,
+      "mp": 787,
+      "g": 2,
       "hg": 0,
-      "pkg": 1,
-      "a": 3,
-      "s": 36,
-      "sog": 18,
-      "soff": 18,
-      "off": 8,
-      "ck": 0,
-      "yc": 1,
+      "pkg": 0,
+      "a": 5,
+      "s": 18,
+      "sog": 12,
+      "soff": 6,
+      "off": 10,
+      "ck": 9,
+      "yc": 0,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 166
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 203
   },
-  "argentina-fw-lionel-messi": {
+  "turkey-mf-hakan-calhanoglu": {
     "games": [
       {
         "minutes": 75,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 68,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 60,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 74,
         "fantasyPoints": 15
       },
       {
         "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 10
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 21
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 787,
+      "g": 0,
+      "hg": 0,
+      "pkg": 0,
+      "a": 0,
+      "s": 17,
+      "sog": 6,
+      "soff": 11,
+      "off": 14,
+      "ck": 32,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 170
+  },
+  "switzerland-mf-granit-xhaka": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 0,
+      "hg": 0,
+      "pkg": 0,
+      "a": 6,
+      "s": 16,
+      "sog": 9,
+      "soff": 7,
+      "off": 10,
+      "ck": 16,
+      "yc": 1,
+      "rc": 1,
+      "yrc": 0
+    },
+    "narrative": "Final five show a stable fantasy floor with limited volatility.",
+    "totalFantasyPoints": 203
+  },
+  "ivory-coast-mf-franck-kessie": {
+    "games": [
+      {
+        "minutes": 75,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 68,
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 60,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 74,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 22
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 787,
+      "g": 1,
+      "hg": 0,
+      "pkg": 0,
+      "a": 2,
+      "s": 24,
+      "sog": 12,
+      "soff": 12,
+      "off": 9,
+      "ck": 9,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 183
+  },
+  "united-states-mf-weston-mckennie": {
+    "games": [
+      {
+        "minutes": 75,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 68,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 60,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 74,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 9
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 787,
+      "g": 1,
+      "hg": 0,
+      "pkg": 0,
+      "a": 2,
+      "s": 15,
+      "sog": 7,
+      "soff": 8,
+      "off": 9,
+      "ck": 6,
+      "yc": 1,
+      "rc": 1,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 173
+  },
+  "scotland-mf-john-mcginn": {
+    "games": [
+      {
+        "minutes": 75,
+        "fantasyPoints": 14
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 68,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 60,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 74,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 14
+      },
+      {
+        "minutes": 70,
         "fantasyPoints": 11
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 25
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 787,
+      "g": 2,
+      "hg": 0,
+      "pkg": 0,
+      "a": 3,
+      "s": 22,
+      "sog": 15,
+      "soff": 7,
+      "off": 13,
+      "ck": 5,
+      "yc": 3,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 174
+  },
+  "scotland-mf-scott-mctominay": {
+    "games": [
+      {
+        "minutes": 75,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 68,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 60,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 74,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 16
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 787,
+      "g": 2,
+      "hg": 0,
+      "pkg": 0,
+      "a": 2,
+      "s": 21,
+      "sog": 12,
+      "soff": 9,
+      "off": 13,
+      "ck": 8,
+      "yc": 2,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 193
+  },
+  "austria-mf-marcel-sabitzer": {
+    "games": [
+      {
+        "minutes": 75,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 68,
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 60,
+        "fantasyPoints": 8
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 74,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 19
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 787,
+      "g": 0,
+      "hg": 0,
+      "pkg": 0,
+      "a": 2,
+      "s": 19,
+      "sog": 7,
+      "soff": 12,
+      "off": 7,
+      "ck": 14,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show a stable fantasy floor with limited volatility.",
+    "totalFantasyPoints": 165
+  },
+  "netherlands-mf-tijjani-reijnders": {
+    "games": [
+      {
+        "minutes": 75,
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 68,
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 60,
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 74,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 24
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 787,
+      "g": 0,
+      "hg": 0,
+      "pkg": 0,
+      "a": 2,
+      "s": 21,
+      "sog": 10,
+      "soff": 11,
+      "off": 13,
+      "ck": 13,
+      "yc": 1,
+      "rc": 1,
+      "yrc": 0
+    },
+    "narrative": "Final five show a clear upward trend with stronger event production layered on top of minutes.",
+    "totalFantasyPoints": 161
+  },
+  "ghana-mf-thomas-partey": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 14
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 29
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 28
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 4,
+      "hg": 0,
+      "pkg": 0,
+      "a": 1,
+      "s": 18,
+      "sog": 9,
+      "soff": 9,
+      "off": 7,
+      "ck": 10,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 216
+  },
+  "morocco-mf-azzedine-ounahi": {
+    "games": [
+      {
+        "minutes": 75,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
       },
       {
         "minutes": 68,
@@ -3102,503 +2913,62 @@
       },
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 18
       },
       {
         "minutes": 60,
-        "fantasyPoints": 14
+        "fantasyPoints": 6
       },
       {
         "minutes": 82,
-        "fantasyPoints": 23
+        "fantasyPoints": 15
       },
       {
         "minutes": 74,
-        "fantasyPoints": 11
+        "fantasyPoints": 14
       },
       {
         "minutes": 90,
-        "fantasyPoints": 20
+        "fantasyPoints": 22
       },
       {
         "minutes": 70,
-        "fantasyPoints": 12
+        "fantasyPoints": 17
       },
       {
         "minutes": 88,
-        "fantasyPoints": 13
+        "fantasyPoints": 21
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 787,
-      "g": 7,
-      "hg": 0,
-      "pkg": 1,
-      "a": 3,
-      "s": 36,
-      "sog": 18,
-      "soff": 18,
-      "off": 8,
-      "ck": 0,
-      "yc": 1,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 151
-  },
-  "england-fw-harry-kane": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 21
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 23
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 20
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 22
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 900,
-      "g": 7,
-      "hg": 0,
-      "pkg": 1,
-      "a": 3,
-      "s": 36,
-      "sog": 18,
-      "soff": 18,
-      "off": 8,
-      "ck": 0,
-      "yc": 1,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show a reliable full-match starter with stable fantasy output.",
-    "totalFantasyPoints": 169
-  },
-  "brazil-fw-vinicius-junior": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 84,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 21
-      },
-      {
-        "minutes": 73,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 89,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 23
-      },
-      {
-        "minutes": 65,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 20
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 22
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 843,
-      "g": 7,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 36,
-      "sog": 18,
-      "soff": 18,
-      "off": 8,
-      "ck": 0,
-      "yc": 1,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 166
-  },
-  "norway-fw-erling-haaland": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 84,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 21
-      },
-      {
-        "minutes": 73,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 89,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 23
-      },
-      {
-        "minutes": 65,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 20
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 14
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 843,
-      "g": 7,
-      "hg": 0,
-      "pkg": 0,
-      "a": 3,
-      "s": 36,
-      "sog": 18,
-      "soff": 18,
-      "off": 8,
-      "ck": 0,
-      "yc": 1,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 158
-  },
-  "spain-fw-lamine-yamal": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 84,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 73,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 89,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 18
-      },
-      {
-        "minutes": 65,
-        "fantasyPoints": 9
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 17
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 843,
-      "g": 4,
+      "g": 0,
       "hg": 0,
       "pkg": 0,
       "a": 2,
-      "s": 24,
-      "sog": 11,
-      "soff": 13,
-      "off": 5,
-      "ck": 0,
+      "s": 15,
+      "sog": 10,
+      "soff": 5,
+      "off": 9,
+      "ck": 7,
       "yc": 1,
-      "rc": 0,
+      "rc": 1,
       "yrc": 0
     },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 138
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 164
   },
-  "egypt-fw-mohamed-salah": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 84,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 21
-      },
-      {
-        "minutes": 73,
-        "fantasyPoints": 12
-      },
-      {
-        "minutes": 89,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 23
-      },
-      {
-        "minutes": 65,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 20
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 843,
-      "g": 7,
-      "hg": 0,
-      "pkg": 1,
-      "a": 3,
-      "s": 36,
-      "sog": 18,
-      "soff": 18,
-      "off": 8,
-      "ck": 0,
-      "yc": 1,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 157
-  },
-  "colombia-fw-luis-diaz": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 84,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 73,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 89,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 18
-      },
-      {
-        "minutes": 65,
-        "fantasyPoints": 9
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 17
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 843,
-      "g": 4,
-      "hg": 0,
-      "pkg": 0,
-      "a": 2,
-      "s": 24,
-      "sog": 11,
-      "soff": 13,
-      "off": 5,
-      "ck": 0,
-      "yc": 1,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 138
-  },
-  "canada-fw-jonathan-david": {
-    "games": [
-      {
-        "minutes": 90,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 84,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 73,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 89,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 18
-      },
-      {
-        "minutes": 65,
-        "fantasyPoints": 9
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 82,
-        "fantasyPoints": 13
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 17
-      }
-    ],
-    "season": {
-      "gp": 10,
-      "gs": 10,
-      "mp": 843,
-      "g": 4,
-      "hg": 0,
-      "pkg": 0,
-      "a": 2,
-      "s": 24,
-      "sog": 11,
-      "soff": 13,
-      "off": 5,
-      "ck": 0,
-      "yc": 1,
-      "rc": 0,
-      "yrc": 0
-    },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 138
-  },
-  "south-korea-fw-heung-min-son": {
+  "japan-mf-junya-ito": {
     "games": [
       {
         "minutes": 75,
-        "fantasyPoints": 12
+        "fantasyPoints": 20
       },
       {
         "minutes": 90,
-        "fantasyPoints": 10
+        "fantasyPoints": 17
       },
       {
         "minutes": 68,
@@ -3606,177 +2976,807 @@
       },
       {
         "minutes": 90,
-        "fantasyPoints": 12
+        "fantasyPoints": 24
       },
       {
         "minutes": 60,
-        "fantasyPoints": 11
+        "fantasyPoints": 8
       },
       {
         "minutes": 82,
-        "fantasyPoints": 18
+        "fantasyPoints": 22
       },
       {
         "minutes": 74,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 16
-      },
-      {
-        "minutes": 70,
         "fantasyPoints": 11
       },
       {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 20
+      },
+      {
         "minutes": 88,
-        "fantasyPoints": 17
+        "fantasyPoints": 20
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 787,
+      "g": 1,
+      "hg": 0,
+      "pkg": 0,
+      "a": 4,
+      "s": 16,
+      "sog": 7,
+      "soff": 9,
+      "off": 12,
+      "ck": 11,
+      "yc": 2,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 179
+  },
+  "france-fw-kylian-mbappe": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 84,
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 73,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 89,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 843,
       "g": 4,
       "hg": 0,
       "pkg": 0,
       "a": 2,
-      "s": 24,
-      "sog": 11,
-      "soff": 13,
-      "off": 5,
+      "s": 56,
+      "sog": 33,
+      "soff": 23,
+      "off": 11,
       "ck": 0,
       "yc": 1,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show managed minutes but continued high involvement when starting.",
-    "totalFantasyPoints": 132
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 200
+  },
+  "argentina-fw-lionel-messi": {
+    "games": [
+      {
+        "minutes": 75,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 31
+      },
+      {
+        "minutes": 68,
+        "fantasyPoints": 9
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 60,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 74,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 9
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 25
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 787,
+      "g": 3,
+      "hg": 0,
+      "pkg": 0,
+      "a": 3,
+      "s": 54,
+      "sog": 29,
+      "soff": 25,
+      "off": 18,
+      "ck": 0,
+      "yc": 1,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 197
+  },
+  "england-fw-harry-kane": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 11
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 900,
+      "g": 2,
+      "hg": 0,
+      "pkg": 0,
+      "a": 3,
+      "s": 53,
+      "sog": 29,
+      "soff": 24,
+      "off": 18,
+      "ck": 0,
+      "yc": 1,
+      "rc": 1,
+      "yrc": 0
+    },
+    "narrative": "Final five show a high-confidence hot streak with consistently strong fantasy returns.",
+    "totalFantasyPoints": 216
+  },
+  "brazil-fw-vinicius-junior": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 84,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 73,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 89,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 30
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 21
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 843,
+      "g": 6,
+      "hg": 0,
+      "pkg": 0,
+      "a": 2,
+      "s": 55,
+      "sog": 25,
+      "soff": 30,
+      "off": 15,
+      "ck": 0,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 218
+  },
+  "norway-fw-erling-haaland": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 84,
+        "fantasyPoints": 12
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 73,
+        "fantasyPoints": 10
+      },
+      {
+        "minutes": 89,
+        "fantasyPoints": 35
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 30
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 21
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 843,
+      "g": 3,
+      "hg": 0,
+      "pkg": 0,
+      "a": 1,
+      "s": 45,
+      "sog": 26,
+      "soff": 19,
+      "off": 19,
+      "ck": 0,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 216
+  },
+  "spain-fw-lamine-yamal": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 84,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 73,
+        "fantasyPoints": 32
+      },
+      {
+        "minutes": 89,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 18
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 843,
+      "g": 4,
+      "hg": 0,
+      "pkg": 0,
+      "a": 2,
+      "s": 32,
+      "sog": 21,
+      "soff": 11,
+      "off": 22,
+      "ck": 0,
+      "yc": 1,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 210
+  },
+  "egypt-fw-mohamed-salah": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 84,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 28
+      },
+      {
+        "minutes": 73,
+        "fantasyPoints": 27
+      },
+      {
+        "minutes": 89,
+        "fantasyPoints": 18
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 30
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 13
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 843,
+      "g": 4,
+      "hg": 0,
+      "pkg": 0,
+      "a": 1,
+      "s": 47,
+      "sog": 30,
+      "soff": 17,
+      "off": 19,
+      "ck": 0,
+      "yc": 0,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 217
+  },
+  "colombia-fw-luis-diaz": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 84,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 26
+      },
+      {
+        "minutes": 73,
+        "fantasyPoints": 17
+      },
+      {
+        "minutes": 89,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 843,
+      "g": 2,
+      "hg": 0,
+      "pkg": 0,
+      "a": 0,
+      "s": 41,
+      "sog": 27,
+      "soff": 14,
+      "off": 17,
+      "ck": 0,
+      "yc": 1,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 198
+  },
+  "canada-fw-jonathan-david": {
+    "games": [
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 84,
+        "fantasyPoints": 23
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 30
+      },
+      {
+        "minutes": 73,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 89,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 8
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 33
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 843,
+      "g": 3,
+      "hg": 0,
+      "pkg": 0,
+      "a": 2,
+      "s": 38,
+      "sog": 24,
+      "soff": 14,
+      "off": 23,
+      "ck": 0,
+      "yc": 2,
+      "rc": 0,
+      "yrc": 0
+    },
+    "narrative": "Final five show boom-bust output: a major ceiling game mixed with quieter starts.",
+    "totalFantasyPoints": 213
+  },
+  "south-korea-fw-heung-min-son": {
+    "games": [
+      {
+        "minutes": 75,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 13
+      },
+      {
+        "minutes": 68,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 60,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 24
+      },
+      {
+        "minutes": 74,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 20
+      },
+      {
+        "minutes": 70,
+        "fantasyPoints": 5
+      },
+      {
+        "minutes": 88,
+        "fantasyPoints": 27
+      }
+    ],
+    "season": {
+      "gp": 10,
+      "gs": 10,
+      "mp": 787,
+      "g": 1,
+      "hg": 0,
+      "pkg": 0,
+      "a": 0,
+      "s": 34,
+      "sog": 22,
+      "soff": 12,
+      "off": 18,
+      "ck": 0,
+      "yc": 1,
+      "rc": 1,
+      "yrc": 0
+    },
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 186
   },
   "portugal-fw-cristiano-ronaldo": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 20
       },
       {
         "minutes": 84,
-        "fantasyPoints": 10
+        "fantasyPoints": 21
       },
       {
         "minutes": 90,
-        "fantasyPoints": 17
+        "fantasyPoints": 23
       },
       {
         "minutes": 73,
-        "fantasyPoints": 11
+        "fantasyPoints": 15
       },
       {
         "minutes": 89,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 18
-      },
-      {
-        "minutes": 65,
-        "fantasyPoints": 9
-      },
-      {
-        "minutes": 90,
         "fantasyPoints": 16
       },
       {
-        "minutes": 82,
+        "minutes": 90,
         "fantasyPoints": 13
       },
       {
+        "minutes": 65,
+        "fantasyPoints": 20
+      },
+      {
         "minutes": 90,
-        "fantasyPoints": 17
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 19
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 21
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 843,
-      "g": 4,
+      "g": 0,
       "hg": 0,
       "pkg": 0,
-      "a": 2,
-      "s": 24,
-      "sog": 11,
-      "soff": 13,
-      "off": 5,
+      "a": 1,
+      "s": 34,
+      "sog": 23,
+      "soff": 11,
+      "off": 22,
       "ck": 0,
       "yc": 1,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 138
+    "narrative": "Final five show realistic match-to-match variance with stronger fantasy movement than minutes alone.",
+    "totalFantasyPoints": 193
   },
   "belgium-fw-romelu-lukaku": {
     "games": [
       {
         "minutes": 90,
-        "fantasyPoints": 13
+        "fantasyPoints": 20
       },
       {
         "minutes": 84,
-        "fantasyPoints": 10
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 17
-      },
-      {
-        "minutes": 73,
-        "fantasyPoints": 11
-      },
-      {
-        "minutes": 89,
-        "fantasyPoints": 14
-      },
-      {
-        "minutes": 90,
-        "fantasyPoints": 18
-      },
-      {
-        "minutes": 65,
-        "fantasyPoints": 9
+        "fantasyPoints": 24
       },
       {
         "minutes": 90,
         "fantasyPoints": 16
       },
       {
-        "minutes": 82,
+        "minutes": 73,
         "fantasyPoints": 13
       },
       {
+        "minutes": 89,
+        "fantasyPoints": 16
+      },
+      {
         "minutes": 90,
-        "fantasyPoints": 17
+        "fantasyPoints": 16
+      },
+      {
+        "minutes": 65,
+        "fantasyPoints": 15
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 25
+      },
+      {
+        "minutes": 82,
+        "fantasyPoints": 22
+      },
+      {
+        "minutes": 90,
+        "fantasyPoints": 30
       }
     ],
     "season": {
       "gp": 10,
       "gs": 10,
       "mp": 843,
-      "g": 4,
+      "g": 2,
       "hg": 0,
       "pkg": 0,
-      "a": 2,
-      "s": 24,
-      "sog": 11,
-      "soff": 13,
-      "off": 5,
+      "a": 0,
+      "s": 30,
+      "sog": 18,
+      "soff": 12,
+      "off": 25,
       "ck": 0,
       "yc": 1,
       "rc": 0,
       "yrc": 0
     },
-    "narrative": "Final five show volatile fantasy production with several high-ceiling games.",
-    "totalFantasyPoints": 138
+    "narrative": "Final five show a clear upward trend with stronger event production layered on top of minutes.",
+    "totalFantasyPoints": 197
   }
 }

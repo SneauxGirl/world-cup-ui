@@ -1,90 +1,26 @@
 .ticker {
-  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
   width: 100%;
   min-width: 11rem;
+  min-height: 100%;
   box-sizing: border-box;
-  overflow: hidden;
-}
-
-.viewport {
-  height: 4.25rem;
-  overflow: hidden;
-  mask-image: linear-gradient(
-    180deg,
-    transparent 0%,
-    var(--wcui-page-black) 14%,
-    var(--wcui-page-black) 86%,
-    transparent 100%
-  );
-}
-
-.track {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  gap: 0.35rem;
-  width: 100%;
-  animation: wcui-hero-cta-feed 48s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .track {
-    animation: none;
-  }
-
-  .viewport {
-    height: auto;
-    max-height: 5.5rem;
-    overflow-y: auto;
-    mask-image: none;
-    scrollbar-width: thin;
-    scrollbar-color: color-mix(in oklab, var(--wcui-aqua-mint) 35%, transparent) transparent;
-  }
-}
-
-@keyframes wcui-hero-cta-feed {
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(-50%);
-  }
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.65rem;
-  flex: 0 0 auto;
-  width: 100%;
-  font-family: var(--font-finlandica), sans-serif;
-  font-size: var(--wcui-font-secondary);
-  line-height: 1.3;
-  box-sizing: border-box;
+  padding: 0.15rem 0;
 }
 
 .message {
-  flex: 1 1 auto;
-  min-width: 0;
-  color: var(--wcui-white-text);
+  margin: 0;
+  width: 100%;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
   font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
-.pts {
-  flex: 0 0 auto;
+.author {
   font-weight: 700;
-  color: var(--wcui-signal-yellow);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  color: var(--wcui-white-text);
 }

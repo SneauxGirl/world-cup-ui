@@ -24,7 +24,7 @@
 }
 
 .cardRow {
-  --hero-performer-gap: 0.5rem;
+  --hero-performer-gap: 20px;
   display: flex;
   flex: 0 0 auto;
   flex-direction: row;
@@ -34,64 +34,42 @@
   gap: var(--hero-performer-gap);
   width: 100%;
   min-width: 0;
-  min-height: min(20rem, 34vh);
+  min-height: min(18.75rem, 32vh);
   box-sizing: border-box;
-}
-
-.foot {
-  display: flex;
-  flex: 0 0 auto;
-  flex-shrink: 0;
-  justify-content: flex-end;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.editRosterLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: var(--wcui-font-control);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--wcui-aqua-mint);
-  text-decoration: none;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.editRosterLink:focus-visible {
-  outline: 2px solid var(--wcui-aqua-mint);
-  outline-offset: 3px;
-}
-
-.editRosterIcon {
-  width: 1rem;
-  height: 1rem;
 }
 
 .slot {
-  flex: 1 1 0;
+  flex: 1 1 calc((100% - (2 * var(--hero-performer-gap))) / 3);
+  max-width: calc((100% - (2 * var(--hero-performer-gap))) / 3);
   min-width: 0;
   min-height: 0;
   align-self: stretch;
   box-sizing: border-box;
 }
 
+.cardRowTwo .slot {
+  flex: 1 1 calc((100% - var(--hero-performer-gap)) / 2);
+  max-width: calc((100% - var(--hero-performer-gap)) / 2);
+}
+
+.cardRowOne .slot {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
 .slot > * {
   width: 100%;
   height: 100%;
-  min-height: min(20rem, 34vh);
+  min-height: min(18.75rem, 32vh);
 }
 
 @container hero-performers (min-width: 40rem) {
   .cardRow {
-    min-height: min(22rem, 38vh);
+    min-height: min(20.75rem, 36vh);
   }
 
   .slot > * {
-    min-height: min(22rem, 38vh);
+    min-height: min(20.75rem, 36vh);
   }
 }
 

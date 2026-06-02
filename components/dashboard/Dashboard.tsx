@@ -11,10 +11,11 @@ import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { DashboardSiteFooter } from "@/components/dashboard/DashboardSiteFooter";
+import { HeroCtaLiveFeed } from "@/components/dashboard/HeroCtaLiveFeed";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import { PlayerStatsSection } from "@/components/dashboard/player-stats/PlayerStatsSection";
-import { ValueTrendsSection } from "@/components/dashboard/value-trends/ValueTrendsSection";
+import { OverUnderSection } from "@/components/dashboard/value-trends/OverUnderSection";
 import { squadPlayerPool, type SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import { getTotalFantasyPoints } from "@/lib/player-fantasy/profiles";
 import { getTemplateForPlayer } from "@/lib/player-fantasy/buildTemplate";
@@ -22,6 +23,7 @@ import {
   getStripLastGameVsAverageDelta,
   getStripVolatilityRange,
 } from "@/lib/value-trends/compute";
+import { t } from "@/lib/i18n/t";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import styles from "./Dashboard.module.scss";
 
@@ -37,7 +39,7 @@ export function Dashboard() {
   const logout = useLogout();
   const isMobile = useIsMobile();
   const [logoutOpen, setLogoutOpen] = useState(false);
-  const { rosterBySlot, rosterCount } = useRoster();
+  const { rosterBySlot, rosterCount, loading: rosterLoading } = useRoster();
   const squadById = useMemo(
     () => new Map(squadPlayerPool.map((player) => [player.id, player])),
     [],
@@ -100,6 +102,32 @@ export function Dashboard() {
       .filter((item): item is NonNullable<typeof item> => Boolean(item));
   }, [rosterBySlot, rosterCount, squadById]);
 
+  const dashboardUser = useMemo(() => {
+    if (rosterLoading) return userDashboard;
+    const totalPoints = Object.values(rosterBySlot).reduce(
+      (sum, player) => sum + getTotalFantasyPoints(player.id),
+      0,
+    );
+    return {
+      ...userDashboard,
+      totalPoints,
+    };
+  }, [rosterBySlot, rosterLoading]);
+
+  const rosterInsight = useMemo(() => {
+    const rosterPlayers = Object.values(rosterBySlot);
+    if (rosterPlayers.length === 0) {
+      return "AI Insight: lock your roster to generate personalized player calls.";
+    }
+
+    const focusPlayer = rosterPlayers.reduce((best, current) => {
+      return getTotalFantasyPoints(current.id) > getTotalFantasyPoints(best.id) ? current : best;
+    });
+
+    const points = getTotalFantasyPoints(focusPlayer.id);
+    return `AI Insight: ${focusPlayer.firstName} ${focusPlayer.lastName} is your form anchor at ${points} total fantasy points — keep them locked for the next slate.`;
+  }, [rosterBySlot]);
+
   const requestLogout = useCallback(() => setLogoutOpen(true), []);
   const { headerUtilities, overlays, DrawerSearch } = useSiteUtilities({
     onLogout: requestLogout,
@@ -149,10 +177,13 @@ export function Dashboard() {
         <div className={`${styles.pageGutter} ${styles.contentBandHero}`}>
           <div className={styles.pageColumn}>
             <HeroSection
-              user={userDashboard}
+              user={dashboardUser}
               feedItems={feedItems}
+              showLiveFeed={false}
               performers={performers}
               inContentColumn
+              showEditRosterCta={false}
+              showEditRosterUnderPhotosLink
               className={styles.shellHero}
             />
           </div>
@@ -160,7 +191,24 @@ export function Dashboard() {
         <div className={`${styles.pageGutter} ${styles.contentBandMain}`}>
           <div className={styles.pageColumn}>
             <main id="dashboard-main" className={styles.mainLayout}>
-              <ValueTrendsSection />
+              <section className={styles.mainTopRow} aria-label={t("dashboard.liveFeed")}>
+                <div className={styles.mainLiveFeedBlock}>
+                  <div
+                    className={styles.mainLiveFeedFrame}
+                    aria-label={t("dashboard.liveFeed")}
+                  >
+                    <div className={styles.mainLiveFeedInner}>
+                      <HeroCtaLiveFeed
+                        insight={rosterInsight}
+                        className={styles.mainLiveFeedTicker}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.mainInsightsColumn}>
+                  <OverUnderSection className={styles.mainOverUnderSection} />
+                </div>
+              </section>
               <PlayerStatsSection />
             </main>
           </div>

@@ -72,7 +72,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: var(--wcui-font-control);
+  font-size: 1rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 500;
@@ -168,7 +168,7 @@
 .statHeadCell {
   padding: 0.55rem 0.5rem;
   min-width: 2.35rem;
-  font-size: var(--wcui-font-label);
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-align: right;
@@ -178,7 +178,7 @@
 }
 
 .statHeadCellHighlight {
-  color: var(--wcui-aqua-mint);
+  color: var(--wcui-sky-blue);
 }
 
 .bodyRow {
@@ -258,7 +258,7 @@
   gap: 0.35rem;
   min-width: 0;
   max-width: 100%;
-  font-size: var(--wcui-font-label);
+  font-size: 1rem;
   color: var(--wcui-text-standard);
   white-space: nowrap;
   overflow: hidden;
@@ -279,7 +279,7 @@
 
 .statCellHighlight {
   font-weight: 700;
-  color: var(--wcui-aqua-mint);
+  color: var(--wcui-sky-blue);
 }
 
 @media (max-width: 768px) {

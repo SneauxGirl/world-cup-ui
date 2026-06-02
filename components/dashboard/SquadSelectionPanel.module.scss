@@ -26,6 +26,32 @@
   background: transparent;
 }
 
+.desktopColumns {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: clamp(1rem, 2.2vw, 1.75rem);
+  width: 100%;
+  min-height: 0;
+}
+
+.desktopSidebar {
+  display: flex;
+  flex: 0 1 min(24rem, 42%);
+  flex-direction: column;
+  min-width: 18rem;
+  max-width: 26rem;
+  min-height: 0;
+}
+
+.desktopMain {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
 .closeBtn {
   @include close.wcui-close-control;
 
@@ -75,6 +101,7 @@
   font-weight: 400;
   line-height: 1.4;
   color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
+  max-width: 34ch;
 }
 
 .metaRow {
@@ -165,7 +192,7 @@
   display: flex;
   flex-direction: row;
   width: min(100%, 40rem);
-  margin-inline: auto;
+  margin-inline: 0 auto;
   margin-bottom: 0.75rem;
   padding: 0.2rem;
   box-sizing: border-box;
@@ -230,7 +257,7 @@
 }
 
 .pitchWorkspaceSideBySide {
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .pitchWorkspaceStacked {
@@ -239,14 +266,14 @@
 
 .playerSelectionCol {
   display: flex;
-  flex: 0 1 min(24rem, 42%);
+  flex: 1 1 auto;
   flex-direction: column;
   gap: 0.65rem;
-  min-width: 18rem;
-  max-width: 26rem;
+  min-width: 0;
+  max-width: 100%;
   min-height: 0;
-  overflow-y: auto;
-  padding-right: 0.15rem;
+  overflow: visible;
+  padding-right: 0;
 }
 
 .pitchPanel,
@@ -286,6 +313,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1;
+  container-type: inline-size;
   background: var(--wcui-pitch-black);
   overflow: hidden;
 }
@@ -377,6 +405,25 @@
 }
 
 @media (max-width: 900px) {
+  .desktopColumns {
+    display: block;
+  }
+
+  .desktopSidebar,
+  .desktopMain {
+    display: block;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .description {
+    max-width: none;
+  }
+
+  .viewToggle {
+    margin-inline: auto;
+  }
+
   .pitchWorkspace {
     min-height: 0;
   }

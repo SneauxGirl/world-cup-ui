@@ -62,7 +62,7 @@ Work in progress: Portfolio UI for international soccer fantasy game
 
 ## Dummy player data
 
-Fantasy stats and game logs live in `data/fantasy_dummy_data_expanded_filled.csv` and are compiled into `data/player-fantasy-profiles.json` for the app.
+Fantasy stats and game logs live in `data/fantasy_dummy_data_varied_points.csv` and are compiled into `data/player-fantasy-profiles.json` for the app.
 
 To regenerate profiles after CSV edits:
 

@@ -13,28 +13,31 @@ type Props = {
 
 export function SquadPlayerSearch({ value, onChange, className }: Props) {
   const inputId = useId();
+  const panelId = useId();
 
   return (
-    <div className={[styles.root, className].filter(Boolean).join(" ")}>
-      <label htmlFor={inputId} className={styles.label}>
-        {t("squadSelection.playerSearchLabel")}
-      </label>
-      <div className={styles.field}>
-        <span className={styles.fieldIcon} aria-hidden="true">
-          <IconSearch />
-        </span>
-        <input
-          id={inputId}
-          type="search"
-          role="searchbox"
-          className={styles.input}
-          value={value}
-          placeholder={t("squadSelection.playerSearchPlaceholder")}
-          onChange={(event) => onChange(event.target.value)}
-          autoComplete="off"
-          spellCheck={false}
-        />
+    <details className={[styles.root, className].filter(Boolean).join(" ")}>
+      <summary className={styles.summary} aria-controls={panelId}>
+        <span className={styles.label}>{t("squadSelection.playerSearchLabel")}</span>
+      </summary>
+      <div id={panelId} className={styles.content}>
+        <div className={styles.field}>
+          <span className={styles.fieldIcon} aria-hidden="true">
+            <IconSearch />
+          </span>
+          <input
+            id={inputId}
+            type="search"
+            role="searchbox"
+            className={styles.input}
+            value={value}
+            placeholder={t("squadSelection.playerSearchPlaceholder")}
+            onChange={(event) => onChange(event.target.value)}
+            autoComplete="off"
+            spellCheck={false}
+          />
+        </div>
       </div>
-    </div>
+    </details>
   );
 }

@@ -30,9 +30,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.25rem;
   width: 100%;
-  padding: 0.4rem 0.1rem 0.1rem;
+  padding: 0.45rem 0.15rem 0.1rem;
   border: none;
   background: transparent;
   color: inherit;
@@ -47,30 +47,30 @@
 }
 
 .name {
-  font-size: var(--wcui-font-meta);
+  font-size: 0.8rem;
   letter-spacing: 0.06em;
   font-weight: 700;
   color: var(--wcui-white-text);
-  line-height: 1.1;
-  max-width: 5.25rem;
+  line-height: 1.2;
+  max-width: 5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .meta {
-  font-size: 0.62rem;
+  font-size: 0.8rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--wcui-text-placeholder);
-  max-width: 5.25rem;
+  max-width: 5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .delta {
-  font-size: var(--wcui-font-meta);
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   line-height: 1;

@@ -55,9 +55,7 @@ export function SquadPitchSlot({ slot, onSelect, onClear, selectedPlayer }: Prop
               className={styles.slotTopMeta}
               stopPropagation
             >
-              <span className={styles.slotPlayerPoints}>
-                {selectedPlayer.fantasyPoints} pts
-              </span>
+              <span className={styles.slotPlayerPoints}>{selectedPlayer.fantasyPoints}</span>
               <span className={styles.slotPlayerMeta}>{slot.position}</span>
             </PlayerCardTrigger>
             <button
@@ -81,7 +79,7 @@ export function SquadPitchSlot({ slot, onSelect, onClear, selectedPlayer }: Prop
                   alt=""
                   fill
                   className={styles.slotPlayerImage}
-                  sizes="90px"
+                  sizes="(min-width: 901px) 7.25rem, 5.78rem"
                 />
               </span>
             </PlayerCardTrigger>

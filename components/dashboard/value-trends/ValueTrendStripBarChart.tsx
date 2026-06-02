@@ -13,12 +13,12 @@ import {
 import { t } from "@/lib/i18n/t";
 import styles from "./ValueTrendStripBarChart.module.scss";
 
-export const STRIP_BAR_CHART_WIDTH = 40;
+export const STRIP_BAR_CHART_WIDTH = 46;
 export const STRIP_BAR_CHART_HEIGHT = 96;
 
 const CHART_WIDTH = STRIP_BAR_CHART_WIDTH;
 const CHART_HEIGHT = STRIP_BAR_CHART_HEIGHT;
-const BAR_WIDTH = 14;
+const BAR_WIDTH = 17;
 const BAR_GAP = 4;
 const AVG_BAR_X = (CHART_WIDTH - BAR_WIDTH * 2 - BAR_GAP) / 2;
 const LAST_BAR_X = AVG_BAR_X + BAR_WIDTH + BAR_GAP;

@@ -16,10 +16,10 @@ export type PositionPlayerPickerLayout = "overlay" | "sidebar";
 type Props = {
   searchQuery: string;
   onSearchQueryChange: (value: string) => void;
-  positionFilter: SquadPositionCode | null;
-  teamCodeFilter: string | null;
-  onPositionFilterChange: (position: SquadPositionCode | null) => void;
-  onTeamCodeFilterChange: (teamCode: string | null) => void;
+  positionFilter: SquadPositionCode[];
+  teamCodeFilter: string[];
+  onPositionFilterChange: (positions: SquadPositionCode[]) => void;
+  onTeamCodeFilterChange: (teamCodes: string[]) => void;
   layout?: PositionPlayerPickerLayout;
   showClose?: boolean;
   onClose?: () => void;
@@ -63,8 +63,8 @@ export function PositionPlayerPicker({
   const { openPlayer } = usePlayerCard();
 
   const players = squadPlayerPool
-    .filter((player) => (positionFilter ? player.position === positionFilter : true))
-    .filter((player) => (teamCodeFilter ? player.teamCode === teamCodeFilter : true))
+    .filter((player) => (positionFilter.length > 0 ? positionFilter.includes(player.position) : true))
+    .filter((player) => (teamCodeFilter.length > 0 ? teamCodeFilter.includes(player.teamCode) : true))
     .filter((player) => matchesSearch(player, searchQuery))
     .sort(sortByCountry);
 

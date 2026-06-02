@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ValueTrendInfoModal } from "@/components/dashboard/value-trends/ValueTrendInfoModal";
+import { OverUnderInfoModal } from "@/components/dashboard/value-trends/OverUnderInfoModal";
 import { ValueTrendStripPlot } from "@/components/dashboard/value-trends/ValueTrendStripPlot";
 import { IconChevronRight, IconInfo } from "@/components/icons/DashboardIcons";
 import {
@@ -13,13 +13,13 @@ import { getStripPlotScale } from "@/lib/value-trends/compute";
 import { usePlayerCard } from "@/lib/player-card/PlayerCardProvider";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import { t } from "@/lib/i18n/t";
-import styles from "./ValueTrendsSection.module.scss";
+import styles from "./OverUnderSection.module.scss";
 
 type Props = {
   className?: string;
 };
 
-export function ValueTrendsSection({ className }: Props) {
+export function OverUnderSection({ className }: Props) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const { rosterBySlot, isDemoMode, loading } = useRoster();
   const { openPlayerCard } = usePlayerCard();
@@ -134,8 +134,8 @@ export function ValueTrendsSection({ className }: Props) {
           ) : null}
         </div>
       </section>
+      <OverUnderInfoModal open={infoOpen} onClose={() => setInfoOpen(false)} />
 
-      <ValueTrendInfoModal open={infoOpen} onClose={() => setInfoOpen(false)} />
     </>
   );
 }

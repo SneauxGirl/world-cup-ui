@@ -2,7 +2,7 @@ import type { DashboardMatch } from "@/data/types";
 import type { BannerDateSegment } from "@/lib/todayMatches";
 
 /** Floor width for fit counting and `.gameWrap` — games grow above this via flex. */
-export const BANNER_MIN_GAME_WIDTH_PX = 85;
+export const BANNER_MIN_GAME_WIDTH_PX = 130;
 
 export const BANNER_DIVIDER_WIDTH_PX = 1;
 

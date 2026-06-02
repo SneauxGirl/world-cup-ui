@@ -18,10 +18,10 @@ function getFlagUrl(countryCode: string): string {
 }
 
 type Props = {
-  positionFilter: SquadPositionCode | null;
-  teamCodeFilter: string | null;
-  onPositionFilterChange: (position: SquadPositionCode | null) => void;
-  onTeamCodeFilterChange: (teamCode: string | null) => void;
+  positionFilter: SquadPositionCode[];
+  teamCodeFilter: string[];
+  onPositionFilterChange: (positions: SquadPositionCode[]) => void;
+  onTeamCodeFilterChange: (teamCodes: string[]) => void;
 };
 
 export function SquadPlayerFilters({
@@ -31,84 +31,91 @@ export function SquadPlayerFilters({
   onTeamCodeFilterChange,
 }: Props) {
   const teams = getSquadPlayerTeams();
+  const positionPanelId = "squad-filter-position-panel";
+  const teamsPanelId = "squad-filter-teams-panel";
 
   return (
     <div className={styles.filters}>
-      <section className={styles.section} aria-labelledby="squad-filter-global">
-        <h4 id="squad-filter-global" className={styles.sectionLabel}>
-          {t("squadSelection.filterGlobal")}
-        </h4>
-        <div className={styles.optionRow}>
-          <button type="button" className={styles.optionActive} aria-pressed="true">
-            {t("squadSelection.filterAllPlayers")}
-          </button>
+      <details className={styles.section}>
+        <summary
+          id="squad-filter-position"
+          className={styles.sectionSummary}
+          aria-controls={positionPanelId}
+        >
+          <span className={styles.sectionLabel}>{t("squadSelection.filterPosition")}</span>
+        </summary>
+        <div id={positionPanelId} className={styles.sectionContent}>
+          <div className={styles.optionRow}>
+            {POSITION_OPTIONS.map((option) => {
+              const isActive = positionFilter.includes(option.code);
+              return (
+                <button
+                  key={option.code}
+                  type="button"
+                  className={isActive ? styles.optionActive : styles.option}
+                  aria-pressed={isActive}
+                  onClick={() => {
+                    if (isActive) {
+                      onPositionFilterChange(
+                        positionFilter.filter((code) => code !== option.code),
+                      );
+                      return;
+                    }
+                    onPositionFilterChange([...positionFilter, option.code]);
+                  }}
+                >
+                  {t(`squadSelection.${option.labelKey}`)}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </section>
+      </details>
 
-      <section className={styles.section} aria-labelledby="squad-filter-position">
-        <h4 id="squad-filter-position" className={styles.sectionLabel}>
-          {t("squadSelection.filterPosition")}
-        </h4>
-        <div className={styles.optionRow}>
-          {POSITION_OPTIONS.map((option) => {
-            const isActive = positionFilter === option.code;
-            return (
-              <button
-                key={option.code}
-                type="button"
-                className={isActive ? styles.optionActive : styles.option}
-                aria-pressed={isActive}
-                onClick={() =>
-                  onPositionFilterChange(isActive ? null : option.code)
-                }
-              >
-                {t(`squadSelection.${option.labelKey}`)}
-              </button>
-            );
-          })}
+      <details className={styles.section}>
+        <summary
+          id="squad-filter-teams"
+          className={styles.sectionSummary}
+          aria-controls={teamsPanelId}
+        >
+          <span className={styles.sectionLabel}>{t("squadSelection.filterTeams")}</span>
+        </summary>
+        <div id={teamsPanelId} className={styles.sectionContent}>
+          <div className={styles.teamGrid} role="list">
+            {teams.map((team) => {
+              const isActive = teamCodeFilter.includes(team.teamCode);
+              return (
+                <button
+                  key={team.teamCode}
+                  type="button"
+                  role="listitem"
+                  className={isActive ? styles.teamActive : styles.team}
+                  aria-pressed={isActive}
+                  onClick={() => {
+                    if (isActive) {
+                      onTeamCodeFilterChange(
+                        teamCodeFilter.filter((code) => code !== team.teamCode),
+                      );
+                      return;
+                    }
+                    onTeamCodeFilterChange([...teamCodeFilter, team.teamCode]);
+                  }}
+                >
+                  <Image
+                    className={styles.teamFlag}
+                    src={getFlagUrl(team.countryIso2)}
+                    alt=""
+                    width={22}
+                    height={16}
+                    aria-hidden
+                  />
+                  <span className={styles.teamName}>{team.countryName}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </section>
-
-      <section className={styles.section} aria-labelledby="squad-filter-teams">
-        <h4 id="squad-filter-teams" className={styles.sectionLabel}>
-          {t("squadSelection.filterTeams")}
-        </h4>
-        <div className={styles.teamGrid} role="list">
-          <button
-            type="button"
-            className={teamCodeFilter === null ? styles.teamActive : styles.team}
-            aria-pressed={teamCodeFilter === null}
-            onClick={() => onTeamCodeFilterChange(null)}
-          >
-            <span className={styles.teamName}>{t("squadSelection.filterAllTeams")}</span>
-          </button>
-          {teams.map((team) => {
-            const isActive = teamCodeFilter === team.teamCode;
-            return (
-              <button
-                key={team.teamCode}
-                type="button"
-                role="listitem"
-                className={isActive ? styles.teamActive : styles.team}
-                aria-pressed={isActive}
-                onClick={() =>
-                  onTeamCodeFilterChange(isActive ? null : team.teamCode)
-                }
-              >
-                <Image
-                  className={styles.teamFlag}
-                  src={getFlagUrl(team.countryIso2)}
-                  alt=""
-                  width={22}
-                  height={16}
-                  aria-hidden
-                />
-                <span className={styles.teamName}>{team.countryName}</span>
-              </button>
-            );
-          })}
-        </div>
-      </section>
+      </details>
     </div>
   );
 }

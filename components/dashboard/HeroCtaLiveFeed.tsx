@@ -1,42 +1,44 @@
 "use client";
 
-import { t, tFeed } from "@/lib/i18n/t";
+import { tFeed } from "@/lib/i18n/t";
 import type { FeedItem } from "@/data/types";
 import styles from "./HeroCtaLiveFeed.module.scss";
 
 type Props = {
-  items: FeedItem[];
+  insight?: string;
+  items?: FeedItem[];
   className?: string;
 };
 
-function FeedTickerRow({ item }: { item: FeedItem }) {
-  return (
-    <li className={styles.row}>
-      <span className={styles.message}>{tFeed(item.messageKey)}</span>
-      <span
-        className={styles.pts}
-        aria-label={t("dashboard.fantasyPts", { pts: item.pts })}
-      >
-        +{item.pts}
-      </span>
-    </li>
-  );
+function splitMessage(rawMessage: string): {
+  hasAuthor: boolean;
+  author: string;
+  comment: string;
+} {
+  const separatorIndex = rawMessage.indexOf(":");
+  const hasAuthor = separatorIndex > 0;
+  const author = hasAuthor ? rawMessage.slice(0, separatorIndex).trim() : "";
+  const comment = hasAuthor ? rawMessage.slice(separatorIndex + 1).trim() : rawMessage;
+  return { hasAuthor, author, comment };
 }
 
-export function HeroCtaLiveFeed({ items, className }: Props) {
-  if (items.length === 0) return null;
+export function HeroCtaLiveFeed({ insight, items = [], className }: Props) {
+  const messageText = insight ?? (items[0] ? tFeed(items[0].messageKey) : "");
+  if (!messageText) return null;
 
-  const loopItems = [...items, ...items];
-
+  const { hasAuthor, author, comment } = splitMessage(messageText);
   return (
     <div className={[styles.ticker, className].filter(Boolean).join(" ")}>
-      <div className={styles.viewport}>
-        <ul className={styles.track}>
-          {loopItems.map((item, index) => (
-            <FeedTickerRow key={`${item.id}-${index}`} item={item} />
-          ))}
-        </ul>
-      </div>
+      <span className={styles.message}>
+        {hasAuthor ? (
+          <>
+            <span className={styles.author}>{author}:</span>{" "}
+            {comment}
+          </>
+        ) : (
+          messageText
+        )}
+      </span>
     </div>
   );
 }

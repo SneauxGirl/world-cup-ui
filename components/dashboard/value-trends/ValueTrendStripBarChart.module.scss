@@ -4,16 +4,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  width: 40px;
-  min-width: 40px;
-  max-width: 40px;
+  width: 46px;
+  min-width: 46px;
+  max-width: 46px;
   height: var(--value-trend-plot-height, 96px);
   flex-shrink: 0;
 }
 
 .svg {
   display: block;
-  width: 40px;
+  width: 46px;
   height: var(--value-trend-plot-height, 96px);
   overflow: hidden;
 }

@@ -28,7 +28,7 @@ export function ValueTrendStripPlot({
 }: Props) {
   const plotStyle = {
     ["--value-trend-plot-height" as string]: `${STRIP_BAR_CHART_HEIGHT}px`,
-    ["--value-trend-column-width" as string]: "3.85rem",
+    ["--value-trend-column-width" as string]: "5rem",
   } as CSSProperties;
 
   return (

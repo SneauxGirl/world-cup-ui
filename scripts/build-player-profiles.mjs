@@ -1,5 +1,5 @@
 /**
- * Builds data/player-fantasy-profiles.json from the filled fantasy CSV
+ * Builds data/player-fantasy-profiles.json from the varied fantasy CSV
  * keyed by squad pool player id (wc2026-squads-formatted.json is identity source).
  *
  * Run: node scripts/build-player-profiles.mjs
@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
-const CSV_PATH = path.join(root, "data/fantasy_dummy_data_expanded_filled.csv");
+const CSV_PATH = path.join(root, "data/fantasy_dummy_data_varied_points.csv");
 const SQUAD_PATH = path.join(root, "data/wc2026-squads-formatted.json");
 const OUT_PATH = path.join(root, "data/player-fantasy-profiles.json");
 

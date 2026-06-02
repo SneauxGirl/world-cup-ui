@@ -1,8 +1,41 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0;
   flex-shrink: 0;
+  border: 1px solid var(--wcui-border-blue);
+  background: color-mix(in oklab, var(--wcui-page-black) 92%, transparent);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0.45rem 0.65rem;
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::after {
+    content: "+";
+    font-family: var(--font-finlandica), sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    color: color-mix(in oklab, var(--wcui-white-text) 72%, transparent);
+  }
+}
+
+.root[open] .summary::after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 0.65rem 0.6rem;
 }
 
 .label {

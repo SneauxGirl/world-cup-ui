@@ -69,7 +69,7 @@ export type ValueTrendCandle = {
   low: number;
   close: number;
   minutesPlayed: number;
-  /** Sum of ceil(minutes/10) per game in the window (appearance points). */
+  /** Sum of ceil(minutes/5) per game in the window (appearance points). */
   minutesPlotPoints?: number;
   /** Per-game average appearance pts for the strip base bar (0–40 scale). */
   minutesBarPlotPoints?: number;

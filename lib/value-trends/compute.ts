@@ -11,10 +11,10 @@ export function isCandleVolatile(
   return candle.high - candle.low > rangeThreshold;
 }
 
-/** 1 appearance point per 10 minutes; any started 10-minute block counts (ceil). */
+/** 1 appearance point per 5 minutes; any started 5-minute block counts (ceil). */
 export function minutesToPlotPoints(minutes: number): number {
   if (minutes <= 0) return 0;
-  return Math.ceil(minutes / 10);
+  return Math.ceil(minutes / 5);
 }
 
 export function sumMinutesPlotPoints(minutesPerGame: number[]): number {

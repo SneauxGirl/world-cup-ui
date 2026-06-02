@@ -1,4 +1,5 @@
 @use "../../styles/content-column" as column;
+@use "../../styles/wcui-frame" as frame;
 
 .page {
   min-height: 100dvh;
@@ -110,6 +111,74 @@
   gap: 1rem;
 }
 
+.mainTopRow {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+  min-width: 0;
+}
+
+.mainLiveFeedBlock {
+  order: 2;
+  flex: 0 0 min(36%, 26rem);
+  min-width: 16rem;
+  max-width: 26rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-self: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.mainLiveFeedFrame {
+  --wcui-chamfer-tl: 30px;
+  --wcui-chamfer-tr: 20px;
+  --wcui-chamfer-br: 25px;
+  --wcui-chamfer-bl: 20px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  flex: 0 0 auto;
+  margin-top: 0;
+  box-sizing: border-box;
+  @include frame.wcui-chamfer-frame-asymmetric;
+}
+
+.mainLiveFeedInner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: clamp(0.9rem, 2vw, 1.15rem) clamp(1rem, 2.5vw, 1.35rem);
+  box-sizing: border-box;
+  @include frame.wcui-chamfer-fill-asymmetric(var(--wcui-hero-panel-fill));
+  border: 1px solid var(--wcui-border-aqua-soft);
+}
+
+.mainLiveFeedTicker {
+  min-width: 0;
+}
+
+.mainOverUnderSection {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.mainInsightsColumn {
+  order: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
 /* Tablet / narrow desktop: tighter gap below hero. */
 @media (min-width: 769px) and (max-width: 1499px) {
   .mainLayout {
@@ -123,7 +192,7 @@
   }
 
   .shellMatches {
-    order: 3;
+    display: none;
   }
 
   .shellTopBand.contentBandTop {
@@ -144,6 +213,23 @@
 
   .mainLayout {
     padding-bottom: 1.5rem;
+  }
+
+  .mainTopRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mainInsightsColumn {
+    width: 100%;
+    max-width: none;
+  }
+
+  .mainLiveFeedBlock {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
   }
 }
 

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import { CountryFlag } from "@/components/CountryFlag";
 import { PlayerCardTrigger } from "@/components/dashboard/player-card/PlayerCardTrigger";
 import { IconChevronRight } from "@/components/icons/DashboardIcons";
@@ -12,13 +12,13 @@ import {
   compareRosterPlayers,
   formatStatCell,
   getRosterPlayerStats,
-  ROSTER_STAT_HIGHLIGHT_KEY,
   ROSTER_STAT_KEYS,
 } from "@/data/roster-player-stats";
 import type { RosterPlayerStatKey } from "@/data/types";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import { getTeamJerseyPath } from "@/lib/nationalTeams";
 import { t } from "@/lib/i18n/t";
+import { getTotalFantasyPoints } from "@/lib/player-fantasy/profiles";
 import styles from "./PlayerStatsSection.module.scss";
 
 type Props = {
@@ -28,6 +28,7 @@ type Props = {
 type RosterStatsRow = {
   player: SquadPlayerPoolEntry;
   stats: ReturnType<typeof getRosterPlayerStats>;
+  totalPoints: number;
 };
 
 const POSITION_LABEL: Record<SquadPositionCode, string> = {
@@ -55,6 +56,7 @@ function buildRows(rosterBySlot: Record<string, SquadPlayerPoolEntry>): RosterSt
     rows.push({
       player,
       stats: getRosterPlayerStats(player.id, player.position),
+      totalPoints: getTotalFantasyPoints(player.id),
     });
   }
 
@@ -119,7 +121,7 @@ export function PlayerStatsSection({ className }: Props) {
                       <span className={styles.srOnly}>{t("playerStats.playerColumn")}</span>
                     </th>
                     {ROSTER_STAT_KEYS.map((key) => (
-                      <StatHeader key={key} statKey={key} />
+                      <StatHeader key={key} statKey={key} includePtsAfterMp />
                     ))}
                   </tr>
                 </thead>
@@ -137,23 +139,37 @@ export function PlayerStatsSection({ className }: Props) {
   );
 }
 
-function StatHeader({ statKey }: { statKey: RosterPlayerStatKey }) {
-  const isHighlight = statKey === ROSTER_STAT_HIGHLIGHT_KEY;
+function StatHeader({
+  statKey,
+  includePtsAfterMp = false,
+}: {
+  statKey: RosterPlayerStatKey;
+  includePtsAfterMp?: boolean;
+}) {
   return (
-    <th
-      scope="col"
-      className={[styles.statHeadCell, isHighlight && styles.statHeadCellHighlight]
-        .filter(Boolean)
-        .join(" ")}
-      title={t(`playerStats.statTitle.${statKey}`)}
-    >
-      {t(`playerStats.statAbbr.${statKey}`)}
-    </th>
+    <>
+      <th
+        scope="col"
+        className={styles.statHeadCell}
+        title={t(`playerStats.statTitle.${statKey}`)}
+      >
+        {t(`playerStats.statAbbr.${statKey}`)}
+      </th>
+      {includePtsAfterMp && statKey === "mp" ? (
+        <th
+          scope="col"
+          className={styles.statHeadCell}
+          title={t("playerStats.totalPointsTitle")}
+        >
+          {t("playerStats.totalPointsAbbr")}
+        </th>
+      ) : null}
+    </>
   );
 }
 
 function PlayerStatsTableRow({ row }: { row: RosterStatsRow }) {
-  const { player, stats } = row;
+  const { player, stats, totalPoints } = row;
   const jerseySrc = getTeamJerseyPath(player.teamCode);
   const displayName = formatShortPlayerName(player.firstName, player.lastName);
   const positionLabel = POSITION_LABEL[player.position];
@@ -187,17 +203,16 @@ function PlayerStatsTableRow({ row }: { row: RosterStatsRow }) {
         </PlayerCardTrigger>
       </th>
       {ROSTER_STAT_KEYS.map((key) => {
-        const isHighlight = key === ROSTER_STAT_HIGHLIGHT_KEY;
         const raw = stats[key];
         return (
-          <td
-            key={key}
-            className={[styles.statCell, isHighlight && styles.statCellHighlight]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            {formatStatCell(raw)}
-          </td>
+          <Fragment key={key}>
+            <td className={styles.statCell}>{formatStatCell(raw)}</td>
+            {key === "mp" ? (
+              <td className={[styles.statCell, styles.statCellHighlight].join(" ")}>
+                {formatStatCell(totalPoints)}
+              </td>
+            ) : null}
+          </Fragment>
         );
       })}
     </tr>

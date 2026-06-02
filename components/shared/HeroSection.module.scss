@@ -52,6 +52,7 @@
   min-height: 0;
   overflow: visible;
   --hero-text-shadow: none;
+  --hero-gap-bottom: 1.25rem;
 }
 
 .heroDashboard .heroStack {
@@ -96,7 +97,7 @@
   container-name: hero-dashboard;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: stretch;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: clamp(1.5rem, 3vw, 2.5rem);
   height: auto;
@@ -122,13 +123,62 @@
   width: auto;
   min-width: 0;
   max-width: 100%;
+  align-self: stretch;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.heroEditRosterFrame {
+  --wcui-chamfer-tl: 24px;
+  --wcui-chamfer-br: 24px;
+  width: 100%;
+  max-width: min(18rem, 100%);
+  box-sizing: border-box;
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
+}
+
+.heroEditRosterLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+  min-height: 2.2rem;
+  padding: clamp(0.55rem, 1.4vw, 0.7rem) clamp(0.95rem, 2.2vw, 1.15rem);
+  font-size: var(--wcui-font-control);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--wcui-white-text);
+  text-decoration: none;
+  box-sizing: border-box;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-hero-panel-fill));
+  border: 1px solid var(--wcui-border-aqua-soft);
+  box-shadow:
+    inset 0 1px 0 var(--wcui-card-glass-highlight),
+    var(--wcui-card-glass-shadow);
+
+  &:hover {
+    color: color-mix(in oklab, var(--wcui-white-text) 82%, var(--wcui-aqua-mint));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 3px;
+  }
+}
+
+.heroEditRosterIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
 }
 
 .heroDashboard .heroPrimary {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-top: 0;
   width: auto;
   max-width: 100%;
@@ -146,6 +196,17 @@
 
 .heroManagerStats {
   margin-top: clamp(1rem, 2vw, 1.25rem);
+}
+
+.heroDashboard .heroTitleColumn {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.heroDashboard .heroManagerStats {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .heroTitleColumn .title {
@@ -186,6 +247,17 @@
   box-sizing: border-box;
 }
 
+.heroAsideStack {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+  align-self: stretch;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
 .heroAsideConstruction {
   flex: 0 0 auto;
   flex-shrink: 0;
@@ -202,6 +274,42 @@
   max-height: min(22rem, 42vh);
   object-fit: contain;
   object-position: center right;
+}
+
+.heroUnderPhotosLinkRow {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-self: stretch;
+  margin-top: 0.5rem;
+}
+
+.heroUnderPhotosLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  color: var(--wcui-white-text);
+  text-decoration: none;
+  font-size: 1.2rem;
+letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  &:hover {
+    color: color-mix(in oklab, var(--wcui-white-text) 82%, var(--wcui-aqua-mint));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 3px;
+  }
+}
+
+.heroUnderPhotosLinkIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
 }
 
 .heroPrimary {
@@ -286,7 +394,7 @@
   border: 1px solid var(--wcui-border-aqua-soft);
 }
 
-.liveFeedTitle {
+.liveFeedLabel {
   margin: 0;
   font-size: var(--wcui-font-control);
   letter-spacing: 0.12em;
