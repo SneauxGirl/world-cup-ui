@@ -57,7 +57,7 @@ export function HeroSection({
         <div className={styles.heroPhotoShell} aria-hidden="true">
           <div className={styles.heroMedia}>
             <Image
-              src="/SoccerHero1800final.png"
+              src="/LoginHero-t.png"
               alt=""
               fill
               priority

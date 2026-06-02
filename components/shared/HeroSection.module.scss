@@ -38,6 +38,29 @@
   object-position: var(--hero-photo-focus-x, 100%) center;
 }
 
+/* Login hero: solid fill (step 1) + fades on .heroContentWrapper::after (Login.module.scss). */
+.heroLogin {
+  height: 70vh;
+  min-height: 70vh;
+  max-height: none;
+  aspect-ratio: auto;
+  overflow: hidden;
+  background: var(--login-hero-fill, var(--wcui-background-black));
+}
+
+.heroLogin .heroPhotoShell {
+  background: var(--login-hero-fill, var(--wcui-background-black));
+}
+
+.heroLogin .heroMedia {
+  z-index: 1;
+}
+
+.heroLogin .heroPhoto {
+  object-fit: contain;
+  object-position: right top;
+}
+
 /* Below 1100px: reframe crop — lower % reveals more left art; higher % keeps player further right. */
 @media (max-width: 1800px) {
   .heroLogin {
@@ -414,11 +437,11 @@ letter-spacing: 0.05em;
 /* Below 1500px: login keeps stadium art; dashboard stacks copy only. */
 @media (max-width: 1499px) {
   .heroLogin {
-    --hero-photo-max: 400px;
-    height: auto;
-    max-height: var(--hero-photo-max);
-    aspect-ratio: var(--hero-photo-aspect);
-    min-height: unset;
+    --hero-photo-max: none;
+    height: 70vh;
+    max-height: none;
+    aspect-ratio: auto;
+    min-height: 70vh;
     overflow: hidden;
   }
 
@@ -433,11 +456,6 @@ letter-spacing: 0.05em;
     inset: 0;
     min-height: 0;
     pointer-events: none;
-  }
-
-  .heroLogin .heroPhoto {
-    object-fit: cover;
-    object-position: center center;
   }
 
   .heroDashboard .heroStack {
@@ -495,16 +513,14 @@ letter-spacing: 0.05em;
 
 @media (max-width: 768px) {
   .heroLogin {
-    --hero-photo-max: 350px;
-    max-height: var(--hero-photo-max);
-    min-height: min(
-      var(--hero-photo-lock-height, calc(768px * 600 / 2000)),
-      var(--hero-photo-max)
-    );
+    --hero-photo-max: none;
+    height: 70vh;
+    max-height: none;
+    min-height: 70vh;
   }
 
   .heroLogin .heroPhoto {
-    object-position: var(--login-hero-photo-focus-x, 45%) center;
+    object-position: right top;
   }
 
   .heroDashboard,
@@ -547,5 +563,13 @@ letter-spacing: 0.05em;
 
   .heroAsideConstructionImage {
     max-height: min(14rem, 32vh);
+  }
+}
+
+/* Login hero: cover + top-right below 1375px; contain from 1375px up (matches Login mask). */
+@media (max-width: 1374px) {
+  .heroLogin .heroPhoto {
+    object-fit: cover;
+    object-position: right top;
   }
 }

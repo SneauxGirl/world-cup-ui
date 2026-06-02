@@ -1,5 +1,56 @@
 @use "../../styles/wcui-frame" as frame;
 
+/** Hero login panel — aqua radial halo behind card (on heroContent, not clipped by card fill). */
+@mixin login-hero-backdrop-glow {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: -2rem;
+    left: -3rem;
+    width: calc(min(100%, var(--login-hero-card-max, 22rem)) + 10rem);
+    height: calc(min(100%, 26rem) + 4rem);
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 85% 75% at 48% 42%,
+      color-mix(in oklab, var(--wcui-aqua-mint) 62%, transparent) 0%,
+      color-mix(in oklab, var(--wcui-aqua-mint) 32%, transparent) 38%,
+      color-mix(in oklab, var(--wcui-primary-blue) 18%, transparent) 56%,
+      transparent 72%
+    );
+    filter: blur(var(--login-hero-glow-blur, 36px));
+    opacity: var(--login-hero-glow-opacity, 1);
+  }
+
+  /* Second blob — lower, nudged inward (blurred-background depth). */
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: var(--login-hero-glow-2-bottom, clamp(2rem, 14vh, 5.5rem));
+    left: var(--login-hero-glow-2-left, clamp(4rem, 24%, 11rem));
+    width: var(--login-hero-glow-2-size, clamp(16rem, 34vw, 26rem));
+    height: var(--login-hero-glow-2-size, clamp(16rem, 34vw, 26rem));
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 50% 52%,
+      color-mix(in oklab, var(--wcui-aqua-mint) 52%, transparent) 0%,
+      color-mix(in oklab, var(--wcui-aqua-mint) 26%, transparent) 40%,
+      color-mix(in oklab, var(--wcui-deep-emerald) 14%, transparent) 58%,
+      transparent 74%
+    );
+    filter: blur(var(--login-hero-glow-2-blur, 44px));
+    opacity: var(--login-hero-glow-2-opacity, 0.82);
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 /** Primary / hero CTA — bilateral wash + edge highlights on hover/focus. */
 @mixin login-sign-in-glow($primary-mix: 42%) {
   &::before {

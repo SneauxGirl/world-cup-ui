@@ -9,6 +9,9 @@
   width: min(100%, var(--login-hero-card-max, 22rem));
   flex-shrink: 0;
   box-sizing: border-box;
+  box-shadow:
+    0 0 48px color-mix(in oklab, var(--wcui-aqua-mint) 22%, transparent),
+    0 0 96px color-mix(in oklab, var(--wcui-primary-blue) 14%, transparent);
   @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
 }
 
