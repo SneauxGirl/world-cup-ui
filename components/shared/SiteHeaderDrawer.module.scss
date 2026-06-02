@@ -1,21 +1,44 @@
+@use "../../styles/wcui-frame" as frame;
+
 .panelShellTall {
   --wcui-menu-max-height: min(90dvh, 680px);
 }
 
-.sectionLabel {
-  margin: 0.85rem 1rem 0.35rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid color-mix(in oklab, var(--wcui-white-text) 14%, transparent);
-  font-family: var(--font-finlandica), sans-serif;
-  font-size: var(--wcui-font-meta);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--wcui-sky-blue) 90%, transparent);
+.menuPanelPortal {
+  background: transparent;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
+  box-shadow:
+    inset 0 1px 0 var(--wcui-card-glass-highlight),
+    var(--wcui-card-glass-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.panelShellTall .sectionLabel:first-of-type {
-  margin-top: 0.25rem;
-  padding-top: 0;
-  border-top: none;
+.menuDivider {
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--wcui-border-blue);
+}
+
+.moreSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionLabel {
+  margin: 0;
+  padding: 0.85rem 1rem 0.35rem;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--wcui-white-text);
+}
+
+.menuLinkSecondary {
+  padding-inline-start: 1.75rem;
+  font-size: var(--wcui-font-control);
+  letter-spacing: 0.05em;
 }

@@ -2,40 +2,41 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { IconClose, IconSearch } from "@/components/icons/DashboardIcons";
-import { MenuUserFooter } from "@/components/shared/MenuUserFooter";
-import { SearchModal } from "@/components/shared/SearchModal";
+import { useCallback, useEffect, useId, useRef, type ReactNode } from "react";
+import { IconClose } from "@/components/icons/DashboardIcons";
 import {
-  getSiteHeaderMobileDrawerItems,
   SITE_HEADER_MORE_KEY,
   siteHeaderNavItems,
   type SiteHeaderNavItem,
 } from "@/data/site-header-nav";
-import { userDashboard } from "@/data/dashboard-seed";
 import { getDashboardAppNavActiveKey } from "@/lib/dashboard-app-nav";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
 import navStyles from "./SiteNavMenu.module.scss";
 import styles from "./SiteHeaderDrawer.module.scss";
 
-const dashboardMenuItems = [
-  { key: "dashboard" as const, href: "/dashboard" },
-  { key: "roster" as const, href: "/roster" },
-  { key: "matches" as const, href: "#" },
-  { key: "standings" as const, href: "#" },
-  { key: "players" as const, href: "#" },
-  { key: "tournament" as const, href: "#" },
-  { key: "store" as const, href: "#" },
-  { key: "settings" as const, href: "#" },
-];
+import { dashboardAppNavItems } from "@/data/dashboard-app-nav-items";
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-function DrawerSiteLink({ item, onNavigate }: { item: SiteHeaderNavItem; onNavigate: () => void }) {
+function DrawerSiteLink({
+  item,
+  onNavigate,
+  secondary = false,
+}: {
+  item: SiteHeaderNavItem;
+  onNavigate: () => void;
+  secondary?: boolean;
+}) {
   return (
-    <Link href={item.href} className={navStyles.menuLink} onClick={onNavigate}>
+    <Link
+      href={item.href}
+      className={[navStyles.menuLink, secondary && styles.menuLinkSecondary]
+        .filter(Boolean)
+        .join(" ")}
+      onClick={onNavigate}
+    >
       {t(`footer.${item.key}`)}
     </Link>
   );
@@ -45,22 +46,28 @@ type Props = {
   open: boolean;
   onClose: () => void;
   variant: "login" | "dashboard";
-  onAccountClick?: () => void;
+  /** FIFA nav items currently in the header “More” overflow (dashboard only). */
+  moreNavItems?: readonly SiteHeaderNavItem[];
+  /** Rendered at the top of the drawer nav (e.g. mobile search). */
+  leading?: ReactNode;
 };
 
-export function SiteHeaderDrawer({ open, onClose, variant, onAccountClick }: Props) {
+export function SiteHeaderDrawer({
+  open,
+  onClose,
+  variant,
+  moreNavItems = [],
+  leading,
+}: Props) {
   const pathname = usePathname();
   const activeKey = getDashboardAppNavActiveKey(pathname);
-  const [searchOpen, setSearchOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
+  const moreSectionId = useId();
   const menuId = useId();
-  const dashboardDrawerItems = getSiteHeaderMobileDrawerItems();
-  const loginDrawerItems = siteHeaderNavItems;
 
   const handleNavigate = useCallback(() => onClose(), [onClose]);
-  const closeSearch = useCallback(() => setSearchOpen(false), []);
 
   useEffect(() => {
     if (!open) return;
@@ -69,10 +76,7 @@ export function SiteHeaderDrawer({ open, onClose, variant, onAccountClick }: Pro
   }, [open]);
 
   useEffect(() => {
-    if (!open) {
-      setSearchOpen(false);
-      return;
-    }
+    if (!open) return;
 
     const panel = panelRef.current;
     if (!panel) return;
@@ -89,12 +93,11 @@ export function SiteHeaderDrawer({ open, onClose, variant, onAccountClick }: Pro
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        if (searchOpen) closeSearch();
-        else onClose();
+        onClose();
         return;
       }
 
-      if (event.key !== "Tab" || searchOpen) return;
+      if (event.key !== "Tab") return;
 
       const nodes = getFocusable();
       if (nodes.length === 0) return;
@@ -116,12 +119,12 @@ export function SiteHeaderDrawer({ open, onClose, variant, onAccountClick }: Pro
       document.removeEventListener("keydown", onKeyDown);
       previouslyFocused?.focus();
     };
-  }, [open, searchOpen, onClose, closeSearch]);
+  }, [open, onClose]);
 
   if (!open) return null;
 
   const showDashboardSections = variant === "dashboard";
-  const fifaDrawerItems = showDashboardSections ? dashboardDrawerItems : loginDrawerItems;
+  const loginDrawerItems = siteHeaderNavItems;
 
   return (
     <>
@@ -135,7 +138,12 @@ export function SiteHeaderDrawer({ open, onClose, variant, onAccountClick }: Pro
         <div
           id={menuId}
           ref={panelRef}
-          className={navStyles.menuPanel}
+          className={[
+            navStyles.menuPanel,
+            showDashboardSections && styles.menuPanelPortal,
+          ]
+            .filter(Boolean)
+            .join(" ")}
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
@@ -155,68 +163,65 @@ export function SiteHeaderDrawer({ open, onClose, variant, onAccountClick }: Pro
             </button>
           </div>
           <nav className={navStyles.menuNav} aria-label={t("footer.navLabel")}>
+            {leading}
             {showDashboardSections ? (
+              <>
+                <ul className={navStyles.menuList}>
+                  {dashboardAppNavItems.map((item) => {
+                    const active = item.key === activeKey;
+                    return (
+                      <li key={item.key}>
+                        <Link
+                          className={active ? navStyles.menuLinkActive : navStyles.menuLink}
+                          href={item.href}
+                          aria-current={active ? "page" : undefined}
+                          aria-disabled={item.href === "#" ? true : undefined}
+                          onClick={(event) => {
+                            if (item.href === "#") event.preventDefault();
+                            handleNavigate();
+                          }}
+                        >
+                          {t(`nav.${item.key}`)}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+                {moreNavItems.length > 0 ? (
+                  <section
+                    className={styles.moreSection}
+                    aria-labelledby={moreSectionId}
+                  >
+                    <hr className={styles.menuDivider} />
+                    <h3 id={moreSectionId} className={styles.sectionLabel}>
+                      {t(`footer.${SITE_HEADER_MORE_KEY}`)}
+                    </h3>
+                    <ul className={navStyles.menuList}>
+                      {moreNavItems.map((item) => (
+                        <li key={item.key}>
+                          <DrawerSiteLink
+                            item={item}
+                            onNavigate={handleNavigate}
+                            secondary
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : null}
+              </>
+            ) : (
               <ul className={navStyles.menuList}>
-                {dashboardMenuItems.map((item) => {
-                  const active = item.key === activeKey;
-                  return (
-                    <li key={item.key}>
-                      <Link
-                        className={active ? navStyles.menuLinkActive : navStyles.menuLink}
-                        href={item.href}
-                        aria-current={active ? "page" : undefined}
-                        aria-disabled={item.href === "#" ? true : undefined}
-                        onClick={(event) => {
-                          if (item.href === "#") event.preventDefault();
-                          handleNavigate();
-                        }}
-                      >
-                        {t(`nav.${item.key}`)}
-                      </Link>
-                    </li>
-                  );
-                })}
+                {loginDrawerItems.map((item) => (
+                  <li key={item.key}>
+                    <DrawerSiteLink item={item} onNavigate={handleNavigate} />
+                  </li>
+                ))}
               </ul>
-            ) : null}
-            {showDashboardSections ? (
-              <p className={styles.sectionLabel}>{t(`footer.${SITE_HEADER_MORE_KEY}`)}</p>
-            ) : null}
-            <ul className={navStyles.menuList}>
-              {fifaDrawerItems.map((item) => (
-                <li key={item.key}>
-                  <DrawerSiteLink item={item} onNavigate={handleNavigate} />
-                </li>
-              ))}
-            </ul>
-            {showDashboardSections ? (
-              <div className={navStyles.menuSearchRow}>
-                <button
-                  type="button"
-                  className={navStyles.menuPanelIconBtn}
-                  aria-label={t("footer.search")}
-                  onClick={() => setSearchOpen(true)}
-                >
-                  <IconSearch />
-                </button>
-              </div>
-            ) : null}
+            )}
           </nav>
-          {showDashboardSections && onAccountClick ? (
-            <div className={navStyles.menuProfile}>
-              <MenuUserFooter
-                user={userDashboard}
-                onAccountClick={() => {
-                  onClose();
-                  onAccountClick();
-                }}
-              />
-            </div>
-          ) : null}
         </div>
       </div>
-      {showDashboardSections ? (
-        <SearchModal open={searchOpen} onClose={closeSearch} placement="menu" />
-      ) : null}
     </>
   );
 }

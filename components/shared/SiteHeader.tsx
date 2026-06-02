@@ -2,23 +2,34 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
+  createElement,
   useCallback,
   useEffect,
   useId,
   useLayoutEffect,
   useRef,
   useState,
+  type ComponentType,
+  type ReactNode,
 } from "react";
 import { IconChevronDown, IconMenu } from "@/components/icons/DashboardIcons";
 import { SiteHeaderDrawer } from "@/components/shared/SiteHeaderDrawer";
+import { dashboardAppNavItems } from "@/data/dashboard-app-nav-items";
 import {
   getSiteHeaderMobilePinnedItems,
   SITE_HEADER_MORE_KEY,
   siteHeaderNavItems,
   type SiteHeaderNavItem,
 } from "@/data/site-header-nav";
-import { useSiteHeaderCollapsed } from "@/hooks/useMediaQuery";
+import { getDashboardAppNavActiveKey } from "@/lib/dashboard-app-nav";
+import { useSiteHeaderCollapsed, useMediaQuery } from "@/hooks/useMediaQuery";
+import {
+  MOBILE_MAX_WIDTH_PX,
+  SIDEBAR_MIN_WIDTH_PX,
+  mediaMaxWidthQuery,
+} from "@/lib/media";
 import { t } from "@/lib/i18n/t";
 import navStyles from "./SiteNavMenu.module.scss";
 import styles from "./SiteHeader.module.scss";
@@ -31,7 +42,10 @@ type BrandVariant = "login" | "dashboard";
 type Props = {
   className?: string;
   brand?: BrandVariant;
-  onAccountClick?: () => void;
+  /** Dashboard: search + account controls in the header bar. */
+  utilities?: ReactNode;
+  /** Dashboard mobile: inline search at the top of the header drawer. */
+  drawerSearch?: ComponentType;
 };
 
 function NavItemControl({ item }: { item: SiteHeaderNavItem }) {
@@ -53,7 +67,31 @@ function NavItemControl({ item }: { item: SiteHeaderNavItem }) {
   );
 }
 
-export function SiteHeader({ className, brand = "login", onAccountClick }: Props) {
+function AppNavItemControl({
+  href,
+  label,
+  active,
+}: {
+  href: string;
+  label: string;
+  active: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      className={active ? styles.navControlActive : styles.navControl}
+      aria-current={active ? "page" : undefined}
+      aria-disabled={href === "#" ? true : undefined}
+      onClick={href === "#" ? (event) => event.preventDefault() : undefined}
+    >
+      {label}
+    </Link>
+  );
+}
+
+export function SiteHeader({ className, brand = "login", utilities, drawerSearch }: Props) {
+  const pathname = usePathname();
+  const activeAppKey = getDashboardAppNavActiveKey(pathname);
   const rootClass = [
     styles.header,
     (brand === "login" || brand === "dashboard") && styles.headerEdgeAlign,
@@ -64,26 +102,41 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
   const navId = useId();
   const moreMenuId = useId();
   const isHeaderCollapsed = useSiteHeaderCollapsed();
-  const isDashboardCompactBar = isHeaderCollapsed && brand === "dashboard";
+  const isMobile = useMediaQuery(mediaMaxWidthQuery(MOBILE_MAX_WIDTH_PX));
+  const hasSidebar = useMediaQuery(`(min-width: ${SIDEBAR_MIN_WIDTH_PX}px)`);
+  const isTabletAppNav = brand === "dashboard" && !hasSidebar && !isMobile;
+  const useCompactHeader =
+    (brand === "dashboard" && isMobile) || (brand === "login" && isHeaderCollapsed);
+  const showDrawerMenu = useCompactHeader;
+  const isDashboardCompactBar = brand === "login" && isHeaderCollapsed;
+  const primaryNavItems = isTabletAppNav ? dashboardAppNavItems : siteHeaderNavItems;
 
   const navRef = useRef<HTMLElement>(null);
   const brandRef = useRef<HTMLAnchorElement>(null);
   const moreMeasureRef = useRef<HTMLButtonElement>(null);
   const itemMeasureRefs = useRef(new Map<string, HTMLSpanElement>());
+  const utilitiesRef = useRef<HTMLElement | null>(null);
   const moreWrapRef = useRef<HTMLLIElement>(null);
 
-  const [visibleCount, setVisibleCount] = useState<number>(siteHeaderNavItems.length);
+  const [visibleCount, setVisibleCount] = useState<number>(primaryNavItems.length);
   const [moreOpen, setMoreOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const overflowItems = siteHeaderNavItems.slice(visibleCount);
   const visibleItems = siteHeaderNavItems.slice(0, visibleCount);
-  const showMore = !isHeaderCollapsed && overflowItems.length > 0;
+  const visibleAppItems = dashboardAppNavItems.slice(0, visibleCount);
+  const showFifaMore = !isTabletAppNav && overflowItems.length > 0;
+  const showMoreButton = isTabletAppNav || showFifaMore;
+  const moreMenuItems: readonly SiteHeaderNavItem[] = isTabletAppNav
+    ? siteHeaderNavItems
+    : overflowItems;
   const mobilePinned = getSiteHeaderMobilePinnedItems();
+  const drawerMoreItems =
+    brand === "dashboard" && isMobile ? siteHeaderNavItems : isDashboardCompactBar ? [] : [];
   const brandHref = brand === "dashboard" ? "/dashboard" : "/";
 
   const measureFit = useCallback(() => {
-    if (isHeaderCollapsed) return;
+    if (useCompactHeader) return;
 
     const nav = navRef.current;
     const brandEl = brandRef.current;
@@ -95,14 +148,19 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
     if (navRect.width <= 0) return;
 
     const moreWidth = moreProbe.offsetWidth;
-    const available = Math.max(0, navRect.right - brandRect.right - TITLE_MENU_GAP_PX);
+    const utilitiesWidth = utilitiesRef.current?.offsetWidth ?? 0;
+
+    let trailingReserve = TITLE_MENU_GAP_PX;
+    if (utilitiesWidth > 0) trailingReserve += utilitiesWidth + ITEM_GAP_PX;
+
+    const available = Math.max(0, navRect.right - brandRect.right - trailingReserve);
 
     const countFit = (reserveMore: boolean) => {
       let budget = available;
       if (reserveMore) budget -= moreWidth + ITEM_GAP_PX;
 
       let fit = 0;
-      for (const item of siteHeaderNavItems) {
+      for (const item of primaryNavItems) {
         const probe = itemMeasureRefs.current.get(item.key);
         const itemWidth = probe?.offsetWidth ?? 0;
         const need = itemWidth + (fit > 0 ? ITEM_GAP_PX : 0);
@@ -117,24 +175,28 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
       return fit;
     };
 
-    let fit = countFit(false);
-    if (fit < siteHeaderNavItems.length) {
+    let fit = countFit(isTabletAppNav);
+    if (fit < primaryNavItems.length) {
       fit = countFit(true);
     }
 
     setVisibleCount(fit);
-  }, [isHeaderCollapsed]);
+  }, [isTabletAppNav, primaryNavItems, useCompactHeader]);
 
   useLayoutEffect(() => {
     measureFit();
   }, [measureFit]);
 
   useEffect(() => {
-    if (isHeaderCollapsed) {
-      setVisibleCount(siteHeaderNavItems.length);
+    if (useCompactHeader) {
+      setVisibleCount(primaryNavItems.length);
       setMoreOpen(false);
-      setDrawerOpen(false);
+      if (!showDrawerMenu) setDrawerOpen(false);
       return;
+    }
+
+    if (!showDrawerMenu) {
+      setDrawerOpen(false);
     }
 
     const nav = navRef.current;
@@ -142,19 +204,21 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
 
     const observer = new ResizeObserver(() => measureFit());
     const brandEl = brandRef.current;
+    const utilitiesEl = utilitiesRef.current;
     observer.observe(nav);
     if (brandEl) observer.observe(brandEl);
+    if (utilitiesEl) observer.observe(utilitiesEl);
     window.addEventListener("resize", measureFit);
 
     return () => {
       observer.disconnect();
       window.removeEventListener("resize", measureFit);
     };
-  }, [isHeaderCollapsed, measureFit]);
+  }, [useCompactHeader, showDrawerMenu, measureFit, primaryNavItems.length]);
 
   useEffect(() => {
-    if (!showMore) setMoreOpen(false);
-  }, [showMore]);
+    if (!showMoreButton) setMoreOpen(false);
+  }, [showMoreButton]);
 
   useEffect(() => {
     if (!moreOpen) return;
@@ -209,11 +273,11 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
         <nav
           ref={navRef}
           className={styles.siteNav}
-          aria-label={t("footer.navLabel")}
+          aria-label={isTabletAppNav ? t("nav.menuDialogLabel") : t("footer.navLabel")}
         >
-          {!isHeaderCollapsed ? (
+          {!useCompactHeader ? (
             <ul className={styles.measureList} aria-hidden="true">
-              {siteHeaderNavItems.map((item) => (
+              {primaryNavItems.map((item) => (
                 <li key={`measure-${item.key}`}>
                   <span
                     ref={(node) => {
@@ -222,7 +286,15 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
                     }}
                     className={styles.measureProbe}
                   >
-                    <NavItemControl item={item} />
+                    {isTabletAppNav ? (
+                      <AppNavItemControl
+                        href={item.href}
+                        label={t(`nav.${item.key}`)}
+                        active={false}
+                      />
+                    ) : (
+                      <NavItemControl item={item as SiteHeaderNavItem} />
+                    )}
                   </span>
                 </li>
               ))}
@@ -239,42 +311,69 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
 
           <ul
             id={navId}
-            className={[styles.linkList, isHeaderCollapsed && styles.linkListMobile]
+            className={[styles.linkList, useCompactHeader && styles.linkListMobile]
               .filter(Boolean)
               .join(" ")}
           >
-            <li className={styles.brandCell}>{brandNode}</li>
-            <li className={styles.menuCell}>
-              {isHeaderCollapsed ? (
-                <ul className={styles.menuList}>
-                  {isDashboardCompactBar
-                    ? mobilePinned.map((item) => (
+            {useCompactHeader ? (
+              <>
+                <li className={styles.menuBtnWrap}>
+                  <button
+                    type="button"
+                    className={navStyles.menuBtn}
+                    aria-expanded={drawerOpen}
+                    aria-controls="site-header-drawer"
+                    onClick={() => setDrawerOpen((open) => !open)}
+                  >
+                    <IconMenu />
+                    <span className={navStyles.srOnly}>{t("nav.openMenu")}</span>
+                  </button>
+                </li>
+                <li className={styles.brandCell}>{brandNode}</li>
+                <li className={styles.mobileEndCell}>
+                  {isDashboardCompactBar ? (
+                    <ul className={styles.mobilePinnedList}>
+                      {mobilePinned.map((item) => (
                         <li key={item.key}>
                           <NavItemControl item={item} />
                         </li>
-                      ))
-                    : null}
-                  <li className={styles.menuBtnWrap}>
-                    <button
-                      type="button"
-                      className={navStyles.menuBtn}
-                      aria-expanded={drawerOpen}
-                      aria-controls="site-header-drawer"
-                      onClick={() => setDrawerOpen((open) => !open)}
+                      ))}
+                    </ul>
+                  ) : null}
+                  {utilities ? (
+                    <div
+                      ref={(node) => {
+                        if (node) utilitiesRef.current = node;
+                        else utilitiesRef.current = null;
+                      }}
+                      className={styles.utilitiesCell}
                     >
-                      <IconMenu />
-                      <span className={navStyles.srOnly}>{t("nav.openMenu")}</span>
-                    </button>
-                  </li>
-                </ul>
-              ) : (
-                <ul className={styles.menuList}>
-                  {visibleItems.map((item) => (
-                    <li key={item.key}>
-                      <NavItemControl item={item} />
-                    </li>
-                  ))}
-                  {showMore ? (
+                      {utilities}
+                    </div>
+                  ) : null}
+                </li>
+              </>
+            ) : (
+              <>
+                <li className={styles.brandCell}>{brandNode}</li>
+                <li className={styles.menuCell}>
+                  <ul className={styles.menuList}>
+                  {isTabletAppNav
+                    ? visibleAppItems.map((item) => (
+                        <li key={item.key}>
+                          <AppNavItemControl
+                            href={item.href}
+                            label={t(`nav.${item.key}`)}
+                            active={item.key === activeAppKey}
+                          />
+                        </li>
+                      ))
+                    : visibleItems.map((item) => (
+                        <li key={item.key}>
+                          <NavItemControl item={item} />
+                        </li>
+                      ))}
+                  {showMoreButton ? (
                     <li ref={moreWrapRef} className={styles.moreWrap}>
                       <button
                         type="button"
@@ -294,7 +393,7 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
                           role="menu"
                           aria-label={t(`footer.${SITE_HEADER_MORE_KEY}`)}
                         >
-                          {overflowItems.map((item) => (
+                          {moreMenuItems.map((item) => (
                             <li key={item.key} role="none">
                               <Link
                                 href={item.href}
@@ -310,19 +409,34 @@ export function SiteHeader({ className, brand = "login", onAccountClick }: Props
                       ) : null}
                     </li>
                   ) : null}
-                </ul>
-              )}
-            </li>
+                  {utilities ? (
+                    <li
+                      ref={(node) => {
+                        if (node) utilitiesRef.current = node;
+                        else utilitiesRef.current = null;
+                      }}
+                      className={styles.utilitiesCell}
+                    >
+                      {utilities}
+                    </li>
+                  ) : null}
+                  </ul>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>
 
-      {isHeaderCollapsed ? (
+      {showDrawerMenu ? (
         <SiteHeaderDrawer
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
           variant={brand}
-          onAccountClick={onAccountClick}
+          moreNavItems={drawerMoreItems}
+          leading={
+            brand === "dashboard" && drawerSearch ? createElement(drawerSearch) : undefined
+          }
         />
       ) : null}
     </header>

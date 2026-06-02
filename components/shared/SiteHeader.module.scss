@@ -16,8 +16,8 @@
   max-width: var(--content-max, 1440px);
   margin: 0 auto;
   padding-inline: var(--content-gutter, var(--header-gutter));
-  padding-bottom: 0.8rem;
-  padding-top: calc(0.8rem + env(safe-area-inset-top, 0px));
+  padding-bottom: 0.5rem;
+  padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -169,6 +169,30 @@
   }
 }
 
+.navControlActive {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.35rem 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: var(--site-header-nav-size, clamp(0.85rem, 1.15vw, 1rem));
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.028em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--wcui-white-text);
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
 .chevron {
   flex-shrink: 0;
   width: 1rem;
@@ -225,21 +249,61 @@
   }
 }
 
-/* —— Collapsed header (≤400px): brand + optional pinned + hamburger —— */
+/* —— Compact header (mobile / narrow): hamburger | brand | utilities —— */
 .linkListMobile {
-  justify-content: space-between;
+  /* Grid: equal side tracks keep the brand centered when left/right widths differ. */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   gap: 0.65rem;
 }
 
-.linkListMobile .menuCell {
-  margin-left: 0;
+.linkListMobile .menuBtnWrap {
+  justify-self: start;
 }
 
-.linkListMobile .menuList {
+.linkListMobile .brandCell {
+  justify-self: center;
+  min-width: 0;
+  max-width: 100%;
+  text-align: center;
+}
+
+.linkListMobile .brandTitleLink,
+.linkListMobile .brandLogoLink {
+  justify-content: center;
+  max-width: 100%;
+}
+
+.mobileEndCell {
+  justify-self: end;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
   justify-content: flex-end;
+  gap: 0.35rem var(--site-header-menu-gap, 1.1rem);
+  min-width: 0;
+}
+
+.mobilePinnedList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.35rem var(--site-header-menu-gap, 1.1rem);
 }
 
 .menuBtnWrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.utilitiesCell {
   display: flex;
   flex-shrink: 0;
   align-items: center;

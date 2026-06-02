@@ -11,7 +11,8 @@ import { StrategyInsightBlock } from "@/components/dashboard/StrategyFeedSection
 import { SidebarNav } from "@/components/dashboard/Navigation";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
-import { SiteUtilities } from "@/components/dashboard/SiteUtilities";
+import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import { PlayerStatsSection } from "@/components/dashboard/player-stats/PlayerStatsSection";
 import { ValueTrendsSection } from "@/components/dashboard/value-trends/ValueTrendsSection";
@@ -24,6 +25,7 @@ import styles from "./Dashboard.module.scss";
 
 export function Dashboard() {
   const logout = useLogout();
+  const isMobile = useIsMobile();
   const [logoutOpen, setLogoutOpen] = useState(false);
   const { rosterBySlot, rosterCount } = useRoster();
 
@@ -34,6 +36,10 @@ export function Dashboard() {
   const globalTopPerformers = isGlobalTopPerformersMode(rosterCount);
 
   const requestLogout = useCallback(() => setLogoutOpen(true), []);
+  const { headerUtilities, overlays, DrawerSearch } = useSiteUtilities({
+    onLogout: requestLogout,
+    showSearchInHeader: !isMobile,
+  });
   const cancelLogout = useCallback(() => setLogoutOpen(false), []);
   const confirmLogout = useCallback(() => {
     setLogoutOpen(false);
@@ -47,7 +53,7 @@ export function Dashboard() {
 
   return (
     <RequireAuth>
-    <div className={styles.page}>
+    <div className={`${styles.page} ${styles.pageWithHero}`}>
       <LogoutConfirmModal
         open={logoutOpen}
         onCancel={cancelLogout}
@@ -63,11 +69,14 @@ export function Dashboard() {
                 <SiteHeader
                   brand="dashboard"
                   className={styles.shellHeader}
-                  onAccountClick={requestLogout}
+                  utilities={
+                    <>
+                      {headerUtilities}
+                      {overlays}
+                    </>
+                  }
+                  drawerSearch={DrawerSearch}
                 />
-                <div className={styles.shellUtilities}>
-                  <SiteUtilities onLogout={requestLogout} />
-                </div>
               </div>
             </div>
           </div>
@@ -80,7 +89,6 @@ export function Dashboard() {
               showLiveFeed
               performers={performers}
               globalTopPerformers={globalTopPerformers}
-              onMenuAccountClick={requestLogout}
               inContentColumn
               className={styles.shellHero}
             />

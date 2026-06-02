@@ -1,24 +1,87 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import { IconSearch, IconUser } from "@/components/icons/DashboardIcons";
 import { SearchModal } from "@/components/shared/SearchModal";
+import navStyles from "@/components/shared/SiteNavMenu.module.scss";
 import { UserAccountPortal, USER_ACCOUNT_PORTAL_ID } from "@/components/shared/UserAccountPortal";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
 import styles from "./SiteUtilities.module.scss";
 
-type Props = {
+type UseSiteUtilitiesOptions = {
   className?: string;
   /** Called when the user chooses Log out from the account portal. */
   onLogout?: () => void;
+  /** When false, search is shown at the top of the mobile header drawer instead. */
+  showSearchInHeader?: boolean;
 };
 
-/** Desktop shell top-right: search and account only. */
-export function SiteUtilities({ className, onLogout }: Props) {
+function DrawerInlineSearch() {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [committed, setCommitted] = useState(false);
+  const committedRef = useRef(false);
+
+  const commitSearch = useCallback(() => {
+    const input = inputRef.current;
+    if (!input?.value.trim()) return;
+
+    input.blur();
+    committedRef.current = true;
+    setCommitted(true);
+  }, []);
+
+  const handleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      commitSearch();
+    },
+    [commitSearch],
+  );
+
+  const handleInputFocus = useCallback(() => {
+    if (!committedRef.current) return;
+    committedRef.current = false;
+    setCommitted(false);
+  }, []);
+
+  return (
+    <div className={navStyles.menuSearchRow}>
+      <form className={styles.drawerSearchForm} onSubmit={handleSubmit}>
+        <label
+          className={[
+            styles.drawerSearchField,
+            committed && styles.drawerSearchFieldCommitted,
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          <IconSearch className={styles.drawerSearchIcon} aria-hidden />
+          <span className={styles.drawerSearchLabel}>{t("footer.search")}</span>
+          <input
+            ref={inputRef}
+            type="search"
+            role="searchbox"
+            className={styles.drawerSearchInput}
+            placeholder={t("search.placeholder")}
+            aria-label={t("footer.search")}
+            autoComplete="off"
+            enterKeyHint="search"
+            onFocus={handleInputFocus}
+          />
+        </label>
+      </form>
+    </div>
+  );
+}
+
+export function useSiteUtilities({
+  className,
+  onLogout,
+  showSearchInHeader = true,
+}: UseSiteUtilitiesOptions = {}) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [portalOpen, setPortalOpen] = useState(false);
-  const accountBtnRef = useRef<HTMLButtonElement>(null);
   const rootClass = [styles.utilities, className].filter(Boolean).join(" ");
 
   const openSearch = useCallback(() => setSearchOpen(true), []);
@@ -27,14 +90,14 @@ export function SiteUtilities({ className, onLogout }: Props) {
   const togglePortal = useCallback(() => setPortalOpen((open) => !open), []);
 
   useEffect(() => {
-    if (!searchOpen) return;
+    if (!searchOpen || !showSearchInHeader) return;
     lockBodyScroll();
     return () => unlockBodyScroll();
-  }, [searchOpen]);
+  }, [searchOpen, showSearchInHeader]);
 
-  return (
-    <>
-      <div className={rootClass} role="group" aria-label={t("footer.utilitiesLabel")}>
+  const headerUtilities = (
+    <div className={rootClass} role="group" aria-label={t("footer.utilitiesLabel")}>
+      {showSearchInHeader ? (
         <button
           type="button"
           className={styles.utilityBtn}
@@ -43,26 +106,44 @@ export function SiteUtilities({ className, onLogout }: Props) {
         >
           <IconSearch />
         </button>
-        <button
-          ref={accountBtnRef}
-          type="button"
-          className={[styles.utilityBtn, styles.utilityBtnAccount].join(" ")}
-          aria-label={t("auth.accountMenu")}
-          aria-haspopup="dialog"
-          aria-expanded={portalOpen}
-          aria-controls={portalOpen ? USER_ACCOUNT_PORTAL_ID : undefined}
-          onClick={togglePortal}
-        >
-          <IconUser />
-        </button>
-      </div>
-      <UserAccountPortal
-        open={portalOpen}
-        onClose={closePortal}
-        onLogout={onLogout}
-        anchorRef={accountBtnRef}
-      />
-      <SearchModal open={searchOpen} onClose={closeSearch} placement="desktop" />
+      ) : null}
+      <button
+        type="button"
+        className={[styles.utilityBtn, styles.utilityBtnAccount].join(" ")}
+        aria-label={t("auth.accountMenu")}
+        aria-haspopup="dialog"
+        aria-expanded={portalOpen}
+        aria-controls={portalOpen ? USER_ACCOUNT_PORTAL_ID : undefined}
+        onClick={togglePortal}
+      >
+        <IconUser />
+      </button>
+    </div>
+  );
+
+  const DrawerSearch: ComponentType = DrawerInlineSearch;
+
+  const overlays = (
+    <>
+      <UserAccountPortal open={portalOpen} onClose={closePortal} onLogout={onLogout} />
+      {showSearchInHeader ? (
+        <SearchModal open={searchOpen} onClose={closeSearch} placement="desktop" />
+      ) : null}
+    </>
+  );
+
+  return { headerUtilities, overlays, DrawerSearch };
+}
+
+type Props = UseSiteUtilitiesOptions;
+
+/** Dashboard header bar: search and account beside nav controls. */
+export function SiteUtilities(props: Props) {
+  const { headerUtilities, overlays } = useSiteUtilities(props);
+  return (
+    <>
+      {headerUtilities}
+      {overlays}
     </>
   );
 }

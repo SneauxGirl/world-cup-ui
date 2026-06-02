@@ -17,6 +17,8 @@
   --wcui-chamfer-tl: var(--portal-chamfer);
   --wcui-chamfer-br: var(--portal-chamfer);
   position: fixed;
+  top: calc(3.75rem + env(safe-area-inset-top, 0px));
+  right: clamp(1.25rem, 2vw, 1.8rem);
   z-index: 27;
   width: min(20rem, calc(100vw - 1.5rem));
   max-width: calc(100vw - 1.5rem);

@@ -26,22 +26,30 @@
 }
 
 .menuBtn {
-  @include close.wcui-close-control-base;
-
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  border: 1px solid var(--wcui-border-blue);
-  background: var(--wcui-pitch-black);
-  color: color-mix(in oklab, var(--wcui-white-text) 88%, var(--wcui-sky-blue));
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--wcui-white-text);
   cursor: pointer;
+  box-shadow: none;
   transition:
-    border-color 160ms ease,
     color 160ms ease,
-    box-shadow 160ms ease;
+    background-color 160ms ease;
+
+  svg {
+    width: 1.35rem;
+    height: 1.5rem;
+  }
 
   &:hover {
-    color: color-mix(in oklab, var(--wcui-white-text) 92%, var(--wcui-sky-blue));
-    border-color: var(--wcui-aqua-mint);
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
+    color: var(--wcui-aqua-mint);
+    background: color-mix(in oklab, var(--wcui-primary-blue) 22%, transparent);
   }
 
   &:focus {
@@ -52,8 +60,6 @@
     color: var(--wcui-aqua-mint);
     outline: 2px solid var(--wcui-aqua-mint);
     outline-offset: 2px;
-    border-color: var(--wcui-aqua-mint);
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--wcui-aqua-mint) 55%, transparent);
   }
 }
 
@@ -202,7 +208,8 @@
 
 .menuSearchRow {
   flex-shrink: 0;
-  padding: 0 0.75rem 1.25rem 0.75rem;
+  /* Put inline search below the drawer header (close "X" focus area). */
+  padding: 0.65rem 0.75rem 1.25rem 0.75rem;
 }
 
 .menuProfile {

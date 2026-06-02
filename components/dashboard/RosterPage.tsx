@@ -8,16 +8,22 @@ import { SquadSelectionPanel } from "@/components/dashboard/SquadSelectionPanel"
 import { SidebarNav } from "@/components/dashboard/Navigation";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
-import { SiteUtilities } from "@/components/dashboard/SiteUtilities";
+import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import shellStyles from "./Dashboard.module.scss";
 import styles from "./RosterPage.module.scss";
 
 export function RosterPage() {
   const logout = useLogout();
+  const isMobile = useIsMobile();
   const [logoutOpen, setLogoutOpen] = useState(false);
 
   const requestLogout = useCallback(() => setLogoutOpen(true), []);
+  const { headerUtilities, overlays, DrawerSearch } = useSiteUtilities({
+    onLogout: requestLogout,
+    showSearchInHeader: !isMobile,
+  });
   const cancelLogout = useCallback(() => setLogoutOpen(false), []);
   const confirmLogout = useCallback(() => {
     setLogoutOpen(false);
@@ -41,11 +47,14 @@ export function RosterPage() {
                 <SiteHeader
                   brand="dashboard"
                   className={shellStyles.shellHeader}
-                  onAccountClick={requestLogout}
+                  utilities={
+                    <>
+                      {headerUtilities}
+                      {overlays}
+                    </>
+                  }
+                  drawerSearch={DrawerSearch}
                 />
-                <div className={shellStyles.shellUtilities}>
-                  <SiteUtilities onLogout={requestLogout} />
-                </div>
               </div>
             </div>
           </div>

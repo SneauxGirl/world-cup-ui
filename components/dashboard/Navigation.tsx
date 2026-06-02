@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { dashboardAppNavItems } from "@/data/dashboard-app-nav-items";
 import {
   IconCalendar,
   IconDashboard,
@@ -15,26 +16,28 @@ import { SidebarNavLink } from "@/components/dashboard/SidebarNavLink";
 import { getDashboardAppNavActiveKey } from "@/lib/dashboard-app-nav";
 import styles from "./Navigation.module.scss";
 
-const sidebarNavItems = [
-  { key: "dashboard" as const, href: "/dashboard", icon: IconDashboard, label: "Dashboard" },
-  { key: "roster" as const, href: "/roster", icon: IconShirt, label: "My Roster" },
-  { key: "matches" as const, href: "#", icon: IconCalendar, label: "Matches" },
-  {
-    key: "standings" as const,
-    href: "#",
-    label: "Standings",
-    animateIcon: "trophy" as const,
-  },
-  { key: "players" as const, href: "#", icon: IconPeople, label: "Players" },
-  { key: "tournament" as const, href: "#", icon: IconTournament, label: "Tournament" },
-  {
-    key: "store" as const,
-    href: "#",
-    label: "Store",
-    animateIcon: "cart" as const,
-  },
-  { key: "settings" as const, href: "#", icon: IconGear, label: "Settings" },
-];
+const sidebarNavItems = dashboardAppNavItems.map((item) => {
+  switch (item.key) {
+    case "dashboard":
+      return { ...item, icon: IconDashboard, label: "Dashboard" };
+    case "roster":
+      return { ...item, icon: IconShirt, label: "My Roster" };
+    case "matches":
+      return { ...item, icon: IconCalendar, label: "Matches" };
+    case "standings":
+      return { ...item, label: "Standings", animateIcon: "trophy" as const };
+    case "players":
+      return { ...item, icon: IconPeople, label: "Players" };
+    case "tournament":
+      return { ...item, icon: IconTournament, label: "Tournament" };
+    case "store":
+      return { ...item, label: "Store", animateIcon: "cart" as const };
+    case "settings":
+      return { ...item, icon: IconGear, label: "Settings" };
+    default:
+      return { ...item, label: item.key };
+  }
+});
 
 export function SidebarNav() {
   const pathname = usePathname();

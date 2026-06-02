@@ -75,7 +75,8 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* flex-start: profile block used to sit at the bottom (space-between). Without it, space-between leaves a dead zone above the nav. */
+  justify-content: flex-start;
   flex: 1;
   min-height: 0;
   box-sizing: border-box;

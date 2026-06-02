@@ -4,11 +4,8 @@ import {
   useCallback,
   useEffect,
   useId,
-  useLayoutEffect,
   useMemo,
   useRef,
-  useState,
-  type RefObject,
 } from "react";
 import { createPortal } from "react-dom";
 import type { User } from "firebase/auth";
@@ -45,7 +42,6 @@ type Props = {
   open: boolean;
   onClose: () => void;
   onLogout?: () => void;
-  anchorRef: RefObject<HTMLElement | null>;
 };
 
 type DesignerLinkIconProps = {
@@ -131,45 +127,20 @@ function AccountPortalDesignerSection() {
   );
 }
 
-export function UserAccountPortal({ open, onClose, onLogout, anchorRef }: Props) {
+export function UserAccountPortal({ open, onClose, onLogout }: Props) {
   const { user } = useAuth();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
-  const [position, setPosition] = useState<{ top: number; right: number } | null>(null);
 
   const displayName = user?.displayName?.trim() || userDashboard.displayName;
   const hasMfa = userHasMfa(user);
-
-  const updatePosition = useCallback(() => {
-    const anchor = anchorRef.current;
-    if (!anchor) return;
-
-    const rect = anchor.getBoundingClientRect();
-    const gap = 10;
-    setPosition({
-      top: rect.bottom + gap,
-      right: Math.max(12, window.innerWidth - rect.right),
-    });
-  }, [anchorRef]);
 
   useEffect(() => {
     if (!open) return;
     lockBodyScroll();
     return () => unlockBodyScroll();
   }, [open]);
-
-  useLayoutEffect(() => {
-    if (!open) return;
-
-    updatePosition();
-    window.addEventListener("resize", updatePosition);
-    window.addEventListener("scroll", updatePosition, true);
-    return () => {
-      window.removeEventListener("resize", updatePosition);
-      window.removeEventListener("scroll", updatePosition, true);
-    };
-  }, [open, updatePosition]);
 
   useEffect(() => {
     if (!open) return;
@@ -223,12 +194,6 @@ export function UserAccountPortal({ open, onClose, onLogout, anchorRef }: Props)
   }, [onClose, onLogout]);
 
   if (!open) return null;
-  if (!position) return null;
-
-  const panelShellStyle = {
-    top: position.top,
-    right: position.right,
-  };
 
   const dialog = (
     <>
@@ -242,7 +207,6 @@ export function UserAccountPortal({ open, onClose, onLogout, anchorRef }: Props)
         id={USER_ACCOUNT_PORTAL_ID}
         ref={panelRef}
         className={styles.panelShell}
-        style={panelShellStyle}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}

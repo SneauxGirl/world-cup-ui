@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { HeroCtaLiveFeed } from "@/components/dashboard/HeroCtaLiveFeed";
 import { HeroManagerStats } from "@/components/dashboard/HeroManagerStats";
-import { HeroNavMenu } from "@/components/dashboard/HeroNavMenu";
 import { t } from "@/lib/i18n/t";
 import { HeroTopPerformers } from "@/components/dashboard/hero-top-performers";
 import type { DashboardPerformer, FeedItem, UserDashboard } from "@/data/types";
@@ -14,7 +13,6 @@ type Props = {
   showLiveFeed?: boolean;
   /** Login page: stadium art only (no welcome, feed, or CTA). */
   loginHero?: boolean;
-  onMenuAccountClick?: () => void;
   performers?: DashboardPerformer[];
   /** When true, hero performers block uses global pool heading. */
   globalTopPerformers?: boolean;
@@ -28,7 +26,6 @@ export function HeroSection({
   feedItems = [],
   showLiveFeed = true,
   loginHero = false,
-  onMenuAccountClick,
   performers = [],
   globalTopPerformers = false,
   inContentColumn = false,
@@ -70,11 +67,6 @@ export function HeroSection({
           {!loginHero ? (
             <>
               <div className={styles.heroCopy}>
-                <div className={styles.heroTopRow}>
-                  <div className={styles.heroMenu}>
-                    <HeroNavMenu onAccountClick={onMenuAccountClick} />
-                  </div>
-                </div>
                 <div className={styles.heroPrimary}>
                   <div className={styles.heroTitleColumn}>
                     <h1 id="dashboard-hero-heading" className={styles.title}>
