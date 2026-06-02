@@ -10,7 +10,6 @@ export const dashboardAppNavItems: DashboardAppNavItem[] = [
   { key: "dashboard", href: "/dashboard" },
   { key: "roster", href: "/roster" },
   { key: "matches", href: "#" },
-  { key: "standings", href: "#" },
   { key: "players", href: "#" },
   { key: "tournament", href: "#" },
   { key: "store", href: "#" },

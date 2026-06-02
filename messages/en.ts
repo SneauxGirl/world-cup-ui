@@ -393,6 +393,11 @@ export const en = {
       faller: "Top faller",
       volatile: "Most volatile",
     },
+    heroTags: {
+      riser: "Rising",
+      faller: "Falling",
+      volatile: "Volatile",
+    },
     avgLabel: "AVG",
     lastFiveMatches: "Last 5 matches",
     overLastFiveGames: "Over the last five games",

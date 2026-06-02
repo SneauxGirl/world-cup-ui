@@ -5,9 +5,8 @@ import type { ValueTrendTemplate } from "@/data/types";
 import { getTemplateForPlayer } from "@/lib/player-fantasy/buildTemplate";
 import { getSlotLabel } from "@/lib/value-trends/slotLabels";
 import {
-  buildStripSummaryCandle,
-  getCandleDelta,
-  getCandleRange,
+  getStripLastGameVsAverageDelta,
+  getStripVolatilityRange,
 } from "@/lib/value-trends/compute";
 
 export type ValueTrendStripItem = {
@@ -80,11 +79,10 @@ export function buildValueTrendHighlightsFromItems(
   const scored = items
     .filter((item) => item.player)
     .map((item) => {
-      const candle = buildStripSummaryCandle(item.template);
       return {
         item,
-        delta: getCandleDelta(candle),
-        range: getCandleRange(candle),
+        delta: getStripLastGameVsAverageDelta(item.template),
+        range: getStripVolatilityRange(item.template),
         label: item.player?.lastName ?? item.slotLabel,
         playerId: item.player!.id,
       };

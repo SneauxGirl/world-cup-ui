@@ -12,11 +12,12 @@ type Props = {
 };
 
 export function MenuUserFooter({ user, onAccountClick }: Props) {
-  const avatar = (
-    <span className={styles.avatarOctocat}>
-      <GitHubOctocatIcon width={40} height={40} />
-    </span>
-  );
+  const avatar =
+    user.avatar === "octocat" ? (
+      <span className={styles.avatarOctocat}>
+        <GitHubOctocatIcon width={40} height={40} />
+      </span>
+    ) : null;
 
   return (
     <section className={styles.profile} aria-label={t("menu.profileSummary")}>

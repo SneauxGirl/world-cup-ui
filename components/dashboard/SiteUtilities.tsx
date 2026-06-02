@@ -2,9 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import { IconSearch, IconUser } from "@/components/icons/DashboardIcons";
+import { GitHubOctocatIcon } from "@/components/icons/GitHubOctocatIcon";
 import { SearchModal } from "@/components/shared/SearchModal";
 import navStyles from "@/components/shared/SiteNavMenu.module.scss";
 import { UserAccountPortal, USER_ACCOUNT_PORTAL_ID } from "@/components/shared/UserAccountPortal";
+import { userDashboard } from "@/data/dashboard-seed";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
 import styles from "./SiteUtilities.module.scss";
@@ -116,7 +118,7 @@ export function useSiteUtilities({
         aria-controls={portalOpen ? USER_ACCOUNT_PORTAL_ID : undefined}
         onClick={togglePortal}
       >
-        <IconUser />
+        {userDashboard.avatar === "octocat" ? <GitHubOctocatIcon width={24} height={24} /> : <IconUser />}
       </button>
     </div>
   );

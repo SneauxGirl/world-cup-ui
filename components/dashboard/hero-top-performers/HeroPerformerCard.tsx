@@ -20,10 +20,23 @@ function getLastName(fullName: string): string {
 export function HeroPerformerCard({ performer }: Props) {
   const jerseySrc = getTeamJerseyPath(performer.teamCode);
   const displayName = getLastName(performer.name);
+  const trendLabel =
+    performer.trendKind === "riser"
+      ? t("valueTrends.heroTags.riser")
+      : performer.trendKind === "faller"
+        ? t("valueTrends.heroTags.faller")
+        : t("valueTrends.heroTags.volatile");
+  const trendClass =
+    performer.trendKind === "riser"
+      ? styles.heroFrameRiser
+      : performer.trendKind === "faller"
+        ? styles.heroFrameFaller
+        : styles.heroFrameVolatile;
 
   return (
-    <article className={styles.heroFrame}>
+    <article className={[styles.heroFrame, trendClass].join(" ")}>
       <PlayerCardTrigger player={{ id: performer.id }} className={styles.heroTrigger}>
+        <p className={styles.heroTrendTitle}>{trendLabel}</p>
         <div className={styles.heroPortrait} aria-hidden="true">
           <Image
             src={jerseySrc}

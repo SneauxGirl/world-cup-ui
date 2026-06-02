@@ -80,8 +80,24 @@ export function LoginUpcomingMatches() {
   const fixtureDates = useMemo(() => buildFixtureDates(liveMatches), []);
   const [activeTab, setActiveTab] = useState<MatchTabKey>("games");
   const [dateIndex, setDateIndex] = useState(() => defaultFixtureDateIndex(fixtureDates));
+  const maxDateIndex = Math.max(fixtureDates.length - 1, 0);
+  const canShiftDatesBackward = dateIndex > 0;
+  const canShiftDatesForward = dateIndex < maxDateIndex;
 
   const selectedDate = fixtureDates[dateIndex] ?? fixtureDates[0];
+  const visibleDateEntries = useMemo(() => {
+    const windowSize = 2;
+    const total = fixtureDates.length;
+    if (total <= windowSize) {
+      return fixtureDates.map((date, offset) => ({ date, index: offset }));
+    }
+
+    const startIndex = Math.min(dateIndex, total - windowSize);
+    return Array.from({ length: windowSize }, (_, offset) => {
+      const index = startIndex + offset;
+      return { date: fixtureDates[index], index };
+    });
+  }, [dateIndex, fixtureDates]);
   const matches = useMemo(
     () => (selectedDate ? matchesForFixtureDate(liveMatches, selectedDate.id) : []),
     [selectedDate],
@@ -91,9 +107,7 @@ export function LoginUpcomingMatches() {
     if (fixtureDates.length === 0) return;
     setDateIndex((index) => {
       const next = index + delta;
-      if (next < 0) return fixtureDates.length - 1;
-      if (next >= fixtureDates.length) return 0;
-      return next;
+      return Math.min(Math.max(next, 0), fixtureDates.length - 1);
     });
   };
 
@@ -234,13 +248,14 @@ export function LoginUpcomingMatches() {
                     type="button"
                     className={styles.dateNavBtn}
                     aria-label={t("loginMatches.prevDates")}
+                    disabled={!canShiftDatesBackward}
                     onClick={() => shiftDates(-1)}
                   >
                     <IconChevronLeft className={styles.dateNavIcon} />
                   </button>
 
                   <ul className={styles.dateList}>
-                    {fixtureDates.map((date, index) => {
+                    {visibleDateEntries.map(({ date, index }) => {
                       const isSelected = index === dateIndex;
                       return (
                         <li key={date.id}>
@@ -269,6 +284,7 @@ export function LoginUpcomingMatches() {
                     type="button"
                     className={styles.dateNavBtn}
                     aria-label={t("loginMatches.nextDates")}
+                    disabled={!canShiftDatesForward}
                     onClick={() => shiftDates(1)}
                   >
                     <IconChevronRight className={styles.dateNavIcon} />

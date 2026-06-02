@@ -123,6 +123,7 @@ export function SiteHeader({ className, brand = "login", utilities, drawerSearch
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const overflowItems = siteHeaderNavItems.slice(visibleCount);
+  const overflowAppItems = dashboardAppNavItems.slice(visibleCount);
   const visibleItems = siteHeaderNavItems.slice(0, visibleCount);
   const visibleAppItems = dashboardAppNavItems.slice(0, visibleCount);
   const showFifaMore = !isTabletAppNav && overflowItems.length > 0;
@@ -393,8 +394,27 @@ export function SiteHeader({ className, brand = "login", utilities, drawerSearch
                           role="menu"
                           aria-label={t(`footer.${SITE_HEADER_MORE_KEY}`)}
                         >
+                          {isTabletAppNav
+                            ? overflowAppItems.map((item) => (
+                                <li key={`app-${item.key}`} role="none">
+                                  <Link
+                                    href={item.href}
+                                    className={styles.moreMenuLink}
+                                    role="menuitem"
+                                    aria-current={item.key === activeAppKey ? "page" : undefined}
+                                    aria-disabled={item.href === "#" ? true : undefined}
+                                    onClick={(event) => {
+                                      if (item.href === "#") event.preventDefault();
+                                      setMoreOpen(false);
+                                    }}
+                                  >
+                                    {t(`nav.${item.key}`)}
+                                  </Link>
+                                </li>
+                              ))
+                            : null}
                           {moreMenuItems.map((item) => (
-                            <li key={item.key} role="none">
+                            <li key={`fifa-${item.key}`} role="none">
                               <Link
                                 href={item.href}
                                 className={styles.moreMenuLink}

@@ -2,6 +2,7 @@ import type { DashboardMatch, FeedItem, UserDashboard } from "@/data/types";
 
 export const userDashboard: UserDashboard = {
   displayName: "Heather Hugo",
+  avatar: "octocat",
   totalPoints: 15937,
   rank: 12458,
   roundLabel: "Round of 16",

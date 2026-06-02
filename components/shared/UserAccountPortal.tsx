@@ -21,6 +21,7 @@ import { GitHubOctocatIcon } from "@/components/icons/GitHubOctocatIcon";
 import { LinkedInLogoIcon } from "@/components/icons/LinkedInLogoIcon";
 import { accountPortalDesigner } from "@/data/account-portal-designer";
 import { userDashboard } from "@/data/dashboard-seed";
+import type { UserAvatarKey } from "@/data/types";
 import { ACCOUNT_PORTAL_DESIGNER_VISIBLE } from "@/lib/appearance/appearance";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
@@ -56,6 +57,17 @@ type DesignerLinkItem = {
   iconClassName: string;
   external: boolean;
 };
+
+function AvatarIcon({ avatar }: { avatar: UserAvatarKey }) {
+  if (avatar === "octocat") {
+    return (
+      <span className={styles.avatarOctocat}>
+        <GitHubOctocatIcon width={36} height={36} />
+      </span>
+    );
+  }
+  return null;
+}
 
 function AccountPortalDesignerSection() {
   const sectionId = useId();
@@ -215,9 +227,7 @@ export function UserAccountPortal({ open, onClose, onLogout }: Props) {
           <div className={styles.profileHead}>
             <div className={styles.profileMain}>
               <span className={styles.avatarFrame} aria-hidden="true">
-                <span className={styles.avatarOctocat}>
-                  <GitHubOctocatIcon width={36} height={36} />
-                </span>
+                <AvatarIcon avatar={userDashboard.avatar} />
               </span>
               <div className={styles.profileCopy}>
                 <h2 id={titleId} className={styles.displayName}>

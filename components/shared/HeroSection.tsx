@@ -14,8 +14,6 @@ type Props = {
   /** Login page: stadium art only (no welcome, feed, or CTA). */
   loginHero?: boolean;
   performers?: DashboardPerformer[];
-  /** When true, hero performers block uses global pool heading. */
-  globalTopPerformers?: boolean;
   /** Dashboard/roster: parent supplies pageGutter + pageColumn (no inner max-width pad). */
   inContentColumn?: boolean;
   className?: string;
@@ -27,7 +25,6 @@ export function HeroSection({
   showLiveFeed = true,
   loginHero = false,
   performers = [],
-  globalTopPerformers = false,
   inContentColumn = false,
   className,
 }: Props) {
@@ -100,7 +97,6 @@ export function HeroSection({
               {hasPerformers ? (
                 <HeroTopPerformers
                   performers={performers}
-                  globalTopPerformers={globalTopPerformers}
                   className={styles.heroAsidePerformers}
                 />
               ) : (

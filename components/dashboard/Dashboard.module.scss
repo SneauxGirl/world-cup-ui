@@ -58,6 +58,10 @@
   order: 4;
 }
 
+.contentBandFooter {
+  order: 5;
+}
+
 .shellTop {
   /* Match SiteHeader .menuList horizontal link gap (nav item ↔ nav item). */
   --site-header-menu-gap: clamp(0.85rem, 1.15vw, 1.1rem);
@@ -106,25 +110,6 @@
   gap: 1rem;
 }
 
-.pairRow {
-  display: contents;
-}
-
-@media (min-width: 769px) {
-  .pairRow {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    gap: 1rem;
-    width: 100%;
-  }
-
-  .pairRow > * {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-}
-
 /* Tablet / narrow desktop: tighter gap below hero. */
 @media (min-width: 769px) and (max-width: 1499px) {
   .mainLayout {
@@ -151,6 +136,10 @@
 
   .contentBandMain {
     order: 4;
+  }
+
+  .contentBandFooter {
+    order: 5;
   }
 
   .mainLayout {

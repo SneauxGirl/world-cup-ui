@@ -5,6 +5,8 @@
   --hero-performer-chamfer-inset: 1px;
   --hero-performer-chamfer-tl: 42px;
   --hero-performer-chamfer-br: 42px;
+  --hero-performer-border-color: var(--wcui-border-blue);
+  --hero-performer-label-color: var(--wcui-white-text);
   --wcui-chamfer-tl: var(--hero-performer-chamfer-tl);
   --wcui-chamfer-br: var(--hero-performer-chamfer-br);
   position: relative;
@@ -13,7 +15,19 @@
   min-height: 100%;
   height: 100%;
   box-sizing: border-box;
-  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
+  @include frame.wcui-chamfer-frame-tl-br(var(--hero-performer-border-color));
+}
+
+.heroFrameRiser {
+  --hero-performer-label-color: var(--wcui-sky-blue);
+}
+
+.heroFrameFaller {
+  --hero-performer-label-color: var(--wcui-broadcast-orange);
+}
+
+.heroFrameVolatile {
+  --hero-performer-label-color: var(--wcui-lime-pulse);
 }
 
 .heroTrigger {
@@ -47,6 +61,19 @@
   &:hover {
     filter: brightness(1.06);
   }
+}
+
+.heroTrendTitle {
+  position: relative;
+  z-index: 2;
+  margin-top: -1rem;
+  align-self: center;
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--hero-performer-label-color);
+  text-align: center;
 }
 
 .heroHeader {

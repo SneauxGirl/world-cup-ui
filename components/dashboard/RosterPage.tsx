@@ -9,6 +9,7 @@ import { SidebarNav } from "@/components/dashboard/Navigation";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
+import { DashboardSiteFooter } from "@/components/dashboard/DashboardSiteFooter";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import shellStyles from "./Dashboard.module.scss";
@@ -67,6 +68,11 @@ export function RosterPage() {
                 managerName={userDashboard.displayName}
               />
             </main>
+          </div>
+        </div>
+        <div className={`${shellStyles.pageGutter} ${shellStyles.contentBandFooter}`}>
+          <div className={shellStyles.pageColumn}>
+            <DashboardSiteFooter />
           </div>
         </div>
       </div>

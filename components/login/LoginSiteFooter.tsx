@@ -13,54 +13,60 @@ import styles from "./LoginSiteFooter.module.scss";
 
 const COPYRIGHT_YEAR = 2026;
 
-export function LoginSiteFooter() {
+type Props = {
+  showPartners?: boolean;
+};
+
+export function LoginSiteFooter({ showPartners = true }: Props) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <footer className={styles.footer}>
-      <section className={styles.partners} aria-label={t("loginFooter.partnersLabel")}>
-        <ul className={styles.partnersGrid}>
-          {loginFooterPartners.map((partner) => (
-            <li key={partner.id} className={styles.partnerCell}>
-              <div
-                className={[
-                  styles.partnerLogo,
-                  "logo" in partner && styles.partnerLogoHasImage,
-                  styles[`partnerLogo_${partner.id}`],
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
-              >
-                {"logo" in partner ? (
-                  <Image
-                    src={partner.logo}
-                    alt=""
-                    width={partner.logoWidth}
-                    height={partner.logoHeight}
-                    className={styles.partnerLogoImg}
-                    unoptimized
-                  />
-                ) : null}
-                {partner.name ? (
-                  <span
-                    className={[
-                      styles.partnerName,
-                      styles[`partnerLogo_${partner.id}`],
-                    ].join(" ")}
-                  >
-                    {partner.name}
-                  </span>
-                ) : null}
-              </div>
-              <p className={styles.partnerRole}>
-                {t(`loginFooter.roles.${partner.role}`)}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {showPartners ? (
+        <section className={styles.partners} aria-label={t("loginFooter.partnersLabel")}>
+          <ul className={styles.partnersGrid}>
+            {loginFooterPartners.map((partner) => (
+              <li key={partner.id} className={styles.partnerCell}>
+                <div
+                  className={[
+                    styles.partnerLogo,
+                    "logo" in partner && styles.partnerLogoHasImage,
+                    styles[`partnerLogo_${partner.id}`],
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  {"logo" in partner ? (
+                    <Image
+                      src={partner.logo}
+                      alt=""
+                      width={partner.logoWidth}
+                      height={partner.logoHeight}
+                      className={styles.partnerLogoImg}
+                      unoptimized
+                    />
+                  ) : null}
+                  {partner.name ? (
+                    <span
+                      className={[
+                        styles.partnerName,
+                        styles[`partnerLogo_${partner.id}`],
+                      ].join(" ")}
+                    >
+                      {partner.name}
+                    </span>
+                  ) : null}
+                </div>
+                <p className={styles.partnerRole}>
+                  {t(`loginFooter.roles.${partner.role}`)}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <nav className={styles.mainNav} aria-label={t("loginFooter.navLabel")}>
         <ul className={styles.navColumns}>

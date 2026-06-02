@@ -298,6 +298,21 @@
     color: var(--wcui-white-text);
     outline: none;
   }
+
+  &:disabled {
+    border-color: transparent;
+    color: color-mix(in oklab, var(--wcui-white-text) 28%, transparent);
+    cursor: default;
+  }
+
+  &:disabled:hover,
+  &:disabled:focus,
+  &:disabled:focus-visible,
+  &:disabled:active {
+    border-color: transparent;
+    color: color-mix(in oklab, var(--wcui-white-text) 28%, transparent);
+    outline: none;
+  }
 }
 
 .dateNavIcon {

@@ -36,6 +36,7 @@ export type DashboardPerformer = {
   teamCode: FifaCountryCode;
   position: string;
   points: number;
+  trendKind?: "riser" | "faller" | "volatile";
 };
 
 export type FeedItem = {
@@ -46,8 +47,11 @@ export type FeedItem = {
   flagCode?: FifaCountryCode;
 };
 
+export type UserAvatarKey = "octocat";
+
 export type UserDashboard = {
   displayName: string;
+  avatar: UserAvatarKey;
   totalPoints: number;
   rank: number;
   roundLabel: string;

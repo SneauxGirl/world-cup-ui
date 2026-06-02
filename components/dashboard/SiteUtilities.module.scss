@@ -1,3 +1,5 @@
+@use "../../styles/wcui-frame" as frame;
+
 .utilities {
   display: flex;
   flex-direction: row;
@@ -40,11 +42,46 @@
 }
 
 .utilityBtnAccount {
+  --wcui-chamfer-tl: 0.28rem;
+  --wcui-chamfer-br: 0.28rem;
   margin-inline-start: 0.55rem;
-  border: 1px solid color-mix(in oklab, var(--wcui-white-text) 55%, transparent);
+  width: 2rem;
+  height: 2rem;
+  padding: 1px;
+  border: none;
+  border-radius: 0;
+  background: var(--wcui-border-blue);
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-white-text));
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    @include frame.wcui-chamfer-fill-tl-br(var(--wcui-pitch-black));
+    transition: background-color 160ms ease;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 
   &:hover {
-    border-color: var(--wcui-aqua-mint);
+    color: var(--wcui-aqua-mint);
+    background: var(--wcui-aqua-mint);
+  }
+
+  &:hover::before {
+    background: var(--wcui-border-blue);
   }
 }
 
