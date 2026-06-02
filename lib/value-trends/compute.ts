@@ -72,6 +72,8 @@ export function buildStripSummaryCandle(template: ValueTrendTemplate): ValueTren
 
   const appearanceTotal = sumMinutesPlotPoints(minutes);
   const gameCount = Math.max(points.length, 1);
+  const windowAverage =
+    Math.round((gameTotals.reduce((sum, value) => sum + value, 0) / gameCount) * 10) / 10;
 
   return {
     windowIndex: last.windowIndex,
@@ -86,6 +88,7 @@ export function buildStripSummaryCandle(template: ValueTrendTemplate): ValueTren
     minutesPlotPoints: appearanceTotal,
     /** Avg appearance pts per game — scaled on the 0–40 strip for the base bar. */
     minutesBarPlotPoints: appearanceTotal / gameCount,
+    windowAverage,
   };
 }
 
@@ -99,12 +102,34 @@ export function getStripAverageTotalPointsPerGame(template: ValueTrendTemplate):
   return Math.round((sum / totals.length) * 10) / 10;
 }
 
+/** Most recent game total in the strip window (games 6–10). */
+export function getStripLastGameTotal(template: ValueTrendTemplate): number {
+  const points = template.lastFiveMatchPoints;
+  const minutes = template.lastFiveMatchMinutes;
+  if (points.length === 0) return 0;
+  const totals = buildGameTotals(points, minutes);
+  return totals[totals.length - 1];
+}
+
+export function getStripLastGameVsAverageDelta(template: ValueTrendTemplate): number {
+  const lastGame = getStripLastGameTotal(template);
+  const average = getStripAverageTotalPointsPerGame(template);
+  return Math.round((lastGame - average) * 10) / 10;
+}
+
 export function getCandleDelta(candle: ValueTrendCandle): number {
   return candle.close - candle.open;
 }
 
 export function getCandleRange(candle: ValueTrendCandle): number {
   return candle.high - candle.low;
+}
+
+/** Mean per-game fantasy total for the games in this candle window. */
+export function getCandleWindowAverage(candle: ValueTrendCandle): number {
+  if (candle.windowAverage !== undefined) return candle.windowAverage;
+  const gameCount = Math.max(candle.gameEnd - candle.gameStart + 1, 1);
+  return Math.round(((candle.open + candle.close) / 2) * 10) / 10;
 }
 
 /** High–low spread of per-game match points only (no appearance minutes). */

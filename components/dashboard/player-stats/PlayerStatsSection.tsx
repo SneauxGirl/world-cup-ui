@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
+import { CountryFlag } from "@/components/CountryFlag";
+import { PlayerCardTrigger } from "@/components/dashboard/player-card/PlayerCardTrigger";
 import { IconChevronRight } from "@/components/icons/DashboardIcons";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import type { SquadPositionCode } from "@/data/squad-pitch-formation";
@@ -34,6 +36,14 @@ const POSITION_LABEL: Record<SquadPositionCode, string> = {
   MID: "MID",
   FWD: "FWD",
 };
+
+function formatShortPlayerName(firstName: string, lastName: string): string {
+  const last = lastName.trim();
+  const first = firstName.trim();
+  if (!last) return first;
+  if (!first) return last;
+  return `${first.charAt(0).toUpperCase()}. ${last}`;
+}
 
 function buildRows(rosterBySlot: Record<string, SquadPlayerPoolEntry>): RosterStatsRow[] {
   const seen = new Set<string>();
@@ -145,19 +155,13 @@ function StatHeader({ statKey }: { statKey: RosterPlayerStatKey }) {
 function PlayerStatsTableRow({ row }: { row: RosterStatsRow }) {
   const { player, stats } = row;
   const jerseySrc = getTeamJerseyPath(player.teamCode);
-  const displayName = `${player.firstName} ${player.lastName}`.trim();
+  const displayName = formatShortPlayerName(player.firstName, player.lastName);
   const positionLabel = POSITION_LABEL[player.position];
 
   return (
     <tr className={styles.bodyRow}>
       <th scope="row" className={styles.playerCell}>
-        <div className={styles.playerBlock}>
-          <span
-            className={[styles.positionBadge, styles[`position_${player.position}`]].join(" ")}
-            aria-hidden="true"
-          >
-            {positionLabel}
-          </span>
+        <PlayerCardTrigger player={player} className={styles.playerBlock}>
           <span className={styles.avatar} aria-hidden="true">
             <Image
               src={jerseySrc}
@@ -170,10 +174,17 @@ function PlayerStatsTableRow({ row }: { row: RosterStatsRow }) {
           <span className={styles.playerText}>
             <span className={styles.playerName}>{displayName}</span>
             <span className={styles.playerMeta}>
-              {positionLabel} · {player.teamCode}
+              <span>{positionLabel}</span>
+              <span aria-hidden="true"> · </span>
+              <span>{player.teamCode}</span>
+              <CountryFlag
+                code={player.teamCode}
+                label={player.countryName}
+                className={styles.metaFlag}
+              />
             </span>
           </span>
-        </div>
+        </PlayerCardTrigger>
       </th>
       {ROSTER_STAT_KEYS.map((key) => {
         const isHighlight = key === ROSTER_STAT_HIGHLIGHT_KEY;

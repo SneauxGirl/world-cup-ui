@@ -3,6 +3,7 @@
 import { useCallback, useId, useState, type RefObject } from "react";
 import Image from "next/image";
 import { PositionPlayerPicker } from "@/components/dashboard/PositionPlayerPicker";
+import { SquadSelectionListView } from "@/components/dashboard/SquadSelectionListView";
 import { SquadPitchSlot } from "@/components/dashboard/SquadPitchSlot";
 import { IconClose } from "@/components/icons/DashboardIcons";
 import { squadPitchFormation, type SquadPositionCode } from "@/data/squad-pitch-formation";
@@ -293,7 +294,12 @@ export function SquadSelectionPanel({
             aria-labelledby={`${panelId}-tab-list`}
             className={styles.listPanel}
           >
-            <p className={styles.listPlaceholder}>{t("squadSelection.listPlaceholder")}</p>
+            <SquadSelectionListView
+              rosterBySlot={rosterBySlot}
+              onSlotSelect={handleSlotSelect}
+              onSlotClear={handleSlotClear}
+              className={styles.listView}
+            />
           </div>
         )}
       </div>

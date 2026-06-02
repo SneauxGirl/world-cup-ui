@@ -4,7 +4,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 35;
+  z-index: 45;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,6 +27,10 @@
 .panel {
   position: relative;
   padding: 1.15rem 1.25rem 1.25rem;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: clip;
   @include frame.wcui-chamfer-fill-tl-br(var(--wcui-panel-fill));
   border: 1px solid var(--wcui-border-aqua-soft);
   box-shadow:

@@ -60,6 +60,18 @@ Work in progress: Portfolio UI for international soccer fantasy game
 
 5. **Open the app** at [http://localhost:3000](http://localhost:3000). The home page renders the Landing page. Sign-in and sign-up use email/password via `AuthProvider` (`components/auth/AuthProvider.tsx`); new accounts also write a `users/{uid}` document in Firestore.
 
+## Dummy player data
+
+Fantasy stats and game logs live in `data/fantasy_dummy_data_expanded_filled.csv` and are compiled into `data/player-fantasy-profiles.json` for the app.
+
+To regenerate profiles after CSV edits:
+
+```bash
+node scripts/build-player-profiles.mjs
+```
+
+`npm run build` runs this script automatically before the Next.js build.
+
 
 ## License
 

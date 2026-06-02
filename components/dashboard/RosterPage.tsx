@@ -36,22 +36,32 @@ export function RosterPage() {
       <SidebarNav onLogoutConfirm={confirmSidebarLogout} />
       <div className={shellStyles.shell}>
         <TodayMatchesStrip className={shellStyles.shellMatches} />
-        <div className={shellStyles.shellTop}>
-          <SiteHeader
-            brand="dashboard"
-            className={shellStyles.shellHeader}
-            onAccountClick={requestLogout}
-          />
-          <div className={shellStyles.shellUtilities}>
-            <SiteUtilities onAccountClick={requestLogout} />
+        <div className={`${shellStyles.shellTopBand} ${shellStyles.contentBandTop}`}>
+          <div className={shellStyles.pageGutter}>
+            <div className={shellStyles.pageColumn}>
+              <div className={shellStyles.shellTop}>
+                <SiteHeader
+                  brand="dashboard"
+                  className={shellStyles.shellHeader}
+                  onAccountClick={requestLogout}
+                />
+                <div className={shellStyles.shellUtilities}>
+                  <SiteUtilities onAccountClick={requestLogout} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <main id="roster-main" className={styles.main}>
-          <SquadSelectionPanel
-            variant="embedded"
-            managerName={userDashboard.displayName}
-          />
-        </main>
+        <div className={`${shellStyles.pageGutter} ${shellStyles.contentBandMain}`}>
+          <div className={shellStyles.pageColumn}>
+            <main id="roster-main" className={styles.main}>
+              <SquadSelectionPanel
+                variant="embedded"
+                managerName={userDashboard.displayName}
+              />
+            </main>
+          </div>
+        </div>
       </div>
     </div>
   );

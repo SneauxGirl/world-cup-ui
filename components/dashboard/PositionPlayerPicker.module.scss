@@ -104,7 +104,13 @@
   color: var(--wcui-white-text);
 }
 
+.flagBtn {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
 .flag {
+  display: block;
   width: 1.85rem;
   height: 1.35rem;
   border: 1px solid color-mix(in oklab, var(--wcui-white-text) 35%, transparent);
@@ -116,6 +122,11 @@
   flex: 1 1 auto;
   flex-direction: column;
   min-width: 0;
+  text-align: left;
+
+  &:hover .playerLastName {
+    color: var(--wcui-aqua-mint);
+  }
 }
 
 .playerLastName {

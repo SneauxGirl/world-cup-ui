@@ -2,14 +2,10 @@
 
 import type { ValueTrendStripItem } from "@/lib/value-trends/buildStripItems";
 import {
-  buildStripSummaryCandle,
   formatTrendDelta,
-  getCandleDelta,
-  getCandleTrend,
-  isCandleVolatile,
-  STRIP_VOLATILE_RANGE,
+  getStripLastGameVsAverageDelta,
 } from "@/lib/value-trends/compute";
-import { ValueTrendCandleChart } from "@/components/dashboard/value-trends/ValueTrendCandleChart";
+import { ValueTrendStripBarChart } from "@/components/dashboard/value-trends/ValueTrendStripBarChart";
 import { t } from "@/lib/i18n/t";
 import styles from "./ValueTrendStripCard.module.scss";
 
@@ -26,15 +22,12 @@ type LabelCellProps = {
 };
 
 function useStripItemState(item: ValueTrendStripItem) {
-  const candle = buildStripSummaryCandle(item.template);
-  const trend = getCandleTrend(candle, item.template.rollingAverage);
-  const volatile = isCandleVolatile(candle, STRIP_VOLATILE_RANGE);
-  const delta = getCandleDelta(candle);
-  const deltaClass = volatile ? "volatile" : trend;
+  const delta = getStripLastGameVsAverageDelta(item.template);
+  const deltaClass = delta >= 0 ? "above" : "below";
   const displayName = item.player?.lastName.toUpperCase() ?? item.slotLabel;
   const titleId = `value-trend-${item.slotId}-title`;
 
-  return { candle, trend, delta, deltaClass, displayName, titleId };
+  return { delta, deltaClass, displayName, titleId };
 }
 
 export function ValueTrendStripChartCell({
@@ -43,7 +36,7 @@ export function ValueTrendStripChartCell({
   scaleMax,
   onOpen,
 }: ChartCellProps) {
-  const { candle, trend, displayName } = useStripItemState(item);
+  const { displayName } = useStripItemState(item);
 
   return (
     <div className={styles.chartCell}>
@@ -51,18 +44,12 @@ export function ValueTrendStripChartCell({
         type="button"
         className={styles.chartBtn}
         onClick={onOpen}
-        aria-label={t("valueTrends.openPlayerDetail", { player: displayName })}
+        aria-label={t("playerCard.open", { player: displayName })}
       >
-        <ValueTrendCandleChart
-          candle={candle}
-          trend={trend}
-          rollingAverage={item.template.rollingAverage}
+        <ValueTrendStripBarChart
           template={item.template}
           scaleMin={scaleMin}
           scaleMax={scaleMax}
-          compact
-          stripMode
-          showVolume
         />
       </button>
     </div>

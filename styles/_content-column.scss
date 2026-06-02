@@ -1,0 +1,14 @@
+/* Shared 1440px content column — outer gutter + centered max width (login + dashboard). */
+@mixin page-gutter {
+  flex-shrink: 0;
+  width: 100%;
+  padding-inline: var(--content-gutter);
+  box-sizing: border-box;
+}
+
+@mixin page-column {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  box-sizing: border-box;
+}

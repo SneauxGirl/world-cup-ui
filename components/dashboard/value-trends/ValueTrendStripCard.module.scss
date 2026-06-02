@@ -76,15 +76,10 @@
   line-height: 1;
 }
 
-.delta_bullish,
-.delta_elite {
-  color: var(--wcui-sky-blue);
+.delta_above {
+  color: var(--wcui-aqua-mint);
 }
 
-.delta_bearish {
-  color: var(--wcui-broadcast-orange);
-}
-
-.delta_volatile {
-  color: var(--wcui-lime-pulse);
+.delta_below {
+  color: var(--wcui-primary-red);
 }

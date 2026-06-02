@@ -1,5 +1,5 @@
-@use "../../../styles/wcui-close-control" as close;
-@use "../../../styles/wcui-frame" as frame;
+@use "../../styles/wcui-close-control" as close;
+@use "../../styles/wcui-frame" as frame;
 
 .overlay {
   position: fixed;
@@ -15,9 +15,15 @@
 .shell {
   width: min(24rem, calc(100vw - 1.5rem));
   max-height: min(92dvh, 44rem);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .frame {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
   --wcui-card-corner: 14px;
   --wcui-chamfer-tl: 18px;
   --wcui-chamfer-br: 18px;
@@ -29,7 +35,11 @@
 .panel {
   position: relative;
   max-height: min(92dvh, 44rem);
-  overflow: auto;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: clip;
+  overflow-y: auto;
   @include frame.wcui-chamfer-fill-tl-br(var(--wcui-panel-fill));
   border: 1px solid var(--wcui-border-aqua-soft);
   box-shadow:
@@ -45,10 +55,6 @@
   z-index: 2;
   background: transparent;
   color: color-mix(in oklab, var(--wcui-white-text) 72%, var(--wcui-aqua-mint));
-  transition:
-    border-color 160ms ease,
-    color 160ms ease,
-    box-shadow 160ms ease;
 
   &:hover,
   &:focus-visible {
@@ -61,6 +67,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
   padding: 1rem 1rem 0.75rem;
   background:
     radial-gradient(
@@ -75,7 +84,7 @@
     );
 }
 
-.avgBadge {
+.pointsBadge {
   position: absolute;
   top: 0.85rem;
   left: 0.85rem;
@@ -83,6 +92,17 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--wcui-signal-yellow);
+}
+
+.avgBadge {
+  position: absolute;
+  top: 0.85rem;
+  right: 3rem;
+  font-size: var(--wcui-font-control);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--wcui-signal-yellow);
+  text-align: right;
 }
 
 .portraitWrap {
@@ -105,9 +125,14 @@
   align-items: center;
   gap: 0.25rem;
   margin-top: -0.35rem;
+  text-align: center;
 }
 
 .playerName {
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: anywhere;
+  text-align: center;
   font-size: clamp(1.8rem, 6vw, 2.35rem);
   line-height: 0.95;
   letter-spacing: 0.04em;
@@ -118,8 +143,11 @@
 
 .playerMeta {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.35rem;
+  margin: 0;
   font-size: var(--wcui-font-control);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -130,10 +158,21 @@
   width: 1.1rem;
 }
 
+.squadNumber {
+  margin: 0;
+  font-size: var(--wcui-font-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wcui-text-standard);
+}
+
 .body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 0.85rem 1rem 1.15rem;
 }
 
@@ -141,6 +180,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .blockHead {
@@ -151,6 +192,7 @@
 }
 
 .blockTitle {
+  margin: 0;
   font-size: var(--wcui-font-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -158,12 +200,62 @@
   color: color-mix(in oklab, var(--wcui-signal-yellow) 88%, white);
 }
 
+.blockTitleRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.infoBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--wcui-text-standard);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
+}
+
+.infoIcon {
+  width: 1.35rem;
+  height: 1.35rem;
+
+  circle {
+    stroke: color-mix(in oklab, var(--wcui-white-text) 72%, var(--wcui-aqua-mint));
+    transition:
+      stroke 160ms ease,
+      stroke-width 160ms ease;
+  }
+}
+
+.infoBtn:hover .infoIcon circle,
+.infoBtn:focus-visible .infoIcon circle {
+  stroke: var(--wcui-aqua-mint);
+}
+
+.infoBtn:focus-visible .infoIcon circle {
+  stroke-width: 2.25;
+}
+
 .matchBars {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 0.35rem;
+  gap: 0.25rem;
+  width: 100%;
+  min-width: 0;
   min-height: 5.5rem;
   margin: 0;
   padding: 0;
@@ -188,7 +280,7 @@
 .matchBar {
   display: block;
   width: 100%;
-  max-width: 2rem;
+  max-width: 100%;
   min-height: 0.75rem;
 }
 
@@ -224,7 +316,7 @@
   );
 }
 
-.statList {
+.formStatList {
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
@@ -233,36 +325,42 @@
   list-style: none;
 }
 
-.statRow {
+.formStatRow {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
-.statLabel {
-  flex: 0 0 5.5rem;
+.formStatLabel {
+  flex: 0 1 4.75rem;
+  min-width: 0;
   font-size: var(--wcui-font-meta);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--wcui-text-standard);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.statTrack {
+.formStatTrack {
   display: flex;
   flex: 1 1 auto;
   flex-direction: row;
-  gap: 2px;
+  gap: 1px;
   min-width: 0;
 }
 
-.statSegment {
+.formStatSegment {
   flex: 1 1 0;
   height: 0.55rem;
   background: color-mix(in oklab, var(--wcui-border-blue) 55%, var(--wcui-pitch-black));
 }
 
-.statSegmentFilled {
+.formStatSegmentFilled {
   background: linear-gradient(
     90deg,
     var(--wcui-aqua-mint),
@@ -270,8 +368,8 @@
   );
 }
 
-.statValue {
-  flex: 0 0 2rem;
+.formStatValue {
+  flex: 0 0 1.75rem;
   font-size: var(--wcui-font-control);
   font-weight: 700;
   text-align: right;
@@ -281,9 +379,11 @@
 .candleRow {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.25rem;
+  width: 100%;
+  min-width: 0;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -291,14 +391,39 @@
 
 .candleItem {
   display: flex;
+  flex: 1 1 0;
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.candleChart {
+  width: 100%;
+  max-width: 100%;
 }
 
 .windowLabel {
+  max-width: 100%;
   font-size: var(--wcui-font-meta);
   color: var(--wcui-text-placeholder);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.windowAverage {
+  max-width: 100%;
+  font-size: var(--wcui-font-meta);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  color: var(--wcui-sky-blue);
+  text-align: center;
+  line-height: 1.1;
 }
 
 .expectedRow {
@@ -329,6 +454,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .insightTitle {
@@ -345,6 +472,9 @@
   gap: 0.35rem;
   margin: 0;
   padding-left: 1rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   color: var(--wcui-text-standard);
   font-size: var(--wcui-font-secondary);
   line-height: 1.45;
@@ -352,8 +482,66 @@
 
 .insightTrend {
   list-style: none;
-  margin-left: -1rem;
+  margin-left: 0;
   padding-top: 0.25rem;
+  padding-left: 0;
   font-weight: 700;
   color: var(--wcui-sky-blue);
+}
+
+.seasonStatsSection {
+  padding: 0.75rem 1rem 1.1rem;
+  border-top: 1px solid color-mix(in oklab, var(--wcui-border-blue) 70%, transparent);
+}
+
+.seasonStatsTitle {
+  margin: 0 0 0.65rem;
+  font-size: var(--wcui-font-label);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wcui-text-standard);
+}
+
+.seasonStatsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+  margin: 0;
+}
+
+.seasonStatItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  min-width: 2.35rem;
+  padding: 0.35rem 0.4rem;
+  background: color-mix(in oklab, var(--wcui-white-overlay-soft) 40%, transparent);
+  border: 1px solid color-mix(in oklab, var(--wcui-border-blue) 55%, transparent);
+}
+
+.seasonStatItemHighlight {
+  border-color: color-mix(in oklab, var(--wcui-aqua-mint) 45%, var(--wcui-border-blue));
+}
+
+.seasonStatLabel {
+  margin: 0;
+  font-size: var(--wcui-font-meta);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wcui-text-standard);
+}
+
+.seasonStatValue {
+  margin: 0;
+  font-size: var(--wcui-font-body);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--wcui-white-text);
+}
+
+.seasonStatItemHighlight .seasonStatValue {
+  color: var(--wcui-aqua-mint);
 }

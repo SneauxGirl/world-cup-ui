@@ -2,7 +2,7 @@
 
 import type { CSSProperties, RefObject } from "react";
 import { ValueTrendStripColumn } from "@/components/dashboard/value-trends/ValueTrendStripColumn";
-import { STRIP_CHART_HEIGHT } from "@/components/dashboard/value-trends/ValueTrendCandleChart";
+import { STRIP_BAR_CHART_HEIGHT } from "@/components/dashboard/value-trends/ValueTrendStripBarChart";
 import type { ValueTrendStripItem } from "@/lib/value-trends/buildStripItems";
 import type { ValueTrendStripScale } from "@/lib/value-trends/compute";
 import { valueToPlotPercent } from "@/lib/value-trends/compute";
@@ -27,7 +27,7 @@ export function ValueTrendStripPlot({
   onOpenItem,
 }: Props) {
   const plotStyle = {
-    ["--value-trend-plot-height" as string]: `${STRIP_CHART_HEIGHT}px`,
+    ["--value-trend-plot-height" as string]: `${STRIP_BAR_CHART_HEIGHT}px`,
     ["--value-trend-column-width" as string]: "3.85rem",
   } as CSSProperties;
 

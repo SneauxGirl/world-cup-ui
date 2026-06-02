@@ -59,6 +59,14 @@
   inset: auto;
 }
 
+/* Parent pageGutter + pageColumn own horizontal bounds (dashboard shell). */
+.heroInContentColumn.heroDashboard .heroContent {
+  max-width: none;
+  width: 100%;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
 .heroStack {
   position: absolute;
   inset: 0;
@@ -82,15 +90,15 @@
   box-sizing: border-box;
 }
 
-/* Dashboard: copy flush left, aside flush right; middle gap collapses before columns shrink. */
+/* Dashboard: fixed-width copy column + performers; flex-start avoids space-between dead zone. */
 .heroDashboard .heroContent {
   container-type: inline-size;
   container-name: hero-dashboard;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: stretch;
-  justify-content: space-between;
-  gap: 0;
+  justify-content: flex-start;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
   height: auto;
   min-height: 0;
 }
@@ -104,19 +112,62 @@
   min-width: min-content;
   max-width: 100%;
   gap: clamp(1.25rem, 2.5vw, 2.5rem);
-  justify-content: space-between;
+  justify-content: flex-start;
   align-self: stretch;
   box-sizing: border-box;
 }
 
-.heroDashboard .heroPrimary {
-  margin-top: 0;
+.heroDashboard .heroCopy {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
 }
 
-.heroDashboard .heroActionRow {
-  flex-wrap: nowrap;
+.heroDashboard .heroPrimary {
   margin-top: 0;
   width: auto;
+  max-width: 100%;
+}
+
+.heroTitleColumn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 100%;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+.heroManagerStats {
+  margin-top: clamp(1rem, 2vw, 1.25rem);
+}
+
+.heroTitleColumn .title {
+  display: block;
+  max-width: 100%;
+}
+
+.heroTitleColumn .titleName {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+}
+
+.heroNoFeed .heroTitleColumn .titleName {
+  width: auto;
+}
+
+.heroTitleColumn .statsCardFrame {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 2.5rem;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.heroDashboard .titleName {
+  font-size: 4rem;
 }
 
 .heroAsidePerformers {
@@ -183,7 +234,7 @@
   flex-direction: column;
   align-items: flex-start;
   flex-shrink: 0;
-  gap: 2.5rem; /* 40px below welcome before stats card */
+  gap: 2.5rem;
   width: 100%;
   max-width: min(42rem, 100%);
   min-width: 0;
@@ -194,6 +245,10 @@
 
 .heroNoFeed .heroPrimary {
   gap: 0;
+}
+
+.heroNoFeed .heroTitleColumn .statsCardFrame {
+  margin-top: 0;
 }
 
 /* Login: stadium art only; sign-in card overlays via Login heroContentShell. */
@@ -210,96 +265,6 @@
 
 .heroLogin .heroStack {
   z-index: 2;
-}
-
-.heroActionRow {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  width: 100%;
-  margin-top: auto;
-  flex-shrink: 0;
-  box-sizing: border-box;
-}
-
-.heroCtaWrap {
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  min-width: min(100%, 16rem);
-  box-sizing: border-box;
-}
-
-/* TL+BR chamfer — lime back panel (trim), black-glass front panel (link), like Sign in / Sign up. */
-.heroCtaTrim {
-  --hero-cta-chamfer: 14px;
-  --wcui-chamfer-tl: var(--hero-cta-chamfer);
-  --wcui-chamfer-br: var(--hero-cta-chamfer);
-  display: inline-flex;
-  flex: 0 0 auto;
-  padding: 1px;
-  box-sizing: border-box;
-  box-shadow:
-    0 0 20px color-mix(in oklab, var(--wcui-lime-pulse) 45%, transparent),
-    0 4px 24px color-mix(in oklab, var(--wcui-pitch-black) 55%, transparent);
-  transition:
-    background 160ms ease,
-    box-shadow 160ms ease,
-    padding 160ms ease;
-  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-lime-pulse));
-
-  &:has(.heroCta:hover),
-  &:has(.heroCta:focus-visible) {
-    padding: 2px;
-    margin-bottom: -2px;
-    box-shadow:
-      0 0 28px color-mix(in oklab, var(--wcui-lime-pulse) 55%, transparent),
-      0 4px 24px color-mix(in oklab, var(--wcui-pitch-black) 55%, transparent);
-  }
-}
-
-.heroCta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  isolation: isolate;
-
-  &:is(button) {
-    margin: 0;
-    padding: clamp(0.85rem, 2vw, 1.1rem) clamp(2rem, 5vw, 3.25rem);
-    appearance: none;
-    cursor: pointer;
-    font: inherit;
-  }
-  padding: clamp(0.85rem, 2vw, 1.1rem) clamp(2rem, 5vw, 3.25rem);
-  font-family: var(--font-alumni-sans), sans-serif;
-  font-size: var(--wcui-font-body);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: color-mix(in oklab, var(--wcui-white-text) 88%, transparent);
-  text-shadow: none;
-  border: none;
-  box-sizing: border-box;
-  transition:
-    color 160ms ease,
-    box-shadow 160ms ease;
-  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
-  @include frame.wcui-card-glass-surface;
-
-  &:hover,
-  &:focus-visible {
-    color: var(--wcui-white-text);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--wcui-white-text);
-    outline-offset: 3px;
-  }
 }
 
 .title {
@@ -336,16 +301,29 @@
   --wcui-chamfer-bl: 20px;
   flex: 0 1 auto;
   width: 100%;
-  max-width: 300px;
+  max-width: min(32rem, 100%);
   box-sizing: border-box;
   @include frame.wcui-chamfer-frame-asymmetric;
 }
 
 .statsCardInner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
   padding: clamp(0.9rem, 2vw, 1.15rem) clamp(1rem, 2.5vw, 1.35rem);
   box-sizing: border-box;
   @include frame.wcui-chamfer-fill-asymmetric(var(--wcui-hero-panel-fill));
   border: 1px solid var(--wcui-border-aqua-soft);
+}
+
+.liveFeedTitle {
+  margin: 0;
+  font-size: var(--wcui-font-control);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--wcui-white-text);
+  line-height: 1.2;
 }
 
 .hero:has(button[aria-expanded="true"]) {
@@ -412,6 +390,10 @@
     font-size: var(--wcui-font-heading-card);
   }
 
+  .heroDashboard .titleName {
+    font-size: clamp(2.25rem, 4.5vw, 4rem);
+  }
+
   .statsCardFrame {
     --wcui-chamfer-tl: clamp(18px, 2.5vw, 30px);
     --wcui-chamfer-tr: clamp(12px, 2vw, 20px);
@@ -420,8 +402,8 @@
     max-width: 100%;
   }
 
-  .heroActionRow {
-    row-gap: clamp(1rem, 3vw, 1.5rem);
+  .heroDashboard .statsCardFrame {
+    max-width: 100%;
   }
 
   .heroAsideConstruction {
@@ -465,11 +447,19 @@
     font-size: var(--wcui-font-heading-card);
   }
 
+  .heroDashboard .titleName {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+
   .statsCardFrame {
     --wcui-chamfer-tl: clamp(14px, 4vw, 24px);
     --wcui-chamfer-tr: clamp(10px, 3vw, 16px);
     --wcui-chamfer-br: clamp(12px, 3.5vw, 20px);
     --wcui-chamfer-bl: clamp(10px, 3vw, 16px);
+    max-width: 100%;
+  }
+
+  .heroDashboard .statsCardFrame {
     max-width: 100%;
   }
 

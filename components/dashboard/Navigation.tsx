@@ -18,7 +18,7 @@ import { GitHubOctocatIcon } from "@/components/icons/GitHubOctocatIcon";
 import { userDashboard } from "@/data/dashboard-seed";
 import { getDashboardAppNavActiveKey } from "@/lib/dashboard-app-nav";
 import { t } from "@/lib/i18n/t";
-import { formatFirstNameLastInitial, formatInteger } from "@/lib/i18n/format";
+import { formatFirstNameLastInitial } from "@/lib/i18n/format";
 import styles from "./Navigation.module.scss";
 
 const sidebarNavItems = [
@@ -148,15 +148,6 @@ export function SidebarNav({ onLogoutConfirm }: SidebarNavProps) {
             </div>
           </div>
         )}
-        <section className={styles.rankCard} aria-label={t("dashboard.globalRank")}>
-          <div className={styles.rankCardInner}>
-            <p className={styles.rankEyebrow}>{t("dashboard.globalRank")}</p>
-            <p className={styles.rankValue}>{formatInteger(userDashboard.rank)}</p>
-            <p className={styles.rankPercent}>
-              {t("dashboard.topPercent", { pct: userDashboard.topPercent })}
-            </p>
-          </div>
-        </section>
       </div>
       </aside>
     </div>

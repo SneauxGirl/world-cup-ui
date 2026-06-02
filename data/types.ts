@@ -38,12 +38,6 @@ export type DashboardPerformer = {
   points: number;
 };
 
-export type RosterHealth = {
-  active: number;
-  atRisk: number;
-  eliminated: number;
-};
-
 export type FeedItem = {
   id: string;
   messageKey: FeedMessageKey;
@@ -75,6 +69,8 @@ export type ValueTrendCandle = {
   minutesPlotPoints?: number;
   /** Per-game average appearance pts for the strip base bar (0–40 scale). */
   minutesBarPlotPoints?: number;
+  /** Mean per-game fantasy total across games in this window. */
+  windowAverage?: number;
 };
 
 export type ValueTrendStatKey =

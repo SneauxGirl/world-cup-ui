@@ -341,52 +341,6 @@
   height: 3rem;
 }
 
-.rankCard {
-  flex-shrink: 0;
-  padding: 1px;
-  background: var(--wcui-border-blue);
-  @include wcui-chamfer-clip;
-}
-
-.rankCardInner {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.2rem;
-  padding: .8rem 1rem;
-  background: var(--wcui-page-black);
-  @include wcui-chamfer-clip;
-}
-
-.rankEyebrow {
-  margin: 0;
-  font-size: var(--wcui-font-body);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--wcui-white-text) 48%, transparent);
-}
-
-.rankValue {
-  margin: 0;
-  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
-  font-size: var(--wcui-font-heading-panel);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
-  color: color-mix(in oklab, var(--wcui-aqua-mint) 90%, white);
-}
-
-.rankPercent {
-  margin: 0;
-  font-size: var(--wcui-font-body);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--wcui-sky-blue) 90%, white);
-}
-
 @media (min-width: 1200px) {
   .sidebarShell {
     display: flex;

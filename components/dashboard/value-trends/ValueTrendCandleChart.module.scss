@@ -28,10 +28,6 @@
   opacity: 0.5;
 }
 
-.stripPlot .body {
-  filter: none;
-}
-
 .tooltip {
   position: absolute;
   left: 50%;
@@ -67,7 +63,6 @@
   .body {
     stroke: var(--wcui-sky-blue);
     fill: color-mix(in oklab, var(--wcui-sky-blue) 55%, var(--wcui-pitch-black));
-    filter: drop-shadow(0 0 3px color-mix(in oklab, var(--wcui-sky-blue) 70%, transparent));
   }
 
   .volume {
@@ -83,7 +78,6 @@
   .body {
     stroke: var(--wcui-broadcast-orange);
     fill: color-mix(in oklab, var(--wcui-broadcast-orange) 52%, var(--wcui-pitch-black));
-    filter: drop-shadow(0 0 3px color-mix(in oklab, var(--wcui-broadcast-orange) 65%, transparent));
   }
 
   .volume {
@@ -99,7 +93,6 @@
   .body {
     stroke: var(--wcui-aqua-mint);
     fill: color-mix(in oklab, var(--wcui-sky-blue) 58%, var(--wcui-pitch-black));
-    filter: drop-shadow(0 0 4px color-mix(in oklab, var(--wcui-aqua-mint) 75%, transparent));
   }
 
   .volume {
@@ -115,7 +108,6 @@
   .body {
     stroke: var(--wcui-lime-pulse);
     fill: color-mix(in oklab, var(--wcui-signal-yellow) 42%, var(--wcui-pitch-black));
-    filter: drop-shadow(0 0 4px color-mix(in oklab, var(--wcui-lime-pulse) 80%, transparent));
   }
 
   .volume {
@@ -133,6 +125,26 @@
     width: 40px;
     height: auto;
     max-width: none;
+  }
+}
+
+.fluidCompact {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  flex-shrink: 1;
+
+  .svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .wick,
+  .body {
+    filter: none;
   }
 }
 

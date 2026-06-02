@@ -1,0 +1,86 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: max-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  flex: 0 0 auto;
+  min-width: 0;
+  box-sizing: border-box;
+
+  &:first-child {
+    padding-right: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  &:last-child {
+    padding-left: clamp(1rem, 2vw, 1.5rem);
+  }
+}
+
+.divider {
+  flex: 0 0 1px;
+  align-self: stretch;
+  width: 1px;
+  background: color-mix(in oklab, var(--wcui-border-blue) 55%, transparent);
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: var(--wcui-font-body);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--wcui-white-text) 48%, transparent);
+}
+
+.valueMuted {
+  margin: 0;
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: var(--wcui-font-heading-panel);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--wcui-white-text);
+}
+
+.subline {
+  margin: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: var(--wcui-font-body);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--wcui-white-text) 48%, transparent);
+}
+
+.valueRank {
+  margin: 0;
+  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
+  font-size: var(--wcui-font-heading-panel);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in oklab, var(--wcui-aqua-mint) 90%, white);
+}
+
+.percent {
+  margin: 0;
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: var(--wcui-font-body);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--wcui-sky-blue) 90%, white);
+}

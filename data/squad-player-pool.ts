@@ -1,5 +1,6 @@
 import rawSquadData from "@/data/wc2026-squads-formatted.json";
 import type { SquadPositionCode } from "@/data/squad-pitch-formation";
+import { getTotalFantasyPoints } from "@/lib/player-fantasy/profiles";
 
 /** One row in `wc2026-squads-formatted.json` — identity + mock fantasy only (no caps/goals). */
 type RawSquadEntry = {
@@ -79,8 +80,10 @@ const typedSquad = rawSquadData as RawSquadEntry[];
 
 export const squadPlayerPool: SquadPlayerPoolEntry[] = typedSquad.map((entry) => {
   const codes = nationCodeMap[entry.nation] ?? { iso2: "un", fifa: "UNK" };
+  const id = makeSquadPlayerId(entry);
+  const profileTotal = getTotalFantasyPoints(id);
   return {
-    id: makeSquadPlayerId(entry),
+    id,
     squadNumber: entry.squadNumber ?? 0,
     firstName: entry.firstName,
     lastName: entry.lastName,
@@ -88,6 +91,6 @@ export const squadPlayerPool: SquadPlayerPoolEntry[] = typedSquad.map((entry) =>
     countryIso2: codes.iso2,
     teamCode: codes.fifa,
     position: toSlotPosition(entry.position),
-    fantasyPoints: entry.fantasyPoints,
+    fantasyPoints: profileTotal > 0 ? profileTotal : entry.fantasyPoints,
   };
 });

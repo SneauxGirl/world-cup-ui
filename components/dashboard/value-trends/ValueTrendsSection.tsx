@@ -2,16 +2,15 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ValueTrendDetailModal } from "@/components/dashboard/value-trends/ValueTrendDetailModal";
 import { ValueTrendInfoModal } from "@/components/dashboard/value-trends/ValueTrendInfoModal";
 import { ValueTrendStripPlot } from "@/components/dashboard/value-trends/ValueTrendStripPlot";
 import { IconChevronRight, IconInfo } from "@/components/icons/DashboardIcons";
 import {
-  buildValueTrendHighlights,
   buildValueTrendStripItems,
   type ValueTrendStripItem,
 } from "@/lib/value-trends/buildStripItems";
-import { formatTrendDelta, getStripPlotScale } from "@/lib/value-trends/compute";
+import { getStripPlotScale } from "@/lib/value-trends/compute";
+import { usePlayerCard } from "@/lib/player-card/PlayerCardProvider";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import { t } from "@/lib/i18n/t";
 import styles from "./ValueTrendsSection.module.scss";
@@ -23,7 +22,7 @@ type Props = {
 export function ValueTrendsSection({ className }: Props) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const { rosterBySlot, isDemoMode, loading } = useRoster();
-  const [activeItem, setActiveItem] = useState<ValueTrendStripItem | null>(null);
+  const { openPlayerCard } = usePlayerCard();
   const [infoOpen, setInfoOpen] = useState(false);
 
   const items = useMemo(
@@ -31,9 +30,18 @@ export function ValueTrendsSection({ className }: Props) {
     [rosterBySlot, isDemoMode],
   );
 
-  const highlights = useMemo(() => buildValueTrendHighlights(items), [items]);
-
   const stripScale = getStripPlotScale();
+
+  const handleOpenItem = useCallback(
+    (item: ValueTrendStripItem) => {
+      openPlayerCard({
+        player: item.player,
+        template: item.template,
+        slotLabel: item.slotLabel,
+      });
+    },
+    [openPlayerCard],
+  );
 
   const scrollByCard = useCallback((dir: -1 | 1) => {
     const el = scrollerRef.current;
@@ -73,26 +81,6 @@ export function ValueTrendsSection({ className }: Props) {
               </div>
             </div>
 
-            {highlights.length > 0 ? (
-              <ul className={styles.chips} aria-label={t("valueTrends.highlightsLabel")}>
-                {highlights.map((chip) => (
-                  <li key={chip.kind}>
-                    <span className={[styles.chip, styles[`chip_${chip.kind}`]].join(" ")}>
-                      <span className={styles.chipLabel}>
-                        {t(`valueTrends.chips.${chip.kind}`)}
-                      </span>
-                      <span className={styles.chipValue}>
-                        {chip.label}
-                        {chip.kind === "volatile"
-                          ? ` · ${chip.delta.toFixed(0)} pt range`
-                          : ` · ${formatTrendDelta(chip.delta)}`}
-                      </span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
             <div className={styles.controls}>
               <span className={styles.navBtnFrame}>
                 <button
@@ -120,7 +108,7 @@ export function ValueTrendsSection({ className }: Props) {
               scale={stripScale}
               items={items}
               scrollerRef={scrollerRef}
-              onOpenItem={setActiveItem}
+              onOpenItem={handleOpenItem}
             />
           </div>
 
@@ -148,16 +136,6 @@ export function ValueTrendsSection({ className }: Props) {
       </section>
 
       <ValueTrendInfoModal open={infoOpen} onClose={() => setInfoOpen(false)} />
-
-      {activeItem ? (
-        <ValueTrendDetailModal
-          open
-          onClose={() => setActiveItem(null)}
-          slotLabel={activeItem.slotLabel}
-          player={activeItem.player}
-          template={activeItem.template}
-        />
-      ) : null}
     </>
   );
 }

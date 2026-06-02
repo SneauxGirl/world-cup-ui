@@ -1,0 +1,99 @@
+@use "../../styles/wcui-frame" as frame;
+
+%highlights-clip {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    0 100%
+  );
+}
+
+.sectionFrame {
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--wcui-border-blue);
+  @extend %highlights-clip;
+}
+
+.section {
+  padding: 0.85rem 1rem;
+  box-sizing: border-box;
+  @include frame.wcui-panel-card-surface;
+  @extend %highlights-clip;
+}
+
+.srHeading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.chips {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--wcui-border-blue);
+  background: color-mix(in oklab, var(--wcui-pitch-black) 88%, transparent);
+}
+
+.chipLabel {
+  font-size: var(--wcui-font-meta);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.chipValue {
+  font-size: var(--wcui-font-secondary);
+  color: var(--wcui-text-standard);
+}
+
+.chip_riser {
+  border-color: color-mix(in oklab, var(--wcui-sky-blue) 45%, var(--wcui-border-blue));
+
+  .chipLabel {
+    color: var(--wcui-sky-blue);
+  }
+}
+
+.chip_faller {
+  border-color: color-mix(in oklab, var(--wcui-broadcast-orange) 45%, var(--wcui-border-blue));
+
+  .chipLabel {
+    color: var(--wcui-broadcast-orange);
+  }
+}
+
+.chip_volatile {
+  border-color: color-mix(in oklab, var(--wcui-lime-pulse) 45%, var(--wcui-border-blue));
+  box-shadow: 0 0 10px color-mix(in oklab, var(--wcui-lime-pulse) 18%, transparent);
+
+  .chipLabel {
+    color: var(--wcui-lime-pulse);
+  }
+}
+
+.empty {
+  margin: 0;
+  font-size: var(--wcui-font-secondary);
+  color: var(--wcui-text-standard);
+}

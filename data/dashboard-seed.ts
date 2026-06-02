@@ -1,59 +1,16 @@
-import type {
-  DashboardMatch,
-  DashboardPerformer,
-  FeedItem,
-  RosterHealth,
-  UserDashboard,
-} from "@/data/types";
-import { squadPlayerPool } from "@/data/squad-player-pool";
+import type { DashboardMatch, FeedItem, UserDashboard } from "@/data/types";
 
 export const userDashboard: UserDashboard = {
   displayName: "Heather Hugo",
-  totalPoints: 1248,
+  totalPoints: 15937,
   rank: 12458,
   roundLabel: "Round of 16",
   isRoundLive: true,
   topPercent: 1.4,
 };
 
-export const rosterHealth: RosterHealth = {
-  active: 15,
-  atRisk: 3,
-  eliminated: 2,
-};
-
 export const strategyInsight =
   "France's left side is generating 63% of their attacks — chances cluster on that flank early.";
-
-function normalizeName(value: string): string {
-  return value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim();
-}
-
-function findPoolPlayer(playerName: string) {
-  const target = normalizeName(playerName);
-  return squadPlayerPool.find(
-    (entry) => normalizeName(`${entry.firstName} ${entry.lastName}`) === target,
-  );
-}
-
-function toPerformer(playerName: string): DashboardPerformer {
-  const entry = findPoolPlayer(playerName);
-  if (!entry) {
-    throw new Error(`[dashboard-seed] Player not in keep list: ${playerName}`);
-  }
-
-  return {
-    id: entry.id,
-    name: `${entry.firstName} ${entry.lastName}`.trim(),
-    teamCode: entry.teamCode,
-    position: entry.position,
-    points: entry.fantasyPoints,
-  };
-}
 
 export const liveMatches: DashboardMatch[] = [
   {
@@ -190,17 +147,6 @@ export const liveMatches: DashboardMatch[] = [
     fantasyPoints: 0,
   },
 ];
-
-const topPerformerNames = [
-  "Lionel Messi",
-  "Kylian Mbappé",
-  "Vinícius Júnior",
-  "Jude Bellingham",
-] as const;
-
-export const topPerformers: DashboardPerformer[] = topPerformerNames
-  .map((name) => toPerformer(name))
-  .sort((a, b) => b.points - a.points);
 
 export const feedItems: FeedItem[] = [
   { id: "f1", messageKey: "kaneGoal", pts: 14, kind: "ball" },

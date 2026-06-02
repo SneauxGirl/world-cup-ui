@@ -9,10 +9,16 @@ const HERO_PERFORMER_LIMIT = 3;
 
 type Props = {
   performers: DashboardPerformer[];
+  /** When true, heading uses global pool copy (fewer than 3 roster picks). */
+  globalTopPerformers?: boolean;
   className?: string;
 };
 
-export function HeroTopPerformers({ performers, className }: Props) {
+export function HeroTopPerformers({
+  performers,
+  globalTopPerformers = false,
+  className,
+}: Props) {
   const sortedPerformers = [...performers]
     .sort((a, b) => b.points - a.points)
     .slice(0, HERO_PERFORMER_LIMIT);
@@ -26,12 +32,12 @@ export function HeroTopPerformers({ performers, className }: Props) {
     >
       <div className={styles.head}>
         <h2 id="hero-top-performers-heading" className={styles.title}>
-          {t("dashboard.topPerformers")}
+          {t(
+            globalTopPerformers
+              ? "dashboard.globalTopPerformers"
+              : "dashboard.topPerformers",
+          )}
         </h2>
-        <Link className={styles.viewAll} href="/">
-          {t("dashboard.viewAllPlayers")}
-          <IconChevronRight className={styles.viewIcon} aria-hidden="true" />
-        </Link>
       </div>
       <div className={styles.cardRow}>
         {sortedPerformers.map((performer) => (
@@ -39,6 +45,12 @@ export function HeroTopPerformers({ performers, className }: Props) {
             <PerformerCard performer={performer} />
           </div>
         ))}
+      </div>
+      <div className={styles.foot}>
+        <Link className={styles.viewAll} href="/">
+          {t("dashboard.viewAllPlayers")}
+          <IconChevronRight className={styles.viewIcon} aria-hidden="true" />
+        </Link>
       </div>
     </section>
   );

@@ -1,4 +1,8 @@
+"use client";
+
 import { IconClose, IconPlus } from "@/components/icons/DashboardIcons";
+import { PlayerCardTrigger } from "@/components/dashboard/player-card/PlayerCardTrigger";
+import { usePlayerCard } from "@/lib/player-card/PlayerCardProvider";
 import { squadPlayerPool, type SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import type { SquadPositionCode } from "@/data/squad-pitch-formation";
 import { formatInteger } from "@/lib/i18n/format";
@@ -56,6 +60,8 @@ export function PositionPlayerPicker({
   onAddPlayer,
   isPlayerDisabled,
 }: Props) {
+  const { openPlayer } = usePlayerCard();
+
   const players = squadPlayerPool
     .filter((player) => (positionFilter ? player.position === positionFilter : true))
     .filter((player) => (teamCodeFilter ? player.teamCode === teamCodeFilter : true))
@@ -104,24 +110,31 @@ export function PositionPlayerPicker({
                 {player.squadNumber > 0 ? player.squadNumber : "-"}
               </span>
 
-              <img
-                className={styles.flag}
-                src={getFlagUrl(player.countryIso2)}
-                alt={`${player.countryName} flag`}
-                width={30}
-                height={22}
-                loading="lazy"
-              />
+              <PlayerCardTrigger player={player} className={styles.flagBtn}>
+                <img
+                  className={styles.flag}
+                  src={getFlagUrl(player.countryIso2)}
+                  alt={`${player.countryName} flag`}
+                  width={30}
+                  height={22}
+                  loading="lazy"
+                />
+              </PlayerCardTrigger>
 
-              <div className={styles.playerMeta}>
+              <PlayerCardTrigger player={player} className={styles.playerMeta}>
                 <p className={styles.playerLastName}>{player.lastName}</p>
                 <p className={styles.playerSubline}>
                   {player.teamCode} {player.position}
                 </p>
-              </div>
+              </PlayerCardTrigger>
 
               <div className={styles.actions}>
-                <button type="button" className={styles.iconBtn} aria-label={`More info for ${player.lastName}`}>
+                <button
+                  type="button"
+                  className={styles.iconBtn}
+                  aria-label={t("playerCard.moreInfo", { player: player.lastName })}
+                  onClick={() => openPlayer(player)}
+                >
                   ?
                 </button>
                 <button

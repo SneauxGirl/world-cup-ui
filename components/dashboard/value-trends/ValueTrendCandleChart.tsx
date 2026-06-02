@@ -22,6 +22,8 @@ type Props = {
   scaleMax?: number;
   scaleMin?: number;
   compact?: boolean;
+  /** Shrink to fit a flex/grid column (detail modal form windows). */
+  fluid?: boolean;
   stripMode?: boolean;
   showVolume?: boolean;
   className?: string;
@@ -55,6 +57,7 @@ export function ValueTrendCandleChart({
   scaleMax,
   scaleMin,
   compact = false,
+  fluid = false,
   stripMode = false,
   showVolume = true,
   className,
@@ -66,8 +69,8 @@ export function ValueTrendCandleChart({
     candle,
     stripMode ? STRIP_VOLATILE_RANGE : undefined,
   );
-  const chartWidth = compact ? STRIP_WIDTH : FULL_WIDTH;
-  const chartHeight = compact ? STRIP_HEIGHT : FULL_HEIGHT;
+  const chartWidth = compact && !fluid ? STRIP_WIDTH : FULL_WIDTH;
+  const chartHeight = compact && !fluid ? STRIP_HEIGHT : FULL_HEIGHT;
   const bodyWidth = compact ? STRIP_BODY : FULL_BODY;
   const centerX = chartWidth / 2;
 
@@ -118,6 +121,8 @@ export function ValueTrendCandleChart({
         games: candle.gameEnd,
         low: candle.low.toFixed(1),
         high: candle.high.toFixed(1),
+        open: candle.open.toFixed(1),
+        close: candle.close.toFixed(1),
         delta: formatTrendDelta(delta),
         minutes: candle.minutesPlayed,
         avgAppearance: (candle.minutesBarPlotPoints ?? 0).toFixed(1),
@@ -140,7 +145,7 @@ export function ValueTrendCandleChart({
     <div
       className={[
         styles.chart,
-        compact ? styles.compact : styles.full,
+        compact ? (fluid ? styles.fluidCompact : styles.compact) : styles.full,
         usesFixedStripScale ? styles.stripPlot : "",
         getTrendClass(trend, volatile),
         className,
@@ -152,8 +157,8 @@ export function ValueTrendCandleChart({
     >
       <svg
         className={styles.svg}
-        width={chartWidth}
-        height={chartHeight}
+        width={fluid ? undefined : chartWidth}
+        height={fluid ? undefined : chartHeight}
         viewBox={`0 0 ${chartWidth} ${chartHeight}`}
         role="img"
         aria-label={tooltip}

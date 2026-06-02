@@ -327,13 +327,13 @@
 .listPanel {
   flex: 1 1 auto;
   align-self: stretch;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: flex-start;
   width: calc(100% + 2 * var(--panel-inline-padding));
   margin-inline: calc(-1 * var(--panel-inline-padding));
-  aspect-ratio: 1;
   min-height: 0;
-  padding: 1.5rem;
+  max-height: min(42rem, 72vh);
+  padding: 0.85rem 1rem 1rem;
   border: 1px solid var(--wcui-border-blue);
   background: var(--wcui-pitch-black);
   box-sizing: border-box;
@@ -345,12 +345,9 @@
   max-width: 42rem;
 }
 
-.listPlaceholder {
-  margin: 0;
-  font-family: var(--font-finlandica), sans-serif;
-  font-size: var(--wcui-font-body);
-  color: color-mix(in oklab, var(--wcui-white-text) 72%, transparent);
-  text-align: center;
+.listView {
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 @media (max-width: 900px) {

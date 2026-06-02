@@ -1,3 +1,5 @@
+@use "../../styles/content-column" as column;
+
 /* Login page — 1440px content column; outer gutter wraps sections (not inner padding). */
 .page {
   --content-max: 1440px;
@@ -47,17 +49,11 @@
 
 /* Screen-edge gutter around section boxes; never removed at 1440+. */
 .pageGutter {
-  flex-shrink: 0;
-  width: 100%;
-  padding-inline: var(--content-gutter);
-  box-sizing: border-box;
+  @include column.page-gutter;
 }
 
 .pageColumn {
-  width: 100%;
-  max-width: var(--content-max);
-  margin-inline: auto;
-  box-sizing: border-box;
+  @include column.page-column;
 }
 
 .heroHeader {

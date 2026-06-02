@@ -8,15 +8,10 @@ import { t } from "@/lib/i18n/t";
 import { en } from "@/messages/en";
 import styles from "./ValueTrendInfoModal.module.scss";
 
-type ColoredInfoBullet = {
-  label: string;
-  tone: "sky" | "red" | "teal" | "lime";
-  text: string;
-};
+type InfoBullet = (typeof en.valueTrends.infoModalBullets)[number];
+type ColoredInfoBullet = Extract<InfoBullet, { tone: string }>;
 
-function isColoredBullet(
-  bullet: (typeof en.valueTrends.infoModalBullets)[number],
-): bullet is ColoredInfoBullet {
+function isColoredBullet(bullet: InfoBullet): bullet is ColoredInfoBullet {
   return typeof bullet !== "string";
 }
 

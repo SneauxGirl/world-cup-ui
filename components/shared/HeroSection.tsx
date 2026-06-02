@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import { HeroLiveFeed } from "@/components/dashboard/HeroLiveFeed";
+import { HeroCtaLiveFeed } from "@/components/dashboard/HeroCtaLiveFeed";
+import { HeroManagerStats } from "@/components/dashboard/HeroManagerStats";
 import { HeroNavMenu } from "@/components/dashboard/HeroNavMenu";
 import { t } from "@/lib/i18n/t";
 import { HeroTopPerformers } from "@/components/dashboard/HeroTopPerformers";
@@ -10,16 +10,16 @@ import styles from "./HeroSection.module.scss";
 type Props = {
   user: UserDashboard;
   feedItems?: FeedItem[];
-  /** When false, omits the hero live-feed stats card (login layout). */
+  /** When false, omits the hero live-feed panel (login layout). */
   showLiveFeed?: boolean;
   /** Login page: stadium art only (no welcome, feed, or CTA). */
   loginHero?: boolean;
-  ctaHref?: string;
-  ctaLabel?: string;
-  /** When set, CTA opens squad flow instead of navigating. */
-  onCtaClick?: () => void;
   onMenuAccountClick?: () => void;
   performers?: DashboardPerformer[];
+  /** When true, hero performers block uses global pool heading. */
+  globalTopPerformers?: boolean;
+  /** Dashboard/roster: parent supplies pageGutter + pageColumn (no inner max-width pad). */
+  inContentColumn?: boolean;
   className?: string;
 };
 
@@ -28,40 +28,22 @@ export function HeroSection({
   feedItems = [],
   showLiveFeed = true,
   loginHero = false,
-  ctaHref = "/dashboard",
-  ctaLabel = t("dashboard.setYourRoster"),
-  onCtaClick,
   onMenuAccountClick,
   performers = [],
+  globalTopPerformers = false,
+  inContentColumn = false,
   className,
 }: Props) {
-  const showFeed = showLiveFeed && feedItems.length > 0;
+  const showFeedPanel = showLiveFeed && feedItems.length > 0;
   const hasPerformers = performers.length > 0;
-
-  const heroCta = (
-    <div className={styles.heroActionRow}>
-      <div className={styles.heroCtaWrap}>
-        <div className={styles.heroCtaTrim}>
-          {onCtaClick ? (
-            <button type="button" className={styles.heroCta} onClick={onCtaClick}>
-              {ctaLabel}
-            </button>
-          ) : (
-            <Link className={styles.heroCta} href={ctaHref}>
-              {ctaLabel}
-            </Link>
-          )}
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <section
       className={[
         styles.hero,
-        !showFeed && styles.heroNoFeed,
+        !showFeedPanel && styles.heroNoFeed,
         loginHero ? styles.heroLogin : styles.heroDashboard,
+        inContentColumn && styles.heroInContentColumn,
         className,
       ]
         .filter(Boolean)
@@ -94,25 +76,39 @@ export function HeroSection({
                   </div>
                 </div>
                 <div className={styles.heroPrimary}>
-                  <h1 id="dashboard-hero-heading" className={styles.title}>
-                    <span className={styles.titleGreeting}>
-                      {t("dashboard.welcomeBackGreeting")}
-                    </span>
-                    <span className={styles.titleName}>{user.displayName}</span>
-                  </h1>
-                  {showFeed ? (
-                    <div className={styles.statsCardFrame}>
-                      <div className={styles.statsCardInner}>
-                        <HeroLiveFeed items={feedItems} />
+                  <div className={styles.heroTitleColumn}>
+                    <h1 id="dashboard-hero-heading" className={styles.title}>
+                      <span className={styles.titleGreeting}>
+                        {t("dashboard.welcomeBackGreeting")}
+                      </span>
+                      <span className={styles.titleName}>{user.displayName}</span>
+                    </h1>
+                    <HeroManagerStats
+                      totalPoints={user.totalPoints}
+                      rank={user.rank}
+                      topPercent={user.topPercent}
+                      className={styles.heroManagerStats}
+                    />
+                    {showFeedPanel ? (
+                      <div
+                        className={styles.statsCardFrame}
+                        aria-labelledby="hero-live-feed-heading"
+                      >
+                        <div className={styles.statsCardInner}>
+                          <h2 id="hero-live-feed-heading" className={styles.liveFeedTitle}>
+                            {t("dashboard.liveFeed")}
+                          </h2>
+                          <HeroCtaLiveFeed items={feedItems} />
+                        </div>
                       </div>
-                    </div>
-                  ) : null}
+                    ) : null}
+                  </div>
                 </div>
-                {heroCta}
               </div>
               {hasPerformers ? (
                 <HeroTopPerformers
                   performers={performers}
+                  globalTopPerformers={globalTopPerformers}
                   className={styles.heroAsidePerformers}
                 />
               ) : (

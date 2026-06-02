@@ -119,21 +119,14 @@
 }
 
 .tableWrap {
-  --wcui-chamfer-tl: 12px;
-  --wcui-chamfer-br: 12px;
   min-width: 0;
-  padding: 1px;
   box-sizing: border-box;
-  background: var(--wcui-border-blue);
-  @include frame.wcui-chamfer-frame-tl-br;
 }
 
 .tableScroller {
-  @include frame.wcui-chamfer-fill-tl-br(
-    color-mix(in oklab, var(--wcui-panel-blueblack) 88%, transparent)
-  );
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  background: transparent;
   scrollbar-color: color-mix(in oklab, var(--wcui-aqua-mint) 35%, transparent) transparent;
 }
 
@@ -168,7 +161,7 @@
   min-width: min(16rem, 52vw);
   padding: 0.55rem 0.75rem;
   text-align: left;
-  background: color-mix(in oklab, var(--wcui-panel-blueblack) 96%, var(--wcui-pitch-black));
+  background: transparent;
   box-shadow: 4px 0 12px color-mix(in oklab, var(--wcui-pitch-black) 55%, transparent);
 }
 
@@ -191,12 +184,12 @@
 .bodyRow {
   border-bottom: 1px solid color-mix(in oklab, var(--wcui-border-blue) 65%, transparent);
 
-  &:nth-child(even) {
-    background: color-mix(in oklab, var(--wcui-white-overlay-soft) 55%, transparent);
-  }
-
   &:last-child {
     border-bottom: none;
+  }
+
+  &:nth-child(even) .statCell {
+    background: color-mix(in oklab, var(--wcui-white-overlay-soft) 55%, transparent);
   }
 }
 
@@ -209,16 +202,8 @@
   text-align: left;
   font-weight: 400;
   vertical-align: middle;
-  background: color-mix(in oklab, var(--wcui-panel-blueblack) 96%, var(--wcui-pitch-black));
+  background: transparent;
   box-shadow: 4px 0 12px color-mix(in oklab, var(--wcui-pitch-black) 45%, transparent);
-}
-
-.bodyRow:nth-child(even) .playerCell {
-  background: color-mix(
-    in oklab,
-    var(--wcui-panel-blueblack) 92%,
-    var(--wcui-white-overlay-soft)
-  );
 }
 
 .playerBlock {
@@ -227,35 +212,12 @@
   align-items: center;
   gap: 0.55rem;
   min-width: 0;
-}
+  width: 100%;
+  text-align: left;
 
-.positionBadge {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  font-size: var(--wcui-font-label);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--wcui-black-text);
-}
-
-.position_GKP {
-  background: var(--wcui-sky-blue);
-}
-
-.position_DEF {
-  background: var(--wcui-primary-blue);
-}
-
-.position_MID {
-  background: var(--wcui-aqua-mint);
-}
-
-.position_FWD {
-  background: var(--wcui-lime-pulse);
+  &:hover .playerName {
+    color: var(--wcui-aqua-mint);
+  }
 }
 
 .avatar {
@@ -291,11 +253,20 @@
 }
 
 .playerMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+  max-width: 100%;
   font-size: var(--wcui-font-label);
   color: var(--wcui-text-standard);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.metaFlag {
+  width: 1.1rem;
 }
 
 .statCell {
@@ -315,12 +286,6 @@
   .playerHeadCell,
   .playerCell {
     min-width: min(14rem, 58vw);
-  }
-
-  .positionBadge {
-    width: 1.75rem;
-    height: 1.75rem;
-    font-size: 0.65rem;
   }
 
   .avatar {
