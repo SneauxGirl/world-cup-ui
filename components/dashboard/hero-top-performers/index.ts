@@ -1,0 +1,1 @@
+export { HeroTopPerformers } from "./HeroTopPerformers";

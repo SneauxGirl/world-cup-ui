@@ -99,6 +99,17 @@
   }
 }
 
+/* Sign-in / sign-up modal outer shell — 1px border-blue trim + chamfered glass interior. */
+.loginCardFrame {
+  --login-chamfer: 14px;
+  --wcui-chamfer-tl: var(--login-chamfer);
+  --wcui-chamfer-br: var(--login-chamfer);
+  width: min(100%, 22rem);
+  margin-inline: 0;
+  box-sizing: border-box;
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
+}
+
 .loginCard {
   --login-chamfer: 14px;
   --wcui-chamfer-tl: var(--login-chamfer);
@@ -106,20 +117,18 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: min(100%, 22rem);
-  margin-inline: 0;
+  width: 100%;
   gap: 1rem;
   padding: clamp(1.15rem, 2.5vw, 1.65rem);
   box-sizing: border-box;
-  background: var(--wcui-card-glass-fill);
-  border: 1px solid var(--wcui-border-blue);
+  border: none;
   box-shadow:
     inset 0 1px 0 var(--wcui-card-glass-highlight),
     var(--wcui-card-glass-shadow),
     0 14px 48px color-mix(in oklab, var(--wcui-pitch-black) 80%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  @include frame.wcui-chamfer-clip-tl-br;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
 }
 
 .title {
@@ -529,8 +538,12 @@
 }
 
 @media (max-width: 480px) {
-  .loginCard {
+  .loginCardFrame {
     margin-inline: 0;
+    width: 100%;
+  }
+
+  .loginCard {
     width: 100%;
   }
 

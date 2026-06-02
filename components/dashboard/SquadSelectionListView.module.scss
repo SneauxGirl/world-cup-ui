@@ -7,6 +7,33 @@
   box-sizing: border-box;
 }
 
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.15rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-alumni-sans), sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--wcui-white-text);
+}
+
 .rows {
   display: flex;
   flex-direction: column;
@@ -14,9 +41,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  min-height: 0;
-  overflow-y: auto;
-  padding-right: 0.15rem;
 }
 
 .row {
@@ -28,37 +52,29 @@
   background: color-mix(in oklab, var(--wcui-panel-fill) 80%, transparent);
 }
 
-.positionTag {
+.numberTag {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
-  justify-content: center;
-  min-width: 2.35rem;
-  font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
-  font-size: 0.95rem;
+  justify-content: flex-start;
+  min-width: 1.75rem;
+  font-family: var(--font-alumni-sans), sans-serif;
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--wcui-text-standard);
+  line-height: 1;
+  color: var(--wcui-white-text);
 }
 
-.avatarBtn {
+.flagBtn {
   flex-shrink: 0;
+  line-height: 0;
 }
 
-.avatar {
+.flag {
   display: block;
-  width: 2.25rem;
-  height: 2.25rem;
-  overflow: hidden;
-  border: 1px solid var(--wcui-border-blue);
-  background: var(--wcui-pitch-black);
-}
-
-.avatarImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  width: 1.85rem;
+  height: 1.35rem;
+  border: 1px solid color-mix(in oklab, var(--wcui-white-text) 35%, transparent);
 }
 
 .playerMeta {
@@ -122,40 +138,26 @@
 }
 
 .emptySlotBtn {
-  display: flex;
+  display: inline-flex;
   flex: 1 1 auto;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
   min-width: 0;
+  min-height: 1.85rem;
   margin: 0;
-  padding: 0.15rem 0;
-  border: none;
-  background: transparent;
-  color: var(--wcui-text-standard);
-  font-family: var(--font-finlandica), sans-serif;
-  font-size: var(--wcui-font-control);
-  text-align: left;
+  padding: 0;
+  border: 1px solid color-mix(in oklab, var(--wcui-border-blue) 78%, transparent);
+  background: color-mix(in oklab, var(--wcui-page-black) 78%, transparent);
+  color: var(--wcui-white-text);
   cursor: pointer;
 
   &:hover {
     color: var(--wcui-aqua-mint);
+    border-color: color-mix(in oklab, var(--wcui-aqua-mint) 55%, var(--wcui-border-blue));
   }
 
   &:focus-visible {
     outline: 2px solid var(--wcui-aqua-mint);
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
-}
-
-.emptySlotIcon {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  color: var(--wcui-white-text);
-}
-
-.emptySlotLabel {
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
 }

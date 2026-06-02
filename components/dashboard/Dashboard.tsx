@@ -1,11 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { RequireAuth } from "@/components/auth/RequireAuth";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
+import { useLogout } from "@/lib/auth/useLogout";
 import { feedItems, strategyInsight, userDashboard } from "@/data/dashboard-seed";
 import { HeroSection } from "@/components/shared/HeroSection";
-import { LiveMatchesSection } from "@/components/dashboard/LiveMatchesSection";
 import { FormHighlightsSection } from "@/components/dashboard/FormHighlightsSection";
 import { StrategyInsightBlock } from "@/components/dashboard/StrategyFeedSections";
 import { SidebarNav } from "@/components/dashboard/Navigation";
@@ -23,7 +23,7 @@ import { useRoster } from "@/lib/roster/RosterProvider";
 import styles from "./Dashboard.module.scss";
 
 export function Dashboard() {
-  const router = useRouter();
+  const logout = useLogout();
   const [logoutOpen, setLogoutOpen] = useState(false);
   const { rosterBySlot, rosterCount } = useRoster();
 
@@ -37,12 +37,8 @@ export function Dashboard() {
   const cancelLogout = useCallback(() => setLogoutOpen(false), []);
   const confirmLogout = useCallback(() => {
     setLogoutOpen(false);
-    router.push("/");
-  }, [router]);
-  const confirmSidebarLogout = useCallback(() => {
-    router.push("/");
-  }, [router]);
-
+    void logout();
+  }, [logout]);
   useEffect(() => {
     if (!logoutOpen) return;
     lockBodyScroll();
@@ -50,13 +46,14 @@ export function Dashboard() {
   }, [logoutOpen]);
 
   return (
+    <RequireAuth>
     <div className={styles.page}>
       <LogoutConfirmModal
         open={logoutOpen}
         onCancel={cancelLogout}
         onConfirm={confirmLogout}
       />
-      <SidebarNav onLogoutConfirm={confirmSidebarLogout} />
+      <SidebarNav />
       <div className={styles.shell}>
         <TodayMatchesStrip className={styles.shellMatches} />
         <div className={`${styles.shellTopBand} ${styles.contentBandTop}`}>
@@ -69,7 +66,7 @@ export function Dashboard() {
                   onAccountClick={requestLogout}
                 />
                 <div className={styles.shellUtilities}>
-                  <SiteUtilities onAccountClick={requestLogout} />
+                  <SiteUtilities onLogout={requestLogout} />
                 </div>
               </div>
             </div>
@@ -92,20 +89,17 @@ export function Dashboard() {
         <div className={`${styles.pageGutter} ${styles.contentBandMain}`}>
           <div className={styles.pageColumn}>
             <main id="dashboard-main" className={styles.mainLayout}>
-              <LiveMatchesSection items={feedItems} className={styles.areaMatches} />
               <div className={styles.pairRow}>
-                <FormHighlightsSection className={styles.areaRoster} />
-                <StrategyInsightBlock
-                  text={strategyInsight}
-                  className={styles.areaStrategy}
-                />
+                <FormHighlightsSection />
+                <StrategyInsightBlock text={strategyInsight} />
               </div>
-              <ValueTrendsSection className={styles.areaValueTrends} />
-              <PlayerStatsSection className={styles.areaPlayerStats} />
+              <ValueTrendsSection />
+              <PlayerStatsSection />
             </main>
           </div>
         </div>
       </div>
     </div>
+    </RequireAuth>
   );
 }

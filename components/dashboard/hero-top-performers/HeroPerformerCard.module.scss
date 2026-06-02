@@ -1,54 +1,69 @@
-@use "../../styles/wcui-frame" as frame;
+@use "../../../styles/wcui-frame" as frame;
 
-.cardFrame {
-  --wcui-card-corner: 20px;
-  --wcui-chamfer-tl: 40px;
-  --wcui-chamfer-br: 40px;
+/* Dashboard hero top performers only — not shared with roster pitch/list cards. */
+.heroFrame {
+  --hero-performer-chamfer-inset: 1px;
+  --hero-performer-chamfer-tl: 42px;
+  --hero-performer-chamfer-br: 42px;
+  --wcui-chamfer-tl: var(--hero-performer-chamfer-tl);
+  --wcui-chamfer-br: var(--hero-performer-chamfer-br);
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 220px;
+  min-height: 100%;
+  height: 100%;
   box-sizing: border-box;
   @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
 }
 
-.cardInner {
+.heroTrigger {
+  --wcui-chamfer-tl: max(
+    12px,
+    calc(var(--hero-performer-chamfer-tl) - var(--hero-performer-chamfer-inset))
+  );
+  --wcui-chamfer-br: max(
+    12px,
+    calc(var(--hero-performer-chamfer-br) - var(--hero-performer-chamfer-inset))
+  );
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.35rem;
+  gap: 0.45rem;
   flex: 1 1 auto;
   width: 100%;
   min-height: 100%;
   box-sizing: border-box;
-  padding: 1.2rem 1.6rem 0.75rem;
+  padding: 1.35rem 1.5rem 0.85rem;
   overflow: hidden;
   isolation: isolate;
   text-align: left;
-  @include frame.wcui-chamfer-clip-tl-br;
-  @include frame.wcui-panel-card-surface;
+  border: none;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-card-glass-fill));
+  box-shadow:
+    inset 0 1px 0 var(--wcui-card-glass-highlight),
+    var(--wcui-card-glass-shadow);
 
   &:hover {
     filter: brightness(1.06);
   }
 }
 
-.header {
+.heroHeader {
   position: relative;
   z-index: 0;
   margin: 0;
   padding: 0;
 }
 
-.name,
-.meta {
+.heroName,
+.heroMeta {
   margin: 0;
   padding: 0;
   letter-spacing: 0.08em;
 }
 
-.name {
+.heroName {
   font-size: var(--wcui-font-heading-panel);
   font-weight: 700;
   line-height: 1;
@@ -57,7 +72,7 @@
   text-transform: uppercase;
 }
 
-.meta {
+.heroMeta {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -70,17 +85,17 @@
 }
 
 @media (max-width: 599px) {
-  .meta {
+  .heroMeta {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .metaDivider {
+  .heroMetaDivider {
     display: none;
   }
 }
 
-.points {
+.heroPoints {
   position: relative;
   z-index: 2;
   margin: 0;
@@ -97,7 +112,7 @@
   filter: drop-shadow(0 4px 16px color-mix(in oklab, var(--wcui-pitch-black) 85%, transparent));
 }
 
-.portrait {
+.heroPortrait {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -107,16 +122,11 @@
   pointer-events: none;
 }
 
-.portraitJersey {
+.heroPortraitJersey {
   width: auto;
   height: 100%;
-  max-width: 90%;
+  max-width: 96%;
+  max-height: 92%;
   object-fit: contain;
   object-position: right bottom;
-}
-
-@media (min-width: 769px) {
-  .cardFrame {
-    min-height: 260px;
-  }
 }

@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { useRouter } from "next/navigation";
+import { RequireAuth } from "@/components/auth/RequireAuth";
 import { userDashboard } from "@/data/dashboard-seed";
+import { useLogout } from "@/lib/auth/useLogout";
 import { SquadSelectionPanel } from "@/components/dashboard/SquadSelectionPanel";
 import { SidebarNav } from "@/components/dashboard/Navigation";
 import { SiteHeader } from "@/components/shared/SiteHeader";
@@ -13,27 +14,24 @@ import shellStyles from "./Dashboard.module.scss";
 import styles from "./RosterPage.module.scss";
 
 export function RosterPage() {
-  const router = useRouter();
+  const logout = useLogout();
   const [logoutOpen, setLogoutOpen] = useState(false);
 
   const requestLogout = useCallback(() => setLogoutOpen(true), []);
   const cancelLogout = useCallback(() => setLogoutOpen(false), []);
   const confirmLogout = useCallback(() => {
     setLogoutOpen(false);
-    router.push("/");
-  }, [router]);
-  const confirmSidebarLogout = useCallback(() => {
-    router.push("/");
-  }, [router]);
-
+    void logout();
+  }, [logout]);
   return (
+    <RequireAuth>
     <div className={shellStyles.page}>
       <LogoutConfirmModal
         open={logoutOpen}
         onCancel={cancelLogout}
         onConfirm={confirmLogout}
       />
-      <SidebarNav onLogoutConfirm={confirmSidebarLogout} />
+      <SidebarNav />
       <div className={shellStyles.shell}>
         <TodayMatchesStrip className={shellStyles.shellMatches} />
         <div className={`${shellStyles.shellTopBand} ${shellStyles.contentBandTop}`}>
@@ -46,7 +44,7 @@ export function RosterPage() {
                   onAccountClick={requestLogout}
                 />
                 <div className={shellStyles.shellUtilities}>
-                  <SiteUtilities onAccountClick={requestLogout} />
+                  <SiteUtilities onLogout={requestLogout} />
                 </div>
               </div>
             </div>
@@ -64,5 +62,6 @@ export function RosterPage() {
         </div>
       </div>
     </div>
+    </RequireAuth>
   );
 }

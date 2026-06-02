@@ -345,6 +345,32 @@
   max-width: 42rem;
 }
 
+.listWorkspace {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+  min-height: 0;
+}
+
+.listWorkspaceSideBySide {
+  flex-direction: row;
+}
+
+.listWorkspaceStacked {
+  flex-direction: column;
+}
+
+.listViewCol {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
 .listView {
   flex: 1 1 auto;
   min-height: 0;

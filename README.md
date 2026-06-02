@@ -58,7 +58,7 @@ Work in progress: Portfolio UI for international soccer fantasy game
    npm run dev
    ```
 
-5. **Open the app** at [http://localhost:3000](http://localhost:3000). The home page renders the Landing page. Sign-in and sign-up use email/password via `AuthProvider` (`components/auth/AuthProvider.tsx`); new accounts also write a `users/{uid}` document in Firestore.
+5. **Open the app** at [http://localhost:3000](http://localhost:3000). The home page renders the Landing page. Sign-in and sign-up use email/password via `AuthProvider` (`components/auth/AuthProvider.tsx`) client-side; not wired for server middleware (session cookies) at this time.
 
 ## Dummy player data
 

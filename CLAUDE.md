@@ -18,5 +18,6 @@
 - Use icons (SVG / icon components / assets), not Unicode emoji, in UI unless the user explicitly requests emoji in that text.
 - Do not use `transform: scale()` for layout or sizing unless the user explicitly requests it (see `AGENTS.md` -- scale does not expand layout bounds and causes overlap).
 - Do not use `border-radius` unless the user explicitly requests it (see `AGENTS.md` -- use chamfered/square framing instead).
+- Reference images: layout and IA only unless the user asks for reference styling; use WCUI patterns, not foreign chrome (see `AGENTS.md`).
 - Fonts: do not use Geist; default to **Finlandica** (body/UI) and **Alumni Sans** (`h1`–`h6`) per `AGENTS.md`.
 - When removing UI, also remove related styles, imports, links, and copy keys per `AGENTS.md` (no orphaned CSS or dead references).

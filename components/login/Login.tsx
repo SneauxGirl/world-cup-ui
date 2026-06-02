@@ -2,6 +2,7 @@
 
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { userDashboard } from "@/data/dashboard-seed";
+import { RedirectIfAuthenticated } from "@/components/auth/RedirectIfAuthenticated";
 import { LoginHeroPrompt } from "@/components/auth/LoginHeroPrompt";
 import { LoginModal } from "@/components/auth/LoginModal";
 import { SignUpModal } from "@/components/auth/SignUpModal";
@@ -87,6 +88,7 @@ export function Login() {
   }, []);
 
   return (
+    <RedirectIfAuthenticated>
     <div ref={pageRef} className={styles.page}>
       <div className={styles.shell}>
         <section className={styles.heroBand} aria-label={t("login.heroRegion")}>
@@ -158,5 +160,6 @@ export function Login() {
         onRequestSignIn={openSignIn}
       />
     </div>
+    </RedirectIfAuthenticated>
   );
 }

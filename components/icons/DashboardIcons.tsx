@@ -212,6 +212,58 @@ export function IconUser(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconSun(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  );
+}
+
+export function IconMoon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z" />
+    </svg>
+  );
+}
+
+export function IconMonitor(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <rect x="2" y="3" width="20" height="14" />
+      <path d="M8 21h8M12 17v4" />
+    </svg>
+  );
+}
+
+export function IconLock(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <rect x="5" y="11" width="14" height="10" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+    </svg>
+  );
+}
+
+export function IconLogOut(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+    </svg>
+  );
+}
+
+export function IconMail(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <rect x="3" y="5" width="18" height="14" />
+      <path d="m3 7 9 6 9-6" />
+    </svg>
+  );
+}
+
 export function IconBall(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...iconProps} {...props}>

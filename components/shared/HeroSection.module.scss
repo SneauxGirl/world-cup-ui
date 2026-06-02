@@ -107,13 +107,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 0 0 auto;
-  flex-shrink: 0;
+  flex: 1 1 auto;
   min-width: min-content;
   max-width: 100%;
   gap: clamp(1.25rem, 2.5vw, 2.5rem);
   justify-content: flex-start;
   align-self: stretch;
+  min-height: 0;
   box-sizing: border-box;
 }
 
@@ -125,9 +125,14 @@
 }
 
 .heroDashboard .heroPrimary {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: flex-end;
   margin-top: 0;
   width: auto;
   max-width: 100%;
+  min-height: 0;
 }
 
 .heroTitleColumn {
@@ -171,13 +176,13 @@
 }
 
 .heroAsidePerformers {
-  flex: 0 0 auto;
-  flex-shrink: 0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
   align-self: stretch;
-  width: max-content;
-  min-width: min-content;
-  max-width: none;
-  justify-content: space-between;
+  min-height: 0;
   box-sizing: border-box;
 }
 

@@ -156,32 +156,6 @@
   .mainLayout {
     padding-bottom: 1.5rem;
   }
-
-  .areaMatches {
-    order: 3;
-    min-width: 0;
-    width: 100%;
-  }
-
-  .areaRoster {
-    order: 4;
-  }
-
-  .areaStrategy {
-    order: 5;
-  }
-
-  .areaValueTrends {
-    order: 6;
-    min-width: 0;
-    width: 100%;
-  }
-
-  .areaPlayerStats {
-    order: 7;
-    min-width: 0;
-    width: 100%;
-  }
 }
 
 @media (max-height: 520px) and (max-width: 768px) {

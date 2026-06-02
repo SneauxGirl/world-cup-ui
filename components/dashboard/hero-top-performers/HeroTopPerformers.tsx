@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { PerformerCard } from "@/components/dashboard/PerformerCard";
 import { IconChevronRight } from "@/components/icons/DashboardIcons";
 import { t } from "@/lib/i18n/t";
 import type { DashboardPerformer } from "@/data/types";
+import { HeroPerformerCard } from "./HeroPerformerCard";
 import styles from "./HeroTopPerformers.module.scss";
 
 const HERO_PERFORMER_LIMIT = 3;
@@ -39,18 +39,20 @@ export function HeroTopPerformers({
           )}
         </h2>
       </div>
-      <div className={styles.cardRow}>
-        {sortedPerformers.map((performer) => (
-          <div key={performer.id} className={styles.slot}>
-            <PerformerCard performer={performer} />
-          </div>
-        ))}
-      </div>
-      <div className={styles.foot}>
-        <Link className={styles.viewAll} href="/">
-          {t("dashboard.viewAllPlayers")}
-          <IconChevronRight className={styles.viewIcon} aria-hidden="true" />
-        </Link>
+      <div className={styles.bottomBand}>
+        <div className={styles.cardRow}>
+          {sortedPerformers.map((performer) => (
+            <div key={performer.id} className={styles.slot}>
+              <HeroPerformerCard performer={performer} />
+            </div>
+          ))}
+        </div>
+        <div className={styles.foot}>
+          <Link className={styles.editRosterLink} href="/roster">
+            {t("dashboard.editRoster")}
+            <IconChevronRight className={styles.editRosterIcon} aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </section>
   );

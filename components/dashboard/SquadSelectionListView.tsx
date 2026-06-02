@@ -1,17 +1,24 @@
 "use client";
 
-import Image from "next/image";
+import { CountryFlag } from "@/components/CountryFlag";
 import { PlayerCardTrigger } from "@/components/dashboard/player-card/PlayerCardTrigger";
 import { IconClose, IconPlus } from "@/components/icons/DashboardIcons";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import {
   squadPitchFormation,
   type SquadPitchSlot,
+  type SquadPositionCode,
 } from "@/data/squad-pitch-formation";
 import { formatInteger } from "@/lib/i18n/format";
 import { t } from "@/lib/i18n/t";
-import { getTeamJerseyPath } from "@/lib/nationalTeams";
 import styles from "./SquadSelectionListView.module.scss";
+
+const POSITION_ORDER: SquadPositionCode[] = ["GKP", "DEF", "MID", "FWD"];
+
+const slotsByPosition = POSITION_ORDER.map((position) => ({
+  position,
+  slots: squadPitchFormation.filter((slot) => slot.position === position),
+}));
 
 type Props = {
   rosterBySlot: Record<string, SquadPlayerPoolEntry>;
@@ -32,50 +39,72 @@ export function SquadSelectionListView({
       role="region"
       aria-label={t("squadSelection.listLabel")}
     >
-      <ul className={styles.rows}>
-        {squadPitchFormation.map((slot) => {
-          const player = rosterBySlot[slot.id];
+      <div className={styles.sections}>
+        {slotsByPosition.map(({ position, slots }) => {
+          const sectionId = `roster-position-${position}`;
           return (
-            <li key={slot.id}>
-              {player ? (
-                <FilledRosterRow
-                  slot={slot}
-                  player={player}
-                  onSlotSelect={onSlotSelect}
-                  onSlotClear={onSlotClear}
-                />
-              ) : (
-                <EmptyRosterRow slot={slot} onSlotSelect={onSlotSelect} />
-              )}
-            </li>
+            <section
+              key={position}
+              className={styles.section}
+              aria-labelledby={sectionId}
+            >
+              <h3 id={sectionId} className={styles.sectionTitle}>
+                {t(`squadSelection.positionGroup.${position}`)}
+              </h3>
+              <ul className={styles.rows}>
+                {slots.map((slot, index) => {
+                  const player = rosterBySlot[slot.id];
+                  const slotNumber = index + 1;
+                  return (
+                    <li key={slot.id}>
+                      {player ? (
+                        <FilledRosterRow
+                          slot={slot}
+                          slotNumber={slotNumber}
+                          player={player}
+                          onSlotSelect={onSlotSelect}
+                          onSlotClear={onSlotClear}
+                        />
+                      ) : (
+                        <EmptyRosterRow
+                          slot={slot}
+                          slotNumber={slotNumber}
+                          onSlotSelect={onSlotSelect}
+                        />
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }
 
 function EmptyRosterRow({
   slot,
+  slotNumber,
   onSlotSelect,
 }: {
   slot: SquadPitchSlot;
+  slotNumber: number;
   onSlotSelect: (slot: SquadPitchSlot) => void;
 }) {
   return (
     <article className={styles.row}>
-      <span className={styles.positionTag}>{slot.position}</span>
+      <span className={styles.numberTag} aria-hidden="true">
+        {slotNumber}.
+      </span>
       <button
         type="button"
         className={styles.emptySlotBtn}
+        aria-label={t("squadSelection.listEmptySlot", { position: slot.position })}
         onClick={() => onSlotSelect(slot)}
       >
-        <span className={styles.emptySlotIcon} aria-hidden="true">
-          <IconPlus width={14} height={14} strokeWidth={3} />
-        </span>
-        <span className={styles.emptySlotLabel}>
-          {t("squadSelection.listEmptySlot", { position: slot.position })}
-        </span>
+        <IconPlus width={16} height={16} strokeWidth={2.2} aria-hidden="true" />
       </button>
     </article>
   );
@@ -83,37 +112,35 @@ function EmptyRosterRow({
 
 function FilledRosterRow({
   slot,
+  slotNumber,
   player,
   onSlotSelect,
   onSlotClear,
 }: {
   slot: SquadPitchSlot;
+  slotNumber: number;
   player: SquadPlayerPoolEntry;
   onSlotSelect: (slot: SquadPitchSlot) => void;
   onSlotClear: (slot: SquadPitchSlot) => void;
 }) {
-  const jerseySrc = getTeamJerseyPath(player.teamCode);
-
   return (
     <article className={styles.row}>
-      <span className={styles.positionTag}>{slot.position}</span>
+      <span className={styles.numberTag} aria-hidden="true">
+        {slotNumber}.
+      </span>
 
-      <PlayerCardTrigger player={player} className={styles.avatarBtn}>
-        <span className={styles.avatar} aria-hidden="true">
-          <Image
-            src={jerseySrc}
-            alt=""
-            width={36}
-            height={36}
-            className={styles.avatarImg}
-          />
-        </span>
+      <PlayerCardTrigger player={player} className={styles.flagBtn}>
+        <CountryFlag
+          code={player.teamCode}
+          label={player.countryName}
+          className={styles.flag}
+        />
       </PlayerCardTrigger>
 
       <PlayerCardTrigger player={player} className={styles.playerMeta}>
         <p className={styles.playerLastName}>{player.lastName}</p>
         <p className={styles.playerSubline}>
-          {player.teamCode}
+          {player.countryName}
           <span aria-hidden="true"> · </span>
           {t("player.points", { pts: formatInteger(player.fantasyPoints) })}
         </p>

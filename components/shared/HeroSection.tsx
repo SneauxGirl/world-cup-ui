@@ -3,7 +3,7 @@ import { HeroCtaLiveFeed } from "@/components/dashboard/HeroCtaLiveFeed";
 import { HeroManagerStats } from "@/components/dashboard/HeroManagerStats";
 import { HeroNavMenu } from "@/components/dashboard/HeroNavMenu";
 import { t } from "@/lib/i18n/t";
-import { HeroTopPerformers } from "@/components/dashboard/HeroTopPerformers";
+import { HeroTopPerformers } from "@/components/dashboard/hero-top-performers";
 import type { DashboardPerformer, FeedItem, UserDashboard } from "@/data/types";
 import styles from "./HeroSection.module.scss";
 

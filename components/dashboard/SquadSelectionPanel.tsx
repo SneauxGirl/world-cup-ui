@@ -294,12 +294,36 @@ export function SquadSelectionPanel({
             aria-labelledby={`${panelId}-tab-list`}
             className={styles.listPanel}
           >
-            <SquadSelectionListView
-              rosterBySlot={rosterBySlot}
-              onSlotSelect={handleSlotSelect}
-              onSlotClear={handleSlotClear}
-              className={styles.listView}
-            />
+            <div
+              className={[
+                styles.listWorkspace,
+                showSidebarPicker ? styles.listWorkspaceSideBySide : styles.listWorkspaceStacked,
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              {showSidebarPicker ? (
+                <div className={styles.playerSelectionCol}>
+                  <PositionPlayerPicker layout="sidebar" {...pickerProps} />
+                </div>
+              ) : null}
+              <div className={styles.listViewCol}>
+                <SquadSelectionListView
+                  rosterBySlot={rosterBySlot}
+                  onSlotSelect={handleSlotSelect}
+                  onSlotClear={handleSlotClear}
+                  className={styles.listView}
+                />
+                {showOverlayPicker ? (
+                  <PositionPlayerPicker
+                    layout="overlay"
+                    showClose
+                    onClose={closeOverlayPicker}
+                    {...pickerProps}
+                  />
+                ) : null}
+              </div>
+            </div>
           </div>
         )}
       </div>

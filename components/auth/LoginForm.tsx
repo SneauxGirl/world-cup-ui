@@ -140,7 +140,8 @@ export function LoginForm({
   }
 
   return (
-    <div className={[styles.loginCard, className].filter(Boolean).join(" ")}>
+    <div className={styles.loginCardFrame}>
+      <div className={[styles.loginCard, className].filter(Boolean).join(" ")}>
       <h1 className={styles.title}>
         {isSignUp ? (
           <>
@@ -345,6 +346,7 @@ export function LoginForm({
           <DeadLink>{t("login.returningUserSupport")}</DeadLink>
         </p>
       </footer>
+      </div>
     </div>
   );
 }
