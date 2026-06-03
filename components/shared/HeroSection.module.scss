@@ -40,8 +40,8 @@
 
 /* Login hero: solid fill (step 1) + fades on .heroContentWrapper::after (Login.module.scss). */
 .heroLogin {
-  height: 70vh;
-  min-height: 70vh;
+  height: 100%;
+  min-height: 100%;
   max-height: none;
   aspect-ratio: auto;
   overflow: hidden;
@@ -438,10 +438,8 @@ letter-spacing: 0.05em;
 @media (max-width: 1499px) {
   .heroLogin {
     --hero-photo-max: none;
-    height: 70vh;
     max-height: none;
     aspect-ratio: auto;
-    min-height: 70vh;
     overflow: hidden;
   }
 
@@ -514,9 +512,7 @@ letter-spacing: 0.05em;
 @media (max-width: 768px) {
   .heroLogin {
     --hero-photo-max: none;
-    height: 70vh;
     max-height: none;
-    min-height: 70vh;
   }
 
   .heroLogin .heroPhoto {

@@ -20,11 +20,27 @@ type MatchStripStatus = {
   label: string;
   dateTime?: string;
   variant: "live" | "upcoming" | "finished";
+  tooltip?: string;
 };
+
+function parseLiveMinutes(clockLabel: string): number | null {
+  const match = clockLabel.match(/^(\d+)/);
+  if (!match) return null;
+  const minutes = Number(match[1]);
+  return Number.isFinite(minutes) ? minutes : null;
+}
 
 function matchStripStatus(match: DashboardMatch): MatchStripStatus {
   if (match.status === "live") {
-    return { label: match.clockLabel, variant: "live" };
+    const liveMinutes = parseLiveMinutes(match.clockLabel);
+    return {
+      label: t("todayMatches.liveStatus", { clock: match.clockLabel }),
+      variant: "live",
+      tooltip:
+        liveMinutes != null
+          ? t("todayMatches.liveMinutesTooltip", { minutes: liveMinutes })
+          : undefined,
+    };
   }
   if (match.status === "finished") {
     return { label: t("todayMatches.final"), variant: "finished" };
@@ -53,17 +69,6 @@ function StripGame({ match }: { match: DashboardMatch }) {
 
   return (
     <article className={styles.game} aria-label={matchAriaLabel(match, status)}>
-      <p
-        className={[
-          styles.gameStatus,
-          status.variant === "live" && styles.gameStatusLive,
-          status.variant === "finished" && styles.gameStatusFinished,
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      >
-        <time dateTime={status.dateTime}>{status.label}</time>
-      </p>
       <ul className={styles.teamList}>
         <li className={styles.teamRow}>
           <CountryFlag code={match.home.code} label={match.home.name} className={styles.teamFlag} />
@@ -80,6 +85,18 @@ function StripGame({ match }: { match: DashboardMatch }) {
           </span>
         </li>
       </ul>
+      <p
+        className={[
+          styles.gameStatus,
+          status.variant === "live" && styles.gameStatusLive,
+          status.variant === "finished" && styles.gameStatusFinished,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        title={status.tooltip}
+      >
+        <time dateTime={status.dateTime}>{status.label}</time>
+      </p>
     </article>
   );
 }

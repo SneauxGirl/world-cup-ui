@@ -9,10 +9,19 @@
   width: min(100%, var(--login-hero-card-max, 22rem));
   flex-shrink: 0;
   box-sizing: border-box;
-  box-shadow:
-    0 0 48px color-mix(in oklab, var(--wcui-aqua-mint) 22%, transparent),
-    0 0 96px color-mix(in oklab, var(--wcui-primary-blue) 14%, transparent);
   @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
+
+  @media (max-width: 900px) {
+    width: min(100%, 32rem);
+  }
+}
+
+.promptLead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: var(--login-hero-card-gap, 1.15rem);
 }
 
 .promptFrame .promptCard {
@@ -51,9 +60,11 @@
 }
 
 .promptFrame .promptTitle {
-  width: 100%;
+  align-self: flex-start;
+  width: auto;
   max-width: 100%;
-  text-align: center;
+  margin: 0;
+  text-align: start;
   text-wrap: balance;
   font-size: var(--login-hero-title-size, clamp(1.35rem, 3vw, 1.75rem));
 }
@@ -118,5 +129,54 @@
   &:focus-visible {
     color: var(--wcui-white-text);
     @include glow.login-sign-up-glow-active;
+  }
+}
+
+/* ≤900px: hero wordmark + stacked card (title, Sign in | Sign up) */
+@media (max-width: 900px) {
+  .promptFrame .promptCard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .brandLogo {
+    display: none;
+  }
+
+  .promptLead {
+    align-items: center;
+    gap: clamp(0.5rem, 2vw, 0.75rem);
+  }
+
+  .promptFrame .promptLead .promptTitle {
+    align-self: center;
+    text-align: center;
+    text-wrap: wrap;
+    font-family: var(--font-finlandica), sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.35;
+  }
+
+  .actions {
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    gap: clamp(0.4rem, 1.5vw, 0.55rem);
+  }
+
+  .signInTrim,
+  .signUpTrim {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+  }
+
+  .signInTrim:has(button:hover),
+  .signInTrim:has(button:focus-visible),
+  .signUpTrim:has(button:hover),
+  .signUpTrim:has(button:focus-visible) {
+    margin-bottom: 0;
   }
 }

@@ -14,22 +14,22 @@ export function LoginHeroPrompt({ onSignIn, onSignUp }: Props) {
   return (
     <div className={styles.promptFrame}>
       <div className={[formStyles.loginCard, styles.promptCard].join(" ")}>
-        <div className={styles.brandLogo}>
-          <Image
-            src="/wcc-words-logo.png"
-            alt={t("app.worldCupChallenge")}
-            width={512}
-            height={256}
-            className={styles.brandLogoImg}
-            priority
-            unoptimized
-          />
+        <div className={styles.promptLead}>
+          <div className={styles.brandLogo}>
+            <Image
+              src="/wcc-words-logo.png"
+              alt={t("app.worldCupChallenge")}
+              width={512}
+              height={256}
+              className={styles.brandLogoImg}
+              priority
+              unoptimized
+            />
+          </div>
+          <h1 className={[formStyles.title, styles.promptTitle].join(" ")}>
+            {t("login.titleLine1")} {t("login.titleLine2")}
+          </h1>
         </div>
-        <h1 className={[formStyles.title, styles.promptTitle].join(" ")}>
-          {t("login.titleLine1")}
-          <br />
-          {t("login.titleLine2")}
-        </h1>
 
         <div className={styles.actions}>
           <div className={[formStyles.chamferTrim, styles.signInTrim].join(" ")}>
