@@ -7,12 +7,12 @@
   --main-gutter: var(--content-gutter);
   --footer-gutter: var(--content-gutter);
   --header-gutter: var(--content-gutter);
-  --hero-photo-max: 450px;
+  --hero-photo-max: 400px;
   --hero-photo-aspect: 2000 / 600;
   /* Fallback until ResizeObserver sets --hero-photo-rendered-height. */
   --hero-band-height: min(
-    var(--hero-photo-max),
-    100vw * 600 / 2000
+    clamp(14rem, 32vw, 22rem),
+    var(--hero-photo-max)
   );
   --hero-photo-rendered-height: var(--hero-band-height);
   --hero-overlay-height: var(--hero-photo-rendered-height);
@@ -23,13 +23,17 @@
   /* TL+BR chamfer for login content panels (matches story promo cards). */
   --login-card-chamfer: 12px;
   /* Login hero band height — drives wrapper, card offset, and section overlap. */
-  --login-hero-band-height: 80vh;
+  --login-hero-band-height: 60vh;
   /* Login hero mask: solid fill + gradient fades (ITV-style bleed into art + body). */
   --login-hero-fill: var(--wcui-background-black);
   --login-hero-fade-x-min: 1375px;
   --login-hero-fade-x-full: 1735px;
   --login-hero-fade-x-shift: 3%;
-  --login-hero-fade-y-start: 42%;
+  --login-hero-fade-y-start: 58%;
+  --login-hero-fade-y-mid: 22%;
+  --login-hero-fade-y-strong: 52%;
+  --login-hero-card-max: min(100%, 32rem);
+  --login-hero-photo-focus-x: 60%;
   display: flex;
   flex-direction: column;
   color: var(--wcui-white-text);
@@ -45,6 +49,7 @@
   background: var(--wcui-background-black);
 }
 
+/* --- heroBand --- */
 .heroBand {
   display: flex;
   flex-direction: column;
@@ -53,15 +58,6 @@
   overflow: visible;
   box-sizing: border-box;
   isolation: isolate;
-}
-
-/* Screen-edge gutter around section boxes; never removed at 1440+. */
-.pageGutter {
-  @include column.page-gutter;
-}
-
-.pageColumn {
-  @include column.page-column;
 }
 
 .heroHeader {
@@ -88,26 +84,6 @@
   background: var(--login-hero-fill);
 }
 
-/* ≤900px only: wordmark top-left of hero (hidden on wider viewports). */
-.heroBrand {
-  display: none;
-  position: absolute;
-  z-index: 4;
-  top: var(--content-gutter);
-  left: var(--content-gutter);
-  pointer-events: none;
-}
-
-.heroBrandImg {
-  display: block;
-  width: auto;
-  max-width: clamp(8rem, 32vw, 14rem);
-  height: auto;
-  object-fit: contain;
-  object-position: left top;
-}
-
-/* Step 2: bottom fade always; L→R bleed from 1375px up. */
 .heroContentWrapper::after {
   content: "";
   position: absolute;
@@ -118,13 +94,168 @@
     180deg,
     transparent 0%,
     transparent var(--login-hero-fade-y-start),
-    color-mix(in oklab, var(--login-hero-fill) 35%, transparent) 58%,
-    color-mix(in oklab, var(--login-hero-fill) 78%, transparent) 72%,
+    color-mix(in oklab, var(--login-hero-fill) var(--login-hero-fade-y-mid), transparent) 78%,
+    color-mix(in oklab, var(--login-hero-fill) var(--login-hero-fade-y-strong), transparent) 90%,
     var(--login-hero-fill) 100%
   );
 }
 
-/* 1375–1734px: softer multi-stop horizontal fade (pulls left as width increases). */
+.heroContentShell {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.heroContentShell .pageGutter,
+.heroContentShell .pageColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 100%;
+  width: 100%;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  padding-top: 0;
+  padding-bottom: clamp(
+    0.25rem,
+    calc(0.25rem + (100vw - 430px) * 0.0055),
+    2.25rem
+  );
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.heroArtWrap {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroPhoto {
+  width: 100%;
+  height: 100%;
+}
+
+/* Steps section — no overlap on narrow hero. */
+.heroBand + .pageGutter {
+  margin-top: 0;
+  position: relative;
+  z-index: 4;
+}
+
+/* Screen-edge gutter around section boxes; never removed at 1440+. */
+.pageGutter {
+  @include column.page-gutter;
+}
+
+.pageColumn {
+  @include column.page-column;
+}
+
+/* --- Media queries (mobile-first, min-width ascending) --- */
+
+@media (min-width: 430px) {
+  .page {
+    --login-hero-photo-focus-x: initial;
+  }
+}
+
+@media (min-width: 900px) {
+  .page {
+    --login-hero-card-max: 22rem;
+    --login-hero-card-padding: 1.65rem;
+    --login-hero-card-gap: 1.15rem;
+    --login-hero-chamfer: 30px;
+    --login-hero-title-size: clamp(1.35rem, 3vw, 1.75rem);
+  }
+
+  .heroContent {
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 0;
+    padding-bottom: var(--content-gutter);
+  }
+}
+
+/* 60vh band: nudge centered card down (tune --login-hero-card-mid-push, e.g. 20vh). */
+@media (min-width: 900px) and (max-width: 1149px) {
+  .page {
+    --login-hero-card-mid-push: 20vh;
+  }
+
+  .heroContent > :first-child {
+    margin-top: var(--login-hero-card-mid-push);
+  }
+}
+
+@media (min-width: 1150px) {
+  .page {
+    --login-hero-band-height: 80vh;
+    --login-hero-fade-y-start: 42%;
+  }
+
+  .heroContentWrapper::after {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent var(--login-hero-fade-y-start),
+      color-mix(in oklab, var(--login-hero-fill) 35%, transparent) 58%,
+      color-mix(in oklab, var(--login-hero-fill) 78%, transparent) 72%,
+      var(--login-hero-fill) 100%
+    );
+  }
+
+  .heroBand + .pageGutter {
+    margin-top: -22vh;
+  }
+}
+
+@media (min-width: 1300px) {
+  .heroContent {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: calc(var(--login-hero-band-height) * var(--login-hero-card-top-start));
+    padding-inline-start: 13.333%;
+    padding-bottom: var(--content-gutter);
+  }
+}
+
+@media (min-width: 1500px) {
+  .page {
+    --hero-photo-max: 450px;
+    --hero-band-height: min(
+      var(--hero-photo-max),
+      100vw * 600 / 2000
+    );
+  }
+}
+
+/* 1375–1734px: softer multi-stop horizontal fade. */
 @media (min-width: 1375px) and (max-width: 1734px) {
   .page {
     --login-hero-fade-x-progress: clamp(
@@ -161,7 +292,43 @@
   }
 }
 
-/* 1735px+: original horizontal mask (fixed stops). */
+/* ≤768px: shorter band, full-width card; card hangs below band and pushes steps. */
+@media (max-width: 768px) {
+  .page {
+    --login-hero-band-height: 42vh;
+    --login-hero-card-max: 100%;
+    /* How far the card sits below the hero band (pushes steps by the same amount). */
+    --login-hero-card-hang: 2.5rem;
+  }
+
+  .heroContentWrapper,
+  .heroContentShell,
+  .heroContent {
+    overflow: visible;
+  }
+
+  .heroContentShell {
+    z-index: 5;
+  }
+
+  .heroContent {
+    align-items: flex-end;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .heroContent > :first-child {
+    margin-top: 0;
+    margin-bottom: calc(-1 * var(--login-hero-card-hang));
+  }
+
+  .heroBand + .pageGutter {
+    margin-top: var(--login-hero-card-hang);
+  }
+}
+
+/* 1535px+: fixed horizontal mask stops. */
 @media (min-width: 1535px) {
   .heroContentWrapper::after {
     background:
@@ -181,180 +348,5 @@
         color-mix(in oklab, var(--login-hero-fill) 55%, transparent) calc(50% - var(--login-hero-fade-x-shift)),
         transparent calc(58% - var(--login-hero-fade-x-shift))
       );
-  }
-}
-
-/* Login establishes hero height; art wrap slides up underneath (see .heroArtWrap). */
-.heroContentShell {
-  display: flex;
-  flex-direction: row;
-  flex-shrink: 0;
-  align-items: stretch;
-  justify-content: center;
-  width: 100%;
-  min-height: 0;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  box-sizing: border-box;
-  overflow: visible;
-}
-
-.heroContentShell .pageGutter,
-.heroContentShell .pageColumn {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-height: 100%;
-  width: 100%;
-  overflow: visible;
-  box-sizing: border-box;
-}
-
-.heroContent {
-  display: flex;
-  flex-direction: row;
-  flex: 1 1 auto;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  padding-top: calc(var(--login-hero-band-height) * var(--login-hero-card-top-start));
-  padding-bottom: var(--content-gutter);
-  box-sizing: border-box;
-  overflow: visible;
-}
-
-.heroArtWrap {
-  flex: 0 0 auto;
-  width: 100%;
-  height: 100%;
-  margin-top: 0;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.heroPhoto {
-  width: 100%;
-  height: 100%;
-}
-
-.heroBand + .pageGutter {
-  margin-top: calc(var(--login-hero-band-height) * -0.1875);
-  position: relative;
-  z-index: 4;
-}
-
-@media (max-width: 1150px) {
-  .page {
-    --login-hero-band-height: 60vh;
-    /* Lighter than desktop, but still a visible bottom veil into the body. */
-    --login-hero-fade-y-start: 58%;
-    --login-hero-fade-y-mid: 22%;
-    --login-hero-fade-y-strong: 52%;
-  }
-
-  .heroContentWrapper::after {
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      transparent var(--login-hero-fade-y-start),
-      color-mix(in oklab, var(--login-hero-fill) var(--login-hero-fade-y-mid), transparent) 78%,
-      color-mix(in oklab, var(--login-hero-fill) var(--login-hero-fade-y-strong), transparent) 90%,
-      var(--login-hero-fill) 100%
-    );
-  }
-
-  .heroBand + .pageGutter {
-    margin-top: 0;
-  }
-}
-
-/* ≤900px: card tucks toward hero bottom and clears player faces. */
-@media (max-width: 900px) {
-  .heroBrand {
-    display: block;
-  }
-
-  .heroContent {
-    align-items: flex-end;
-    justify-content: center;
-    padding-top: 0;
-    /* Wider = more inset from bottom; narrows toward flush bottom (ITV tuck). */
-    padding-bottom: clamp(
-      0.25rem,
-      calc(0.25rem + (100vw - 430px) * 0.0055),
-      2.25rem
-    );
-  }
-}
-
-/* Match HeroSection.module.scss breakpoints: 1499px, 1299px, 768px; min 1300px for card inset. */
-@media (max-width: 1499px) {
-  .page {
-    --hero-photo-max: 400px;
-    --hero-band-height: min(
-      clamp(14rem, 32vw, 22rem),
-      var(--hero-photo-max)
-    );
-  }
-}
-
-/* Below 1300px: card scales with hero height; horizontal inset removed. */
-@media (max-width: 1299px) {
-  .page {
-    --login-hero-card-max: clamp(
-      11rem,
-      var(--hero-photo-rendered-height, var(--hero-band-height, 22rem)),
-      22rem
-    );
-    --login-hero-card-padding: clamp(
-      0.625rem,
-      calc(var(--hero-photo-rendered-height, var(--hero-band-height, 22rem)) * 0.075),
-      1.65rem
-    );
-    --login-hero-card-gap: clamp(0.5rem, 2vw, 1.15rem);
-    --login-hero-logo-max-width: clamp(
-      6.5rem,
-      calc(var(--hero-photo-rendered-height, var(--hero-band-height, 22rem)) * 0.9),
-      100%
-    );
-    --login-hero-chamfer: clamp(
-      10px,
-      calc(var(--hero-photo-rendered-height, var(--hero-band-height, 22rem)) * 0.085),
-      30px
-    );
-    --login-hero-title-size: clamp(
-      1.15rem,
-      calc(var(--hero-photo-rendered-height, var(--hero-band-height, 22rem)) * 0.0625),
-      1.75rem
-    );
-  }
-
-  .heroContent {
-    padding-inline-start: 0;
-  }
-}
-
-/* After 1299 token block — horizontal card must not inherit tiny hero-height scaling. */
-@media (max-width: 900px) {
-  .page {
-    --login-hero-card-max: min(100%, 32rem);
-    --login-hero-logo-max-width: 9.5rem;
-  }
-}
-
-@media (max-width: 430px) {
-  .page {
-    --login-hero-photo-focus-x: 60%;
-  }
-}
-
-@media (min-width: 1300px) {
-  .heroContent {
-    padding-inline-start: 13.333%;
   }
 }

@@ -1,6 +1,9 @@
 @use "../../styles/wcui-frame" as frame;
 
 .section {
+  --login-tab-active-chamfer: 12px;
+  --login-tab-inner-chamfer: calc(var(--login-tab-active-chamfer) - 1px);
+  --login-tab-strip-chamfer: var(--login-tab-active-chamfer);
   width: 100%;
   flex-shrink: 0;
   box-sizing: border-box;
@@ -95,8 +98,8 @@
 
 .tabStrip {
   --login-tab-strip-fill: color-mix(in oklab, var(--wcui-white-text) 7%, transparent);
-  --wcui-chamfer-tl: var(--login-hero-chamfer, 14px);
-  --wcui-chamfer-br: var(--login-hero-chamfer, 14px);
+  --wcui-chamfer-tl: var(--login-tab-strip-chamfer);
+  --wcui-chamfer-br: var(--login-tab-strip-chamfer);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -121,12 +124,6 @@
   overflow: hidden;
 }
 
-.tabCell_games,
-.tabCell_bracket {
-  --login-tab-active-chamfer: 12px;
-  --login-tab-inner-chamfer: calc(var(--login-tab-active-chamfer) - 1px);
-}
-
 /* Back layer (cell): outer chamfer always on Games (TL) and Bracket (BR). */
 .tabCell.tabCell_games {
   --login-tab-chamfer: var(--login-tab-active-chamfer);
@@ -148,12 +145,14 @@
 .tabCell.tabCell_games:has(.tab:focus),
 .tabCell.tabCell_games:has(.tab:focus-visible) {
   background: var(--wcui-aqua-mint);
+  @include login-tab-clip-tl;
 }
 
 .tabCell.tabCell_bracket:has(.tab:hover),
 .tabCell.tabCell_bracket:has(.tab:focus),
 .tabCell.tabCell_bracket:has(.tab:focus-visible) {
   background: var(--wcui-aqua-mint);
+  @include login-tab-clip-br;
 }
 
 .tab {

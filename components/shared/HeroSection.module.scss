@@ -516,7 +516,8 @@ letter-spacing: 0.05em;
   }
 
   .heroLogin .heroPhoto {
-    object-position: right top;
+    object-fit: contain;
+    object-position: top center;
   }
 
   .heroDashboard,

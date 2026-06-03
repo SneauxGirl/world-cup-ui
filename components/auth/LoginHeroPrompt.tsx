@@ -17,6 +17,16 @@ export function LoginHeroPrompt({ onSignIn, onSignUp }: Props) {
         <div className={styles.promptLead}>
           <div className={styles.brandLogo}>
             <Image
+              src="/wcc-logo-white.png"
+              alt=""
+              width={512}
+              height={512}
+              className={styles.brandLogoMarkNarrow}
+              priority
+              unoptimized
+              aria-hidden
+            />
+            <Image
               src="/wcc-words-logo.png"
               alt={t("app.worldCupChallenge")}
               width={512}

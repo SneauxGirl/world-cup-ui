@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { userDashboard } from "@/data/dashboard-seed";
 import { RedirectIfAuthenticated } from "@/components/auth/RedirectIfAuthenticated";
@@ -102,17 +101,6 @@ export function Login() {
             </div>
           </div>
           <div className={styles.heroContentWrapper}>
-            <div className={styles.heroBrand} aria-hidden="true">
-              <Image
-                src="/wcc-words-logo.png"
-                alt=""
-                width={512}
-                height={256}
-                className={styles.heroBrandImg}
-                priority
-                unoptimized
-              />
-            </div>
             <div ref={heroContentShellRef} className={styles.heroContentShell}>
               <div className={styles.pageGutter}>
                 <div className={styles.pageColumn}>

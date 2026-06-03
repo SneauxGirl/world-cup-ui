@@ -10,24 +10,22 @@
   flex-shrink: 0;
   box-sizing: border-box;
   @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
-
-  @media (max-width: 900px) {
-    width: min(100%, 32rem);
-  }
 }
 
 .promptLead {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
-  gap: var(--login-hero-card-gap, 1.15rem);
+  gap: clamp(0.5rem, 2vw, 0.75rem);
 }
 
 .promptFrame .promptCard {
   --login-chamfer: var(--login-hero-chamfer, 30px);
   --wcui-chamfer-tl: var(--login-chamfer);
   --wcui-chamfer-br: var(--login-chamfer);
+  flex-direction: column;
+  align-items: stretch;
   width: 100%;
   max-width: none;
   margin-inline: 0;
@@ -43,49 +41,97 @@
 }
 
 .brandLogo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
+  display: none;
+}
+
+.brandLogoMarkNarrow {
+  display: none;
 }
 
 .brandLogoImg {
   display: block;
   width: 100%;
-  max-width: var(--login-hero-logo-max-width, 100%);
+  max-width: 100%;
   height: auto;
   object-fit: contain;
-  object-position: left center;
+  object-position: center;
 }
 
-.promptFrame .promptTitle {
-  align-self: flex-start;
-  width: auto;
+.promptFrame .promptLead .promptTitle {
+  align-self: center;
+  width: 100%;
   max-width: 100%;
   margin: 0;
-  text-align: start;
-  text-wrap: balance;
-  font-size: var(--login-hero-title-size, clamp(1.35rem, 3vw, 1.75rem));
+  text-align: center;
+  text-wrap: wrap;
+  font-family: var(--font-alumni-sans), sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 
 .actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: stretch;
   width: 100%;
   gap: clamp(0.4rem, 1.5vw, 0.55rem);
 }
 
+@media (max-width: 900px) {
+  .promptLead {
+    position: relative;
+  }
+
+  .brandLogo {
+    display: flex;
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    align-items: center;
+    width: auto;
+    pointer-events: none;
+  }
+
+  .brandLogoMarkNarrow {
+    display: block;
+    width: auto;
+    max-width: 6.75rem;
+    height: auto;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .brandLogoImg {
+    display: none;
+  }
+
+  .promptFrame .promptLead .promptTitle {
+    padding-inline-start: 4.25rem;
+  }
+
+  .signInTrim button,
+  .signUpTrim button {
+    font-size: 1.1rem;
+  }
+}
+
 /* Sign in / Sign up — aqua chamfer frame at rest (matches pair on hero). */
 .signInTrim,
 .signUpTrim {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
   @include frame.wcui-chamfer-frame-tl-br(var(--wcui-aqua-mint));
 
   &:has(button:hover),
   &:has(button:focus-visible) {
     padding: 2px;
-    margin-bottom: -2px;
+    /* Absorb 1px → 2px trim ring so the actions row does not shift. */
+    margin: -1px;
   }
 
   button:focus-visible {
@@ -132,51 +178,49 @@
   }
 }
 
-/* ≤900px: hero wordmark + stacked card (title, Sign in | Sign up) */
-@media (max-width: 900px) {
-  .promptFrame .promptCard {
-    flex-direction: column;
-    align-items: stretch;
+/* 901px+: logo in card, vertical Sign in / Sign up. */
+@media (min-width: 901px) {
+  .promptLead {
+    gap: var(--login-hero-card-gap, 1.15rem);
   }
 
   .brandLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: static;
+    pointer-events: auto;
+  }
+
+  .brandLogoMarkNarrow {
     display: none;
   }
 
-  .promptLead {
-    align-items: center;
-    gap: clamp(0.5rem, 2vw, 0.75rem);
+  .brandLogoImg {
+    display: block;
   }
 
   .promptFrame .promptLead .promptTitle {
-    align-self: center;
-    text-align: center;
-    text-wrap: wrap;
-    font-family: var(--font-finlandica), sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: 1.35;
+    text-wrap: balance;
+    font-family: var(--font-alumni-sans), sans-serif;
+    font-size: var(--login-hero-title-size, clamp(1.35rem, 3vw, 1.75rem));
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+    text-transform: none;
+    padding-inline-start: 0;
   }
 
   .actions {
-    flex-direction: row;
-    align-items: stretch;
-    width: 100%;
+    flex-direction: column;
     gap: clamp(0.4rem, 1.5vw, 0.55rem);
   }
 
   .signInTrim,
   .signUpTrim {
-    flex: 1 1 0;
-    min-width: 0;
-    width: auto;
-  }
-
-  .signInTrim:has(button:hover),
-  .signInTrim:has(button:focus-visible),
-  .signUpTrim:has(button:hover),
-  .signUpTrim:has(button:focus-visible) {
-    margin-bottom: 0;
+    flex: none;
+    width: 100%;
   }
 }

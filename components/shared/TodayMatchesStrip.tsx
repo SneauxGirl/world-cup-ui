@@ -56,31 +56,62 @@ function matchStripStatus(match: DashboardMatch): MatchStripStatus {
 }
 
 function matchAriaLabel(match: DashboardMatch, status: MatchStripStatus): string {
-  const scorePart =
-    match.status === "upcoming"
-      ? ""
-      : `, ${match.homeScore}–${match.awayScore}`;
-  return `${match.home.name} vs ${match.away.name}, ${status.label}${scorePart}`;
+  if (match.status === "live") {
+    const liveMinutes = parseLiveMinutes(match.clockLabel);
+    if (liveMinutes != null) {
+      return t("todayMatches.matchAriaLive", {
+        home: match.home.name,
+        away: match.away.name,
+        homeScore: match.homeScore,
+        awayScore: match.awayScore,
+        minutes: liveMinutes,
+      });
+    }
+    return t("todayMatches.matchAriaLiveClock", {
+      home: match.home.name,
+      away: match.away.name,
+      homeScore: match.homeScore,
+      awayScore: match.awayScore,
+      clock: match.clockLabel,
+    });
+  }
+  if (match.status === "finished") {
+    return t("todayMatches.matchAriaFinished", {
+      home: match.home.name,
+      away: match.away.name,
+      homeScore: match.homeScore,
+      awayScore: match.awayScore,
+    });
+  }
+  const kickoff =
+    status.dateTime != null ? formatKickoffTime(status.dateTime) : status.label;
+  return t("todayMatches.matchAriaUpcoming", {
+    home: match.home.name,
+    away: match.away.name,
+    kickoff,
+  });
 }
 
 function StripGame({ match }: { match: DashboardMatch }) {
   const status = matchStripStatus(match);
   const showScores = match.status !== "upcoming";
 
+  const matchLabel = matchAriaLabel(match, status);
+
   return (
-    <article className={styles.game} aria-label={matchAriaLabel(match, status)}>
-      <ul className={styles.teamList}>
+    <article className={styles.game} aria-label={matchLabel}>
+      <ul className={styles.teamList} aria-hidden="true">
         <li className={styles.teamRow}>
-          <CountryFlag code={match.home.code} label={match.home.name} className={styles.teamFlag} />
+          <CountryFlag code={match.home.code} className={styles.teamFlag} />
           <span className={styles.teamCode}>{match.home.code}</span>
-          <span className={styles.teamScore} aria-label={t("todayMatches.homeScore")}>
+          <span className={styles.teamScore}>
             {showScores ? match.homeScore : "–"}
           </span>
         </li>
         <li className={styles.teamRow}>
-          <CountryFlag code={match.away.code} label={match.away.name} className={styles.teamFlag} />
+          <CountryFlag code={match.away.code} className={styles.teamFlag} />
           <span className={styles.teamCode}>{match.away.code}</span>
-          <span className={styles.teamScore} aria-label={t("todayMatches.awayScore")}>
+          <span className={styles.teamScore}>
             {showScores ? match.awayScore : "–"}
           </span>
         </li>
@@ -93,6 +124,7 @@ function StripGame({ match }: { match: DashboardMatch }) {
         ]
           .filter(Boolean)
           .join(" ")}
+        aria-hidden="true"
         title={status.tooltip}
       >
         <time dateTime={status.dateTime}>{status.label}</time>
@@ -102,9 +134,12 @@ function StripGame({ match }: { match: DashboardMatch }) {
 }
 
 function DateLabel({ dateId }: { dateId: string }) {
+  const dateLabel = formatTodayStripDateLabel(dateId);
   return (
-    <p className={styles.dateLabel}>
-      <time dateTime={dateId}>{formatTodayStripDateLabel(dateId)}</time>
+    <p className={styles.dateLabel} aria-label={t("todayMatches.dateAria", { date: dateLabel })}>
+      <time dateTime={dateId} aria-hidden="true">
+        {dateLabel}
+      </time>
     </p>
   );
 }

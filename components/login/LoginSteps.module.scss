@@ -3,6 +3,22 @@
 .section {
   --login-steps-gap: 40px;
   --login-steps-chamfer: 24px;
+  /* Chamfer trim: teal top → border blue bottom, slight rake (steps only). */
+  --login-steps-frame-trim: linear-gradient(
+    168deg,
+    var(--wcui-aqua-mint) 0%,
+    color-mix(in oklab, var(--wcui-aqua-mint) 70%, var(--wcui-border-blue)) 30%,
+    color-mix(in oklab, var(--wcui-aqua-mint) 25%, var(--wcui-border-blue)) 55%,
+    var(--wcui-border-blue) 85%,
+    color-mix(in oklab, var(--wcui-aqua-mint) 28%, var(--wcui-border-blue)) 100%
+  );
+  --login-steps-frame-trim-hover: linear-gradient(
+    168deg,
+    var(--wcui-aqua-mint) 0%,
+    color-mix(in oklab, var(--wcui-aqua-mint) 78%, var(--wcui-border-blue)) 35%,
+    color-mix(in oklab, var(--wcui-aqua-mint) 45%, var(--wcui-border-blue)) 65%,
+    color-mix(in oklab, var(--wcui-aqua-mint) 30%, var(--wcui-border-blue)) 100%
+  );
   flex-shrink: 0;
   width: 100%;
   background: transparent;
@@ -54,7 +70,7 @@
 
   &:hover .cardFrame,
   &:focus-visible .cardFrame {
-    background: var(--wcui-aqua-mint);
+    background: var(--login-steps-frame-trim-hover);
   }
 
   &:focus-visible {
@@ -69,9 +85,9 @@
   height: 100%;
   padding: 1px;
   box-sizing: border-box;
-  background: var(--wcui-border-blue);
-  transition: background-color 160ms ease;
-  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
+  background: var(--login-steps-frame-trim);
+  transition: background 160ms ease;
+  @include frame.wcui-chamfer-frame-tl-br(var(--login-steps-frame-trim));
 }
 
 .cardInner {
