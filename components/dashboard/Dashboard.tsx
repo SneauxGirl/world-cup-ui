@@ -16,91 +16,25 @@ import { useIsMobile } from "@/hooks/useMediaQuery";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import { PlayerStatsSection } from "@/components/dashboard/player-stats/PlayerStatsSection";
 import { OverUnderSection } from "@/components/dashboard/value-trends/OverUnderSection";
-import { squadPlayerPool, type SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import { getTotalFantasyPoints } from "@/lib/player-fantasy/profiles";
-import { getTemplateForPlayer } from "@/lib/player-fantasy/buildTemplate";
 import {
-  getStripLastGameVsAverageDelta,
-  getStripVolatilityRange,
-} from "@/lib/value-trends/compute";
+  buildTopPerformers,
+  isGlobalTopPerformersMode,
+} from "@/lib/player-fantasy/topPerformers";
 import { t } from "@/lib/i18n/t";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import styles from "./Dashboard.module.scss";
-
-type TrendKind = "riser" | "faller" | "volatile";
-
-function pickRandom<T>(items: T[]): T | null {
-  if (items.length === 0) return null;
-  const index = Math.floor(Math.random() * items.length);
-  return items[index] ?? null;
-}
 
 export function Dashboard() {
   const logout = useLogout();
   const isMobile = useIsMobile();
   const [logoutOpen, setLogoutOpen] = useState(false);
   const { rosterBySlot, rosterCount, loading: rosterLoading } = useRoster();
-  const squadById = useMemo(
-    () => new Map(squadPlayerPool.map((player) => [player.id, player])),
-    [],
+  const performers = useMemo(
+    () => buildTopPerformers(Object.values(rosterBySlot)),
+    [rosterBySlot],
   );
-
-  const performers = useMemo(() => {
-    // Rule: roster size 0-2 uses global; 3+ uses roster only.
-    const sourcePlayers: SquadPlayerPoolEntry[] =
-      rosterCount <= 2 ? squadPlayerPool : Object.values(rosterBySlot);
-
-    const scored = sourcePlayers
-      .map((player) => {
-        const template = getTemplateForPlayer(player.id, player.position);
-        if (!template) return null;
-        return {
-          player,
-          delta: getStripLastGameVsAverageDelta(template),
-          range: getStripVolatilityRange(template),
-        };
-      })
-      .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
-
-    const selectedIds = new Set<string>();
-    const kinds: TrendKind[] = ["riser", "faller", "volatile"];
-
-    return kinds
-      .map((kind) => {
-        const available = scored.filter((entry) => !selectedIds.has(entry.player.id));
-        const pool = available.length > 0 ? available : scored;
-        if (pool.length === 0) return null;
-
-        let bestValue: number;
-        let tied: typeof pool;
-        if (kind === "riser") {
-          bestValue = Math.max(...pool.map((entry) => entry.delta));
-          tied = pool.filter((entry) => entry.delta === bestValue);
-        } else if (kind === "faller") {
-          bestValue = Math.min(...pool.map((entry) => entry.delta));
-          tied = pool.filter((entry) => entry.delta === bestValue);
-        } else {
-          bestValue = Math.max(...pool.map((entry) => entry.range));
-          tied = pool.filter((entry) => entry.range === bestValue);
-        }
-
-        const chosen = pickRandom(tied);
-        if (!chosen) return null;
-        selectedIds.add(chosen.player.id);
-        const player = squadById.get(chosen.player.id);
-        if (!player) return null;
-
-        return {
-          id: player.id,
-          name: `${player.firstName} ${player.lastName}`.trim(),
-          teamCode: player.teamCode,
-          position: player.position,
-          points: getTotalFantasyPoints(player.id),
-          trendKind: kind,
-        };
-      })
-      .filter((item): item is NonNullable<typeof item> => Boolean(item));
-  }, [rosterBySlot, rosterCount, squadById]);
+  const globalTopPerformers = isGlobalTopPerformersMode(rosterCount);
 
   const dashboardUser = useMemo(() => {
     if (rosterLoading) return userDashboard;
@@ -181,6 +115,7 @@ export function Dashboard() {
               feedItems={feedItems}
               showLiveFeed={false}
               performers={performers}
+              globalTopPerformers={globalTopPerformers}
               inContentColumn
               showEditRosterCta={false}
               showEditRosterUnderPhotosLink

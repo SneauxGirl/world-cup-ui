@@ -36,7 +36,6 @@ export type DashboardPerformer = {
   teamCode: FifaCountryCode;
   position: string;
   points: number;
-  trendKind?: "riser" | "faller" | "volatile";
 };
 
 export type FeedItem = {

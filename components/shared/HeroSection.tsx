@@ -16,6 +16,8 @@ type Props = {
   /** Login page: stadium art only (no welcome, feed, or CTA). */
   loginHero?: boolean;
   performers?: DashboardPerformer[];
+  /** When true, hero performer heading uses global pool copy. */
+  globalTopPerformers?: boolean;
   /** Dashboard/roster: parent supplies pageGutter + pageColumn (no inner max-width pad). */
   inContentColumn?: boolean;
   /** When false, hides the Edit Roster CTA in hero copy column. */
@@ -31,6 +33,7 @@ export function HeroSection({
   showLiveFeed = true,
   loginHero = false,
   performers = [],
+  globalTopPerformers = false,
   inContentColumn = false,
   showEditRosterCta = true,
   showEditRosterUnderPhotosLink = false,
@@ -116,6 +119,7 @@ export function HeroSection({
                 {hasPerformers ? (
                   <HeroTopPerformers
                     performers={performers}
+                    globalTopPerformers={globalTopPerformers}
                     className={styles.heroAsidePerformers}
                   />
                 ) : (

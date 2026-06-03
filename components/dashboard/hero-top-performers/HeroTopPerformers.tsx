@@ -7,17 +7,37 @@ const HERO_PERFORMER_LIMIT = 3;
 
 type Props = {
   performers: DashboardPerformer[];
+  /** When true, heading uses global pool copy (fewer than 3 roster picks). */
+  globalTopPerformers?: boolean;
   className?: string;
 };
 
-export function HeroTopPerformers({ performers, className }: Props) {
-  const topTrendPerformers = performers.slice(0, HERO_PERFORMER_LIMIT);
-  const performerCount = topTrendPerformers.length;
+export function HeroTopPerformers({
+  performers,
+  globalTopPerformers = false,
+  className,
+}: Props) {
+  const sortedPerformers = [...performers]
+    .sort((a, b) => b.points - a.points)
+    .slice(0, HERO_PERFORMER_LIMIT);
+  const performerCount = sortedPerformers.length;
 
   if (performerCount === 0) return null;
 
   return (
-    <section className={[styles.section, className].filter(Boolean).join(" ")} aria-label={t("valueTrends.highlightsLabel")}>
+    <section
+      className={[styles.section, className].filter(Boolean).join(" ")}
+      aria-labelledby="hero-top-performers-heading"
+    >
+      <div className={styles.head}>
+        <h2 id="hero-top-performers-heading" className={styles.title}>
+          {t(
+            globalTopPerformers
+              ? "dashboard.globalTopPerformers"
+              : "dashboard.topPerformers",
+          )}
+        </h2>
+      </div>
       <div className={styles.bottomBand}>
         <div
           className={[
@@ -28,7 +48,7 @@ export function HeroTopPerformers({ performers, className }: Props) {
             .filter(Boolean)
             .join(" ")}
         >
-          {topTrendPerformers.map((performer) => (
+          {sortedPerformers.map((performer) => (
             <div key={performer.id} className={styles.slot}>
               <HeroPerformerCard performer={performer} />
             </div>
