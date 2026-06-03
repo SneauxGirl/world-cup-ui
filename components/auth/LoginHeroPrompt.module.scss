@@ -80,8 +80,23 @@
 }
 
 @media (max-width: 900px) {
+  .signInTrim button,
+  .signUpTrim button {
+    font-size: 1.1rem;
+  }
+}
+
+/* 769–900px: wings absolute beside centered title (unchanged narrow layout). */
+@media (max-width: 900px) and (min-width: 769px) {
   .promptLead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
+  }
+
+  .promptTitleRow {
+    width: 100%;
   }
 
   .brandLogo {
@@ -109,13 +124,88 @@
     display: none;
   }
 
-  .promptFrame .promptLead .promptTitle {
+  .promptFrame .promptTitleRow .promptTitle {
     padding-inline-start: 4.25rem;
   }
+}
 
-  .signInTrim button,
-  .signUpTrim button {
-    font-size: 1.1rem;
+/* ≤768px: logo + title flex row; pair centered via grid, title left-aligned. */
+@media (max-width: 768px) {
+  /* Overrides LoginForm .loginCard { align-items: flex-start } on .promptCard. */
+  .promptFrame .promptCard {
+    align-items: center;
+  }
+
+  .actions {
+    align-self: stretch;
+  }
+
+  .promptLead {
+    position: static;
+    display: grid;
+    justify-items: center;
+    width: 100%;
+  }
+
+  .promptTitleRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .brandLogo {
+    display: flex;
+    position: static;
+    flex: 0 0 auto;
+    align-items: center;
+    width: fit-content;
+    max-width: 6.75rem;
+    pointer-events: none;
+  }
+
+  .brandLogoMarkNarrow {
+    display: block;
+    width: 100%;
+    max-width: 6.75rem;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .brandLogoImg {
+    display: none;
+  }
+
+  .promptFrame .promptLead .promptTitleRow .promptTitle {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
+    padding-inline-start: 0;
+    text-align: left;
+  }
+
+  @media (max-width: 429px) {
+    .promptTitleRow {
+      gap: 0.25rem;
+    }
+
+    .brandLogo {
+      max-width: 5.5rem;
+    }
+
+    .brandLogoMarkNarrow {
+      max-width: 5.5rem;
+    }
+
+    .promptFrame .promptLead .promptTitleRow .promptTitle {
+      font-size: 1.35rem;
+    }
   }
 }
 
@@ -181,6 +271,17 @@
 /* 901px+: logo in card, vertical Sign in / Sign up. */
 @media (min-width: 901px) {
   .promptLead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--login-hero-card-gap, 1.15rem);
+  }
+
+  .promptTitleRow {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
     gap: var(--login-hero-card-gap, 1.15rem);
   }
 
@@ -202,7 +303,9 @@
     display: block;
   }
 
-  .promptFrame .promptLead .promptTitle {
+  .promptFrame .promptTitleRow .promptTitle {
+    flex: none;
+    width: 100%;
     text-wrap: balance;
     font-family: var(--font-alumni-sans), sans-serif;
     font-size: var(--login-hero-title-size, clamp(1.35rem, 3vw, 1.75rem));
@@ -211,6 +314,7 @@
     line-height: 1.15;
     text-transform: none;
     padding-inline-start: 0;
+    text-align: center;
   }
 
   .actions {

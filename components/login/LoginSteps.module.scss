@@ -163,4 +163,17 @@
   .item {
     flex: 1 1 100%;
   }
+
+  /* vw-based clamps shrink on narrow viewports; hold desktop / clamp-max sizes. */
+  .copy {
+    padding: 1.45rem 1.25rem;
+  }
+
+  .title {
+    font-size: calc(1.45rem + 2px);
+  }
+
+  .body {
+    font-size: calc(0.9rem + 2px);
+  }
 }
