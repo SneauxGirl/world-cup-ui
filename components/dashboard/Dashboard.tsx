@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { RequireAuth } from "@/components/auth/RequireAuth";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { useLogout } from "@/lib/auth/useLogout";
-import { feedItems, userDashboard } from "@/data/dashboard-seed";
+import { userDashboard } from "@/data/dashboard-seed";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { SidebarNav } from "@/components/dashboard/Navigation";
 import { SiteHeader } from "@/components/shared/SiteHeader";
@@ -112,8 +112,6 @@ export function Dashboard() {
           <div className={styles.pageColumn}>
             <HeroSection
               user={dashboardUser}
-              feedItems={feedItems}
-              showLiveFeed={false}
               performers={performers}
               globalTopPerformers={globalTopPerformers}
               inContentColumn

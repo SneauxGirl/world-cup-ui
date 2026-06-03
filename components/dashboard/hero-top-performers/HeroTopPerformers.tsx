@@ -24,18 +24,28 @@ export function HeroTopPerformers({
 
   if (performerCount === 0) return null;
 
+  const pluralKey = globalTopPerformers
+    ? "dashboard.globalTopPerformers"
+    : "dashboard.topPerformers";
+  const singularKey = globalTopPerformers
+    ? "dashboard.globalTopPerformer"
+    : "dashboard.topPerformer";
+
   return (
     <section
-      className={[styles.section, className].filter(Boolean).join(" ")}
+      className={[
+        styles.section,
+        performerCount === 1 ? styles.sectionOneUp : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       aria-labelledby="hero-top-performers-heading"
     >
       <div className={styles.head}>
         <h2 id="hero-top-performers-heading" className={styles.title}>
-          {t(
-            globalTopPerformers
-              ? "dashboard.globalTopPerformers"
-              : "dashboard.topPerformers",
-          )}
+          <span className={styles.titleLabelPlural}>{t(pluralKey)}</span>
+          <span className={styles.titleLabelSingular}>{t(singularKey)}</span>
         </h2>
       </div>
       <div className={styles.bottomBand}>

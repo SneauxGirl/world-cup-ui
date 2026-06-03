@@ -116,7 +116,6 @@ export function Login() {
             <div ref={heroArtRef} className={styles.heroArtWrap}>
               <HeroSection
                 user={userDashboard}
-                showLiveFeed={false}
                 loginHero
                 className={styles.heroPhoto}
               />

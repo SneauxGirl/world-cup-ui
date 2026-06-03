@@ -8,6 +8,8 @@ import {
   getCandleDelta,
   getStripAverageTotalPointsPerGame,
   getStripLastGameTotal,
+  getStripLastGameVsAverageDelta,
+  getStripLastGameVsAverageTone,
   STRIP_PLOT_SCALE,
 } from "@/lib/value-trends/compute";
 import { t } from "@/lib/i18n/t";
@@ -51,7 +53,13 @@ export function ValueTrendStripBarChart({
   const candle = buildStripSummaryCandle(template);
   const lastGameTotal = getStripLastGameTotal(template);
   const averageTotal = getStripAverageTotalPointsPerGame(template);
-  const lastAboveAverage = lastGameTotal >= averageTotal;
+  const delta = getStripLastGameVsAverageDelta(template);
+  const lastGameTone = getStripLastGameVsAverageTone(delta);
+  const lastGameToneClass = {
+    below: styles.lastBelow,
+    near: styles.lastNear,
+    above: styles.lastAbove,
+  }[lastGameTone];
 
   const avgBarHeight = toBarHeight(averageTotal, scaleMin, scaleMax);
   const lastBarHeight = toBarHeight(lastGameTotal, scaleMin, scaleMax);
@@ -77,13 +85,7 @@ export function ValueTrendStripBarChart({
 
   return (
     <div
-      className={[
-        styles.chart,
-        lastAboveAverage ? styles.lastAbove : styles.lastBelow,
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={[styles.chart, lastGameToneClass, className].filter(Boolean).join(" ")}
       title={tooltip}
     >
       <svg

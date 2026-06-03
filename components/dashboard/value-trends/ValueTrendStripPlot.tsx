@@ -41,9 +41,12 @@ export function ValueTrendStripPlot({
         max: formatTick(scale.max),
       })}
     >
+      <div className={styles.axisCaptionRow} aria-hidden="true">
+        <span className={styles.axisCaption}>{t("valueTrends.pointsAxis")}</span>
+      </div>
+
       <div className={styles.plotRow}>
         <div className={styles.yAxis} aria-hidden="true">
-          <span className={styles.axisCaption}>{t("valueTrends.pointsAxis")}</span>
           <div className={styles.yAxisPlot}>
             {scale.ticks.map((tick) => (
               <span

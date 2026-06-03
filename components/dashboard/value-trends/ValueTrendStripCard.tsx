@@ -4,6 +4,7 @@ import type { ValueTrendStripItem } from "@/lib/value-trends/buildStripItems";
 import {
   formatTrendDelta,
   getStripLastGameVsAverageDelta,
+  getStripLastGameVsAverageTone,
 } from "@/lib/value-trends/compute";
 import { ValueTrendStripBarChart } from "@/components/dashboard/value-trends/ValueTrendStripBarChart";
 import { t } from "@/lib/i18n/t";
@@ -23,11 +24,11 @@ type LabelCellProps = {
 
 function useStripItemState(item: ValueTrendStripItem) {
   const delta = getStripLastGameVsAverageDelta(item.template);
-  const deltaClass = delta >= 0 ? "above" : "below";
+  const deltaTone = getStripLastGameVsAverageTone(delta);
   const displayName = item.player?.lastName.toUpperCase() ?? item.slotLabel;
   const titleId = `value-trend-${item.slotId}-title`;
 
-  return { delta, deltaClass, displayName, titleId };
+  return { delta, deltaTone, displayName, titleId };
 }
 
 export function ValueTrendStripChartCell({
@@ -57,7 +58,7 @@ export function ValueTrendStripChartCell({
 }
 
 export function ValueTrendStripLabelCell({ item, onOpen }: LabelCellProps) {
-  const { delta, deltaClass, displayName, titleId } = useStripItemState(item);
+  const { delta, deltaTone, displayName, titleId } = useStripItemState(item);
 
   return (
     <div className={styles.labelCell}>
@@ -80,7 +81,7 @@ export function ValueTrendStripLabelCell({ item, onOpen }: LabelCellProps) {
             item.slotLabel
           )}
         </span>
-        <span className={[styles.delta, styles[`delta_${deltaClass}`]].join(" ")}>
+        <span className={[styles.delta, styles[`delta_${deltaTone}`]].join(" ")}>
           {formatTrendDelta(delta)}
         </span>
       </button>

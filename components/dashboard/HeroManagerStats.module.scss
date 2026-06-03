@@ -85,3 +85,29 @@
   text-transform: uppercase;
   color: color-mix(in oklab, var(--wcui-sky-blue) 90%, white);
 }
+
+@media (max-width: 500px) {
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: clamp(0.75rem, 3vw, 1rem);
+  }
+
+  .column {
+    &:first-child {
+      padding-right: 0;
+    }
+
+    &:last-child {
+      padding-left: 0;
+    }
+  }
+
+  .divider {
+    align-self: stretch;
+    width: 100%;
+    height: 1px;
+    flex: 0 0 1px;
+  }
+}

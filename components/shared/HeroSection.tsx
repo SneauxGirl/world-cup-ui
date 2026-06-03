@@ -1,19 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HeroCtaLiveFeed } from "@/components/dashboard/HeroCtaLiveFeed";
+import formStyles from "@/components/auth/LoginForm.module.scss";
+import loginPromptStyles from "@/components/auth/LoginHeroPrompt.module.scss";
 import { HeroManagerStats } from "@/components/dashboard/HeroManagerStats";
 import { IconChevronRight } from "@/components/icons/DashboardIcons";
 import { t } from "@/lib/i18n/t";
 import { HeroTopPerformers } from "@/components/dashboard/hero-top-performers";
-import type { DashboardPerformer, FeedItem, UserDashboard } from "@/data/types";
+import type { DashboardPerformer, UserDashboard } from "@/data/types";
 import styles from "./HeroSection.module.scss";
 
 type Props = {
   user: UserDashboard;
-  feedItems?: FeedItem[];
-  /** When false, omits the hero live-feed panel (login layout). */
-  showLiveFeed?: boolean;
-  /** Login page: stadium art only (no welcome, feed, or CTA). */
+  /** Login page: stadium art only (no welcome, stats, or CTA). */
   loginHero?: boolean;
   performers?: DashboardPerformer[];
   /** When true, hero performer heading uses global pool copy. */
@@ -29,8 +27,6 @@ type Props = {
 
 export function HeroSection({
   user,
-  feedItems = [],
-  showLiveFeed = true,
   loginHero = false,
   performers = [],
   globalTopPerformers = false,
@@ -39,16 +35,16 @@ export function HeroSection({
   showEditRosterUnderPhotosLink = false,
   className,
 }: Props) {
-  const showFeedPanel = showLiveFeed && feedItems.length > 0;
   const hasPerformers = performers.length > 0;
+  const showEditRoster = showEditRosterCta || showEditRosterUnderPhotosLink;
 
   return (
     <section
       className={[
         styles.hero,
-        !showFeedPanel && styles.heroNoFeed,
         loginHero ? styles.heroLogin : styles.heroDashboard,
         inContentColumn && styles.heroInContentColumn,
+        showEditRoster && styles.heroHasEditRoster,
         className,
       ]
         .filter(Boolean)
@@ -74,76 +70,88 @@ export function HeroSection({
         <div className={styles.heroContent}>
           {!loginHero ? (
             <>
-              <div className={styles.heroCopy}>
-                <div className={styles.heroPrimary}>
-                  <div className={styles.heroTitleColumn}>
-                    <h1 id="dashboard-hero-heading" className={styles.title}>
-                      <span className={styles.titleGreeting}>
-                        {t("dashboard.welcomeBackGreeting")}
-                      </span>
-                      <span className={styles.titleName}>{user.displayName}</span>
-                    </h1>
-                    <HeroManagerStats
-                      totalPoints={user.totalPoints}
-                      rank={user.rank}
-                      topPercent={user.topPercent}
-                      className={styles.heroManagerStats}
+              <div className={styles.heroDashboardMain}>
+                <div className={styles.heroCopy}>
+                  <div className={styles.heroPrimary}>
+                    <div className={styles.heroCopyWelcome}>
+                      <h1 id="dashboard-hero-heading" className={styles.title}>
+                        <span className={styles.titleGreeting}>
+                          {t("dashboard.welcomeBackGreeting")}
+                        </span>
+                        <span className={styles.titleName}>{user.displayName}</span>
+                      </h1>
+                    </div>
+                    <div className={styles.heroCopyStats}>
+                      <HeroManagerStats
+                        totalPoints={user.totalPoints}
+                        rank={user.rank}
+                        topPercent={user.topPercent}
+                        className={styles.heroManagerStats}
+                      />
+                    </div>
+                  </div>
+                  {showEditRosterCta ? (
+                    <div className={styles.heroEditRosterFrame}>
+                      <Link className={styles.heroEditRosterLink} href="/roster">
+                        {t("dashboard.editRoster")}
+                        <IconChevronRight className={styles.heroEditRosterIcon} aria-hidden="true" />
+                      </Link>
+                    </div>
+                  ) : null}
+                </div>
+                <div className={styles.heroAsideStack}>
+                  {hasPerformers ? (
+                    <HeroTopPerformers
+                      performers={performers}
+                      globalTopPerformers={globalTopPerformers}
+                      className={styles.heroAsidePerformers}
                     />
-                    {showFeedPanel ? (
-                      <>
-                        <h2 id="hero-live-feed-heading" className={styles.liveFeedLabel}>
-                          {t("dashboard.liveFeed")}
-                        </h2>
-                        <div
-                          className={styles.statsCardFrame}
-                          aria-labelledby="hero-live-feed-heading"
-                        >
-                          <div className={styles.statsCardInner}>
-                            <HeroCtaLiveFeed items={feedItems} />
-                          </div>
-                        </div>
-                      </>
-                    ) : null}
+                  ) : (
+                    <figure className={styles.heroAsideConstruction} aria-hidden="true">
+                      <Image
+                        src="/underconstructiontrsp.png"
+                        alt=""
+                        width={1152}
+                        height={768}
+                        priority
+                        className={styles.heroAsideConstructionImage}
+                        sizes="(max-width: 768px) 80vw, (max-width: 1200px) 42vw, 520px"
+                      />
+                    </figure>
+                  )}
+                  {showEditRosterUnderPhotosLink ? (
+                    <div className={styles.heroUnderPhotosLinkRow}>
+                      <Link className={styles.heroUnderPhotosLink} href="/roster">
+                        {t("dashboard.editRoster")}
+                        <IconChevronRight className={styles.heroUnderPhotosLinkIcon} aria-hidden="true" />
+                      </Link>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              {showEditRoster ? (
+                <div className={styles.heroEditRosterMobileRow}>
+                  <div
+                    className={[
+                      formStyles.chamferTrim,
+                      loginPromptStyles.signInTrim,
+                      styles.heroEditRosterMobileTrim,
+                    ].join(" ")}
+                  >
+                    <Link
+                      href="/roster"
+                      className={[
+                        formStyles.chamferBtn,
+                        formStyles.signInBtn,
+                        loginPromptStyles.heroSignInBtn,
+                        styles.heroEditRosterMobileLink,
+                      ].join(" ")}
+                    >
+                      {t("dashboard.editRoster")}
+                    </Link>
                   </div>
                 </div>
-                {showEditRosterCta ? (
-                  <div className={styles.heroEditRosterFrame}>
-                    <Link className={styles.heroEditRosterLink} href="/roster">
-                      {t("dashboard.editRoster")}
-                      <IconChevronRight className={styles.heroEditRosterIcon} aria-hidden="true" />
-                    </Link>
-                  </div>
-                ) : null}
-              </div>
-              <div className={styles.heroAsideStack}>
-                {hasPerformers ? (
-                  <HeroTopPerformers
-                    performers={performers}
-                    globalTopPerformers={globalTopPerformers}
-                    className={styles.heroAsidePerformers}
-                  />
-                ) : (
-                  <figure className={styles.heroAsideConstruction} aria-hidden="true">
-                    <Image
-                      src="/underconstructiontrsp.png"
-                      alt=""
-                      width={1152}
-                      height={768}
-                      priority
-                      className={styles.heroAsideConstructionImage}
-                      sizes="(max-width: 768px) 80vw, (max-width: 1200px) 42vw, 520px"
-                    />
-                  </figure>
-                )}
-                {showEditRosterUnderPhotosLink ? (
-                  <div className={styles.heroUnderPhotosLinkRow}>
-                    <Link className={styles.heroUnderPhotosLink} href="/roster">
-                      {t("dashboard.editRoster")}
-                      <IconChevronRight className={styles.heroUnderPhotosLinkIcon} aria-hidden="true" />
-                    </Link>
-                  </div>
-                ) : null}
-              </div>
+              ) : null}
             </>
           ) : null}
         </div>

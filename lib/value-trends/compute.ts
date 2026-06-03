@@ -117,6 +117,18 @@ export function getStripLastGameVsAverageDelta(template: ValueTrendTemplate): nu
   return Math.round((lastGame - average) * 10) / 10;
 }
 
+/** Last game 3.0+ pts below five-game average → red bar. */
+export const STRIP_AVERAGE_RED_THRESHOLD = 3;
+
+export type StripAverageComparisonTone = "below" | "near" | "above";
+
+/** Sky blue when within ±2.9 of average; red/teal at ±3.0 or beyond. */
+export function getStripLastGameVsAverageTone(delta: number): StripAverageComparisonTone {
+  if (delta <= -STRIP_AVERAGE_RED_THRESHOLD) return "below";
+  if (delta >= STRIP_AVERAGE_RED_THRESHOLD) return "above";
+  return "near";
+}
+
 export function getCandleDelta(candle: ValueTrendCandle): number {
   return candle.close - candle.open;
 }

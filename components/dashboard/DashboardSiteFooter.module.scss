@@ -1,10 +1,13 @@
 .footer {
   --footer-divider: color-mix(in oklab, var(--wcui-white-text) 22%, transparent);
+  --footer-divider-weight: 1px;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   align-items: stretch;
   width: 100%;
+  box-sizing: border-box;
+  border-top: var(--footer-divider-weight) solid var(--footer-divider);
   background: var(--wcui-background-black);
   color: var(--wcui-white-text);
 }
@@ -103,13 +106,12 @@
   gap: 1rem 1.25rem;
   width: 100%;
   padding: 1rem 0 calc(1rem + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid var(--footer-divider);
+  border-top: var(--footer-divider-weight) solid var(--footer-divider);
   box-sizing: border-box;
 }
 
 .echoNav {
   position: relative;
-  border-bottom: 1px solid var(--footer-divider);
 
   &::before {
     content: "";

@@ -3,6 +3,30 @@
   width: 100%;
 }
 
+.axisCaptionRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.6rem;
+  min-width: 0;
+  /* Top tick uses translateY(50%); reserve half a tick label below the caption. */
+  padding-bottom: calc(0.8rem / 2 + 0.15rem);
+}
+
+.axisCaption {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--wcui-text-placeholder);
+  line-height: 1.5;
+  text-align: right;
+  padding-right: 0.15rem;
+  box-sizing: border-box;
+}
+
 .plotRow {
   display: flex;
   flex-direction: row;
@@ -13,21 +37,6 @@
 
 .yAxis {
   flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.2rem;
-  padding-top: 0.1rem;
-}
-
-.axisCaption {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--wcui-text-placeholder);
-  line-height: 1;
-  padding-right: 0.15rem;
 }
 
 .yAxisPlot {
@@ -91,6 +100,8 @@
   width: 100%;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--wcui-aqua-mint) 35%, transparent) transparent;
 }
 
 @media (max-width: 768px) {

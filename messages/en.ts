@@ -235,7 +235,9 @@ export const en = {
     title: "Dashboard",
     welcomeBackGreeting: "Welcome back,",
     topPerformers: "Top performers",
+    topPerformer: "Top performer",
     globalTopPerformers: "Global top performers",
+    globalTopPerformer: "Global top performer",
     editRoster: "Edit roster",
     formHighlights: "Form highlights",
     formHighlightsEmpty: "No trend highlights yet.",
@@ -362,7 +364,7 @@ export const en = {
     moreInfo: "Player info for {player}",
   },
   valueTrends: {
-    title: "Over Under",
+    title: "Performance Compared to Average",
     demoOverlayLabel: "Roster required for Over Under",
     demoBanner: "Set your roster to see your team data. Preview below uses placeholder trends.",
     highlightsLabel: "Form highlights",

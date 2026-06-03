@@ -29,6 +29,32 @@
   line-height: 1.1;
 }
 
+.titleLabelPlural {
+  display: inline;
+}
+
+.titleLabelSingular {
+  display: none;
+}
+
+.sectionOneUp {
+  .titleLabelPlural {
+    display: none;
+  }
+
+  .titleLabelSingular {
+    display: inline;
+  }
+
+  .head {
+    order: 2;
+  }
+
+  .bottomBand {
+    order: 1;
+  }
+}
+
 .bottomBand {
   display: flex;
   flex: 0 0 auto;
@@ -39,13 +65,19 @@
 
 .cardRow {
   --hero-performer-gap: 20px;
-  /*
-   * Use cqi (row inline size) for slot width + height math. Plain % in height/min-height
-   * resolves against the row’s height (often ~0), which squashes cards to ~2:1 landscape.
-   */
+  --hero-slot-min-w: 175px;
+  /* 3×min slot + 2×gap; below this, hide 3rd card and split row between 2. */
+  --hero-three-up-min: calc(
+    (3 * var(--hero-slot-min-w)) + (2 * var(--hero-performer-gap))
+  );
+  /* 2×min slot + 1×gap; below this, hide 2nd and 3rd, one full-width card. */
+  --hero-two-up-min: calc(
+    (2 * var(--hero-slot-min-w)) + var(--hero-performer-gap)
+  );
   container-type: inline-size;
   --hero-slot-w: calc((100cqi - (2 * var(--hero-performer-gap))) / 3);
-  /* Cap off (~wide): ~1/2 slot width. Cap on (~tall): 8/7. Active height = average of those. */
+  /* Cap off (~wide): short mult. Cap on (~tall): 8/7. Mid = average; never below --hero-slot-h-min. */
+  --hero-slot-h-min: 150px;
   --hero-slot-h-short: calc(var(--hero-slot-w) / 8);
   // --hero-slot-h-cap: calc(var(--hero-slot-w) * 8 / 7);
   --hero-slot-h-tall: calc(var(--hero-slot-w) * 8 / 7);
@@ -71,12 +103,15 @@
 }
 
 .slot {
-  flex: 0 0 var(--hero-slot-w);
-  width: var(--hero-slot-w);
-  min-width: 0;
-  min-height: var(--hero-slot-h-short);
+  flex: 1 1 0;
+  min-width: var(--hero-slot-min-w);
+  min-height: var(--hero-slot-h-min);
   max-height: var(--hero-slot-h-tall);
-  height: var(--hero-slot-h);
+  height: clamp(
+    var(--hero-slot-h-min),
+    var(--hero-slot-h),
+    var(--hero-slot-h-tall)
+  );
   align-self: flex-start;
   box-sizing: border-box;
 }
@@ -87,14 +122,56 @@
   min-height: 0;
 }
 
-@container hero-performers (max-width: 36rem) {
+/* Narrower than 3×175 + gaps: two-up, equal flex fill. */
+@container hero-performers (max-width: 564px) {
+  .cardRow {
+    --hero-slot-w: calc((100cqi - var(--hero-performer-gap)) / 2);
+  }
+
   .slot:nth-child(3) {
     display: none;
   }
 }
 
-@container hero-performers (max-width: 22rem) {
-  .slot:nth-child(2) {
+/* Narrower than 2×175 + gap: one-up, full section width. */
+@container hero-performers (max-width: 369px) {
+  .cardRow {
+    --hero-slot-w: 100cqi;
+  }
+
+  .slot:nth-child(2),
+  .slot:nth-child(3) {
     display: none;
+  }
+
+  .head {
+    order: 2;
+  }
+
+  .bottomBand {
+    order: 1;
+  }
+
+  .titleLabelPlural {
+    display: none;
+  }
+
+  .titleLabelSingular {
+    display: inline;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardRow {
+    --hero-slot-h-tall: 150px;
+  }
+
+  .slot {
+    max-height: 150px;
+    height: clamp(
+      var(--hero-slot-h-min),
+      var(--hero-slot-h),
+      150px
+    );
   }
 }
