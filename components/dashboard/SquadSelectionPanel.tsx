@@ -8,7 +8,11 @@ import { SquadPitchSlot } from "@/components/dashboard/SquadPitchSlot";
 import { IconClose } from "@/components/icons/DashboardIcons";
 import { squadPitchFormation, type SquadPositionCode } from "@/data/squad-pitch-formation";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
-import { findNextEmptySlotId, isPlayerOnRoster } from "@/lib/squad-roster-slots";
+import {
+  findNextEmptySlotId,
+  findRosterSlotIdForPlayer,
+  isPlayerOnRoster,
+} from "@/lib/squad-roster-slots";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import { useMediaQuery } from "@/lib/useMediaQuery";
 import { formatInteger } from "@/lib/i18n/format";
@@ -131,6 +135,22 @@ export function SquadSelectionPanel({
     [focusedSlotId, removePlayerFromSlot, showSidebarPicker],
   );
 
+  const handleRemovePlayer = useCallback(
+    (player: SquadPlayerPoolEntry) => {
+      const slotId = findRosterSlotIdForPlayer(rosterBySlot, player.id);
+      if (!slotId) return;
+
+      removePlayerFromSlot(slotId);
+      if (focusedSlotId === slotId) {
+        setFocusedSlotId(null);
+        if (!showSidebarPicker) {
+          setPickerOverlayOpen(false);
+        }
+      }
+    },
+    [focusedSlotId, removePlayerFromSlot, rosterBySlot, showSidebarPicker],
+  );
+
   const pickerProps = {
     searchQuery: playerSearchQuery,
     onSearchQueryChange: setPlayerSearchQuery,
@@ -139,7 +159,8 @@ export function SquadSelectionPanel({
     onPositionFilterChange: setPositionFilter,
     onTeamCodeFilterChange: setTeamCodeFilter,
     onAddPlayer: handleAddPlayer,
-    isPlayerDisabled: (player: SquadPlayerPoolEntry) => isPlayerOnRoster(rosterBySlot, player.id),
+    onRemovePlayer: handleRemovePlayer,
+    isPlayerOnRoster: (player: SquadPlayerPoolEntry) => isPlayerOnRoster(rosterBySlot, player.id),
   };
 
   const rootClass = [

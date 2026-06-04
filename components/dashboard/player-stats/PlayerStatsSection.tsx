@@ -1,11 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { Fragment, useMemo } from "react";
 import { CountryFlag } from "@/components/CountryFlag";
-import { PlayerCardTrigger } from "@/components/dashboard/player-card/PlayerCardTrigger";
-import { IconChevronRight } from "@/components/icons/DashboardIcons";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import type { SquadPositionCode } from "@/data/squad-pitch-formation";
 import {
@@ -85,27 +82,10 @@ export function PlayerStatsSection({ className }: Props) {
       <div
         className={[styles.section, isDemoMode && styles.sectionDemo].filter(Boolean).join(" ")}
       >
-        {isDemoMode ? (
-          <div className={styles.demoOverlay}>
-            <div className={styles.demoPromptFrame}>
-              <div className={styles.demoPrompt}>
-                <p className={styles.demoPromptText}>{t("playerStats.demoBanner")}</p>
-                <Link href="/roster" className={styles.demoPromptLink}>
-                  {t("playerStats.viewRoster")}
-                  <IconChevronRight className={styles.demoPromptIcon} aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        ) : null}
-
         <div className={styles.content} inert={isDemoMode ? true : undefined}>
-          <header className={styles.head}>
-            <h2 id="player-stats-heading" className={styles.title}>
-              {t("playerStats.title")}
-            </h2>
-            <p className={styles.subtitle}>{t("playerStats.subtitle")}</p>
-          </header>
+          <h2 id="player-stats-heading" className={styles.title}>
+            {t("playerStats.title")}
+          </h2>
 
           <div className={styles.tableWrap}>
             <div
@@ -177,7 +157,7 @@ function PlayerStatsTableRow({ row }: { row: RosterStatsRow }) {
   return (
     <tr className={styles.bodyRow}>
       <th scope="row" className={styles.playerCell}>
-        <PlayerCardTrigger player={player} className={styles.playerBlock}>
+        <div className={styles.playerBlock}>
           <span className={styles.avatar} aria-hidden="true">
             <Image
               src={jerseySrc}
@@ -185,6 +165,7 @@ function PlayerStatsTableRow({ row }: { row: RosterStatsRow }) {
               width={40}
               height={40}
               className={styles.avatarImg}
+              sizes="40px"
             />
           </span>
           <span className={styles.playerText}>
@@ -200,7 +181,7 @@ function PlayerStatsTableRow({ row }: { row: RosterStatsRow }) {
               />
             </span>
           </span>
-        </PlayerCardTrigger>
+        </div>
       </th>
       {ROSTER_STAT_KEYS.map((key) => {
         const raw = stats[key];

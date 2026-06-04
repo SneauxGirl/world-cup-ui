@@ -1,16 +1,11 @@
 "use client";
 
 import { useCallback, useMemo, useRef, useState } from "react";
-import Link from "next/link";
 import { OverUnderInfoModal } from "@/components/dashboard/value-trends/OverUnderInfoModal";
 import { ValueTrendStripPlot } from "@/components/dashboard/value-trends/ValueTrendStripPlot";
 import { IconChevronRight, IconInfo } from "@/components/icons/DashboardIcons";
-import {
-  buildValueTrendStripItems,
-  type ValueTrendStripItem,
-} from "@/lib/value-trends/buildStripItems";
+import { buildValueTrendStripItems } from "@/lib/value-trends/buildStripItems";
 import { getStripPlotScale } from "@/lib/value-trends/compute";
-import { usePlayerCard } from "@/lib/player-card/PlayerCardProvider";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import { t } from "@/lib/i18n/t";
 import styles from "./OverUnderSection.module.scss";
@@ -22,7 +17,6 @@ type Props = {
 export function OverUnderSection({ className }: Props) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const { rosterBySlot, isDemoMode, loading } = useRoster();
-  const { openPlayerCard } = usePlayerCard();
   const [infoOpen, setInfoOpen] = useState(false);
 
   const items = useMemo(
@@ -31,17 +25,6 @@ export function OverUnderSection({ className }: Props) {
   );
 
   const stripScale = getStripPlotScale();
-
-  const handleOpenItem = useCallback(
-    (item: ValueTrendStripItem) => {
-      openPlayerCard({
-        player: item.player,
-        template: item.template,
-        slotLabel: item.slotLabel,
-      });
-    },
-    [openPlayerCard],
-  );
 
   const scrollByCard = useCallback((dir: -1 | 1) => {
     const el = scrollerRef.current;
@@ -108,34 +91,11 @@ export function OverUnderSection({ className }: Props) {
               scale={stripScale}
               items={items}
               scrollerRef={scrollerRef}
-              onOpenItem={handleOpenItem}
             />
           </div>
-
-          {isDemoMode ? (
-            <div
-              className={styles.demoOverlay}
-              role="region"
-              aria-label={t("valueTrends.demoOverlayLabel")}
-            >
-              <div className={styles.demoPromptFrame}>
-                <div className={styles.demoPrompt}>
-                  <p className={styles.demoPromptText}>{t("valueTrends.demoBanner")}</p>
-                  <Link className={styles.demoPromptLink} href="/roster">
-                    {t("dashboard.setYourRoster")}
-                    <IconChevronRight
-                      className={styles.demoPromptIcon}
-                      aria-hidden="true"
-                    />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ) : null}
         </div>
       </section>
       <OverUnderInfoModal open={infoOpen} onClose={() => setInfoOpen(false)} />
-
     </>
   );
 }

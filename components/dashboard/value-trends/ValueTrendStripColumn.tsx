@@ -11,19 +11,13 @@ type Props = {
   item: ValueTrendStripItem;
   scaleMin: number;
   scaleMax: number;
-  onOpen: () => void;
 };
 
-export function ValueTrendStripColumn({ item, scaleMin, scaleMax, onOpen }: Props) {
+export function ValueTrendStripColumn({ item, scaleMin, scaleMax }: Props) {
   return (
     <div className={styles.column} data-value-trend-column>
-      <ValueTrendStripChartCell
-        item={item}
-        scaleMin={scaleMin}
-        scaleMax={scaleMax}
-        onOpen={onOpen}
-      />
-      <ValueTrendStripLabelCell item={item} onOpen={onOpen} />
+      <ValueTrendStripChartCell item={item} scaleMin={scaleMin} scaleMax={scaleMax} />
+      <ValueTrendStripLabelCell item={item} />
     </div>
   );
 }

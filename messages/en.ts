@@ -259,6 +259,13 @@ export const en = {
     feedScrollUp: "Show newer updates",
     feedScrollDown: "Show older updates",
     liveRegionLabel: "Live score updates",
+    insights: "Dashboard insights",
+    nextMatchPrefix: "NEXT MATCH:",
+    nextMatchLabel: "Next match versus {team}",
+    viewOpponentSquad: "View their squad >",
+    rosterPromptLabel: "Set your roster",
+    rosterPromptBanner:
+      "Set your roster to view Team stats on the dashboard. General stats are available on the Players page.",
     setYourRoster: "Set your roster",
   },
   squadSelection: {
@@ -297,6 +304,8 @@ export const en = {
     filterAllTeams: "All teams",
     closePlayerPicker: "Close player selection",
     removePlayerFromSlot: "Remove {player} from this slot",
+    removePlayerFromRoster: "Remove {player} from roster",
+    addPlayerToRoster: "Add {player} to roster",
   },
   roster: {
     active: "Active",
@@ -305,15 +314,11 @@ export const en = {
   },
   playerStats: {
     title: "Roster stats",
-    subtitle: "Tournament totals for your selected squad.",
     tableLabel: "Player season statistics",
     statHeadersLabel: "Stat columns",
     playerColumn: "Player",
     totalPointsAbbr: "PTS",
     totalPointsTitle: "Total fantasy points (all games)",
-    demoOverlayLabel: "Roster required for player stats",
-    demoBanner: "Set your roster to compare player stats. Preview below uses placeholder data.",
-    viewRoster: "Set your roster",
     statAbbr: {
       gp: "GP",
       gs: "GS",
@@ -364,9 +369,7 @@ export const en = {
     moreInfo: "Player info for {player}",
   },
   valueTrends: {
-    title: "Performance Compared to Average",
-    demoOverlayLabel: "Roster required for Over Under",
-    demoBanner: "Set your roster to see your team data. Preview below uses placeholder trends.",
+    title: "Roster: Average vs Last Match",
     highlightsLabel: "Form highlights",
     pointsAxis: "Pts",
     stripPlotLabel: "Fantasy points scale from {min} to {max}",

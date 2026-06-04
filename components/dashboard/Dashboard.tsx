@@ -11,7 +11,9 @@ import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { DashboardSiteFooter } from "@/components/dashboard/DashboardSiteFooter";
-import { HeroCtaLiveFeed } from "@/components/dashboard/HeroCtaLiveFeed";
+import { DashboardInsights } from "@/components/dashboard/DashboardInsights";
+import { DashboardNextMatch } from "@/components/dashboard/DashboardNextMatch";
+import { DashboardRosterPrompt } from "@/components/dashboard/DashboardRosterPrompt";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import { PlayerStatsSection } from "@/components/dashboard/player-stats/PlayerStatsSection";
@@ -29,7 +31,7 @@ export function Dashboard() {
   const logout = useLogout();
   const isMobile = useIsMobile();
   const [logoutOpen, setLogoutOpen] = useState(false);
-  const { rosterBySlot, rosterCount, loading: rosterLoading } = useRoster();
+  const { rosterBySlot, rosterCount, loading: rosterLoading, isDemoMode } = useRoster();
   const performers = useMemo(
     () => buildTopPerformers(Object.values(rosterBySlot)),
     [rosterBySlot],
@@ -51,7 +53,7 @@ export function Dashboard() {
   const rosterInsight = useMemo(() => {
     const rosterPlayers = Object.values(rosterBySlot);
     if (rosterPlayers.length === 0) {
-      return "AI Insight: lock your roster to generate personalized player calls.";
+      return "Insight: lock your roster to generate personalized player calls.";
     }
 
     const focusPlayer = rosterPlayers.reduce((best, current) => {
@@ -59,7 +61,7 @@ export function Dashboard() {
     });
 
     const points = getTotalFantasyPoints(focusPlayer.id);
-    return `AI Insight: ${focusPlayer.firstName} ${focusPlayer.lastName} is your form anchor at ${points} total fantasy points — keep them locked for the next slate.`;
+    return `Insight: ${focusPlayer.firstName} ${focusPlayer.lastName} is your form anchor at ${points} total fantasy points — keep them locked for the next slate.`;
   }, [rosterBySlot]);
 
   const requestLogout = useCallback(() => setLogoutOpen(true), []);
@@ -77,6 +79,8 @@ export function Dashboard() {
     lockBodyScroll();
     return () => unlockBodyScroll();
   }, [logoutOpen]);
+
+  const showRosterPrompt = isDemoMode && !rosterLoading;
 
   return (
     <RequireAuth>
@@ -124,19 +128,31 @@ export function Dashboard() {
         <div className={`${styles.pageGutter} ${styles.contentBandMain}`}>
           <div className={styles.pageColumn}>
             <main id="dashboard-main" className={styles.mainLayout}>
-              <section className={styles.mainTopRow} aria-label={t("dashboard.liveFeed")}>
-                <div className={styles.mainLiveFeedBlock}>
+              {showRosterPrompt ? <DashboardRosterPrompt className={styles.mainRosterPrompt} /> : null}
+              <section className={styles.mainTopRow} aria-label={t("dashboard.insights")}>
+                <div
+                  className={[
+                    styles.mainInsightsBlock,
+                    showRosterPrompt && styles.mainInsightsDemo,
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
                   <div
-                    className={styles.mainLiveFeedFrame}
-                    aria-label={t("dashboard.liveFeed")}
+                    className={styles.mainInsightsFrame}
+                    aria-label={t("dashboard.insights")}
                   >
-                    <div className={styles.mainLiveFeedInner}>
-                      <HeroCtaLiveFeed
+                    <div className={styles.mainInsightsInner}>
+                      <DashboardInsights
                         insight={rosterInsight}
-                        className={styles.mainLiveFeedTicker}
+                        className={styles.mainInsightsMessage}
                       />
                     </div>
                   </div>
+                  <DashboardNextMatch
+                    className={styles.mainNextMatch}
+                    dimmed={showRosterPrompt}
+                  />
                 </div>
                 <div className={styles.mainInsightsColumn}>
                   <OverUnderSection className={styles.mainOverUnderSection} />

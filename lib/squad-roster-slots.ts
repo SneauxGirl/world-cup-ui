@@ -17,5 +17,15 @@ export function isPlayerOnRoster(
   rosterBySlot: Record<string, SquadPlayerPoolEntry | undefined>,
   playerId: string,
 ): boolean {
-  return Object.values(rosterBySlot).some((entry) => entry?.id === playerId);
+  return findRosterSlotIdForPlayer(rosterBySlot, playerId) !== null;
+}
+
+export function findRosterSlotIdForPlayer(
+  rosterBySlot: Record<string, SquadPlayerPoolEntry | undefined>,
+  playerId: string,
+): string | null {
+  for (const slot of squadPitchFormation) {
+    if (rosterBySlot[slot.id]?.id === playerId) return slot.id;
+  }
+  return null;
 }

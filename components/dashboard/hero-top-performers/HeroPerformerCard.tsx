@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { PlayerCardTrigger } from "@/components/dashboard/player-card/PlayerCardTrigger";
 import { t } from "@/lib/i18n/t";
 import { formatInteger } from "@/lib/i18n/format";
 import type { DashboardPerformer } from "@/data/types";
@@ -23,7 +22,7 @@ export function HeroPerformerCard({ performer }: Props) {
 
   return (
     <article className={styles.heroFrame}>
-      <PlayerCardTrigger player={{ id: performer.id }} className={styles.heroTrigger}>
+      <div className={styles.heroTrigger}>
         <div className={styles.heroPortrait} aria-hidden="true">
           <Image
             src={jerseySrc}
@@ -47,7 +46,7 @@ export function HeroPerformerCard({ performer }: Props) {
         <p className={styles.heroPoints}>
           {t("player.points", { pts: formatInteger(performer.points) })}
         </p>
-      </PlayerCardTrigger>
+      </div>
     </article>
   );
 }

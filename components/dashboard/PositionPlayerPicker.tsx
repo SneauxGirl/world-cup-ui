@@ -1,8 +1,6 @@
 "use client";
 
-import { IconClose, IconPlus } from "@/components/icons/DashboardIcons";
-import { PlayerCardTrigger } from "@/components/dashboard/player-card/PlayerCardTrigger";
-import { usePlayerCard } from "@/lib/player-card/PlayerCardProvider";
+import { IconClose, IconMinus, IconPlus } from "@/components/icons/DashboardIcons";
 import { squadPlayerPool, type SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import type { SquadPositionCode } from "@/data/squad-pitch-formation";
 import { formatInteger } from "@/lib/i18n/format";
@@ -24,7 +22,8 @@ type Props = {
   showClose?: boolean;
   onClose?: () => void;
   onAddPlayer: (player: SquadPlayerPoolEntry) => void;
-  isPlayerDisabled?: (player: SquadPlayerPoolEntry) => boolean;
+  onRemovePlayer: (player: SquadPlayerPoolEntry) => void;
+  isPlayerOnRoster?: (player: SquadPlayerPoolEntry) => boolean;
 };
 
 function getFlagUrl(countryCode: string): string {
@@ -58,10 +57,9 @@ export function PositionPlayerPicker({
   showClose = false,
   onClose,
   onAddPlayer,
-  isPlayerDisabled,
+  onRemovePlayer,
+  isPlayerOnRoster,
 }: Props) {
-  const { openPlayer } = usePlayerCard();
-
   const players = squadPlayerPool
     .filter((player) => (positionFilter.length > 0 ? positionFilter.includes(player.position) : true))
     .filter((player) => (teamCodeFilter.length > 0 ? teamCodeFilter.includes(player.teamCode) : true))
@@ -103,14 +101,14 @@ export function PositionPlayerPicker({
 
       <div className={styles.rows} role="list">
         {players.map((player) => {
-          const disabled = isPlayerDisabled?.(player) ?? false;
+          const onRoster = isPlayerOnRoster?.(player) ?? false;
           return (
             <article key={player.id} className={styles.row} role="listitem">
               <span className={styles.numberTag} aria-label={`Squad number ${player.squadNumber}`}>
                 {player.squadNumber > 0 ? player.squadNumber : "-"}
               </span>
 
-              <PlayerCardTrigger player={player} className={styles.flagBtn}>
+              <span className={styles.flagBtn}>
                 <img
                   className={styles.flag}
                   src={getFlagUrl(player.countryIso2)}
@@ -119,33 +117,39 @@ export function PositionPlayerPicker({
                   height={22}
                   loading="lazy"
                 />
-              </PlayerCardTrigger>
+              </span>
 
-              <PlayerCardTrigger player={player} className={styles.playerMeta}>
+              <div className={styles.playerMeta}>
                 <p className={styles.playerLastName}>{player.lastName}</p>
                 <p className={styles.playerSubline}>
                   {player.teamCode} {player.position}
                 </p>
-              </PlayerCardTrigger>
+              </div>
 
               <div className={styles.actions}>
-                <button
-                  type="button"
-                  className={styles.iconBtn}
-                  aria-label={t("playerCard.moreInfo", { player: player.lastName })}
-                  onClick={() => openPlayer(player)}
-                >
-                  ?
-                </button>
-                <button
-                  type="button"
-                  className={styles.iconBtn}
-                  aria-label={`Add ${player.lastName}`}
-                  disabled={disabled}
-                  onClick={() => onAddPlayer(player)}
-                >
-                  <IconPlus width={16} height={16} strokeWidth={2.2} />
-                </button>
+                {onRoster ? (
+                  <button
+                    type="button"
+                    className={[styles.iconBtn, styles.iconBtnRemove].join(" ")}
+                    aria-label={t("squadSelection.removePlayerFromRoster", {
+                      player: player.lastName,
+                    })}
+                    onClick={() => onRemovePlayer(player)}
+                  >
+                    <IconMinus width={16} height={16} strokeWidth={2.2} aria-hidden="true" />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className={styles.iconBtn}
+                    aria-label={t("squadSelection.addPlayerToRoster", {
+                      player: player.lastName,
+                    })}
+                    onClick={() => onAddPlayer(player)}
+                  >
+                    <IconPlus width={16} height={16} strokeWidth={2.2} aria-hidden="true" />
+                  </button>
+                )}
               </div>
             </article>
           );

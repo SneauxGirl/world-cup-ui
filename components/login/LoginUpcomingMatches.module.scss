@@ -97,7 +97,7 @@
 }
 
 .tabStrip {
-  --login-tab-strip-fill: color-mix(in oklab, var(--wcui-white-text) 7%, transparent);
+  --login-tab-strip-fill: var(--wcui-match-tab-strip-fill);
   --wcui-chamfer-tl: var(--login-tab-strip-chamfer);
   --wcui-chamfer-br: var(--login-tab-strip-chamfer);
   display: flex;
@@ -174,9 +174,8 @@
   box-sizing: border-box;
   transition: color 160ms ease;
 
-  /* Opaque match for strip veil: 7% white on transparent ≈ 7% white on panel-fill. */
   &:not(.tabActive) {
-    background: color-mix(in oklab, var(--wcui-white-text) 7%, var(--wcui-panel-fill));
+    background: var(--wcui-match-tab-inactive-fill);
   }
 
   &:hover {

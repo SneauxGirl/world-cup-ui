@@ -111,6 +111,10 @@
   gap: 1rem;
 }
 
+.mainRosterPrompt {
+  flex-shrink: 0;
+}
+
 .mainTopRow {
   display: flex;
   flex-direction: row;
@@ -119,9 +123,11 @@
   gap: 40px;
   width: 100%;
   min-width: 0;
+  padding-top: 0.5rem;
+  box-sizing: border-box;
 }
 
-.mainLiveFeedBlock {
+.mainInsightsBlock {
   order: 2;
   flex: 0 0 min(36%, 26rem);
   min-width: 16rem;
@@ -129,12 +135,22 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  align-self: center;
-  justify-content: center;
+  align-self: flex-start;
+  justify-content: flex-start;
   gap: 0.5rem;
 }
 
-.mainLiveFeedFrame {
+.mainInsightsDemo .mainInsightsFrame {
+  opacity: 0.42;
+  filter: saturate(0.65);
+}
+
+.mainNextMatch {
+  width: 100%;
+  min-width: 0;
+}
+
+.mainInsightsFrame {
   --wcui-chamfer-tl: 30px;
   --wcui-chamfer-tr: 20px;
   --wcui-chamfer-br: 25px;
@@ -148,10 +164,10 @@
   @include frame.wcui-chamfer-frame-asymmetric;
 }
 
-.mainLiveFeedInner {
+.mainInsightsInner {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.35rem;
   padding: clamp(0.9rem, 2vw, 1.15rem) clamp(1rem, 2.5vw, 1.35rem);
   box-sizing: border-box;
@@ -159,7 +175,7 @@
   border: 1px solid var(--wcui-border-aqua-soft);
 }
 
-.mainLiveFeedTicker {
+.mainInsightsMessage {
   min-width: 0;
 }
 
@@ -225,7 +241,7 @@
     max-width: none;
   }
 
-  .mainLiveFeedBlock {
+  .mainInsightsBlock {
     flex: 0 0 auto;
     width: 100%;
     min-width: 0;

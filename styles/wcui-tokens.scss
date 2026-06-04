@@ -68,6 +68,9 @@ $wcui-token-pairs: (
   --wcui-text-placeholder: rgb(255 255 255 / 0.6);
   --wcui-text-placeholder: oklch(0.98 0 0 / 0.6);
 
+  /* Site footer primary nav (large links + echo row) — softer than full white-text. */
+  --wcui-footer-nav-link: color-mix(in oklab, var(--wcui-white-text) 92%, transparent);
+
   /* Validation / error copy — signal yellow on dark surfaces (~14.8:1 on pitch black). */
   --wcui-text-error: color-mix(in oklab, var(--wcui-signal-orange-hex) 92%, white);
   --wcui-text-error-hex: var(--wcui-signal-orange-hex);
@@ -77,6 +80,14 @@ $wcui-token-pairs: (
   --wcui-shadow-aqua-soft: oklch(0.84 0.15 205 / 0.055);
 
   --wcui-panel-fill: var(--wcui-panel-blueblack);
+
+  /* Match Play tab strip (login / dashboard) — inactive track + tab surfaces. */
+  --wcui-match-tab-strip-fill: color-mix(in oklab, var(--wcui-white-text) 7%, transparent);
+  --wcui-match-tab-inactive-fill: color-mix(
+    in oklab,
+    var(--wcui-white-text) 7%,
+    var(--wcui-panel-fill)
+  );
 
   /* Typography scale — login page reference (font-size only). */
   --wcui-font-meta: 0.72rem;

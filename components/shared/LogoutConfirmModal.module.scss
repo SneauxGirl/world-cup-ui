@@ -172,16 +172,8 @@
   @include glow.login-sign-in-glow;
 
   &:hover,
-  &:focus-visible {
+  &:focus {
     @include glow.login-sign-in-glow-active;
-  }
-
-  &:focus:not(:focus-visible) {
-    box-shadow: inset 0 1px 0 var(--wcui-card-glass-highlight);
-
-    &::before {
-      opacity: 0;
-    }
   }
 
   &:focus-visible {

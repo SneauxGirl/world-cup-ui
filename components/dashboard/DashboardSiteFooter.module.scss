@@ -82,7 +82,7 @@
   line-height: 1.1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--wcui-white-text);
+  color: var(--wcui-footer-nav-link);
   text-decoration: none;
   transition: color 160ms ease;
 
@@ -152,7 +152,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
-  color: color-mix(in oklab, var(--wcui-white-text) 92%, transparent);
+  color: var(--wcui-footer-nav-link);
   white-space: nowrap;
   cursor: pointer;
   transition: color 160ms ease;

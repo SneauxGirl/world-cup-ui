@@ -13,19 +13,13 @@ type Props = {
   scale: ValueTrendStripScale;
   items: ValueTrendStripItem[];
   scrollerRef: RefObject<HTMLDivElement | null>;
-  onOpenItem: (item: ValueTrendStripItem) => void;
 };
 
 function formatTick(value: number): string {
   return Number.isInteger(value) ? String(value) : value.toFixed(1);
 }
 
-export function ValueTrendStripPlot({
-  scale,
-  items,
-  scrollerRef,
-  onOpenItem,
-}: Props) {
+export function ValueTrendStripPlot({ scale, items, scrollerRef }: Props) {
   const plotStyle = {
     ["--value-trend-plot-height" as string]: `${STRIP_BAR_CHART_HEIGHT}px`,
     ["--value-trend-column-width" as string]: "5rem",
@@ -78,7 +72,6 @@ export function ValueTrendStripPlot({
                 item={item}
                 scaleMin={scale.min}
                 scaleMax={scale.max}
-                onOpen={() => onOpenItem(item)}
               />
             ))}
           </div>

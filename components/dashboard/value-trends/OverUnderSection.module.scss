@@ -10,7 +10,7 @@
 .section {
   position: relative;
   min-height: 0;
-  padding: 0.5rem 0 0.5rem;
+  padding: 0 0 0.5rem;
   box-sizing: border-box;
   background: transparent;
   border: none;
@@ -26,70 +26,6 @@
 .sectionDemo .content {
   opacity: 0.42;
   filter: saturate(0.65);
-}
-
-.demoOverlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(1rem, 4vw, 2rem);
-  box-sizing: border-box;
-  background: color-mix(in oklab, var(--wcui-pitch-black) 72%, transparent);
-  @include frame.wcui-chamfer-clip-tl-br;
-}
-
-.demoPromptFrame {
-  --wcui-chamfer-tl: 14px;
-  --wcui-chamfer-br: 14px;
-  width: min(26rem, 100%);
-  padding: 1px;
-  box-sizing: border-box;
-  background: var(--wcui-aqua-mint);
-  @include frame.wcui-chamfer-frame-tl-br;
-}
-
-.demoPrompt {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.85rem;
-  padding: clamp(1.1rem, 3vw, 1.45rem) clamp(1.15rem, 4vw, 1.65rem);
-  text-align: center;
-  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-panel-fill));
-  border: 1px solid var(--wcui-border-aqua-soft);
-  box-shadow:
-    inset 0 1px 0 var(--wcui-white-overlay-soft),
-    0 0 28px var(--wcui-shadow-aqua-soft);
-}
-
-.demoPromptText {
-  font-size: var(--wcui-font-body);
-  line-height: 1.45;
-  color: var(--wcui-white-text);
-}
-
-.demoPromptLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: var(--wcui-font-control);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--wcui-aqua-mint);
-}
-
-.demoPromptLink:focus-visible {
-  outline: 2px solid var(--wcui-aqua-mint);
-  outline-offset: 3px;
-}
-
-.demoPromptIcon {
-  width: 1rem;
-  height: 1rem;
 }
 
 .head {

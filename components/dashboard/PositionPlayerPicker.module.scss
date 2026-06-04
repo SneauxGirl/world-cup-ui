@@ -27,11 +27,6 @@
   background: transparent;
 }
 
-.iconBtn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -167,4 +162,17 @@
   font-weight: 700;
   line-height: 1;
   cursor: pointer;
+}
+
+.iconBtnRemove {
+  border-color: color-mix(in oklab, var(--wcui-primary-red) 72%, transparent);
+  background: color-mix(in oklab, var(--wcui-primary-red) 22%, var(--wcui-page-black));
+  color: var(--wcui-primary-red);
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--wcui-primary-red);
+    background: color-mix(in oklab, var(--wcui-primary-red) 38%, var(--wcui-page-black));
+    color: var(--wcui-white-text);
+  }
 }

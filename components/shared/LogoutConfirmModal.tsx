@@ -34,7 +34,7 @@ export function LogoutConfirmModal({
   anchorRef,
 }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
-  const cancelRef = useRef<HTMLButtonElement>(null);
+  const confirmRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
   const dialogId = useId();
   const [anchorStyle, setAnchorStyle] = useState<{
@@ -89,7 +89,7 @@ export function LogoutConfirmModal({
         (el) => !el.hasAttribute("disabled"),
       );
 
-    cancelRef.current?.focus();
+    confirmRef.current?.focus();
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -177,21 +177,21 @@ export function LogoutConfirmModal({
           <div className={styles.actions}>
             <div className={styles.chamferTrim}>
               <button
-                ref={cancelRef}
-                type="button"
-                className={[styles.chamferBtn, styles.cancelBtn].join(" ")}
-                onClick={handleCancel}
-              >
-                {t("auth.cancel")}
-              </button>
-            </div>
-            <div className={styles.chamferTrim}>
-              <button
+                ref={confirmRef}
                 type="button"
                 className={[styles.chamferBtn, styles.confirmBtn].join(" ")}
                 onClick={onConfirm}
               >
                 {t("auth.confirm")}
+              </button>
+            </div>
+            <div className={styles.chamferTrim}>
+              <button
+                type="button"
+                className={[styles.chamferBtn, styles.cancelBtn].join(" ")}
+                onClick={handleCancel}
+              >
+                {t("auth.cancel")}
               </button>
             </div>
           </div>

@@ -209,6 +209,14 @@
   }
 }
 
+@media (max-width: 370px) {
+  .brandLogoMarkNarrow {
+    max-width: 4.75rem;
+  }
+  .promptFrame .promptLead .promptTitleRow .promptTitle {
+    font-size: 1.25rem;
+  }
+}
 /* Sign in / Sign up — aqua chamfer frame at rest (matches pair on hero). */
 .signInTrim,
 .signUpTrim {

@@ -245,16 +245,6 @@
   }
 }
 
-@media (min-width: 1500px) {
-  .page {
-    --hero-photo-max: 450px;
-    --hero-band-height: min(
-      var(--hero-photo-max),
-      100vw * 600 / 2000
-    );
-  }
-}
-
 /* 1375–1734px: softer multi-stop horizontal fade. */
 @media (min-width: 1375px) and (max-width: 1734px) {
   .page {
@@ -292,6 +282,41 @@
   }
 }
 
+@media (min-width: 1500px) {
+  .page {
+    --hero-photo-max: 450px;
+    --hero-band-height: min(
+      var(--hero-photo-max),
+      100vw * 600 / 2000
+    );
+  }
+}
+
+/* 1535px+: fixed horizontal mask stops. */
+@media (min-width: 1535px) {
+  .heroContentWrapper::after {
+    background:
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent var(--login-hero-fade-y-start),
+        color-mix(in oklab, var(--login-hero-fill) 35%, transparent) 58%,
+        color-mix(in oklab, var(--login-hero-fill) 78%, transparent) 72%,
+        var(--login-hero-fill) 100%
+      ),
+      linear-gradient(
+        90deg,
+        var(--login-hero-fill) 0%,
+        var(--login-hero-fill) calc(32% - var(--login-hero-fade-x-shift)),
+        color-mix(in oklab, var(--login-hero-fill) 92%, transparent) calc(44% - var(--login-hero-fade-x-shift)),
+        color-mix(in oklab, var(--login-hero-fill) 55%, transparent) calc(50% - var(--login-hero-fade-x-shift)),
+        transparent calc(58% - var(--login-hero-fade-x-shift))
+      );
+  }
+}
+
+/* --- max-width descending --- */
+
 /* ≤768px: shorter band, full-width card; card hangs below band and pushes steps. */
 @media (max-width: 768px) {
   .page {
@@ -328,25 +353,23 @@
   }
 }
 
-/* 1535px+: fixed horizontal mask stops. */
-@media (min-width: 1535px) {
-  .heroContentWrapper::after {
-    background:
-      linear-gradient(
-        180deg,
-        transparent 0%,
-        transparent var(--login-hero-fade-y-start),
-        color-mix(in oklab, var(--login-hero-fill) 35%, transparent) 58%,
-        color-mix(in oklab, var(--login-hero-fill) 78%, transparent) 72%,
-        var(--login-hero-fill) 100%
-      ),
-      linear-gradient(
-        90deg,
-        var(--login-hero-fill) 0%,
-        var(--login-hero-fill) calc(32% - var(--login-hero-fade-x-shift)),
-        color-mix(in oklab, var(--login-hero-fill) 92%, transparent) calc(44% - var(--login-hero-fade-x-shift)),
-        color-mix(in oklab, var(--login-hero-fill) 55%, transparent) calc(50% - var(--login-hero-fade-x-shift)),
-        transparent calc(58% - var(--login-hero-fade-x-shift))
-      );
+@media (min-width: 500px) and (max-width: 768px) {
+  .page {
+    --login-hero-card-max: 500px;
+    --login-hero-card-height: 10vh;
   }
+}
+
+@media (min-width: 500px) and (max-width: 768px) and (max-height: 720px) {
+  .page {
+    --login-hero-card-padding: clamp(0.6rem, 1.5vh, 1rem);
+    --login-hero-card-gap: clamp(0.35rem, 1vh, 0.65rem);
+  }
+}
+/* <500px: band height capped (42vh alone can exceed 300px on tall phones). */
+@media (max-width: 499px) {
+  .page {
+    --login-hero-band-height: min(42vh, 300px);
+  }
+
 }

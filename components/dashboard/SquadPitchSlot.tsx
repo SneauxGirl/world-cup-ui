@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { PlayerCardTrigger } from "@/components/dashboard/player-card/PlayerCardTrigger";
 import { IconClose, IconPeople, IconPlus } from "@/components/icons/DashboardIcons";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import type { SquadPitchSlot as SquadPitchSlotData } from "@/data/squad-pitch-formation";
@@ -50,14 +49,10 @@ export function SquadPitchSlot({ slot, onSelect, onClear, selectedPlayer }: Prop
 
         {isFilled && jerseySrc && selectedPlayer ? (
           <>
-            <PlayerCardTrigger
-              player={selectedPlayer}
-              className={styles.slotTopMeta}
-              stopPropagation
-            >
+            <div className={styles.slotTopMeta}>
               <span className={styles.slotPlayerPoints}>{selectedPlayer.fantasyPoints}</span>
               <span className={styles.slotPlayerMeta}>{slot.position}</span>
-            </PlayerCardTrigger>
+            </div>
             <button
               type="button"
               className={styles.slotClearBtn}
@@ -68,12 +63,8 @@ export function SquadPitchSlot({ slot, onSelect, onClear, selectedPlayer }: Prop
             >
               <IconClose width={12} height={12} />
             </button>
-            <PlayerCardTrigger
-              player={selectedPlayer}
-              className={styles.slotPlayerImageBtn}
-              stopPropagation
-            >
-              <span className={styles.slotPlayerImageWrap} aria-hidden="true">
+            <div className={styles.slotPlayerImageBtn} aria-hidden="true">
+              <span className={styles.slotPlayerImageWrap}>
                 <Image
                   src={jerseySrc}
                   alt=""
@@ -82,14 +73,8 @@ export function SquadPitchSlot({ slot, onSelect, onClear, selectedPlayer }: Prop
                   sizes="(min-width: 901px) 7.25rem, 5.78rem"
                 />
               </span>
-            </PlayerCardTrigger>
-            <PlayerCardTrigger
-              player={selectedPlayer}
-              className={styles.slotPlayerName}
-              stopPropagation
-            >
-              {selectedPlayer.lastName}
-            </PlayerCardTrigger>
+            </div>
+            <div className={styles.slotPlayerName}>{selectedPlayer.lastName}</div>
           </>
         ) : null}
       </span>

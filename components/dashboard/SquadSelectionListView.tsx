@@ -1,7 +1,6 @@
 "use client";
 
 import { CountryFlag } from "@/components/CountryFlag";
-import { PlayerCardTrigger } from "@/components/dashboard/player-card/PlayerCardTrigger";
 import { IconClose, IconPlus } from "@/components/icons/DashboardIcons";
 import type { SquadPlayerPoolEntry } from "@/data/squad-player-pool";
 import {
@@ -129,22 +128,22 @@ function FilledRosterRow({
         {slotNumber}.
       </span>
 
-      <PlayerCardTrigger player={player} className={styles.flagBtn}>
+      <span className={styles.flagBtn}>
         <CountryFlag
           code={player.teamCode}
           label={player.countryName}
           className={styles.flag}
         />
-      </PlayerCardTrigger>
+      </span>
 
-      <PlayerCardTrigger player={player} className={styles.playerMeta}>
+      <div className={styles.playerMeta}>
         <p className={styles.playerLastName}>{player.lastName}</p>
         <p className={styles.playerSubline}>
           {player.countryName}
           <span aria-hidden="true"> · </span>
           {t("player.points", { pts: formatInteger(player.fantasyPoints) })}
         </p>
-      </PlayerCardTrigger>
+      </div>
 
       <div className={styles.actions}>
         <button

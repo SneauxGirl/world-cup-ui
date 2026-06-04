@@ -180,6 +180,7 @@
   margin: 0;
   padding: 0;
   text-align: left;
+  pointer-events: none;
 
   &:hover .slotPlayerPoints {
     color: var(--wcui-aqua-mint);
@@ -189,6 +190,7 @@
 .slotPlayerPoints {
   display: block;
   margin: 0;
+  padding: 2px 0 0 2px;
   font-family: var(--font-finlandica), sans-serif;
   font-size: clamp(0.74rem, 1.8cqw, 0.92rem);
   font-weight: 700;
@@ -216,6 +218,7 @@
   inset: 0;
   z-index: 2;
   padding: 0;
+  pointer-events: none;
 }
 
 .slotPlayerImageWrap {
@@ -238,6 +241,7 @@
   bottom: clamp(0.28rem, 0.75cqw, 0.42rem);
   margin: 0;
   padding: 0;
+  pointer-events: none;
   font-family: var(--font-alumni-sans-sc), var(--font-alumni-sans), sans-serif;
   font-size: clamp(1rem, 2.85cqw, 1.3rem);
   font-weight: 700;

@@ -1,0 +1,106 @@
+@use "../../styles/wcui-frame" as frame;
+
+.nextMatch {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.frame {
+  --dashboard-next-match-chamfer: 12px;
+  --wcui-chamfer-tl: var(--dashboard-next-match-chamfer);
+  --wcui-chamfer-br: var(--dashboard-next-match-chamfer);
+  width: 100%;
+  padding: 1px;
+  box-sizing: border-box;
+  background: var(--wcui-border-blue);
+  @include frame.wcui-chamfer-frame-tl-br(var(--wcui-border-blue));
+}
+
+.frameDimmed {
+  opacity: 0.42;
+  filter: saturate(0.65);
+}
+
+.inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  padding: clamp(0.65rem, 1.4vw, 0.85rem) clamp(0.95rem, 1.8vw, 1.15rem);
+  box-sizing: border-box;
+  overflow: hidden;
+  @include frame.wcui-chamfer-fill-tl-br(var(--wcui-match-tab-inactive-fill));
+}
+
+.art {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  margin: 0;
+  margin-inline-start: clamp(-0.5rem, -2vw, -0.15rem);
+  min-width: 0;
+}
+
+.artImage {
+  display: block;
+  width: clamp(4.75rem, 38%, 7.25rem);
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.copy {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.line {
+  margin: 0;
+  width: 100%;
+  line-height: 1.25;
+  text-align: right;
+}
+
+.prefix {
+  font-family: var(--font-alumni-sans), var(--font-finlandica), sans-serif;
+  font-size: var(--wcui-font-heading-panel);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wcui-white-text);
+}
+
+.team {
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: max(1.2rem, var(--wcui-font-secondary));
+  font-weight: 400;
+  color: var(--wcui-text-standard);
+}
+
+.link {
+  font-family: var(--font-finlandica), sans-serif;
+  font-size: var(--wcui-font-control);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--wcui-aqua-mint);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--wcui-white-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 3px;
+  }
+}

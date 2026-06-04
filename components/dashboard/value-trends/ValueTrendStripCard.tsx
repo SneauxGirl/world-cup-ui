@@ -7,19 +7,16 @@ import {
   getStripLastGameVsAverageTone,
 } from "@/lib/value-trends/compute";
 import { ValueTrendStripBarChart } from "@/components/dashboard/value-trends/ValueTrendStripBarChart";
-import { t } from "@/lib/i18n/t";
 import styles from "./ValueTrendStripCard.module.scss";
 
 type ChartCellProps = {
   item: ValueTrendStripItem;
   scaleMin: number;
   scaleMax: number;
-  onOpen: () => void;
 };
 
 type LabelCellProps = {
   item: ValueTrendStripItem;
-  onOpen: () => void;
 };
 
 function useStripItemState(item: ValueTrendStripItem) {
@@ -31,42 +28,26 @@ function useStripItemState(item: ValueTrendStripItem) {
   return { delta, deltaTone, displayName, titleId };
 }
 
-export function ValueTrendStripChartCell({
-  item,
-  scaleMin,
-  scaleMax,
-  onOpen,
-}: ChartCellProps) {
-  const { displayName } = useStripItemState(item);
-
+export function ValueTrendStripChartCell({ item, scaleMin, scaleMax }: ChartCellProps) {
   return (
     <div className={styles.chartCell}>
-      <button
-        type="button"
-        className={styles.chartBtn}
-        onClick={onOpen}
-        aria-label={t("playerCard.open", { player: displayName })}
-      >
+      <div className={styles.chartBody}>
         <ValueTrendStripBarChart
           template={item.template}
           scaleMin={scaleMin}
           scaleMax={scaleMax}
         />
-      </button>
+      </div>
     </div>
   );
 }
 
-export function ValueTrendStripLabelCell({ item, onOpen }: LabelCellProps) {
+export function ValueTrendStripLabelCell({ item }: LabelCellProps) {
   const { delta, deltaTone, displayName, titleId } = useStripItemState(item);
 
   return (
     <div className={styles.labelCell}>
-      <button
-        type="button"
-        className={styles.labelBtn}
-        onClick={onOpen}
-      >
+      <div className={styles.labelBody}>
         <span id={titleId} className={styles.name}>
           {displayName}
         </span>
@@ -84,7 +65,7 @@ export function ValueTrendStripLabelCell({ item, onOpen }: LabelCellProps) {
         <span className={[styles.delta, styles[`delta_${deltaTone}`]].join(" ")}>
           {formatTrendDelta(delta)}
         </span>
-      </button>
+      </div>
     </div>
   );
 }
