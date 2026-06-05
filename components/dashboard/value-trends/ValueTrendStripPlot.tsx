@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties, RefObject } from "react";
+import { useCallback, useId, useRef, type CSSProperties, type KeyboardEvent } from "react";
 import { ValueTrendStripColumn } from "@/components/dashboard/value-trends/ValueTrendStripColumn";
 import { STRIP_BAR_CHART_HEIGHT } from "@/components/dashboard/value-trends/ValueTrendStripBarChart";
 import type { ValueTrendStripItem } from "@/lib/value-trends/buildStripItems";
@@ -12,18 +12,57 @@ import styles from "./ValueTrendStripPlot.module.scss";
 type Props = {
   scale: ValueTrendStripScale;
   items: ValueTrendStripItem[];
-  scrollerRef: RefObject<HTMLDivElement | null>;
 };
 
 function formatTick(value: number): string {
   return Number.isInteger(value) ? String(value) : value.toFixed(1);
 }
 
-export function ValueTrendStripPlot({ scale, items, scrollerRef }: Props) {
+export function ValueTrendStripPlot({ scale, items }: Props) {
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const hintId = useId();
+
   const plotStyle = {
     ["--value-trend-plot-height" as string]: `${STRIP_BAR_CHART_HEIGHT}px`,
     ["--value-trend-column-width" as string]: "5rem",
   } as CSSProperties;
+
+  const scrollByCard = useCallback((dir: -1 | 1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-value-trend-column]");
+    const delta = card ? card.getBoundingClientRect().width + 12 : 120;
+    el.scrollBy({ left: dir * delta, behavior: "smooth" });
+  }, []);
+
+  const handleScrollerKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      const scroller = scrollerRef.current;
+      if (!scroller) return;
+
+      switch (event.key) {
+        case "ArrowRight":
+          event.preventDefault();
+          scrollByCard(1);
+          break;
+        case "ArrowLeft":
+          event.preventDefault();
+          scrollByCard(-1);
+          break;
+        case "Home":
+          event.preventDefault();
+          scroller.scrollLeft = 0;
+          break;
+        case "End":
+          event.preventDefault();
+          scroller.scrollLeft = scroller.scrollWidth;
+          break;
+        default:
+          break;
+      }
+    },
+    [scrollByCard],
+  );
 
   return (
     <div
@@ -35,6 +74,10 @@ export function ValueTrendStripPlot({ scale, items, scrollerRef }: Props) {
         max: formatTick(scale.max),
       })}
     >
+      <p id={hintId} className={styles.scrollerHint}>
+        {t("valueTrends.stripScrollerHint")}
+      </p>
+
       <div className={styles.axisCaptionRow} aria-hidden="true">
         <span className={styles.axisCaption}>{t("valueTrends.pointsAxis")}</span>
       </div>
@@ -65,7 +108,15 @@ export function ValueTrendStripPlot({ scale, items, scrollerRef }: Props) {
             ))}
           </div>
 
-          <div ref={scrollerRef} className={styles.scroller}>
+          <div
+            ref={scrollerRef}
+            className={styles.scroller}
+            role="region"
+            tabIndex={0}
+            aria-label={t("valueTrends.stripScrollerLabel")}
+            aria-describedby={hintId}
+            onKeyDown={handleScrollerKeyDown}
+          >
             {items.map((item) => (
               <ValueTrendStripColumn
                 key={item.slotId}

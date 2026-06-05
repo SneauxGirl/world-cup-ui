@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { OverUnderInfoModal } from "@/components/dashboard/value-trends/OverUnderInfoModal";
 import { ValueTrendStripPlot } from "@/components/dashboard/value-trends/ValueTrendStripPlot";
-import { IconChevronRight, IconInfo } from "@/components/icons/DashboardIcons";
+import { IconInfo } from "@/components/icons/DashboardIcons";
 import { buildValueTrendStripItems } from "@/lib/value-trends/buildStripItems";
 import { getStripPlotScale } from "@/lib/value-trends/compute";
 import { useRoster } from "@/lib/roster/RosterProvider";
@@ -15,7 +15,6 @@ type Props = {
 };
 
 export function OverUnderSection({ className }: Props) {
-  const scrollerRef = useRef<HTMLDivElement>(null);
   const { rosterBySlot, isDemoMode, loading } = useRoster();
   const [infoOpen, setInfoOpen] = useState(false);
 
@@ -25,14 +24,6 @@ export function OverUnderSection({ className }: Props) {
   );
 
   const stripScale = getStripPlotScale();
-
-  const scrollByCard = useCallback((dir: -1 | 1) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.querySelector("[data-value-trend-column]");
-    const delta = card ? card.getBoundingClientRect().width + 12 : 120;
-    el.scrollBy({ left: dir * delta, behavior: "smooth" });
-  }, []);
 
   if (loading) return null;
 
@@ -64,34 +55,7 @@ export function OverUnderSection({ className }: Props) {
               </div>
             </div>
 
-            <div className={styles.controls}>
-              <span className={styles.navBtnFrame}>
-                <button
-                  type="button"
-                  className={styles.navBtn}
-                  aria-label={t("dashboard.previousSlide")}
-                  onClick={() => scrollByCard(-1)}
-                >
-                  <IconChevronRight className={styles.flip} />
-                </button>
-              </span>
-              <span className={styles.navBtnFrame}>
-                <button
-                  type="button"
-                  className={styles.navBtn}
-                  aria-label={t("dashboard.nextSlide")}
-                  onClick={() => scrollByCard(1)}
-                >
-                  <IconChevronRight />
-                </button>
-              </span>
-            </div>
-
-            <ValueTrendStripPlot
-              scale={stripScale}
-              items={items}
-              scrollerRef={scrollerRef}
-            />
+            <ValueTrendStripPlot scale={stripScale} items={items} />
           </div>
         </div>
       </section>

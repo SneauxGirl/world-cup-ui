@@ -43,6 +43,11 @@
   -webkit-overflow-scrolling: touch;
   background: transparent;
   scrollbar-color: color-mix(in oklab, var(--wcui-aqua-mint) 35%, transparent) transparent;
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
 }
 
 .table {

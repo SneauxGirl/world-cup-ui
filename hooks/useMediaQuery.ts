@@ -3,12 +3,16 @@
 import { useEffect, useState } from "react";
 import {
   MOBILE_MAX_WIDTH_PX,
+  DASHBOARD_INSIGHTS_STACK_MAX_WIDTH_PX,
   SITE_HEADER_COLLAPSE_MAX_WIDTH_PX,
   mediaMaxWidthQuery,
 } from "@/lib/media";
 
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
+  const [matches, setMatches] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia(query).matches;
+  });
 
   useEffect(() => {
     const mq = window.matchMedia(query);
@@ -23,6 +27,10 @@ export function useMediaQuery(query: string): boolean {
 
 export function useIsMobile(): boolean {
   return useMediaQuery(mediaMaxWidthQuery(MOBILE_MAX_WIDTH_PX));
+}
+
+export function useDashboardInsightsStacked(): boolean {
+  return useMediaQuery(mediaMaxWidthQuery(DASHBOARD_INSIGHTS_STACK_MAX_WIDTH_PX));
 }
 
 export function useSiteHeaderCollapsed(): boolean {

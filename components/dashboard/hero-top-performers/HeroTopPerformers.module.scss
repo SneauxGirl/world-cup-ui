@@ -37,22 +37,17 @@
   display: none;
 }
 
-.sectionOneUp {
-  .titleLabelPlural {
-    display: none;
-  }
-
-  .titleLabelSingular {
-    display: inline;
-  }
-
-  .head {
-    order: 2;
-  }
-
-  .bottomBand {
-    order: 1;
-  }
+/* One roster pick, or container one-up: hide heading (it would sit under the photo). */
+.sectionOneUp .head {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .bottomBand {
@@ -145,19 +140,15 @@
   }
 
   .head {
-    order: 2;
-  }
-
-  .bottomBand {
-    order: 1;
-  }
-
-  .titleLabelPlural {
-    display: none;
-  }
-
-  .titleLabelSingular {
-    display: inline;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 }
 

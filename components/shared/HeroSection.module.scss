@@ -537,6 +537,12 @@
   }
 }
 
+@media (max-width: 499px) {
+  .heroDashboard .heroContent {
+    padding-bottom: 0.5rem;
+  }
+}
+
 @media (max-width: 500px) {
   .heroDashboard .heroContent {
     flex-direction: column;

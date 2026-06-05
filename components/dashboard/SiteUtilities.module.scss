@@ -75,12 +75,15 @@
     height: 1.5rem;
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: var(--wcui-aqua-mint);
     background: var(--wcui-aqua-mint);
+    outline: none;
   }
 
-  &:hover::before {
+  &:hover::before,
+  &:focus-visible::before {
     background: var(--wcui-border-blue);
   }
 }

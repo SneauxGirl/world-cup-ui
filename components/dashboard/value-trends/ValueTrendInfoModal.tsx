@@ -19,7 +19,7 @@ const LABEL_TONE_CLASS: Record<ColoredInfoBullet["tone"], string> = {
   sky: styles.labelSky,
   red: styles.labelRed,
   teal: styles.labelTeal,
-  lime: styles.labelLime,
+  yellow: styles.labelYellow,
 };
 
 const FOCUSABLE =

@@ -128,14 +128,13 @@
 }
 
 .mainInsightsBlock {
-  order: 2;
   flex: 0 0 min(36%, 26rem);
   min-width: 16rem;
   max-width: 26rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  align-self: flex-start;
+  align-self: center;
   justify-content: flex-start;
   gap: 0.5rem;
 }
@@ -164,12 +163,23 @@
   @include frame.wcui-chamfer-frame-asymmetric;
 }
 
+.mainInsightsFocusShell {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  &:has([data-recent-activity-content]:focus-visible) {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 4px;
+  }
+}
+
 .mainInsightsInner {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 0.35rem;
-  padding: clamp(0.9rem, 2vw, 1.15rem) clamp(1rem, 2.5vw, 1.35rem);
+  padding: clamp(0.9rem, 2vw, 1.15rem) clamp(1rem, 2.5vw, 1.35rem) 0.75rem;
   box-sizing: border-box;
   @include frame.wcui-chamfer-fill-asymmetric(var(--wcui-hero-panel-fill));
   border: 1px solid var(--wcui-border-aqua-soft);
@@ -185,7 +195,6 @@
 }
 
 .mainInsightsColumn {
-  order: 1;
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
@@ -230,7 +239,9 @@
   .mainLayout {
     padding-bottom: 1.5rem;
   }
+}
 
+@media (max-width: 600px) {
   .mainTopRow {
     flex-direction: column;
     align-items: stretch;
@@ -243,9 +254,41 @@
 
   .mainInsightsBlock {
     flex: 0 0 auto;
+    align-self: stretch;
     width: 100%;
     min-width: 0;
     max-width: none;
+  }
+}
+
+/* Recent Activity: flat on page black below 500px — no chamfer frame or panel fill. */
+@media (max-width: 499px) {
+  .mainLayout {
+    gap: 0;
+  }
+
+  .mainTopRow {
+    padding-top: 0;
+    gap: 0;
+  }
+
+  .mainInsightsBlock {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .mainInsightsFrame {
+    padding: 0;
+    background: transparent;
+    clip-path: none;
+  }
+
+  .mainInsightsInner {
+    padding: 0;
+    background: transparent;
+    border: none;
+    clip-path: none;
+    box-shadow: none;
   }
 }
 

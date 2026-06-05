@@ -102,16 +102,16 @@
 
 .volatile {
   .wick {
-    stroke: color-mix(in oklab, var(--wcui-lime-pulse) 50%, transparent);
+    stroke: color-mix(in oklab, var(--wcui-signal-yellow) 50%, transparent);
   }
 
   .body {
-    stroke: var(--wcui-lime-pulse);
+    stroke: var(--wcui-signal-yellow);
     fill: color-mix(in oklab, var(--wcui-signal-yellow) 42%, var(--wcui-pitch-black));
   }
 
   .volume {
-    fill: color-mix(in oklab, var(--wcui-border-blue) 70%, var(--wcui-lime-pulse));
+    fill: color-mix(in oklab, var(--wcui-border-blue) 70%, var(--wcui-signal-yellow));
   }
 }
 

@@ -3,6 +3,18 @@
   width: 100%;
 }
 
+.scrollerHint {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .axisCaptionRow {
   display: flex;
   flex-direction: row;
@@ -102,9 +114,18 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in oklab, var(--wcui-aqua-mint) 35%, transparent) transparent;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 2px;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .scroller {
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 0.25rem;

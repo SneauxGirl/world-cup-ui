@@ -1,5 +1,4 @@
 import { en, type Messages } from "@/messages/en";
-import type { FeedMessageKey } from "@/data/types";
 
 type Leaf = string | number | boolean | null | undefined;
 type MessageTree = { [k: string]: MessageTree } | Leaf;
@@ -16,10 +15,6 @@ function getByPath(root: MessageTree, path: string): unknown {
     cur = cur[p];
   }
   return cur;
-}
-
-export function tFeed(key: FeedMessageKey): string {
-  return en.feed[key];
 }
 
 /**

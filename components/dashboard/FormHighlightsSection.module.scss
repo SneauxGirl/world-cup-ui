@@ -84,11 +84,11 @@
 }
 
 .chip_volatile {
-  border-color: color-mix(in oklab, var(--wcui-lime-pulse) 45%, var(--wcui-border-blue));
-  box-shadow: 0 0 10px color-mix(in oklab, var(--wcui-lime-pulse) 18%, transparent);
+  border-color: color-mix(in oklab, var(--wcui-signal-yellow) 45%, var(--wcui-border-blue));
+  box-shadow: 0 0 10px color-mix(in oklab, var(--wcui-signal-yellow) 18%, transparent);
 
   .chipLabel {
-    color: var(--wcui-lime-pulse);
+    color: var(--wcui-signal-yellow);
   }
 }
 

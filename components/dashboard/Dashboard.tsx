@@ -5,16 +5,17 @@ import { RequireAuth } from "@/components/auth/RequireAuth";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { useLogout } from "@/lib/auth/useLogout";
 import { userDashboard } from "@/data/dashboard-seed";
+import { buildRosterRecentActivity } from "@/lib/dashboard/recentActivity";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { SidebarNav } from "@/components/dashboard/Navigation";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { DashboardSiteFooter } from "@/components/dashboard/DashboardSiteFooter";
-import { DashboardInsights } from "@/components/dashboard/DashboardInsights";
+import { RecentActivity } from "@/components/dashboard/RecentActivity";
 import { DashboardNextMatch } from "@/components/dashboard/DashboardNextMatch";
 import { DashboardRosterPrompt } from "@/components/dashboard/DashboardRosterPrompt";
-import { useIsMobile } from "@/hooks/useMediaQuery";
+import { useDashboardInsightsStacked, useIsMobile } from "@/hooks/useMediaQuery";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import { PlayerStatsSection } from "@/components/dashboard/player-stats/PlayerStatsSection";
 import { OverUnderSection } from "@/components/dashboard/value-trends/OverUnderSection";
@@ -23,13 +24,16 @@ import {
   buildTopPerformers,
   isGlobalTopPerformersMode,
 } from "@/lib/player-fantasy/topPerformers";
-import { t } from "@/lib/i18n/t";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import styles from "./Dashboard.module.scss";
+
+/** Set true to restore the Next Match callout under RecentActivity. */
+const SHOW_NEXT_MATCH = false;
 
 export function Dashboard() {
   const logout = useLogout();
   const isMobile = useIsMobile();
+  const isInsightsStacked = useDashboardInsightsStacked();
   const [logoutOpen, setLogoutOpen] = useState(false);
   const { rosterBySlot, rosterCount, loading: rosterLoading, isDemoMode } = useRoster();
   const performers = useMemo(
@@ -37,6 +41,11 @@ export function Dashboard() {
     [rosterBySlot],
   );
   const globalTopPerformers = isGlobalTopPerformersMode(rosterCount);
+
+  const recentActivityItems = useMemo(
+    () => buildRosterRecentActivity(rosterBySlot),
+    [rosterBySlot],
+  );
 
   const dashboardUser = useMemo(() => {
     if (rosterLoading) return userDashboard;
@@ -49,20 +58,6 @@ export function Dashboard() {
       totalPoints,
     };
   }, [rosterBySlot, rosterLoading]);
-
-  const rosterInsight = useMemo(() => {
-    const rosterPlayers = Object.values(rosterBySlot);
-    if (rosterPlayers.length === 0) {
-      return "Insight: lock your roster to generate personalized player calls.";
-    }
-
-    const focusPlayer = rosterPlayers.reduce((best, current) => {
-      return getTotalFantasyPoints(current.id) > getTotalFantasyPoints(best.id) ? current : best;
-    });
-
-    const points = getTotalFantasyPoints(focusPlayer.id);
-    return `Insight: ${focusPlayer.firstName} ${focusPlayer.lastName} is your form anchor at ${points} total fantasy points — keep them locked for the next slate.`;
-  }, [rosterBySlot]);
 
   const requestLogout = useCallback(() => setLogoutOpen(true), []);
   const { headerUtilities, overlays, DrawerSearch } = useSiteUtilities({
@@ -81,6 +76,40 @@ export function Dashboard() {
   }, [logoutOpen]);
 
   const showRosterPrompt = isDemoMode && !rosterLoading;
+
+  const rosterAverageColumn = (
+    <div className={styles.mainInsightsColumn}>
+      <OverUnderSection className={styles.mainOverUnderSection} />
+    </div>
+  );
+
+  const recentActivityBlock = (
+    <div
+      className={[
+        styles.mainInsightsBlock,
+        showRosterPrompt && styles.mainInsightsDemo,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <div className={styles.mainInsightsFocusShell}>
+        <div className={styles.mainInsightsFrame}>
+          <div className={styles.mainInsightsInner}>
+            <RecentActivity
+              items={recentActivityItems}
+              className={styles.mainInsightsMessage}
+            />
+          </div>
+        </div>
+      </div>
+      {SHOW_NEXT_MATCH ? (
+        <DashboardNextMatch
+          className={styles.mainNextMatch}
+          dimmed={showRosterPrompt}
+        />
+      ) : null}
+    </div>
+  );
 
   return (
     <RequireAuth>
@@ -129,34 +158,18 @@ export function Dashboard() {
           <div className={styles.pageColumn}>
             <main id="dashboard-main" className={styles.mainLayout}>
               {showRosterPrompt ? <DashboardRosterPrompt className={styles.mainRosterPrompt} /> : null}
-              <section className={styles.mainTopRow} aria-label={t("dashboard.insights")}>
-                <div
-                  className={[
-                    styles.mainInsightsBlock,
-                    showRosterPrompt && styles.mainInsightsDemo,
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
-                >
-                  <div
-                    className={styles.mainInsightsFrame}
-                    aria-label={t("dashboard.insights")}
-                  >
-                    <div className={styles.mainInsightsInner}>
-                      <DashboardInsights
-                        insight={rosterInsight}
-                        className={styles.mainInsightsMessage}
-                      />
-                    </div>
-                  </div>
-                  <DashboardNextMatch
-                    className={styles.mainNextMatch}
-                    dimmed={showRosterPrompt}
-                  />
-                </div>
-                <div className={styles.mainInsightsColumn}>
-                  <OverUnderSection className={styles.mainOverUnderSection} />
-                </div>
+              <section className={styles.mainTopRow}>
+                {isInsightsStacked ? (
+                  <>
+                    {recentActivityBlock}
+                    {rosterAverageColumn}
+                  </>
+                ) : (
+                  <>
+                    {rosterAverageColumn}
+                    {recentActivityBlock}
+                  </>
+                )}
               </section>
               <PlayerStatsSection />
             </main>

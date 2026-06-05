@@ -193,6 +193,14 @@ export function IconChevronDown(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconChevronUp(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...iconProps} {...props}>
+      <path d="m6 15 6-6 6 6" />
+    </svg>
+  );
+}
+
 export function IconSearch(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...iconProps} {...props}>

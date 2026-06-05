@@ -1,4 +1,4 @@
-import type { DashboardMatch, FeedItem, UserDashboard } from "@/data/types";
+import type { DashboardMatch, UserDashboard } from "@/data/types";
 
 export const userDashboard: UserDashboard = {
   displayName: "Heather Hugo",
@@ -9,9 +9,6 @@ export const userDashboard: UserDashboard = {
   isRoundLive: true,
   topPercent: 1.4,
 };
-
-export const strategyInsight =
-  "France's left side is generating 63% of their attacks — chances cluster on that flank early.";
 
 export const liveMatches: DashboardMatch[] = [
   {
@@ -146,31 +143,5 @@ export const liveMatches: DashboardMatch[] = [
     awayScore: 0,
     clockLabel: "2026-07-01T16:00:00Z",
     fantasyPoints: 0,
-  },
-];
-
-export const feedItems: FeedItem[] = [
-  { id: "f1", messageKey: "kaneGoal", pts: 14, kind: "ball" },
-  { id: "f2", messageKey: "bellinghamAssist", pts: 9, kind: "badge" },
-  { id: "f3", messageKey: "ronaldoShot", pts: 5, kind: "ball" },
-  { id: "f4", messageKey: "musialaShot", pts: 7, kind: "ball" },
-  { id: "f5", messageKey: "deBruyneKeyPass", pts: 6, kind: "badge" },
-  { id: "f6", messageKey: "hakimiCross", pts: 4, kind: "badge" },
-  { id: "f7", messageKey: "brunoFernandesCorner", pts: 3, kind: "ball" },
-  { id: "f8", messageKey: "haalandGoal", pts: 12, kind: "ball" },
-  { id: "f9", messageKey: "modricAssist", pts: 8, kind: "badge" },
-  {
-    id: "f10",
-    messageKey: "brazilCleanSheet",
-    pts: 6,
-    kind: "flag",
-    flagCode: "BRA",
-  },
-  {
-    id: "f12",
-    messageKey: "virgilBlock",
-    pts: 5,
-    kind: "flag",
-    flagCode: "NED",
   },
 ];

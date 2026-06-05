@@ -140,69 +140,10 @@
 }
 
 .chip_volatile {
-  border-color: color-mix(in oklab, var(--wcui-lime-pulse) 45%, var(--wcui-border-blue));
-  box-shadow: 0 0 10px color-mix(in oklab, var(--wcui-lime-pulse) 18%, transparent);
+  border-color: color-mix(in oklab, var(--wcui-signal-yellow) 45%, var(--wcui-border-blue));
+  box-shadow: 0 0 10px color-mix(in oklab, var(--wcui-signal-yellow) 18%, transparent);
 
   .chipLabel {
-    color: var(--wcui-lime-pulse);
-  }
-}
-
-.controls {
-  display: none;
-  align-self: flex-end;
-  gap: 0.35rem;
-}
-
-.navBtnFrame {
-  display: inline-flex;
-  padding: 1px;
-  box-sizing: border-box;
-  background: var(--wcui-aqua-mint);
-  clip-path: polygon(
-    0 0,
-    calc(100% - 8px) 0,
-    100% 8px,
-    100% 100%,
-    8px 100%,
-    0 calc(100% - 8px)
-  );
-}
-
-.navBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  padding: 0;
-  margin: 0;
-  border: none;
-  font: inherit;
-  background: var(--wcui-pitch-black);
-  color: var(--wcui-white-text);
-  cursor: pointer;
-  clip-path: polygon(
-    0 0,
-    calc(100% - 8px) 0,
-    100% 8px,
-    100% 100%,
-    8px 100%,
-    0 calc(100% - 8px)
-  );
-}
-
-.navBtn:focus-visible {
-  outline: 2px solid var(--wcui-lime-pulse);
-  outline-offset: 2px;
-}
-
-.flip {
-  transform: rotate(180deg);
-}
-
-@media (max-width: 768px) {
-  .controls {
-    display: flex;
+    color: var(--wcui-signal-yellow);
   }
 }

@@ -14,6 +14,7 @@ import {
   matchesForFixtureDate,
 } from "@/lib/fixtureSchedule";
 import { formatKickoffTime } from "@/lib/i18n/format";
+import { matchAriaLabel, matchStripStatus } from "@/lib/matchAccessibility";
 import { t } from "@/lib/i18n/t";
 import styles from "./LoginUpcomingMatches.module.scss";
 
@@ -31,33 +32,22 @@ function matchTimeLabel(match: DashboardMatch): { label: string; dateTime?: stri
 }
 
 function MatchBlock({ match }: { match: DashboardMatch }) {
+  const status = matchStripStatus(match);
   const { label, dateTime } = matchTimeLabel(match);
 
   return (
-    <article className={styles.matchBlock}>
-      <div className={styles.matchBody}>
+    <article className={styles.matchBlock} aria-label={matchAriaLabel(match, status)}>
+      <div className={styles.matchBody} aria-hidden="true">
         <ul className={styles.teamList}>
           <li className={styles.teamRow}>
-            <CountryFlag
-              code={match.home.code}
-              label={match.home.name}
-              className={styles.teamFlag}
-            />
+            <CountryFlag code={match.home.code} className={styles.teamFlag} />
             <span className={styles.teamName}>{match.home.name}</span>
-            <span className={styles.teamScore} aria-label={t("loginMatches.homeScore")}>
-              {match.homeScore}
-            </span>
+            <span className={styles.teamScore}>{match.homeScore}</span>
           </li>
           <li className={styles.teamRow}>
-            <CountryFlag
-              code={match.away.code}
-              label={match.away.name}
-              className={styles.teamFlag}
-            />
+            <CountryFlag code={match.away.code} className={styles.teamFlag} />
             <span className={styles.teamName}>{match.away.name}</span>
-            <span className={styles.teamScore} aria-label={t("loginMatches.awayScore")}>
-              {match.awayScore}
-            </span>
+            <span className={styles.teamScore}>{match.awayScore}</span>
           </li>
         </ul>
         <span className={styles.matchDivider} aria-hidden="true" />

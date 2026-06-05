@@ -24,7 +24,6 @@ $wcui-token-pairs: (
 "--wcui-primary-blue": (#365afe, oklch(0.58 0.24 265)),
 "--wcui-aqua-mint": (#00e6ec, oklch(0.84 0.15 205)),
 "--wcui-sky-blue": (#8db9ff, oklch(0.8 0.11 255)),
-"--wcui-lime-pulse": (#b8ec03, oklch(0.87 0.24 117)),
 "--wcui-broadcast-orange": (#ff4500, oklch(0.7 0.23 38)),
 "--wcui-signal-green": (#00c857, oklch(0.74 0.22 151)),
 "--wcui-signal-yellow": (#f8e207, oklch(0.902 0.188 102.3)),
@@ -162,7 +161,7 @@ $wcui-token-pairs: (
     var(--wcui-stadium-navy) 10%,
     var(--wcui-aqua-mint) 46%,
     color-mix(in oklab, var(--wcui-white-text) 88%, var(--wcui-aqua-mint)) 50%,
-    var(--wcui-lime-pulse) 54%,
+    var(--wcui-signal-yellow) 54%,
     var(--wcui-aqua-mint) 62%,
     var(--wcui-primary-blue) 78%,
     var(--wcui-pitch-black) 100%

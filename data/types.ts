@@ -2,19 +2,6 @@ export type FifaCountryCode = string;
 
 export type MatchStatus = "live" | "upcoming" | "finished";
 
-export type FeedMessageKey =
-  | "kaneGoal"
-  | "bellinghamAssist"
-  | "ronaldoShot"
-  | "musialaShot"
-  | "deBruyneKeyPass"
-  | "hakimiCross"
-  | "brunoFernandesCorner"
-  | "haalandGoal"
-  | "modricAssist"
-  | "brazilCleanSheet"
-  | "virgilBlock";
-
 export type DashboardMatch = {
   id: string;
   status: MatchStatus;
@@ -38,12 +25,19 @@ export type DashboardPerformer = {
   points: number;
 };
 
-export type FeedItem = {
-  id: string;
-  messageKey: FeedMessageKey;
+/** MVP seed: one recent fantasy event tied to a squad pool player id. */
+export type PlayerRecentActivity = {
+  playerId: string;
+  message: string;
   pts: number;
-  kind: "ball" | "flag" | "badge";
-  flagCode?: FifaCountryCode;
+  /** Lower values surface first in Recent Activity. */
+  sortOrder: number;
+};
+
+export type RosterFeedDisplayItem = {
+  id: string;
+  message: string;
+  pts: number;
 };
 
 export type UserAvatarKey = "octocat";
