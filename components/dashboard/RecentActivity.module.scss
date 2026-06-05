@@ -148,6 +148,7 @@
   }
 
   .body {
+    --recent-activity-body-chamfer-br: 20px;
     flex-direction: row;
     align-items: center;
     gap: 0.6rem;
@@ -159,6 +160,13 @@
       color-mix(in oklab, var(--wcui-aqua-mint) 13%, var(--wcui-card-glass-fill)) 3%,
       color-mix(in oklab, var(--wcui-aqua-mint) 4%, var(--wcui-card-glass-fill)) 55%,
       color-mix(in oklab, var(--wcui-aqua-mint) 7%, var(--wcui-card-glass-fill)) 100%
+    );
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - var(--recent-activity-body-chamfer-br)),
+      calc(100% - var(--recent-activity-body-chamfer-br)) 100%,
+      0 100%
     );
   }
 

@@ -75,6 +75,7 @@
   min-height: 0;
   overflow: visible;
   --hero-text-shadow: none;
+  --hero-copy-max-height: 225px;
   --hero-gap-bottom: 0.5rem;
   --hero-under-photos-gap: 0.5rem;
   --hero-under-photos-link-h: 1.25rem;
@@ -156,10 +157,12 @@
   width: auto;
   min-width: 0;
   max-width: 100%;
+  max-height: var(--hero-copy-max-height);
   align-self: stretch;
   justify-content: flex-start;
   gap: 0.75rem;
 }
+
 
 /* Stats anchor to card bottoms: reserve space for under-photo CTA in copy + performers. */
 .heroDashboard .heroContent:has(.heroUnderPhotosLinkRow) .heroCopy {
@@ -492,15 +495,16 @@
     object-position: top center;
   }
 
-  .heroDashboard,
   .heroLogin {
     --hero-gap-top: clamp(1.25rem, 4vw, 2.5rem);
     --hero-gap-bottom: clamp(1.5rem, 5vw, 3.75rem);
   }
 
+  /* Dashboard: keep hero-to-main spacing same as ≥769px (login hero keeps responsive insets). */
   .heroDashboard {
-    --hero-under-photos-gap: clamp(0.35rem, 2vw, 0.5rem);
-    --hero-under-photos-link-h: clamp(0.875rem, 3.5vw, 1.25rem);
+    --hero-gap-bottom: 0.5rem;
+    --hero-under-photos-gap: 0.5rem;
+    --hero-under-photos-link-h: 1.25rem;
   }
 
   .heroUnderPhotosLink {
@@ -615,8 +619,10 @@
 
   .heroDashboard.heroHasEditRoster .heroEditRosterMobileRow {
     display: flex;
+    align-self: center;
     flex: 0 0 auto;
-    width: 100%;
+    width: 80%;
+    margin-block: 0.5rem;
   }
 }
 

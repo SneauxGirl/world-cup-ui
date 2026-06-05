@@ -362,7 +362,7 @@ export const en = {
     moreInfo: "Player info for {player}",
   },
   valueTrends: {
-    title: "Roster: Average vs Last Match",
+    title: "Performance Trend",
     highlightsLabel: "Form highlights",
     pointsAxis: "Pts",
     stripPlotLabel: "Fantasy points scale from {min} to {max}",
