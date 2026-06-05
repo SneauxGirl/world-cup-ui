@@ -241,10 +241,17 @@
   }
 }
 
+/* Insights stack + flat Recent Activity frame (DASHBOARD_INSIGHTS_STACK_MAX_WIDTH_PX). */
 @media (max-width: 600px) {
+  .mainLayout {
+    gap: 0;
+  }
+
   .mainTopRow {
     flex-direction: column;
     align-items: stretch;
+    padding-top: 0;
+    gap: 0;
   }
 
   .mainInsightsColumn {
@@ -258,23 +265,8 @@
     width: 100%;
     min-width: 0;
     max-width: none;
-  }
-}
-
-/* Recent Activity: flat on page black below 500px — no chamfer frame or panel fill. */
-@media (max-width: 499px) {
-  .mainLayout {
-    gap: 0;
-  }
-
-  .mainTopRow {
-    padding-top: 0;
-    gap: 0;
-  }
-
-  .mainInsightsBlock {
     margin-top: 0;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .mainInsightsFrame {
