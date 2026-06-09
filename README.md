@@ -2,15 +2,11 @@
 
 Work in progress: Portfolio UI for international soccer fantasy game
 
-![World Cup Challenge UI](docs/screenshots/LandingPage.png)
+![World Cup Challenge UI](docs/screenshots/DashboardPage.png)
 
 ## Currently Available
 
-- **Landing Page and Login**: final and responsive
-
-## Under Construction
- 
- - **Dashboard / Roster**: dashboard home plus `/roster` for squad selection (same app shell; roster embeds the selection UI).
+- Login and Dashboard. Roster framed enough to allow player selection.
 
 ## Stack
 
@@ -28,7 +24,7 @@ Work in progress: Portfolio UI for international soccer fantasy game
 
    ```bash
    git clone https://github.com/SneauxGirl/world-cup-ui
-   cd wordcup-ui
+   cd world-cup-ui
    ```
 
 2. **Install dependencies**
@@ -58,7 +54,7 @@ Work in progress: Portfolio UI for international soccer fantasy game
    npm run dev
    ```
 
-5. **Open the app** at [http://localhost:3000](http://localhost:3000). The home page renders the Landing page. Sign-in and sign-up use email/password via `AuthProvider` (`components/auth/AuthProvider.tsx`) client-side; not wired for server middleware (session cookies) at this time.
+5. **Open the app** at [http://localhost:3000](http://localhost:3000). The home page renders the Login page. Sign-in and sign-up use email/password via `AuthProvider` (`components/auth/AuthProvider.tsx`) client-side; not wired for server middleware (session cookies) at this time.
 
 ## Dummy player data
 
