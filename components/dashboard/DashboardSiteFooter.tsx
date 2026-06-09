@@ -10,15 +10,12 @@ import {
   getDashboardFooterNavItemsRowMajor,
 } from "@/data/dashboard-footer";
 import { t } from "@/lib/i18n/t";
+import { scrollToPageTop } from "@/lib/scrollToPageTop";
 import styles from "./DashboardSiteFooter.module.scss";
 
 const COPYRIGHT_YEAR = 2026;
 
 export function DashboardSiteFooter() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer className={styles.footer}>
       <nav className={styles.mainNav} aria-label={t("loginFooter.navLabel")}>
@@ -98,7 +95,7 @@ export function DashboardSiteFooter() {
               </li>
             ))}
             <li>
-              <button type="button" className={styles.legalLink} onClick={scrollToTop}>
+              <button type="button" className={styles.legalLink} onClick={scrollToPageTop}>
                 {t("loginFooter.backToTop")}
               </button>
             </li>

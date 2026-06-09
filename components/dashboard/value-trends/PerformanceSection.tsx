@@ -1,20 +1,20 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { OverUnderInfoModal } from "@/components/dashboard/value-trends/OverUnderInfoModal";
+import { PerformanceInfoModal } from "@/components/dashboard/value-trends/PerformanceInfoModal";
 import { ValueTrendStripPlot } from "@/components/dashboard/value-trends/ValueTrendStripPlot";
 import { IconInfo } from "@/components/icons/DashboardIcons";
 import { buildValueTrendStripItems } from "@/lib/value-trends/buildStripItems";
 import { getStripPlotScale } from "@/lib/value-trends/compute";
 import { useRoster } from "@/lib/roster/RosterProvider";
 import { t } from "@/lib/i18n/t";
-import styles from "./OverUnderSection.module.scss";
+import styles from "./PerformanceSection.module.scss";
 
 type Props = {
   className?: string;
 };
 
-export function OverUnderSection({ className }: Props) {
+export function PerformanceSection({ className }: Props) {
   const { rosterBySlot, isDemoMode, loading } = useRoster();
   const [infoOpen, setInfoOpen] = useState(false);
 
@@ -31,7 +31,7 @@ export function OverUnderSection({ className }: Props) {
     <>
       <section
         className={[styles.sectionFrame, className].filter(Boolean).join(" ")}
-        aria-labelledby="value-trends-heading"
+        aria-labelledby="performance-trend-heading"
       >
         <div
           className={[styles.section, isDemoMode && styles.sectionDemo]
@@ -41,7 +41,7 @@ export function OverUnderSection({ className }: Props) {
           <div className={styles.content} inert={isDemoMode ? true : undefined}>
             <div className={styles.head}>
               <div className={styles.titleRow}>
-                <h2 id="value-trends-heading" className={styles.title}>
+                <h2 id="performance-trend-heading" className={styles.title}>
                   {t("valueTrends.title")}
                 </h2>
                 <button
@@ -59,7 +59,7 @@ export function OverUnderSection({ className }: Props) {
           </div>
         </div>
       </section>
-      <OverUnderInfoModal open={infoOpen} onClose={() => setInfoOpen(false)} />
+      <PerformanceInfoModal open={infoOpen} onClose={() => setInfoOpen(false)} />
     </>
   );
 }

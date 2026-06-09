@@ -1,10 +1,10 @@
+@use "../../styles/wcui-frame" as frame;
+
 .activity {
-  --wcui-font-heading-panel: 1.65rem;
   --wcui-font-control: 0.95rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.25rem;
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
@@ -13,18 +13,15 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.8rem;
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
+}
 
-  &:focus {
-    outline: none;
-  }
-
-  &:focus-visible {
-    outline: none;
-  }
+.activityDemo .content {
+  opacity: 0.42;
+  filter: saturate(0.65);
 }
 
 .keyboardHint {
@@ -43,9 +40,10 @@
   margin: 0;
   padding-inline: 0.15rem;
   font-family: var(--font-alumni-sans), var(--font-finlandica), sans-serif;
-  font-size: var(--wcui-font-heading-panel);
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
   font-weight: 700;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--wcui-white-text);
 }
 
@@ -55,6 +53,25 @@
   gap: 0.25rem;
   width: 100%;
   min-width: 0;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wcui-aqua-mint);
+    outline-offset: 4px;
+  }
+}
+
+.bodyInner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .list {
@@ -140,13 +157,25 @@
   opacity: 0.9;
 }
 
-/* Flat mobile band — left copy, larger chevrons on the right (RECENT_ACTIVITY_FLAT_MAX_WIDTH_PX). */
-@media (max-width: 600px) {
-  .title {
-    padding-inline: 0;
-    text-align: left;
+/* Desktop feed panel — asymmetric chamfer on feed only (RECENT_ACTIVITY_FLAT_MAX_WIDTH_PX). */
+@media (min-width: 601px) {
+  .body {
+    --wcui-chamfer-tl: 30px;
+    --wcui-chamfer-tr: 20px;
+    --wcui-chamfer-br: 25px;
+    --wcui-chamfer-bl: 20px;
+    @include frame.wcui-chamfer-frame-asymmetric;
   }
 
+  .bodyInner {
+    padding: clamp(0.9rem, 2vw, 1.15rem) clamp(1rem, 2.5vw, 1.35rem) 0.75rem;
+    @include frame.wcui-chamfer-fill-asymmetric(var(--wcui-hero-panel-fill));
+    border: 1px solid var(--wcui-border-aqua-soft);
+  }
+}
+
+/* Flat mobile band — left copy, larger chevrons on the right (RECENT_ACTIVITY_FLAT_MAX_WIDTH_PX). */
+@media (max-width: 600px) {
   .body {
     --recent-activity-body-chamfer-br: 20px;
     flex-direction: row;
@@ -154,7 +183,6 @@
     gap: 0.6rem;
     padding-inline: 0.5rem;
     padding-block: 0.45rem;
-    box-sizing: border-box;
     background: linear-gradient(
       108deg,
       color-mix(in oklab, var(--wcui-aqua-mint) 13%, var(--wcui-card-glass-fill)) 3%,
@@ -168,6 +196,14 @@
       calc(100% - var(--recent-activity-body-chamfer-br)) 100%,
       0 100%
     );
+  }
+
+  .bodyInner {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .list {

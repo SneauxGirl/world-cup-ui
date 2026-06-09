@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useId, useState, type KeyboardEvent } from "react";
 import { IconChevronDown, IconChevronUp } from "@/components/icons/DashboardIcons";
 import { RECENT_ACTIVITY_INITIAL_VISIBLE } from "@/lib/dashboard/recentActivity";
+import { useRoster } from "@/lib/roster/RosterProvider";
 import { t } from "@/lib/i18n/t";
 import type { RosterFeedDisplayItem } from "@/data/types";
 import styles from "./RecentActivity.module.scss";
@@ -19,6 +20,7 @@ export function RecentActivity({
   className,
   windowSize = RECENT_ACTIVITY_INITIAL_VISIBLE,
 }: Props) {
+  const { isDemoMode } = useRoster();
   const hintId = useId();
   const [startIndex, setStartIndex] = useState(0);
 
@@ -70,57 +72,61 @@ export function RecentActivity({
 
   return (
     <section
-      className={[styles.activity, className].filter(Boolean).join(" ")}
+      className={[styles.activity, isDemoMode && styles.activityDemo, className]
+        .filter(Boolean)
+        .join(" ")}
       aria-labelledby="recent-activity-heading"
     >
-      <div
-        className={styles.content}
-        data-recent-activity-content
-        role="region"
-        tabIndex={0}
-        aria-label={t("dashboard.recentActivity")}
-        aria-describedby={showChevrons ? hintId : undefined}
-        onKeyDown={handleContentKeyDown}
-      >
-        {showChevrons ? (
-          <p id={hintId} className={styles.keyboardHint}>
-            {t("dashboard.recentActivityKeyboardHint")}
-          </p>
-        ) : null}
+      <div className={styles.content} inert={isDemoMode ? true : undefined}>
         <h2 id="recent-activity-heading" className={styles.title}>
           {t("dashboard.recentActivity")}
         </h2>
-        <div className={styles.body}>
-          <ul className={styles.list}>
-            {visibleItems.map((item) => (
-              <li key={item.id} className={styles.row}>
-                <span className={styles.text}>{item.message}</span>
-                <span className={styles.pts}>{t("dashboard.fantasyPts", { pts: item.pts })}</span>
-              </li>
-            ))}
-          </ul>
+        <div
+          className={styles.body}
+          data-recent-activity-content
+          role="region"
+          tabIndex={0}
+          aria-label={t("dashboard.recentActivity")}
+          aria-describedby={showChevrons ? hintId : undefined}
+          onKeyDown={handleContentKeyDown}
+        >
           {showChevrons ? (
-            <div className={styles.footerChevrons}>
-              <button
-                type="button"
-                className={styles.chevronBtn}
-                aria-label={t("dashboard.recentActivityShowPrevious")}
-                disabled={!canScrollUp}
-                onClick={showPrevious}
-              >
-                <IconChevronUp className={styles.chevronIcon} aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                className={styles.chevronBtn}
-                aria-label={t("dashboard.recentActivityShowNext")}
-                disabled={!canScrollDown}
-                onClick={showNext}
-              >
-                <IconChevronDown className={styles.chevronIcon} aria-hidden="true" />
-              </button>
-            </div>
+            <p id={hintId} className={styles.keyboardHint}>
+              {t("dashboard.recentActivityKeyboardHint")}
+            </p>
           ) : null}
+          <div className={styles.bodyInner}>
+            <ul className={styles.list}>
+              {visibleItems.map((item) => (
+                <li key={item.id} className={styles.row}>
+                  <span className={styles.text}>{item.message}</span>
+                  <span className={styles.pts}>{t("dashboard.fantasyPts", { pts: item.pts })}</span>
+                </li>
+              ))}
+            </ul>
+            {showChevrons ? (
+              <div className={styles.footerChevrons}>
+                <button
+                  type="button"
+                  className={styles.chevronBtn}
+                  aria-label={t("dashboard.recentActivityShowPrevious")}
+                  disabled={!canScrollUp}
+                  onClick={showPrevious}
+                >
+                  <IconChevronUp className={styles.chevronIcon} aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  className={styles.chevronBtn}
+                  aria-label={t("dashboard.recentActivityShowNext")}
+                  disabled={!canScrollDown}
+                  onClick={showNext}
+                >
+                  <IconChevronDown className={styles.chevronIcon} aria-hidden="true" />
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     </section>

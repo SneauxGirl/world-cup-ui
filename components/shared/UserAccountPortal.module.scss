@@ -57,6 +57,7 @@
 }
 
 .profileMain {
+  order: 1;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -145,6 +146,7 @@
 .closeBtn {
   @include close.wcui-close-control;
 
+  order: 2;
   flex-shrink: 0;
   margin: 0;
   background: transparent;

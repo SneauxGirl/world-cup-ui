@@ -8,17 +8,17 @@ import { userDashboard } from "@/data/dashboard-seed";
 import { buildRosterRecentActivity } from "@/lib/dashboard/recentActivity";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { SidebarNav } from "@/components/dashboard/Navigation";
+import { PageTopSentinel } from "@/components/shared/PageTopSentinel";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { DashboardSiteFooter } from "@/components/dashboard/DashboardSiteFooter";
 import { RecentActivity } from "@/components/dashboard/RecentActivity";
-import { DashboardNextMatch } from "@/components/dashboard/DashboardNextMatch";
 import { DashboardRosterPrompt } from "@/components/dashboard/DashboardRosterPrompt";
-import { useDashboardInsightsStacked, useIsMobile } from "@/hooks/useMediaQuery";
+import { useDashboardRecentStacked, useIsMobile } from "@/hooks/useMediaQuery";
 import { LogoutConfirmModal } from "@/components/shared/LogoutConfirmModal";
 import { PlayerStatsSection } from "@/components/dashboard/player-stats/PlayerStatsSection";
-import { OverUnderSection } from "@/components/dashboard/value-trends/OverUnderSection";
+import { PerformanceSection } from "@/components/dashboard/value-trends/PerformanceSection";
 import { getTotalFantasyPoints } from "@/lib/player-fantasy/profiles";
 import {
   buildTopPerformers,
@@ -27,13 +27,10 @@ import {
 import { useRoster } from "@/lib/roster/RosterProvider";
 import styles from "./Dashboard.module.scss";
 
-/** Set true to restore the Next Match callout under RecentActivity. */
-const SHOW_NEXT_MATCH = false;
-
 export function Dashboard() {
   const logout = useLogout();
   const isMobile = useIsMobile();
-  const isInsightsStacked = useDashboardInsightsStacked();
+  const isRecentStacked = useDashboardRecentStacked();
   const [logoutOpen, setLogoutOpen] = useState(false);
   const { rosterBySlot, rosterCount, loading: rosterLoading, isDemoMode } = useRoster();
   const performers = useMemo(
@@ -77,43 +74,22 @@ export function Dashboard() {
 
   const showRosterPrompt = isDemoMode && !rosterLoading;
 
-  const rosterAverageColumn = (
-    <div className={styles.mainInsightsColumn}>
-      <OverUnderSection className={styles.mainOverUnderSection} />
+  const performanceColumn = (
+    <div className={styles.mainPerformanceColumn}>
+      <PerformanceSection className={styles.mainPerformanceSection} />
     </div>
   );
 
   const recentActivityBlock = (
-    <div
-      className={[
-        styles.mainInsightsBlock,
-        showRosterPrompt && styles.mainInsightsDemo,
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <div className={styles.mainInsightsFocusShell}>
-        <div className={styles.mainInsightsFrame}>
-          <div className={styles.mainInsightsInner}>
-            <RecentActivity
-              items={recentActivityItems}
-              className={styles.mainInsightsMessage}
-            />
-          </div>
-        </div>
-      </div>
-      {SHOW_NEXT_MATCH ? (
-        <DashboardNextMatch
-          className={styles.mainNextMatch}
-          dimmed={showRosterPrompt}
-        />
-      ) : null}
+    <div className={styles.mainRecentBlock}>
+      <RecentActivity items={recentActivityItems} />
     </div>
   );
 
   return (
     <RequireAuth>
     <div className={`${styles.page} ${styles.pageWithHero}`}>
+      <PageTopSentinel />
       <LogoutConfirmModal
         open={logoutOpen}
         onCancel={cancelLogout}
@@ -159,14 +135,14 @@ export function Dashboard() {
             <main id="dashboard-main" className={styles.mainLayout}>
               {showRosterPrompt ? <DashboardRosterPrompt className={styles.mainRosterPrompt} /> : null}
               <section className={styles.mainTopRow}>
-                {isInsightsStacked ? (
+                {isRecentStacked ? (
                   <>
                     {recentActivityBlock}
-                    {rosterAverageColumn}
+                    {performanceColumn}
                   </>
                 ) : (
                   <>
-                    {rosterAverageColumn}
+                    {performanceColumn}
                     {recentActivityBlock}
                   </>
                 )}

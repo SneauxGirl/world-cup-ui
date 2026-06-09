@@ -183,19 +183,22 @@ export function UserAccountPortal({ open, onClose, onLogout }: Props) {
 
       const first = nodes[0];
       const last = nodes[nodes.length - 1];
+      const active = document.activeElement;
 
-      if (event.shiftKey && document.activeElement === first) {
+      if (!active || !panel.contains(active)) return;
+
+      if (event.shiftKey && active === first) {
         event.preventDefault();
         last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
+      } else if (!event.shiftKey && active === last) {
         event.preventDefault();
         first.focus();
       }
     };
 
-    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("keydown", onKeyDown, true);
     return () => {
-      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("keydown", onKeyDown, true);
       previouslyFocused?.focus();
     };
   }, [open, onClose]);
@@ -209,10 +212,9 @@ export function UserAccountPortal({ open, onClose, onLogout }: Props) {
 
   const dialog = (
     <>
-      <button
-        type="button"
+      <div
         className={styles.overlay}
-        aria-label={t("accountPortal.close")}
+        role="presentation"
         onClick={onClose}
       />
       <div
@@ -225,6 +227,15 @@ export function UserAccountPortal({ open, onClose, onLogout }: Props) {
       >
         <div className={styles.panel}>
           <div className={styles.profileHead}>
+            <button
+              ref={closeRef}
+              type="button"
+              className={styles.closeBtn}
+              aria-label={t("accountPortal.close")}
+              onClick={onClose}
+            >
+              <IconClose />
+            </button>
             <div className={styles.profileMain}>
               <span className={styles.avatarFrame} aria-hidden="true">
                 <AvatarIcon avatar={userDashboard.avatar} />
@@ -244,15 +255,6 @@ export function UserAccountPortal({ open, onClose, onLogout }: Props) {
                 ) : null}
               </div>
             </div>
-            <button
-              ref={closeRef}
-              type="button"
-              className={styles.closeBtn}
-              aria-label={t("accountPortal.close")}
-              onClick={onClose}
-            >
-              <IconClose />
-            </button>
           </div>
 
           {ACCOUNT_PORTAL_DESIGNER_VISIBLE ? <AccountPortalDesignerSection /> : null}

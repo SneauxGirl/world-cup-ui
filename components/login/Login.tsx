@@ -11,6 +11,7 @@ import { LoginSiteFooter } from "@/components/login/LoginSiteFooter";
 import { LoginSteps } from "@/components/login/LoginSteps";
 import { LoginStoryPromos } from "@/components/login/LoginStoryPromos";
 import { LoginUpcomingMatches } from "@/components/login/LoginUpcomingMatches";
+import { PageTopSentinel } from "@/components/shared/PageTopSentinel";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { t } from "@/lib/i18n/t";
@@ -90,6 +91,7 @@ export function Login() {
   return (
     <RedirectIfAuthenticated>
     <div ref={pageRef} className={styles.page}>
+      <PageTopSentinel />
       <div className={styles.shell}>
         <section className={styles.heroBand} aria-label={t("login.heroRegion")}>
           <div className={styles.heroHeader}>

@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { IconClose } from "@/components/icons/DashboardIcons";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/bodyScrollLock";
 import { t } from "@/lib/i18n/t";
-import styles from "./OverUnderInfoModal.module.scss";
+import styles from "./PerformanceInfoModal.module.scss";
 
 const FOCUSABLE =
   'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -15,7 +15,7 @@ type Props = {
   onClose: () => void;
 };
 
-export function OverUnderInfoModal({ open, onClose }: Props) {
+export function PerformanceInfoModal({ open, onClose }: Props) {
   const shellRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();

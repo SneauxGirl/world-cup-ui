@@ -3,6 +3,9 @@
  * Use `t("section.key")` from @/lib/i18n/t
  */
 export const en = {
+  a11y: {
+    pageTop: "Top of page",
+  },
   app: {
     name: "WCC-UI",
     tagline: "World Cup 2026",
@@ -254,8 +257,6 @@ export const en = {
     recentActivityShowNext: "Show next activity",
     recentActivityShowPrevious: "Show previous activity",
     recentActivityKeyboardHint: "Use up and down arrow keys to show more activity.",
-    nextMatchPrefix: "NEXT MATCH:",
-    nextMatchLabel: "Next match versus {team}",
     rosterPromptLabel: "Set your roster",
     rosterPromptBanner:
       "Set your roster to view Team stats on the dashboard. General stats are available on the Players page.",
@@ -368,9 +369,9 @@ export const en = {
     stripPlotLabel: "Fantasy points scale from {min} to {max}",
     stripScrollerLabel: "Roster player trend charts",
     stripScrollerHint: "Use left and right arrow keys to scroll through players.",
-    openInfoModal: "How to read Over Under",
-    closeInfoModal: "Close Over Under guide",
-    contextModalTitle: "Over Under guide",
+    openInfoModal: "How to read Performance Trend",
+    closeInfoModal: "Close Performance Trend guide",
+    contextModalTitle: "Performance Trend guide",
     contextModalBody:
       "Left column is average ppg over last 5 games. Right column is most recent game score.",
     infoModalTitle: "Reading the chart",

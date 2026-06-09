@@ -9,6 +9,7 @@ import {
   loginFooterPartners,
 } from "@/data/login-footer";
 import { t } from "@/lib/i18n/t";
+import { scrollToPageTop } from "@/lib/scrollToPageTop";
 import styles from "./LoginSiteFooter.module.scss";
 
 const COPYRIGHT_YEAR = 2026;
@@ -18,10 +19,6 @@ type Props = {
 };
 
 export function LoginSiteFooter({ showPartners = true }: Props) {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer className={styles.footer}>
       {showPartners ? (
@@ -112,7 +109,7 @@ export function LoginSiteFooter({ showPartners = true }: Props) {
               </li>
             ))}
             <li>
-              <button type="button" className={styles.legalLink} onClick={scrollToTop}>
+              <button type="button" className={styles.legalLink} onClick={scrollToPageTop}>
                 {t("loginFooter.backToTop")}
               </button>
             </li>

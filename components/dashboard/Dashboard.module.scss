@@ -1,5 +1,4 @@
 @use "../../styles/content-column" as column;
-@use "../../styles/wcui-frame" as frame;
 
 .page {
   min-height: 100dvh;
@@ -127,74 +126,23 @@
   box-sizing: border-box;
 }
 
-.mainInsightsBlock {
+.mainRecentBlock {
   flex: 0 0 min(36%, 26rem);
   min-width: 16rem;
   max-width: 26rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  align-self: center;
+  align-self: flex-start;
   justify-content: flex-start;
-  gap: 0.5rem;
 }
 
-.mainInsightsDemo .mainInsightsFrame {
-  opacity: 0.42;
-  filter: saturate(0.65);
-}
-
-.mainNextMatch {
-  width: 100%;
-  min-width: 0;
-}
-
-.mainInsightsFrame {
-  --wcui-chamfer-tl: 30px;
-  --wcui-chamfer-tr: 20px;
-  --wcui-chamfer-br: 25px;
-  --wcui-chamfer-bl: 20px;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  flex: 0 0 auto;
-  margin-top: 0;
-  box-sizing: border-box;
-  @include frame.wcui-chamfer-frame-asymmetric;
-}
-
-.mainInsightsFocusShell {
-  width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-
-  &:has([data-recent-activity-content]:focus-visible) {
-    outline: 2px solid var(--wcui-aqua-mint);
-    outline-offset: 4px;
-  }
-}
-
-.mainInsightsInner {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 0.35rem;
-  padding: clamp(0.9rem, 2vw, 1.15rem) clamp(1rem, 2.5vw, 1.35rem) 0.75rem;
-  box-sizing: border-box;
-  @include frame.wcui-chamfer-fill-asymmetric(var(--wcui-hero-panel-fill));
-  border: 1px solid var(--wcui-border-aqua-soft);
-}
-
-.mainInsightsMessage {
-  min-width: 0;
-}
-
-.mainOverUnderSection {
+.mainPerformanceSection {
   flex: 1 1 auto;
   min-width: 0;
 }
 
-.mainInsightsColumn {
+.mainPerformanceColumn {
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
@@ -241,10 +189,10 @@
   }
 }
 
-/* Insights stack + flat Recent Activity frame (DASHBOARD_INSIGHTS_STACK_MAX_WIDTH_PX). */
+/* Recent stack + flat Recent Activity frame (DASHBOARD_RECENT_STACK_MAX_WIDTH_PX). */
 @media (max-width: 600px) {
   .mainLayout {
-    gap: 0;
+    gap: 0.8rem;
   }
 
   .mainTopRow {
@@ -254,34 +202,21 @@
     gap: 0;
   }
 
-  .mainInsightsColumn {
+  .mainPerformanceColumn {
     width: 100%;
     max-width: none;
   }
 
-  .mainInsightsBlock {
+  .mainRecentBlock {
     flex: 0 0 auto;
     align-self: stretch;
     width: 100%;
     min-width: 0;
     max-width: none;
-    margin-top: 0;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.8rem;
   }
 
-  .mainInsightsFrame {
-    padding: 0;
-    background: transparent;
-    clip-path: none;
-  }
-
-  .mainInsightsInner {
-    padding: 0;
-    background: transparent;
-    border: none;
-    clip-path: none;
-    box-shadow: none;
-  }
 }
 
 @media (max-height: 520px) and (max-width: 768px) {

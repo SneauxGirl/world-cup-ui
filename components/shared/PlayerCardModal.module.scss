@@ -239,13 +239,8 @@
   }
 }
 
-.infoBtn:hover .infoIcon circle,
-.infoBtn:focus-visible .infoIcon circle {
+.infoBtn:hover .infoIcon circle {
   stroke: var(--wcui-aqua-mint);
-}
-
-.infoBtn:focus-visible .infoIcon circle {
-  stroke-width: 2.25;
 }
 
 .matchBars {

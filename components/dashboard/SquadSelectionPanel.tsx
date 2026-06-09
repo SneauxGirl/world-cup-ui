@@ -14,6 +14,7 @@ import {
   isPlayerOnRoster,
 } from "@/lib/squad-roster-slots";
 import { useRoster } from "@/lib/roster/RosterProvider";
+import { ROSTER_LIST_ONLY_MAX_WIDTH_PX, mediaMaxWidthQuery } from "@/lib/media";
 import { useMediaQuery } from "@/lib/useMediaQuery";
 import { formatInteger } from "@/lib/i18n/format";
 import { t } from "@/lib/i18n/t";
@@ -21,6 +22,7 @@ import styles from "./SquadSelectionPanel.module.scss";
 
 const MAX_SQUAD_PLAYERS = 15;
 const SIDE_BY_SIDE_QUERY = "(min-width: 901px)";
+const LIST_ONLY_QUERY = mediaMaxWidthQuery(ROSTER_LIST_ONLY_MAX_WIDTH_PX);
 
 type TallyCountTone = "empty" | "building" | "full";
 
@@ -66,7 +68,10 @@ export function SquadSelectionPanel({
   const descriptionId = descriptionIdProp ?? generatedDescriptionId;
   const panelId = useId();
   const isSideBySide = useMediaQuery(SIDE_BY_SIDE_QUERY);
+  const isListOnlyViewport = useMediaQuery(LIST_ONLY_QUERY);
   const [view, setView] = useState<ViewMode>("pitch");
+  const activeView: ViewMode = isListOnlyViewport ? "list" : view;
+  const showViewToggle = !isListOnlyViewport;
   const [focusedSlotId, setFocusedSlotId] = useState<string | null>(null);
   const [pickerOverlayOpen, setPickerOverlayOpen] = useState(false);
   const [playerSearchQuery, setPlayerSearchQuery] = useState("");
@@ -232,43 +237,45 @@ export function SquadSelectionPanel({
         </div>
 
         <div className={showDesktopColumns ? styles.desktopMain : undefined}>
-          <div
-            className={styles.viewToggle}
-            role="tablist"
-            aria-label={t("squadSelection.viewToggleLabel")}
-          >
-            <button
-              type="button"
-              role="tab"
-              id={`${panelId}-tab-pitch`}
-              aria-selected={view === "pitch"}
-              aria-controls={`${panelId}-panel-pitch`}
-              className={view === "pitch" ? styles.viewTabActive : styles.viewTab}
-              onClick={() => {
-                closeOverlayPicker();
-                setView("pitch");
-              }}
+          {showViewToggle ? (
+            <div
+              className={styles.viewToggle}
+              role="tablist"
+              aria-label={t("squadSelection.viewToggleLabel")}
             >
-              {t("squadSelection.pitchView")}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              id={`${panelId}-tab-list`}
-              aria-selected={view === "list"}
-              aria-controls={`${panelId}-panel-list`}
-              className={view === "list" ? styles.viewTabActive : styles.viewTab}
-              onClick={() => {
-                closeOverlayPicker();
-                setView("list");
-              }}
-            >
-              {t("squadSelection.listView")}
-            </button>
-          </div>
+              <button
+                type="button"
+                role="tab"
+                id={`${panelId}-tab-pitch`}
+                aria-selected={activeView === "pitch"}
+                aria-controls={`${panelId}-panel-pitch`}
+                className={activeView === "pitch" ? styles.viewTabActive : styles.viewTab}
+                onClick={() => {
+                  closeOverlayPicker();
+                  setView("pitch");
+                }}
+              >
+                {t("squadSelection.pitchView")}
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id={`${panelId}-tab-list`}
+                aria-selected={activeView === "list"}
+                aria-controls={`${panelId}-panel-list`}
+                className={activeView === "list" ? styles.viewTabActive : styles.viewTab}
+                onClick={() => {
+                  closeOverlayPicker();
+                  setView("list");
+                }}
+              >
+                {t("squadSelection.listView")}
+              </button>
+            </div>
+          ) : null}
 
           <div className={styles.viewBody}>
-            {view === "pitch" ? (
+            {activeView === "pitch" ? (
               <div
                 id={`${panelId}-panel-pitch`}
                 role="tabpanel"
@@ -320,8 +327,8 @@ export function SquadSelectionPanel({
             ) : (
               <div
                 id={`${panelId}-panel-list`}
-                role="tabpanel"
-                aria-labelledby={`${panelId}-tab-list`}
+                role={showViewToggle ? "tabpanel" : undefined}
+                aria-labelledby={showViewToggle ? `${panelId}-tab-list` : undefined}
                 className={styles.listPanel}
               >
                 <div

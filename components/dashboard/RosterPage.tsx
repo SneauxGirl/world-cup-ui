@@ -6,6 +6,7 @@ import { userDashboard } from "@/data/dashboard-seed";
 import { useLogout } from "@/lib/auth/useLogout";
 import { SquadSelectionPanel } from "@/components/dashboard/SquadSelectionPanel";
 import { SidebarNav } from "@/components/dashboard/Navigation";
+import { PageTopSentinel } from "@/components/shared/PageTopSentinel";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
@@ -33,6 +34,7 @@ export function RosterPage() {
   return (
     <RequireAuth>
     <div className={shellStyles.page}>
+      <PageTopSentinel />
       <LogoutConfirmModal
         open={logoutOpen}
         onCancel={cancelLogout}
