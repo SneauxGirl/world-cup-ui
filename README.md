@@ -1,12 +1,16 @@
 # World Cup UI
 
-Work in progress: Portfolio UI for international soccer fantasy game
+MVP: Portfolio UI for international soccer fantasy game
 
-![World Cup Challenge UI](docs/screenshots/DashboardPage.png)
+![World Cup Challenge UI](docs/screenshots/Dashboard.png)
+
+## 🚀 Live Demo
+
+[View the App →](https://world-cup-ui.vercel.app/)
 
 ## Currently Available
 
-- Login and Dashboard. Roster framed enough to allow player selection.
+- Login and Dashboard complete. Roster responsive and framed enough to allow player selection.
 
 ## Stack
 
@@ -18,7 +22,7 @@ Work in progress: Portfolio UI for international soccer fantasy game
 
 ## Quick start
 
-**Requirements:** Node.js 20+ and npm, and a [Firebase](https://console.firebase.google.com/) project with **Email/Password** sign-in and **Cloud Firestore** enabled.
+**Requirements:** Node.js 20+ and [pnpm](https://pnpm.io/), and a [Firebase](https://console.firebase.google.com/) project with **Email/Password** sign-in and **Cloud Firestore** enabled.
 
 1. **Clone the repository**
 
@@ -30,7 +34,7 @@ Work in progress: Portfolio UI for international soccer fantasy game
 2. **Install dependencies**
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. **Configure Firebase**
@@ -46,12 +50,12 @@ Work in progress: Portfolio UI for international soccer fantasy game
    NEXT_PUBLIC_FIREBASE_APP_ID=
    ```
 
-   Values map to `lib/firebase/client.ts`. Restart `npm run dev` after changing env vars.
+   Values map to `lib/firebase/client.ts`. Restart `pnpm dev` after changing env vars.
 
 4. **Run the development server**
 
    ```bash
-   npm run dev
+   pnpm dev
    ```
 
 5. **Open the app** at [http://localhost:3000](http://localhost:3000). The home page renders the Login page. Sign-in and sign-up use email/password via `AuthProvider` (`components/auth/AuthProvider.tsx`) client-side; not wired for server middleware (session cookies) at this time.
@@ -66,7 +70,7 @@ To regenerate profiles after CSV edits:
 node scripts/build-player-profiles.mjs
 ```
 
-`npm run build` runs this script automatically before the Next.js build.
+`pnpm build` runs this script automatically before the Next.js build.
 
 
 ## License

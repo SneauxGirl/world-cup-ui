@@ -8,6 +8,7 @@ import { SquadSelectionPanel } from "@/components/dashboard/SquadSelectionPanel"
 import { SidebarNav } from "@/components/dashboard/Navigation";
 import { PageTopSentinel } from "@/components/shared/PageTopSentinel";
 import { SiteHeader } from "@/components/shared/SiteHeader";
+import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { DashboardSiteFooter } from "@/components/dashboard/DashboardSiteFooter";
 import { useIsMobile } from "@/hooks/useMediaQuery";
@@ -41,6 +42,7 @@ export function RosterPage() {
       />
       <SidebarNav />
       <div className={shellStyles.shell}>
+        <TodayMatchesStrip className={shellStyles.shellMatches} />
         <div className={`${shellStyles.shellTopBand} ${shellStyles.contentBandTop}`}>
           <div className={shellStyles.pageGutter}>
             <div className={shellStyles.pageColumn}>
