@@ -10,7 +10,6 @@ import { HeroSection } from "@/components/shared/HeroSection";
 import { SidebarNav } from "@/components/dashboard/Navigation";
 import { PageTopSentinel } from "@/components/shared/PageTopSentinel";
 import { SiteHeader } from "@/components/shared/SiteHeader";
-import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { useSiteUtilities } from "@/components/dashboard/SiteUtilities";
 import { DashboardSiteFooter } from "@/components/dashboard/DashboardSiteFooter";
 import { RecentActivity } from "@/components/dashboard/RecentActivity";
@@ -97,7 +96,6 @@ export function Dashboard() {
       />
       <SidebarNav />
       <div className={styles.shell}>
-        <TodayMatchesStrip className={styles.shellMatches} />
         <div className={`${styles.shellTopBand} ${styles.contentBandTop}`}>
           <div className={styles.pageGutter}>
             <div className={styles.pageColumn}>

@@ -23,12 +23,6 @@
   background: var(--wcui-background-black);
 }
 
-.shellMatches {
-  flex-shrink: 0;
-  width: 100%;
-  order: 1;
-}
-
 .pageGutter {
   @include column.page-gutter;
 }
@@ -162,10 +156,6 @@
 @media (max-width: 768px) {
   .page {
     flex-direction: column;
-  }
-
-  .shellMatches {
-    display: none;
   }
 
   .shellTopBand.contentBandTop {

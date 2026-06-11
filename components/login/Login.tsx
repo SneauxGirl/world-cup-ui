@@ -13,7 +13,6 @@ import { LoginStoryPromos } from "@/components/login/LoginStoryPromos";
 import { LoginUpcomingMatches } from "@/components/login/LoginUpcomingMatches";
 import { PageTopSentinel } from "@/components/shared/PageTopSentinel";
 import { SiteHeader } from "@/components/shared/SiteHeader";
-import { TodayMatchesStrip } from "@/components/shared/TodayMatchesStrip";
 import { t } from "@/lib/i18n/t";
 import styles from "./Login.module.scss";
 
@@ -95,7 +94,6 @@ export function Login() {
       <div className={styles.shell}>
         <section className={styles.heroBand} aria-label={t("login.heroRegion")}>
           <div className={styles.heroHeader}>
-            <TodayMatchesStrip />
             <div className={styles.pageGutter}>
               <div className={styles.pageColumn}>
                 <SiteHeader brand="login" className={styles.shellHeader} />
