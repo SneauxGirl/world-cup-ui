@@ -42,7 +42,9 @@ export function RosterPage() {
       />
       <SidebarNav />
       <div className={shellStyles.shell}>
-        <TodayMatchesStrip className={shellStyles.shellMatches} />
+        <TodayMatchesStrip
+          className={`${shellStyles.shellMatches} ${styles.matchesStripHidden}`}
+        />
         <div className={`${shellStyles.shellTopBand} ${shellStyles.contentBandTop}`}>
           <div className={shellStyles.pageGutter}>
             <div className={shellStyles.pageColumn}>
